@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4.25rem); }
+h1 { font-size: clamp(2.3rem, 4.5vw, 4rem); }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: var(--spacing-sm); }
 h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 p { color: var(--text-soft); margin-bottom: var(--spacing-sm); font-size: 1.1rem; }
@@ -376,7 +376,7 @@ main.main-content {
     transform: translateY(-2px);
 }
 
-/* Section system (Alternating backgrounds to create visual rhythm) */
+/* Section system */
 section {
     padding: var(--spacing-lg) 0;
 }
@@ -483,7 +483,7 @@ section.hero-section::after {
     border-color: rgba(0, 138, 38, 0.2);
 }
 
-/* Glassmorphism Cards (Floating, visual panels, overlay elements) */
+/* Glassmorphism Cards */
 .card-glass {
     background-color: var(--bg-glass);
     backdrop-filter: blur(12px);
@@ -500,7 +500,7 @@ section.hero-section::after {
     box-shadow: 0 16px 40px rgba(0, 138, 38, 0.1);
 }
 
-/* Neomorphism elements (Icons wrappers, secondary pills, small stat blocks) */
+/* Neomorphism elements */
 .card-neomorphic {
     background-color: var(--bg-alt);
     border: 1px solid rgba(255, 255, 255, 0.8);
@@ -1182,4 +1182,233 @@ footer.site-footer .footer-grid {
         transition-duration: 0s !important;
         scroll-behavior: auto !important;
     }
+}
+
+/* VISUAL-FIRST REDESIGN UTILITIES */
+
+/* Diagram Nodes and Connectors */
+.diagram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: var(--spacing-md) 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.diagram-node {
+    background-color: var(--bg-alt);
+    border: 2px solid var(--green-300);
+    box-shadow: var(--neo-shadow-soft);
+    border-radius: var(--radius-md);
+    padding: 1.15rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--brand-green-dark);
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+    z-index: 10;
+    cursor: pointer;
+    position: relative;
+}
+
+.diagram-node:hover {
+    border-color: var(--brand-green);
+    transform: translateY(-2px);
+    box-shadow: var(--neo-shadow-flat);
+    background-color: var(--bg-light);
+}
+
+.diagram-node.active-node {
+    border-color: var(--brand-green);
+    background-color: var(--brand-green-light);
+}
+
+/* Pulsing Line Animation */
+.pulse-line {
+    stroke-dasharray: 8;
+    animation: pulseLineAnimation 20s linear infinite;
+}
+
+@keyframes pulseLineAnimation {
+    to {
+        stroke-dashoffset: -1000;
+    }
+}
+
+/* Data Pulse Animation */
+.data-pulse {
+    animation: dataPulseAnimation 3s infinite ease-in-out;
+}
+
+@keyframes dataPulseAnimation {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 2px rgba(0, 138, 38, 0.2));
+    }
+    50% {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 10px rgba(0, 138, 38, 0.6));
+    }
+}
+
+/* Interactive Details Tooltip */
+.interactive-tooltip {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: var(--bg-glass-dark);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    text-align: left;
+    line-height: 1.4;
+}
+
+.diagram-node:hover .interactive-tooltip,
+.diagram-node:focus-within .interactive-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Before / After Flow Comparison */
+.flow-comparison {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+}
+
+@media (max-width: 768px) {
+    .flow-comparison {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .flow-arrow-container {
+        transform: rotate(90deg);
+        padding: var(--spacing-sm) 0;
+    }
+}
+
+.flow-arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--brand-green);
+    font-weight: 900;
+}
+
+/* Accordion for FAQ and SEO content */
+.accordion-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
+
+.accordion-trigger {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--brand-green-dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.accordion-trigger::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--brand-green);
+    transition: transform var(--transition-fast);
+}
+
+.accordion-trigger[aria-expanded="true"]::after {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+    font-size: 0.95rem;
+    color: var(--text-soft);
+}
+
+.accordion-content p {
+    padding-top: 0.75rem;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.accordion-trigger[aria-expanded="true"] + .accordion-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Interactive Pathways: Build, Buy or Integrate */
+.pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+@media (max-width: 992px) {
+    .pathway-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pathway-card {
+    background: var(--bg-alt);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal), background-color var(--transition-normal);
+}
+
+.pathway-card:hover, .pathway-card.active-pathway {
+    border-color: var(--brand-green);
+    box-shadow: var(--neo-shadow-soft);
+    transform: translateY(-3px);
+    background-color: var(--bg-light);
+}
+
+/* Video Showcase Mockup */
+.video-mockup {
+    background: #000;
+    border-radius: var(--radius-lg);
+    padding: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 4px solid var(--bg-alt);
+    overflow: hidden;
+    position: relative;
+    line-height: 0;
+}
+
+.video-mockup video {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
 }

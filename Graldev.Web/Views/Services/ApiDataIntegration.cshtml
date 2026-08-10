@@ -2,68 +2,81 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+<section class="case-study-hero" style="padding-bottom: 2rem;">
     <div class="container">
         <span class="section-eyebrow">API & DATA INTEGRATION</span>
-        <h1 class="section-title">
+        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
             @(isEn ? "Data available where it's needed, when it's needed." : "Dati disponibili dove servono, quando servono.")
         </h1>
-        <p class="section-subtitle">
-            @(isEn ? "We structure secure REST/SOAP APIs, webhooks, and ETL architectures to ensure flawless data synchronization across your systems." : "Progettiamo architetture API (REST/SOAP), webhook e canali ETL robusti per garantire una sincronizzazione dati costante e affidabile tra i tuoi software.")
+        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+            @(isEn ? "We engineer reliable REST/SOAP APIs, webhook triggers, and automated ETL pipelines to sync corporate databases and SaaS applications in real time." : "Progettiamo e sviluppiamo connettori API REST/SOAP, webhook e pipeline ETL per sincronizzare database aziendali e piattaforme SaaS.")
         </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
+        </a>
     </div>
 </section>
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Structuring robust information architectures" : "Scambiare informazioni senza compromettere la consistenza")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>In modern enterprises, data is frequently distributed in multiple distinct databases, ERPs, and cloud environments. Sincronizing this information manually is a recipe for operational disaster. We design structured API layers and transactional middleware that communicate automatically in real-time or via scheduled batches.</text>
-                }
-                else
-                {
-                    <text>Le informazioni aziendali sono spesso distribuite in database diversi, gestionali locali e applicativi cloud. Sincronizzare queste basi dati a mano o tramite esportazioni disordinate rallenta l'azienda. Graldev progetta e sviluppa canali API sicuri ed interfacce di comunicazione transazionali per allineare i dati in tempo reale.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
-                {
-                    <text>We pay extreme attention to structural reliability: incorporating secure authentication (OAuth, tokens), automatic retries, error logs, and performance dashboards to ensure zero data losses.</text>
-                }
-                else
-                {
-                    <text>Poniamo la massima cura sulla stabilità dell'infrastruttura: sistemi di autenticazione sicuri (OAuth, token), gestione automatica dei tentativi (retry policy), log dettagliati delle transazioni e cruscotti di controllo per monitorare lo stato di salute di tutti i flussi.</text>
-                }
-            </p>
+<!-- Visual Data Flow Pipeline Diagram -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-eyebrow">PIPELINE MAP</span>
+            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Automated Secure Data Pipelines" : "Architettura dei flussi dati sincronizzati")</h2>
         </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "API & Data Competences" : "Competenze API & Dati")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>🌐 REST API, Webhooks, SOAP Web Services</li>
-                    <li>🔄 Real-time and scheduled batch synchronization</li>
-                    <li>💾 ETL data transformation pipelines</li>
-                    <li>🔑 Secure Authentication (API keys, OAuth2)</li>
-                    <li>🛡️ Auto-retry, error routing, and fail-safes</li>
-                    <li>📊 Observability: logs, monitoring, and alerts</li>
-                </ul>
+
+        <div class="flow-comparison">
+            <!-- Sources -->
+            <div class="card-glass" style="text-align: center; padding: 1.25rem;">
+                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.75rem;">SOURCES</h4>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 700;">
+                    <div class="card-neomorphic">ERP Database</div>
+                    <div class="card-neomorphic">CRM Contacts</div>
+                    <div class="card-neomorphic">Shopify Listings</div>
+                </div>
+            </div>
+
+            <!-- Webhook Connection Line -->
+            <div class="flow-arrow-container" style="flex-direction: column; gap: 0.5rem;">
+                <span style="font-size: 0.75rem; font-weight: 800; color: var(--brand-green); text-transform: uppercase;">TRANSFORM</span>
+                <span class="data-pulse" style="display: inline-block; font-size: 2rem;">⇅</span>
+                <span style="font-size: 0.75rem; font-weight: 800; color: var(--brand-green); text-transform: uppercase;">SYNC</span>
+            </div>
+
+            <!-- Target Systems -->
+            <div class="card-glass" style="text-align: center; padding: 1.25rem;">
+                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.75rem;">TARGET</h4>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 700;">
+                    <div class="card-neomorphic">Dashboard Panels</div>
+                    <div class="card-neomorphic">External Marketplace</div>
+                    <div class="card-neomorphic">Private AI Vaults</div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Related cases -->
-<section style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-        <h2>@(isEn ? "Related Case Study: Geordie" : "Case Study Correlato: Geordie")</h2>
-        <p class="section-subtitle">
-            @(isEn ? "See how we applied complex API and Data Integration to synchronize inventory and orders across global sales channels." : "Scopri come abbiamo applicato l'integrazione dati e lo sviluppo di API per allineare store e magazzini complessi.")
-        </p>
-        <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="btn btn-outline">
-            @(isEn ? "Read Geordie Case Study" : "Scopri Geordie")
-        </a>
+<!-- Scannable specs -->
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout" style="align-items: center;">
+        <div class="split-left" style="max-width: 550px;">
+            <span class="section-eyebrow">FEATURES</span>
+            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "API Architectures We Deploy" : "Architetture API stabili e sicure")</h2>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                @(isEn ? "All our API integrations feature real-time health-checks, automatic retries, strict error log alert systems, and encrypted storage." : "Progettiamo connettori dotati di log automatici, gestione delle eccezioni e crittografia end-to-end dei dati sensibili.")
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="grid-2" style="gap: 1rem;">
+                <div class="card-base" style="padding: 1rem;">
+                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">📡 REST & Webhooks</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Fast, lightweight real-time communications." : "Sincronizzazioni veloci guidate da eventi.")</p>
+                </div>
+                <div class="card-base" style="padding: 1rem;">
+                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">🔒 Dynamic OAuth</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Secure encrypted authentication layers." : "Autenticazione solida tramite chiavi e token protetti.")</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

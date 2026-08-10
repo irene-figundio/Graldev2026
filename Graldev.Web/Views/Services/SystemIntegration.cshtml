@@ -2,114 +2,147 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+<!-- Premium Hero Visual -->
+<section class="case-study-hero" style="padding-bottom: 2rem;">
     <div class="container">
         <span class="section-eyebrow">SYSTEM INTEGRATION</span>
-        <h1 class="section-title">
+        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
             @(isEn ? "System Integration: we make systems talk that currently work separately." : "System Integration: facciamo dialogare sistemi che oggi lavorano separati.")
         </h1>
-        <p class="section-subtitle">
-            @(isEn ? "We eliminate manual copy-paste operations by building robust, secure, and monitorable data flows between your tools." : "Eliminiamo le inefficienze e gli inserimenti manuali ripetitivi creando flussi dati stabili, sicuri e monitorabili tra i vostri software.")
+        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+            @(isEn ? "Eliminating manual transcription errors. We engineer robust, secure, real-time data flows between ERP, CRM, databases, and e-commerces." : "Eliminiamo gli inserimenti manuali ripetitivi creando flussi dati stabili, sicuri e monitorati tra i vostri software gestionali.")
         </p>
-    </div>
-</section>
-
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>
-                @(isEn ? "The problem is not the individual software. It's what happens between them." : "Il problema non sono i singoli software. È ciò che accade tra un software e l'altro.")
-            </h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Enterprises purchase premium ERPs, CRMs, and eCommerce platforms. But when these systems work in silos, operational friction explodes. Stock updates are delayed, customer records are duplicated, and orders must be verified manually. The bottleneck is the lack of seamless communication between them.</text>
-                }
-                else
-                {
-                    <text>Spesso le aziende acquistano gestionali di alto livello, CRM avanzati e piattaforme e-commerce performanti. Tuttavia, finché lavorano separatamente, si creano colli di bottiglia: aggiornamenti di magazzino in ritardo, anagrafiche duplicate e ordini che devono essere controllati manualmente. L'inefficienza risiede nello spazio vuoto tra i software.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
-                {
-                    <text>Graldev engineers robust integration layers, connecting legacy software, web services (REST/SOAP), SaaS solutions, industrial machines, and databases. We ensure data moves securely with high performance, strict error-handling and observability.</text>
-                }
-                else
-                {
-                    <text>Graldev colma questo spazio. Progettiamo e sviluppiamo integrazioni e middleware per connettere ERP, CRM, database, servizi web (REST e SOAP), piattaforme SaaS, marketplace esterni ed hardware industriali, assicurando flussi automatici bidirezionali sicuri e tracciati.</text>
-                }
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Systems We Connect" : "Sistemi che Integriamo")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>💻 ERP (SAP, Microsoft Dynamics, gestionali proprietari)</li>
-                    <li>👥 CRM (Salesforce, HubSpot, custom databases)</li>
-                    <li>🛒 eCommerce & Marketplace (Shopify, Amazon, eBay)</li>
-                    <li>📡 Web Services (REST APIs, SOAP, XML, JSON, Webhooks)</li>
-                    <li>🏗️ Industrial Systems & Machine Hardware</li>
-                    <li>☁️ Cloud databases and on-premise local servers</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Integration Method -->
-<section style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-        <h2>@(isEn ? "Our Integration Pipeline" : "Il nostro metodo di integrazione")</h2>
-        <div class="method-steps">
-            <div class="method-step">
-                <div class="method-num">01</div>
-                <div class="method-name">ASSESSMENT</div>
-                <div class="method-desc">@(isEn ? "Reviewing endpoints, formats and access levels." : "Analisi di endpoint, formati dati e credenziali d'accesso.")</div>
-            </div>
-            <div class="method-step">
-                <div class="method-num">02</div>
-                <div class="method-name">DATA MAPPING</div>
-                <div class="method-desc">@(isEn ? "Structuring field conversions and translation schemas." : "Mappatura dei campi e schemi di conversione dell'informazione.")</div>
-            </div>
-            <div class="method-step">
-                <div class="method-num">03</div>
-                <div class="method-name">ARCHITECTURE</div>
-                <div class="method-desc">@(isEn ? "Designing middleware, queues, or direct connectors." : "Disegno dell'infrastruttura d'integrazione o middleware.")</div>
-            </div>
-            <div class="method-step">
-                <div class="method-num">04</div>
-                <div class="method-name">INTEGRATION</div>
-                <div class="method-desc">@(isEn ? "Coding robust connection APIs and synchronization scripts." : "Sviluppo dei connettori ed automazione dei flussi.")</div>
-            </div>
-            <div class="method-step">
-                <div class="method-num">05</div>
-                <div class="method-name">TEST</div>
-                <div class="method-desc">@(isEn ? "Dry-runs under heavy loads to verify data integrity." : "Simulazioni di carico per verificare la consistenza del dato.")</div>
-            </div>
-            <div class="method-step">
-                <div class="method-num">06</div>
-                <div class="method-name">OBSERVABILITY</div>
-                <div class="method-desc">@(isEn ? "Configuring dashboards and automatic error retry alerts." : "Setup di log avanzati e notifiche d'errore automatiche.")</div>
-            </div>
-            <div class="method-step">
-                <div class="method-num">07</div>
-                <div class="method-name">DEPLOYMENT</div>
-                <div class="method-desc">@(isEn ? "Gradual launch preserving business continuity." : "Rilascio controllato senza alcuna interruzione aziendale.")</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section style="text-align: center;">
-    <div class="container">
-        <h2>@(isEn ? "Eliminate manual data entries in your company" : "Sincronizza i tuoi sistemi aziendali")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Schedule a dedicated Integration Assessment meeting with Graldev senior technical architects." : "Pianifica un incontro dedicato per mappare la tua infrastruttura ed eliminare i colli di bottiglia.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
             @(isEn ? "Request an Integration Assessment" : "Richiedi un Integration Assessment")
         </a>
     </div>
 </section>
+
+<!-- Interactive BEFORE vs AFTER Flow Comparison Diagram -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="section-eyebrow">VISUAL FLOWS</span>
+            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">
+                @(isEn ? "The problem is not the individual software. It's what happens between them." : "Il problema non sono i singoli software. È ciò che accade tra un software e l'altro.")
+            </h2>
+        </div>
+
+        <!-- Before vs After Interactive Comparison Grid -->
+        <div class="flow-comparison">
+            <!-- BEFORE: Isolated Systems -->
+            <div class="card-glass" style="border-color: rgba(239, 68, 68, 0.25); background-color: rgba(239, 68, 68, 0.01); text-align: center; padding: 1.5rem;">
+                <span class="card-neomorphic" style="font-size: 0.75rem; font-weight: 800; color: #ef4444; padding: 0.25rem 0.65rem; border-radius: var(--radius-sm); border-color: rgba(239,68,68,0.2);">BEFORE (SILOS)</span>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; align-items: center;">
+                    <div class="diagram-node" style="width: 160px; border-color: rgba(239, 68, 68, 0.3);">ERP</div>
+                    <div style="font-size: 1.25rem; color: #ef4444;">✕ (No sync)</div>
+                    <div class="diagram-node" style="width: 160px; border-color: rgba(239, 68, 68, 0.3);">CRM</div>
+                    <div style="font-size: 1.25rem; color: #ef4444;">✕ (No sync)</div>
+                    <div class="diagram-node" style="width: 160px; border-color: rgba(239, 68, 68, 0.3);">Shopify</div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-soft); margin-top: 1.5rem; line-height: 1.4;">
+                    @(isEn ? "Manual copy-pasting, out of sync inventories, duplicate records, high operational bottlenecks." : "Inserimenti manuali a mano, stock sfasato, anagrafiche duplicate, lamentele dei clienti e ritardi.")
+                </p>
+            </div>
+
+            <!-- Central Transition Arrow -->
+            <div class="flow-arrow-container">
+                <span class="data-pulse" style="display: inline-block; font-size: 2.5rem;">➔</span>
+            </div>
+
+            <!-- AFTER: Connected Graldev Integration Layer -->
+            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.35); background-color: rgba(0, 138, 38, 0.01); text-align: center; padding: 1.5rem;">
+                <span class="card-neomorphic" style="font-size: 0.75rem; font-weight: 800; color: var(--brand-green); padding: 0.25rem 0.65rem; border-radius: var(--radius-sm); border-color: rgba(0,138,38,0.2);">AFTER (INTEGRATED)</span>
+                <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.5rem; align-items: center;">
+                    <div class="diagram-node active-node" style="width: 160px;">ERP</div>
+                    <div style="font-size: 1rem; color: var(--brand-green); font-weight: 800;">⇅ Graldev Middleware</div>
+                    <div class="diagram-node active-node" style="width: 160px;">CRM</div>
+                    <div style="font-size: 1rem; color: var(--brand-green); font-weight: 800;">⇅ Graldev Middleware</div>
+                    <div class="diagram-node active-node" style="width: 160px;">Shopify</div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-soft); margin-top: 1.5rem; line-height: 1.4;">
+                    @(isEn ? "Synchronous data pipelines, unified inventory, auto order fulfillment, real-time business visibility." : "Sincronizzazione in tempo reale, catalogo unico, ordini istantanei ed eliminazione di ogni errore manuale.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scannable Systems Integration Grid -->
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout">
+        <div class="split-left" style="max-width: 550px;">
+            <span class="section-eyebrow">CAPABILITIES</span>
+            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "Systems We Connect Seamlessly" : "Sistemi che colleghiamo e sincronizziamo")</h2>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                @(isEn ? "Graldev builds secure API endpoints and middleware integrations connecting your tools regardless of age or tech." : "Colleghiamo software on-premise, database remoti o gestionali datati utilizzando Web Services robusti.")
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="grid-2" style="gap: 1rem;">
+                <div class="card-base" style="padding: 1rem;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.35rem;">💻 ERP systems</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">SAP, Microsoft Dynamics, TeamSystem, Custom platforms.</p>
+                </div>
+                <div class="card-base" style="padding: 1rem;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.35rem;">👥 CRM networks</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">Salesforce, HubSpot, Custom analytical databases.</p>
+                </div>
+                <div class="card-base" style="padding: 1rem;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.35rem;">🛒 Commerce channels</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">Shopify, Amazon, eBay, Magento catalog connections.</p>
+                </div>
+                <div class="card-base" style="padding: 1rem;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.35rem;">📡 API Protocols</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">REST APIs, SOAP services, JSON formats, dynamic Webhooks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Below Fold Accordion: Technical Deep-Dive -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="section-eyebrow">DETAILS</span>
+            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "Deep-Dive on Integration Practices" : "Dettagli sulla nostra ingegneria di integrazione")</h2>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                @(isEn ? "How do you handle security and credential storage?" : "Come garantite la sicurezza e la privacy dei dati?")
+            </button>
+            <div class="accordion-content">
+                <p>
+                    @(isEn ? "We store all API credentials inside isolated secure vaults (e.g., Azure Key Vault or encrypted configuration files). Data pipelines are fully protected using HTTPS, OAuth, and tokenized authorization endpoints." : "Utilizziamo vault sicuri per crittografare le chiavi d'accesso ed abilitiamo solo protocolli HTTPS sicuri con crittografia AES a livello di rete per impedire intercettazioni esterne.")
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                @(isEn ? "What happens when one system is down?" : "Cosa succede se uno dei sistemi temporaneamente non risponde?")
+            </button>
+            <div class="accordion-content">
+                <p>
+                    @(isEn ? "We implement robust Message Queuing and auto-retry protocols. If your ERP is undergoing maintenance, data is held securely in queue and processed automatically the moment connectivity resumes, avoiding data loss." : "I nostri connettori middleware utilizzano code di messaggi ed invii sequenziali automatici. Se il tuo ERP è offline per manutenzione, le transazioni vengono archiviate in sicurezza e inviate non appena riprende la connessione.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleAccordion(element) {
+        const expanded = element.getAttribute('aria-expanded') === 'true';
+        element.setAttribute('aria-expanded', !expanded);
+
+        const content = element.nextElementSibling;
+        if (!expanded) {
+            content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+            content.style.maxHeight = "0px";
+        }
+    }
+</script>

@@ -21,7 +21,7 @@
             </div>
             <div>
                 <div class="case-meta-label">Key Integrations / Sistemi</div>
-                <div class="case-meta-value">Semantic Wine Databases, OpenAI GPT-4, Vector Databases</div>
+                <div class="case-meta-value">Semantic Databases, Vector Databases, OpenAI</div>
             </div>
             <div>
                 <div class="case-meta-label">Target / Canali</div>
@@ -31,66 +31,61 @@
     </div>
 </section>
 
-<section class="case-study-section">
+<!-- Visual Storytelling split sections -->
+<section class="white-section" style="padding: 3rem 0;">
     <div class="container split-layout">
         <div class="split-left">
-            <h3 class="case-block-title">CONTESTO / CONTEXT</h3>
-            <p>
-                @(isEn ? "Vitinerario is a digital platform dedicated to wine culture, gastronomy, and territorial tourism, aiming to offer deeply personalized, interactive sommelier advice to users." : "Vitinerario è un'iniziativa e piattaforma digitale focalizzata sulla valorizzazione della cultura del vino, dell'enogastronomia e del turismo territoriale, nata per guidare gli utenti verso la scelta e l'abbinamento perfetto di calici e piatti.")
+            <h3 class="case-block-title">THE CHALLENGE</h3>
+            <p style="font-size: 1rem; line-height: 1.5;">
+                @(isEn ? "Standard search engines or rigid filter forms on gastronomy platforms fail to answer complex, human conversational queries like 'Which white wine from Basilicata matches truffle-based dishes?'. Traditional chatbots felt robotic, while generic public AI models lacked verified enological databases and often hallucinated." : "I tradizionali sistemi a filtri rigidi faticano ad accogliere richieste complesse e sfumate come 'Quale vino bianco lucano posso abbinare a un risotto al tartufo?'. D'altro canto, i chatbot commerciali tradizionali erano troppo rigidi e i modelli AI generici pubblici mancavano di fonti verificate ed allucinavano.")
             </p>
-
-            <h3 class="case-block-title">PROBLEMA / PROBLEM</h3>
-            <p>
-                @(isEn ? "Standard search engines or rigid filter forms on food/wine platforms fail to answer conversational human queries like 'Which white wine from Basilicata matches a truffle-based dish?'. Traditional chatbots felt robotic, while public generic AI models lacked accurate, verified enological sources and often hallucinated." : "I tradizionali sistemi a filtri rigidi faticano ad accogliere richieste complesse e sfumate come 'Quale vino bianco lucano con buona sapidità posso abbinare a un risotto al tartufo?'. D'altro canto, i chatbot commerciali tradizionali erano troppo freddi e i modelli AI generici pubblici mancavano di fonti verificate e davano risposte imprecise o inventate (allucinazioni).")
-            </p>
-
-            <h3 class="case-block-title">SISTEMI COINVOLTI / SYSTEMS</h3>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                <li>🍷 Specialized Semantic Wine & Gastronomy Database</li>
-                <li>🧠 OpenAI API (GPT architecture)</li>
-                <li>💾 Vector Databases for document chunks embeddings</li>
-                <li>📡 Dynamic API connectors mapping local cellars catalog</li>
-            </ul>
         </div>
         <div class="split-right">
+            <!-- Systems Involved Glass panel -->
+            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.25rem;">
+                <h4 style="color: var(--brand-green-dark); margin-bottom: 0.75rem; font-size: 1rem;">DATA SOURCES USED</h4>
+                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;">
+                    <div class="card-neomorphic" style="padding: 0.5rem;">🍷 Specialized Wine Databases</div>
+                    <div class="card-neomorphic" style="padding: 0.5rem;">💾 Vector Embeddings Databases</div>
+                    <div class="card-neomorphic" style="padding: 0.5rem;">🧠 OpenAI GPT-4 Large Language Model</div>
+                    <div class="card-neomorphic" style="padding: 0.5rem;">📡 API Connectors mapping local cellars</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout" style="flex-direction: row-reverse;">
+        <div class="split-left">
+            <h3 class="case-block-title">THE SOLUTION</h3>
+            <p style="font-size: 1rem; line-height: 1.5;">
+                @(isEn ? "Graldev designed an enterprise RAG (Retrieval-Augmented Generation) pipeline. We segmented catalogs and winery cards, converting them into vector embeddings inside an isolated database. When a user asks a question, the system retrieves the verified parameters first, feeding them to the LLM as strict context, ensuring absolute accuracy." : "Graldev ha strutturato un'architettura RAG (Retrieval-Augmented Generation) sicura. Abbiamo suddiviso cataloghi enologici e schede cantine, memorizzandoli come vettori in un database cognitivo isolato. L'AI formula risposte precise ancorate esclusivamente a dati reali, suggerendo cantine ed etichette certificate.")
+            </p>
+        </div>
+        <div class="split-right">
+            <!-- Outcomes -->
             <div class="premium-card">
-                <h3>@(isEn ? "Core Outcomes" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
                     <li>✔️ 100% Conversational Sommelier advice</li>
                     <li>✔️ Zero AI hallucinations on Wine types</li>
                     <li>✔️ Fully compliant with Graldev AI Governance</li>
-                    <li>✔️ Interactive mobile responsive interface</li>
+                    <li>✔️ Responsive conversational interface</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<section class="case-study-section" style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-        <h3 class="case-block-title">ASSESSMENT & SOLUZIONE / SOLUTION</h3>
-        <p>
-            @(isEn ? "Graldev designed an enterprise RAG (Retrieval-Augmented Generation) pipeline. We segmented specialized enological guidebooks and dynamic catalogs, converting them into vector embeddings stored inside an isolated cognitive database." : "Graldev ha progettato un'architettura RAG (Retrieval-Augmented Generation) avanzata. Abbiamo indicizzato e suddiviso cataloghi enologici, schede tecniche di cantine e disciplinari di produzione, convertendoli in vettori all'interno di un database cognitivo isolato.")
-        </p>
-        <p>
-            @(isEn ? "When a user asks a question, the system searches the vector database first, retrieves the verified context, and feeds it to the LLM. The AI then answers with absolute accuracy, providing verified wine bottles, pairings, and winery links without hallucinating." : "Quando l'utente formula una domanda colloquiale, l'algoritmo effettua una ricerca semantica sul database vettoriale, estrae le informazioni verificate e le inserisce nel contesto dell'LLM (Large Language Model). L'AI formula così una risposta fluida, precisa ed esclusivamente ancorata alle schede reali, consigliando cantine ed etichette esistenti.")
-        </p>
-
-        <h3 class="case-block-title" style="margin-top: 2rem;">ARCHITETTURA & TECNOLOGIE / ARCHITECTURE</h3>
-        <p>
-            @(isEn ? "The solution is built under Graldev's AI Governance principles, enforcing isolated tenant APIs, strict data validation, tokens usage monitoring, and source-validating prompts to ensure maximum quality and compliance." : "L'intera soluzione è controllata dalle condotte di AI Governance di Graldev: isolamento degli endpoint per la privacy, validazione rigorosa degli output per evitare risposte non conformi, tracciamento dei costi di chiamata e prompt strutturati per forzare l'esibizione delle fonti bibliografiche reali.")
-        </p>
-    </div>
-</section>
-
 <!-- Call to Action -->
-<section style="text-align: center;">
+<section style="text-align: center; background-color: var(--brand-green-soft);">
     <div class="container">
         <h2>@(isEn ? "Do you want to integrate AI securely into your company workflows?" : "Vuoi integrare l'Intelligenza Artificiale nei tuoi flussi in modo sicuro?")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
             @(isEn ? "Schedule a dedicated AI feasibility review with Graldev cognitive technology partners." : "Fissa un incontro per mappare i tuoi dati ed individuare dove e come l'AI può portare reale efficienza operativa.")
         </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
             @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
         </a>
     </div>

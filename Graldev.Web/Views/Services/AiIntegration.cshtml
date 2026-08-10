@@ -2,113 +2,141 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+<!-- AI Premium Hero Section -->
+<section class="case-study-hero" style="padding-bottom: 2rem;">
     <div class="container">
         <span class="section-eyebrow">AI & PROCESS AUTOMATION</span>
-        <h1 class="section-title">
+        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
             @(isEn ? "We bring AI inside your business processes. Not just beside them." : "Portiamo l'AI dentro i processi aziendali. Non semplicemente accanto.")
         </h1>
-        <p class="section-subtitle">
-            @(isEn ? "We integrate Large Language Models (LLM) and RAG secure structures to automate reading, classification, and intelligent workflows." : "Integriamo modelli di linguaggio (LLM) e strutture sicure RAG per automatizzare la lettura di documenti, la classificazione e i flussi operativi intelligenti.")
+        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+            @(isEn ? "Integrating Large Language Models (LLM) and secure RAG frameworks to automate document parsing, smart classification, and intelligent backoffice workflows." : "Integriamo modelli di linguaggio (LLM) e strutture sicure RAG per automatizzare la lettura di documenti, la classificazione e i flussi operativi intelligenti.")
         </p>
-    </div>
-</section>
-
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Beyond simple Chatbots" : "Graldev non fa semplicemente 'Chatbot'")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>A floating chat window on a website is just one visual representation of AI. Genuine corporate value is generated when AI models are connected directly to your internal data pipelines, securely reading user manuals, matching invoices, classifying support tickets, and assisting operators in backoffice workflows.</text>
-                }
-                else
-                {
-                    <text>Una finestrella di chat sul sito pubblico è solo uno dei minimi casi d'uso dell'Intelligenza Artificiale. Il vero valore per un'azienda medio-grande nasce quando l'AI è connessa ai database interni e ai flussi operativi: per leggere ordini scritti via mail, compilare automaticamente schede tecniche, confrontare preventivi o assistere gli operatori del customer service.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
-                {
-                    <text>Using advanced architectures like RAG (Retrieval-Augmented Generation) and autonomous AI Agents, we build custom solutions that learn from your enterprise knowledge base while ensuring complete compliance and absolute data privacy.</text>
-                }
-                else
-                {
-                    <text>Attraverso architetture RAG (Retrieval-Augmented Generation) e Agenti AI autonomi, strutturiamo soluzioni capaci di attingere in tempo reale al patrimonio informativo aziendale (documenti, contratti, manuali, gestionali) producendo risposte e decisioni precise, verificate e prive di 'allucinazioni'.</text>
-                }
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Where AI Generates Real Value" : "Dove l'AI genera vero valore")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>📄 <strong>Document Intelligence</strong>: @(isEn ? "extracting structured data from raw PDFs." : "estrazione dati strutturati da PDF complessi.")</li>
-                    <li>🧠 <strong>Internal Copilots</strong>: @(isEn ? "rapid search across vast corporate knowledge bases." : "ricerca semantica veloce in enormi knowledge base.")</li>
-                    <li>🏷️ <strong>Auto-Classification</strong>: @(isEn ? "sorting and routing incoming support tickets." : "smistamento automatico di e-mail ed assistenze.")</li>
-                    <li>🤖 <strong>AI Agents</strong>: @(isEn ? "complex, multi-step autonomous tasks with approvals." : "automazione di workflow complessi con approvazione umana.")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- AI Governance section -->
-<section style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container split-layout" style="flex-direction: row-reverse;">
-        <div class="split-left">
-            <h2>@(isEn ? "AI Enterprise means Control" : "AI enterprise significa anche controllo")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Integrating AI in a corporate environment requires deep responsibility. We design under strict AI Governance principles to ensure your data stays inside your enterprise boundaries, protected from public training loops.</text>
-                }
-                else
-                {
-                    <text>Introdurre l'Intelligenza Artificiale in un contesto enterprise richiede la massima responsabilità e disciplina ingegneristica. Progettiamo seguendo rigide linee guida di AI Governance, per garantire che i vostri dati rimangano riservati ed esclusivi.</text>
-                }
-            </p>
-            <div class="grid-2" style="margin-top: 2rem; gap: 1rem;">
-                <div>
-                    <h4>🔒 Privacy & Security</h4>
-                    <p style="font-size: 0.9rem;">@(isEn ? "Enterprise cloud endpoints protecting company secrets." : "Endpoint protetti ed isolati per non divulgare segreti industriali.")</p>
-                </div>
-                <div>
-                    <h4>👥 Permissions & Roles</h4>
-                    <p style="font-size: 0.9rem;">@(isEn ? "Strict mapping matching current user access levels." : "L'AI risponde solo basandosi sui permessi reali dell'utente.")</p>
-                </div>
-                <div>
-                    <h4>👤 Human-in-the-loop</h4>
-                    <p style="font-size: 0.9rem;">@(isEn ? "Important decisions are always checked by operators." : "Le decisioni importanti richiedono sempre validazione umana.")</p>
-                </div>
-                <div>
-                    <h4>📈 Cost & Observability</h4>
-                    <p style="font-size: 0.9rem;">@(isEn ? "Strict tokens logging and budget control pipelines." : "Monitoraggio e ottimizzazione dei costi di token a livello di API.")</p>
-                </div>
-            </div>
-        </div>
-        <div class="split-right">
-            <!-- Vitinerario case study callout -->
-            <div class="case-quote-box">
-                <h4>🎯 Case Study: Vitinerario App</h4>
-                <p style="font-size: 0.95rem; margin-top: 0.5rem; font-style: normal;">
-                    @(isEn ? "We created a virtual AI sommelier capable of understanding semantic wine databases, advising custom pairings, and answering enological questions dynamically." : "Abbiamo ideato un assistente sommelier AI basato su LLM e RAG in grado di interrogare database enologici semantici e consigliare abbinamenti perfetti.")
-                </p>
-                <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="margin-top: 0.5rem; display: inline-block;">@(isEn ? "Read Case Study" : "Leggi il Case Study")</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section style="text-align: center;">
-    <div class="container">
-        <h2>@(isEn ? "Bring secure, reliable AI inside your company workflows" : "Porta l'AI nei tuoi processi aziendali in modo sicuro")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Get an AI feasibility session with our senior cognitive and automation architects." : "Fissa una sessione di fattibilità tecnica per capire dove e come l'AI può generare reale valore operativo nella tua azienda.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
             @(isEn ? "Request an AI Feasibility Session" : "Richiedi una AI Feasibility Session")
         </a>
     </div>
 </section>
+
+<!-- Visual AI Flow Pipeline Chart -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-eyebrow">PIPELINE</span>
+            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Graldev Intelligent AI Process Flow" : "Come funziona la nostra pipeline AI")</h2>
+        </div>
+
+        <!-- Custom Horizontal Pipeline Process Flow Diagram -->
+        <div class="method-steps" style="margin-top: 1.5rem;">
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">01</div>
+                <div class="method-name" style="font-size: 1rem;">DATA INPUT</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Secure collection of PDF invoices, emails, or SQL records." : "Raccolta e pulizia protetta di PDF, e-mail o database.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">02</div>
+                <div class="method-name" style="font-size: 1rem;">KNOWLEDGE LAYER</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Semantic chunking & vector database storage (RAG)." : "Scomposizione semantica e indicizzazione in vector database.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">03</div>
+                <div class="method-name" style="font-size: 1rem;">AI PROCESSING</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "LLM context analysis, summary or entity extraction." : "Analisi contestuale tramite LLM senza allucinazioni.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">04</div>
+                <div class="method-name" style="font-size: 1rem;">HUMAN APPROVAL</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Operator dashboard checks the extracted parameters." : "Validazione dei dati tramite dashboard dell'operatore.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">05</div>
+                <div class="method-name" style="font-size: 1rem;">ACTION</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Write-back to CRM, ERP database or API triggers." : "Scrittura automatica nel database ERP o CRM finale.")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Governance and Case Study split section -->
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout" style="align-items: center;">
+        <div class="split-left" style="max-width: 550px;">
+            <span class="section-eyebrow">GOVERNANCE</span>
+            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "AI enterprise means control." : "AI enterprise significa anche controllo.")</h2>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                @(isEn ? "Integrating cognitive systems requires strict security. We build under strict isolation principles, ensuring your company secrets never train public models." : "L'adozione dell'AI deve essere accompagnata da rigidi standard di sicurezza, ruoli, permessi e controllo dei costi dei token.")
+            </p>
+
+            <div class="grid-2" style="gap: 1rem;">
+                <div class="card-base" style="padding: 0.75rem 1rem;">
+                    <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">🔒 Absolute Privacy</h4>
+                    <p style="font-size: 0.8rem; line-height: 1.3; margin-bottom: 0;">@(isEn ? "Isolated endpoints prevent data leakage." : "I vostri dati non lasciano mai i server dedicati.")</p>
+                </div>
+                <div class="card-base" style="padding: 0.75rem 1rem;">
+                    <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">👥 Role-Based Access</h4>
+                    <p style="font-size: 0.8rem; line-height: 1.3; margin-bottom: 0;">@(isEn ? "The AI answers only based on user permissions." : "L'AI attinge solo alle cartelle per cui l'utente ha i permessi.")</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-right">
+            <!-- Vitinerario Case Study Highlight -->
+            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft);">
+                <span class="section-eyebrow" style="font-size: 0.75rem;">CASE STUDY HIGHLIGHT</span>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">Vitinerario Sommelier AI</h3>
+                <p style="font-size: 0.9rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 1rem;">
+                    @(isEn ? "Engineered an AI enological assistant that safely interrogates semantic wine databases and recommends food pairings dynamically without hallucinations." : "Abbiamo ideato un assistente sommelier virtuale AI basato su LLM e RAG in grado di interrogare database enologici complessi e consigliare abbinamenti perfetti.")
+                </p>
+                <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="font-size: 0.85rem;">
+                    @(isEn ? "Read Vitinerario Case Study" : "Leggi il Case Study Vitinerario")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Below Fold Accordion Section: FAQs on AI -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="section-eyebrow">FAQ</span>
+            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "AI Integration FAQs" : "Domande Comuni sull'AI per Aziende")</h2>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                @(isEn ? "How do you avoid AI hallucinations?" : "Come evitate le allucinazioni dell'AI?")
+            </button>
+            <div class="accordion-content">
+                <p>
+                    @(isEn ? "We use Retrieval-Augmented Generation (RAG). Instead of letting the model make up answers, we search your databases, extract the exact paragraphs, and feed them as a strict context. The LLM is forced to answer only using those paragraphs." : "Utilizziamo l'architettura RAG (Retrieval-Augmented Generation). L'AI non inventa risposte: eseguiamo prima una ricerca semantica nei vostri database, estraiamo i paragrafi corrispondenti e obblighiamo l'LLM a elaborare la risposta esclusivamente basandosi su tali dati.")
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                @(isEn ? "How are API token costs managed?" : "Come vengono tenuti sotto controllo i costi delle API?")
+            </button>
+            <div class="accordion-content">
+                <p>
+                    @(isEn ? "We optimize tokens by caching frequent semantic queries and choosing local lighter open-source models (e.g. Llama-3, Mistral) where massive reasoning is not needed, keeping your cloud budget secure." : "Ottimizziamo i token memorizzando nella cache le risposte semantiche più frequenti e configurando modelli open-source più leggeri (come Llama o Mistral) per compiti ripetitivi di classificazione.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleAccordion(element) {
+        const expanded = element.getAttribute('aria-expanded') === 'true';
+        element.setAttribute('aria-expanded', !expanded);
+
+        const content = element.nextElementSibling;
+        if (!expanded) {
+            content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+            content.style.maxHeight = "0px";
+        }
+    }
+</script>

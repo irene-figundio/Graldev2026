@@ -31,89 +31,87 @@
     </div>
 </section>
 
-<section class="case-study-section">
+<!-- Visual Storytelling: Scannable Case study split into report layout -->
+<section class="white-section" style="padding: 3rem 0;">
     <div class="container split-layout">
         <div class="split-left">
-            <h3 class="case-block-title">CONTESTO / CONTEXT</h3>
-            <p>
-                @(isEn ? "The client organizations Soncar S.r.l. and Dorenah operate under complex high-volume automotive and consumer parts business rules, managing multiple retail stores and international eCommerce channels concurrently." : "Le aziende clienti Soncar S.r.l. e Dorenah gestiscono ingenti volumi di vendite di articoli automotive e beni commerciali attraverso svariati canali di vendita online, magazzini fisici e spedizionieri nazionali.")
-            </p>
-
-            <h3 class="case-block-title">PROBLEMA / PROBLEM</h3>
-            <p>
+            <h3 class="case-block-title">THE CHALLENGE</h3>
+            <p style="font-size: 1rem; line-height: 1.5;">
                 @(isEn ? "Managing high-volume online stores manually caused inventory mismatches, double sales of unavailable stock, delayed shipping label creation, and human errors. Orders were picked multiple times or missed due to lack of real-time synchronization between the main warehouse database and eBay, Amazon, and Shopify channels." : "La gestione manuale di svariati store online ad alto volume causava continui disallineamenti di stock, doppie vendite di merce esaurita, e pesanti rallentamenti nell'elaborazione delle spedizioni. Senza un allineamento in tempo reale, gli operatori commettevano errori di copia-incolla per compilare le prese in carico e i tracking dei corrieri.")
             </p>
-
-            <h3 class="case-block-title">SISTEMI COINVOLTI / SYSTEMS</h3>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                <li>🏢 Enterprise ERP & local Inventory database</li>
-                <li>🛍️ Shopify custom eCommerce storefronts</li>
-                <li>📦 eBay and Amazon global seller accounts</li>
-                <li>🚚 BRT and GLS shipping carrier Web Services</li>
-            </ul>
         </div>
         <div class="split-right">
+            <!-- Systems Diagram -->
+            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.25rem;">
+                <h4 style="color: var(--brand-green-dark); margin-bottom: 0.75rem; font-size: 1rem;">SISTEMI COLLEGATI</h4>
+                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;">
+                    <div class="card-neomorphic" style="padding: 0.5rem;">🏢 ERP Interno (Produzione)</div>
+                    <div class="card-neomorphic" style="padding: 0.5rem;">🛍️ Shopify Stores</div>
+                    <div class="card-neomorphic" style="padding: 0.5rem;">📦 eBay & Amazon Accounts</div>
+                    <div class="card-neomorphic" style="padding: 0.5rem;">🚚 GLS / BRT Carrier APIs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout" style="flex-direction: row-reverse;">
+        <div class="split-left">
+            <h3 class="case-block-title">THE SOLUTION</h3>
+            <p style="font-size: 1rem; line-height: 1.5;">
+                @(isEn ? "Graldev mapped API limits and drafted a custom centralized middleware. Geordie automatically downloads orders, maps records with the SQL database, schedules automated shipments with GLS/BRT, prints physical carrier labels, and updates customers with tracking numbers." : "Graldev ha progettato un middleware denominato Geordie. Il sistema allinea stock e prezzi su tutti i canali, preleva automaticamente le anagrafiche ordine per la fatturazione locale, invia le chiamate alle API GLS/BRT per generare le etichette di spedizione e spedisce le email con il codice di tracciamento.")
+            </p>
+        </div>
+        <div class="split-right">
+            <!-- Outcome points -->
             <div class="premium-card">
-                <h3>@(isEn ? "Core Outcomes" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
                     <li>✔️ 24/365 Sincronizzazione automatica</li>
-                    <li>✔️ Zero errori di presa in carico</li>
-                    <li>✔️ Emissione etichette istantanea</li>
-                    <li>✔️ Riduzione drastica del debito di inventario</li>
+                    <li>✔️ Zero errori di presa in carico ordini</li>
+                    <li>✔️ Emissione etichette istantanea in magazzino</li>
+                    <li>✔️ Controllo completo del flusso dei corrieri</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<section class="case-study-section" style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-        <h3 class="case-block-title">ASSESSMENT & SOLUZIONE / SOLUTION</h3>
-        <p>
-            @(isEn ? "Graldev conducted a detailed analysis of API limits, data structures, and the logistics workflow. We mapped fields between the ERP and online store databases to design 'Geordie', an automated synchronization middleware." : "Graldev ha eseguito un assessment delle API, dei limiti di traffico e del flusso logistico aziendale. Abbiamo mappato i tracciati record del database ERP locale con gli schemi di Shopify, Amazon ed eBay, dando vita a 'Geordie': una web app modulare e personalizzata funzionante su PC, smartphone e tablet.")
-        </p>
-        <p>
-            @(isEn ? "Geordie automatically fetches incoming orders, updates inventory levels across all stores simultaneously, triggers courier shipments, prints labels, and sends tracking numbers back to the clients without human intervention." : "Geordie si connette 24 ore su 24 ai vari canali di vendita, scarica gli ordini in tempo reale, allinea le disponibilità di magazzino, genera in un clic le etichette di spedizione per i corrieri (GLS/BRT) e ne trasmette i numeri di tracciamento (tracking number) direttamente ai clienti finali.")
-        </p>
-
-        <h3 class="case-block-title" style="margin-top: 2rem;">ARCHITETTURA & TECNOLOGIE / ARCHITECTURE</h3>
-        <p>
-            @(isEn ? "Built as a secure, distributed Web Application. We utilized modern ASP.NET standards, multi-tenant databases, transaction queuing systems, and automated schedulers to prevent rate-limit blocks on external seller APIs." : "L'architettura è stata strutturata come un'applicazione Web altamente protetta con autenticazione granulare degli operatori, database relazionali ottimizzati, code di transazione per prevenire colli di bottiglia e schedulatori automatici intelligenti capaci di dialogare con le API di Shopify ed eBay rispettando i rate-limit imposti dai canali.")
-        </p>
-    </div>
-</section>
-
 <!-- Reviews and Real Quotes -->
-<section class="case-study-section">
+<section class="white-section" style="padding: 3rem 0;">
     <div class="container">
-        <h2>@(isEn ? "Client Testimonials" : "Cosa dicono i nostri clienti")</h2>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="section-eyebrow">FEEDBACK</span>
+            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "Client Testimonials" : "Cosa dicono i nostri clienti")</h2>
+        </div>
 
-        <div class="grid-2" style="margin-top: 2rem;">
+        <div class="grid-2" style="gap: 1.5rem;">
             <div class="case-quote-box">
-                <p>
-                    "Da quando Geordie gestisce i nostri stores online le vendite non solo sono aumentate significativamente, ma si è accelerato tutto il sistema degli ordini. Geordie, infatti, raccoglie e gestisce tutti gli ordini, salvandoli automaticamente nel gestionale e aggiornandoli costantemente. Da quando Geordie lavora per noi non abbiamo più problemi di invii multipli di merce poiché consente la presa in carico dell'ordine da parte di un unico operatore."
+                <p style="font-size: 0.95rem;">
+                    "Da quando Geordie gestisce i nostri stores online le vendite sono aumentate e si è accelerato tutto il sistema degli ordini. Raccoglie e gestisce tutti gli ordini automaticamente, eliminando l'invio multiplo di merci."
                 </p>
-                <div style="font-weight: 700; margin-top: 1rem; color: var(--color-primary);">— Soncar S.r.l.</div>
+                <div style="font-weight: 700; margin-top: 0.75rem; color: var(--brand-green-dark); font-size: 0.9rem;">— Soncar S.r.l.</div>
             </div>
 
             <div class="case-quote-box">
-                <p>
-                    "Geordie ha contribuito all'aumento del nostro fatturato. E' un software gestionale molto semplice e intuitivo con un'usabilità eccellente. E' stato possibile richiedere delle funzionalità su misura per il nostro negozio online. Grazie a un'elevata personalizzazione, il nostro flusso di lavoro è sempre sotto controllo così da eliminare gli errori e velocizzare i processi."
+                <p style="font-size: 0.95rem;">
+                    "Geordie ha contribuito all'aumento del nostro fatturato. Un software molto semplice ed intuitivo con funzionalità cucite su misura per il nostro negozio online."
                 </p>
-                <div style="font-weight: 700; margin-top: 1rem; color: var(--color-accent);">— Dorenah</div>
+                <div style="font-weight: 700; margin-top: 0.75rem; color: var(--brand-green-dark); font-size: 0.9rem;">— Dorenah</div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Call to Action -->
-<section style="text-align: center; background-color: rgba(255, 255, 255, 0.01);">
+<section style="text-align: center; background-color: var(--brand-green-soft);">
     <div class="container">
-        <h2>@(isEn ? "Do you need to streamline your digital commerce operations?" : "Devi ottimizzare i tuoi processi di vendita online?")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+        <h2>@(isEn ? "Do you need to automate your commerce operations?" : "Devi ottimizzare i tuoi processi di vendita online?")</h2>
+        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
             @(isEn ? "Schedule a dedicated technical review with Graldev senior integration consultants." : "Parla con i nostri consulenti per mappare i tuoi gestionali ed automatizzare i flussi ordini.")
         </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
             @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
         </a>
     </div>
