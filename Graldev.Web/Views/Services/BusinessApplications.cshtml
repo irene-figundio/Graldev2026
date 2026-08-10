@@ -1,0 +1,69 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">BUSINESS APPLICATIONS</span>
+        <h1 class="section-title">
+            @(isEn ? "Applications built around processes, not the other way around." : "Applicazioni costruite attorno ai processi, non il contrario.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We design and develop custom management systems, B2B portals, and operational workflows tailored to your unique company rules." : "Progettiamo e sviluppiamo gestionali su misura, portali B2B e workflow operativi costruiti attorno alle reali regole organizzative della vostra azienda.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Stop forcing your business into rigid software" : "Basta adattare l'azienda a software commerciali troppo rigidi")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Generic management software forces your team to follow pre-packaged, rigid processes. When your business has unique workflows, valuable hours are wasted copying data or managing workarounds on Excel sheets. Graldev designs bespoke business applications that map perfectly onto your specific operational models, making your staff faster and more focused.</text>
+                }
+                else
+                {
+                    <text>I gestionali generici costringono spesso il personale a passaggi rigidi, inutili e non coerenti con il modello operativo dell'azienda. Quando un flusso di lavoro è unico, si finisce per usare fogli Excel paralleli per sopperire alle mancanze del software. Graldev sviluppa applicazioni aziendali, portali e backoffice su misura, ottimizzando il lavoro quotidiano del vostro team.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>We specialize in structuring custom backoffice tools, department stock managers, operator portals, logistics dashboards, and offline-capable field workforce applications.</text>
+                }
+                else
+                {
+                    <text>Realizziamo intranet aziendali, cruscotti decisionali e gestionali di reparto integrati con le vostre basi dati storiche, facilitando la collaborazione tra reparti e riducendo a zero gli inserimenti ridondanti di informazioni.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Custom Applications We Build" : "Cosa Sviluppiamo")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>💼 Custom ERP & Management software modules</li>
+                    <li>👥 B2B Customer & Vendor Portals</li>
+                    <li>🏢 Corporate Intranets & Document management</li>
+                    <li>📦 Inventory & Stock department controllers</li>
+                    <li>📊 Operational analytics dashboards</li>
+                    <li>📱 Specialized mobile tools for field operators</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center; background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h2>@(isEn ? "Obtain software that supports your operational excellence" : "Costruisci strumenti digitali su misura per la tua crescita")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Tell us about the operational workflow you want to digitize or automate." : "Raccontaci i flussi operativi o gestionali che vuoi digitalizzare o semplificare.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Design your Business Application" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

@@ -1,0 +1,97 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">CASE STUDY: AI INTEGRATION</span>
+        <h1 class="section-title">Vitinerario: Virtual Sommelier AI Assistant</h1>
+        <p class="section-subtitle">
+            @(isEn ? "Integrating Large Language Models and Retrieval-Augmented Generation to build an interactive enological conversational advisor." : "Integrazione di Modelli Generativi di Linguaggio (LLM) e sistemi RAG per dare vita a un consulente enologico conversazionale interattivo.")
+        </p>
+
+        <div class="case-study-meta-grid">
+            <div>
+                <div class="case-meta-label">Client / Clienti</div>
+                <div class="case-meta-value">Vitinerario App</div>
+            </div>
+            <div>
+                <div class="case-meta-label">Sectors / Settori</div>
+                <div class="case-meta-value">Agri-Tech, Food & Beverage, Tourism</div>
+            </div>
+            <div>
+                <div class="case-meta-label">Key Integrations / Sistemi</div>
+                <div class="case-meta-value">Semantic Wine Databases, OpenAI GPT-4, Vector Databases</div>
+            </div>
+            <div>
+                <div class="case-meta-label">Target / Canali</div>
+                <div class="case-meta-value">Mobile Web App, Conversational Assistant</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="case-study-section">
+    <div class="container split-layout">
+        <div class="split-left">
+            <h3 class="case-block-title">CONTESTO / CONTEXT</h3>
+            <p>
+                @(isEn ? "Vitinerario is a digital platform dedicated to wine culture, gastronomy, and territorial tourism, aiming to offer deeply personalized, interactive sommelier advice to users." : "Vitinerario è un'iniziativa e piattaforma digitale focalizzata sulla valorizzazione della cultura del vino, dell'enogastronomia e del turismo territoriale, nata per guidare gli utenti verso la scelta e l'abbinamento perfetto di calici e piatti.")
+            </p>
+
+            <h3 class="case-block-title">PROBLEMA / PROBLEM</h3>
+            <p>
+                @(isEn ? "Standard search engines or rigid filter forms on food/wine platforms fail to answer conversational human queries like 'Which white wine from Basilicata matches a truffle-based dish?'. Traditional chatbots felt robotic, while public generic AI models lacked accurate, verified enological sources and often hallucinated." : "I tradizionali sistemi a filtri rigidi faticano ad accogliere richieste complesse e sfumate come 'Quale vino bianco lucano con buona sapidità posso abbinare a un risotto al tartufo?'. D'altro canto, i chatbot commerciali tradizionali erano troppo freddi e i modelli AI generici pubblici mancavano di fonti verificate e davano risposte imprecise o inventate (allucinazioni).")
+            </p>
+
+            <h3 class="case-block-title">SISTEMI COINVOLTI / SYSTEMS</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                <li>🍷 Specialized Semantic Wine & Gastronomy Database</li>
+                <li>🧠 OpenAI API (GPT architecture)</li>
+                <li>💾 Vector Databases for document chunks embeddings</li>
+                <li>📡 Dynamic API connectors mapping local cellars catalog</li>
+            </ul>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Core Outcomes" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>✔️ 100% Conversational Sommelier advice</li>
+                    <li>✔️ Zero AI hallucinations on Wine types</li>
+                    <li>✔️ Fully compliant with Graldev AI Governance</li>
+                    <li>✔️ Interactive mobile responsive interface</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="case-study-section" style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h3 class="case-block-title">ASSESSMENT & SOLUZIONE / SOLUTION</h3>
+        <p>
+            @(isEn ? "Graldev designed an enterprise RAG (Retrieval-Augmented Generation) pipeline. We segmented specialized enological guidebooks and dynamic catalogs, converting them into vector embeddings stored inside an isolated cognitive database." : "Graldev ha progettato un'architettura RAG (Retrieval-Augmented Generation) avanzata. Abbiamo indicizzato e suddiviso cataloghi enologici, schede tecniche di cantine e disciplinari di produzione, convertendoli in vettori all'interno di un database cognitivo isolato.")
+        </p>
+        <p>
+            @(isEn ? "When a user asks a question, the system searches the vector database first, retrieves the verified context, and feeds it to the LLM. The AI then answers with absolute accuracy, providing verified wine bottles, pairings, and winery links without hallucinating." : "Quando l'utente formula una domanda colloquiale, l'algoritmo effettua una ricerca semantica sul database vettoriale, estrae le informazioni verificate e le inserisce nel contesto dell'LLM (Large Language Model). L'AI formula così una risposta fluida, precisa ed esclusivamente ancorata alle schede reali, consigliando cantine ed etichette esistenti.")
+        </p>
+
+        <h3 class="case-block-title" style="margin-top: 2rem;">ARCHITETTURA & TECNOLOGIE / ARCHITECTURE</h3>
+        <p>
+            @(isEn ? "The solution is built under Graldev's AI Governance principles, enforcing isolated tenant APIs, strict data validation, tokens usage monitoring, and source-validating prompts to ensure maximum quality and compliance." : "L'intera soluzione è controllata dalle condotte di AI Governance di Graldev: isolamento degli endpoint per la privacy, validazione rigorosa degli output per evitare risposte non conformi, tracciamento dei costi di chiamata e prompt strutturati per forzare l'esibizione delle fonti bibliografiche reali.")
+        </p>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Do you want to integrate AI securely into your company workflows?" : "Vuoi integrare l'Intelligenza Artificiale nei tuoi flussi in modo sicuro?")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Schedule a dedicated AI feasibility review with Graldev cognitive technology partners." : "Fissa un incontro per mappare i tuoi dati ed individuare dove e come l'AI può portare reale efficienza operativa.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

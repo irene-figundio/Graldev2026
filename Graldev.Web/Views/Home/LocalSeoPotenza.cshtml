@@ -1,0 +1,75 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "LOCAL IT CONSULTING POTENZA" : "CONSULENZA IT POTENZA")</span>
+        <h1 class="section-title">
+            @(isEn ? "IT consulting in Potenza for companies and organizations." : "Consulenza informatica a Potenza per aziende e organizzazioni.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Graldev operates from Potenza, offering premium technology advice, system integration and AI solutions nationwide." : "Graldev opera da Potenza offrendo consulenza tecnologica, system integration e soluzioni AI avanzate in tutta Italia.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container grid-2">
+        <div>
+            <h2>@(isEn ? "Technology Partner with Roots in Potenza" : "Partner tecnologico radicato a Potenza")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Our core consultancy operations are based in Potenza, Basilicata. We strongly believe in supporting local business ecosystems, industries, and public entities in their digital transformation roadmap. But our reach is fully national and distributed: we manage complex IT projects for national and international clients using modern remote frameworks and highly efficient pipelines.</text>
+                }
+                else
+                {
+                    <text>La nostra sede operativa principale è a Potenza, in Basilicata. Crediamo fortemente nella valorizzazione del tessuto imprenditoriale locale e nel supportare le medie imprese e le organizzazioni del territorio nel proprio cammino di digitalizzazione. Al contempo, il nostro raggio d'azione è pienamente nazionale: gestiamo progetti IT complessi per clienti in tutta Italia ed estero tramite team distribuiti e coordinati con massimi standard qualitativi.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>Whether you are a local industrial manufacturer in Basilicata, an agricultural company looking to streamline systems, or a service provider, we enter your workflows to create tailored architectures.</text>
+                }
+                else
+                {
+                    <text>Sia che siate un'industria manifatturiera nella zona industriale di Potenza, un'azienda commerciale che desidera ottimizzare la gestione di ordini e magazzino, o un'organizzazione che vuole introdurre l'AI nei propri processi, Graldev è il consulente vicino a te capace di tradurre le tue esigenze in soluzioni solide.</text>
+                }
+            </p>
+        </div>
+        <div>
+            <h2>@(isEn ? "Why choose Graldev in Potenza" : "Perché scegliere Graldev a Potenza")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Unlike generic software agencies, we don't just sell standard websites or pre-made software licenses. We provide consulting on system integration, legacy app modernization, custom API building, and AI orchestration. We are here to listen to your actual operational problems and map a path to resolve them.</text>
+                }
+                else
+                {
+                    <text>A differenza delle agenzie software tradizionali, non offriamo semplici pacchetti di siti web vetrina o licenze standard preconfezionate. Ti aiutiamo a far parlare tra loro i software che già utilizzi, modernizziamo i tuoi vecchi database in modo sicuro, e portiamo l'Intelligenza Artificiale Generativa (RAG) all'interno dei tuoi dati operativi aziendali.</text>
+                }
+            </p>
+            <div class="case-quote-box" style="margin-top: 1.5rem;">
+                <h4>@(isEn ? "Direct B2B Consulting" : "Contatto Diretto B2B")</h4>
+                <p style="font-size: 1rem; margin-top: 0.25rem;">
+                    @(isEn ? "Contact us to schedule a direct assessment meeting in our office or directly at your enterprise site." : "Contattaci per pianificare un incontro conoscitivo di assessment direttamente presso la tua sede o nei nostri uffici.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="background-color: rgba(255, 255, 255, 0.01); text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Let's talk about your technological bottleneck" : "Parliamo della tua esigenza tecnologica")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Schedule a dedicated technical review meeting with our senior consultants." : "Fissa un incontro tecnico di revisione con i nostri consulenti senior.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Contact our Potenza consultants" : "Contatta i nostri consulenti")
+        </a>
+    </div>
+</section>

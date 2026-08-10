@@ -1,0 +1,122 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "ABOUT GRALDEV" : "CHI SIAMO")</span>
+        <h1 class="section-title">
+            @(isEn ? "IT consulting built around the actual problems of enterprises." : "Consulenza tecnologica costruita attorno ai problemi reali delle aziende.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We align technologies, data, integrations, and business processes to build reliable digital foundations." : "Allineiamo tecnologie, dati, integrazioni e flussi organizzativi per costruire solide fondamenta digitali.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Our Identity & Value" : "La nostra identità e il nostro valore")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text><strong>Graldev is not a software house.</strong> We are an IT consulting company and premium B2B technology partner. Our value does not lie merely in coding software from scratch; it lies in identifying, designing, and orchestrating the most appropriate, sustainable technology strategy for your business.</text>
+                }
+                else
+                {
+                    <text><strong>Graldev non è una software house.</strong> Siamo un'azienda di consulenza informatica e un technology partner B2B di livello premium. Il nostro valore non risiede semplicemente nello sviluppo di rigide righe di codice da zero, ma nell'individuare, progettare e orchestrare la strategia tecnologica più adatta, solida e sostenibile per la vostra impresa.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>We partner with CTOs, CIOs, IT Managers, and business leaders to enter their workflows, map existing applications (ERPs, CRMs, databases), discover operational bottlenecks, and implement targeted integration and AI workflows.</text>
+                }
+                else
+                {
+                    <text>Affianchiamo CTO, CIO, IT Manager e responsabili aziendali entrando nei loro workflow operativi. Mappiamo l'infrastruttura esistente, scoviamo i colli di bottiglia nei passaggi di dati e implementiamo flussi automatici mirati di integrazione e Intelligenza Artificiale.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="case-quote-box" style="margin: 0;">
+                <p style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+                    @(isEn ? "The Graldev Value Chain:" : "La catena del valore Graldev:")
+                </p>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-weight: 500;">
+                    <li>🔍 1. @(isEn ? "COMPREHEND THE PROBLEM" : "COMPRENDERE IL PROBLEMA")</li>
+                    <li>📋 2. @(isEn ? "ANALYZE PROCESSES & SYSTEMS" : "ANALIZZARE PROCESSI E SISTEMI")</li>
+                    <li>📐 3. @(isEn ? "DESIGN ARCHITECTURE" : "PROGETTARE L'ARCHITETTURA")</li>
+                    <li>🔗 4. @(isEn ? "INTEGRATE SYSTEMS & SAAS" : "INTEGRARE SISTEMI E SAAS")</li>
+                    <li>💻 5. @(isEn ? "BUILD CUSTOM COMPONENTS" : "SVILUPPARE COMPONENTI CUSTOM")</li>
+                    <li>🚀 6. @(isEn ? "IMPLEMENT & DEPLOY" : "IMPLEMENTAZIONE")</li>
+                    <li>📈 7. @(isEn ? "MEASURE ROI & BUSINESS VALUE" : "MISURARE IL RISULTATO")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our History & Team -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container grid-2">
+        <div>
+            <h2>@(isEn ? "Our Background" : "La nostra storia")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>We bring together over twenty years of senior expertise in software engineering and IT architectures with a dynamic drive for innovation. Having witnessed and participated in massive technological shifts over the decades, we have acquired a deep pragmatic understanding of what makes digital projects fail or succeed.</text>
+                }
+                else
+                {
+                    <text>Mettiamo insieme l'esperienza ventennale sul campo di chi ha progettato software e infrastrutture IT complesse attraverso innumerevoli rivoluzioni tecnologiche, con la spinta all'innovazione delle nuove metodologie agili. Avendo vissuto in prima persona l'evoluzione dei sistemi informativi aziendali, possediamo un approccio estremamente concreto e pragmatico.</text>
+                }
+            </p>
+        </div>
+        <div>
+            <h2>@(isEn ? "Our Philosophy" : "La nostra filosofia")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Technology must be an operational advantage, not a rigid constraint. We don't push a single tech stack; we advise with complete objectivity on the most robust frameworks (e.g. .NET, cloud architectures, microservices, APIs) to ensure your business remains agile, automated, and secure.</text>
+                }
+                else
+                {
+                    <text>La tecnologia deve essere un vantaggio operativo concreto, non un vincolo rigido o un costo fine a se stesso. Non spingiamo mai una singola tecnologia proprietaria; consigliamo con totale obiettività le migliori soluzioni (es. .NET, cloud scaling, microservizi, API) per rendere l'operatività snella, automatizzata e sicura.</text>
+                }
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Partners and Collaborations -->
+<section id="partners">
+    <div class="container" style="text-align: center;">
+        <span class="section-eyebrow">@(isEn ? "TRUSTED ECOSYSTEM" : "ECOSISTEMA E COLLABORAZIONI")</span>
+        <h2>@(isEn ? "Our Partners & Collaborations" : "I nostri partner e collaborazioni")</h2>
+        <p style="max-width: 600px; margin: 0 auto 3rem auto;">
+            @(isEn ? "We collaborate with historical cultural, educational, and business organizations to bring innovation where it generates concrete impact." : "Collaboriamo con storiche realtà associative, culturali, tecnologiche e di business per portare innovazione dove genera impatto reale.")
+        </p>
+        <div class="grid-3" style="margin-top: 2rem; align-items: center;">
+            <div class="premium-card" style="text-align: center; padding: var(--spacing-md);">
+                <h3>Associazione Manthano ETS</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    @(isEn ? "Cultural and educational partner for territory-wide AR integrations." : "Partner culturale e didattico per l'integrazione di sistemi di AR sul territorio.")
+                </p>
+            </div>
+            <div class="premium-card" style="text-align: center; padding: var(--spacing-md);">
+                <h3>Graldev Studios</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    @(isEn ? "Our creative and media generative AI sister company." : "La nostra consociata per la produzione di contenuti video, audio e media con AI.")
+                </p>
+            </div>
+            <div class="premium-card" style="text-align: center; padding: var(--spacing-md);">
+                <h3>Enterprise Net</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    @(isEn ? "SaaS and system suppliers network for commerce and manufacturing." : "Network di fornitori tecnologici e SaaS per l'industria e il commercio.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

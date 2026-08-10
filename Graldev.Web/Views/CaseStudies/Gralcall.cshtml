@@ -1,0 +1,97 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">CASE STUDY: AR & INTERACTIVE TECH</span>
+        <h1 class="section-title">Gralcall AR: Spatial Web Augmented Reality</h1>
+        <p class="section-subtitle">
+            @(isEn ? "How Graldev merged spatial WebAR technologies with video narration to create marker-based tourism and museum guides." : "In che modo Graldev ha unito la tecnologia WebAR ad itinerari video interattivi per valorizzare musei e borghi storici.")
+        </p>
+
+        <div class="case-study-meta-grid">
+            <div>
+                <div class="case-meta-label">Client & Partner</div>
+                <div class="case-meta-value">Associazione Manthano ETS</div>
+            </div>
+            <div>
+                <div class="case-meta-label">Sectors / Settori</div>
+                <div class="case-meta-value">Tourism, Education, Cultural Heritage</div>
+            </div>
+            <div>
+                <div class="case-meta-label">Key Integrations / Sistemi</div>
+                <div class="case-meta-value">WebAR engines, HTML5 video frameworks, Mobile Web</div>
+            </div>
+            <div>
+                <div class="case-meta-label">Target / Canali</div>
+                <div class="case-meta-value">Mobile Web Browser, no-app WebAR</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="case-study-section">
+    <div class="container split-layout">
+        <div class="split-left">
+            <h3 class="case-block-title">CONTESTO / CONTEXT</h3>
+            <p>
+                @(isEn ? "The partner Associazione Manthano ETS is dedicated to promoting Italian historical villages, cultural heritage, and educational itineraries. They sought an innovative, high-impact digital tool to guide tourists interactively on-site." : "Il partner Associazione Manthano ETS si occupa di promuovere la storia, i borghi e la cultura del territorio italiano. Cercava una soluzione tecnologica capace di fare da video-guida turistica interattiva, coinvolgendo i visitatori direttamente sul posto.")
+            </p>
+
+            <h3 class="case-block-title">PROBLEMA / PROBLEM</h3>
+            <p>
+                @(isEn ? "Traditional tourism mobile applications fail because tourists refuse to download and install heavy, platform-specific apps (iOS/Android) from stores merely to read a plaque or watch a short video. The solution had to be immediate, web-based, and zero-install." : "I tradizionali progetti basati su app native falliscono perché i turisti si rifiutano di scaricare ed installare pesanti applicazioni dagli store semplicemente per inquadrare una targa o guardare un breve video descrittivo. La soluzione doveva essere immediata, accessibile tramite web e senza alcuna installazione.")
+            </p>
+
+            <h3 class="case-block-title">SISTEMI COINVOLTI / SYSTEMS</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                <li>📡 Mobile Web Browser engine running HTML5</li>
+                <li>🕶️ WebAR Spatial Marker engine (MindAR/Three.js)</li>
+                <li>📹 Streaming CDN for interactive video distribution</li>
+                <li>🏢 Backoffice systems for analytics, views and scans monitoring</li>
+            </ul>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Core Outcomes" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>✔️ 100% no-app WebAR execution</li>
+                    <li>✔️ Attivazione istantanea tramite inquadratura</li>
+                    <li>✔️ Supporto a video e modelli 3D</li>
+                    <li>✔️ Statistiche dettagliate su scansioni nel backoffice</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="case-study-section" style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h3 class="case-block-title">ASSESSMENT & SOLUZIONE / SOLUTION</h3>
+        <p>
+            @(isEn ? "Graldev engineered 'Gralcall AR', a versatile web application that activates augmented reality directly inside standard mobile web browsers. Users scan a custom QR-code on physical plaques, pointing their mobile cameras at designated target images." : "Graldev ha progettato e sviluppato 'Gralcall AR': una web application universale in grado di lanciare un'esperienza di realtà aumentata direttamente nel browser nativo del telefono. Il visitatore inquadra un QR-code posto su una targa fisica per aprire la fotocamera web, e successivamente inquadra l'immagine target.")
+        </p>
+        <p>
+            @(isEn ? "Upon framing the marker image, the system projects floating historical video-narrations, immersive 3D reconstructions, or interactive interfaces over the physical world. A complete backoffice tracks views, scans, and user metrics dynamically." : "Inquadrando l'immagine o l'opera d'arte, il sistema sovrappone in realtà aumentata video storici, ricostruzioni 3D interattive o pulsanti di navigazione. Un pannello di backoffice consente all'ente di monitorare in tempo reale le statistiche e l'interazione dei turisti.")
+        </p>
+
+        <h3 class="case-block-title" style="margin-top: 2rem;">TECNOLOGIE / TECHNOLOGIES</h3>
+        <p>
+            @(isEn ? "MindAR, WebGL, Three.js, HTML5, CSS3, dynamic backoffice and responsive video processing pipelines." : "Sviluppato impiegando librerie WebAR avanzate (MindAR), WebGL per il rendering grafico, Three.js, HTML5, video compressi ad hoc e un backoffice di tracciamento centralizzato.")
+        </p>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Bring immersive interactive spatial technology to your audience" : "Porta la Realtà Aumentata nei tuoi progetti")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Talk to our spatial technology consultants to design custom WebAR campaigns, educational tools or interactive showcases." : "Pianifica un incontro con i nostri specialisti di tecnologie immersive per ideare percorsi museali, cataloghi 3D o progetti educativi.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

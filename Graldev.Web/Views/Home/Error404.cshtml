@@ -1,0 +1,28 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="container" style="max-width: 600px;">
+        <span style="font-size: 7rem; line-height: 1; font-weight: 900; color: var(--color-primary); display: block; filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));">404</span>
+        <h1 style="font-size: 2.2rem; margin-top: 1rem; margin-bottom: 1rem;">
+            @(isEn ? "Page Not Found" : "Pagina non trovata")
+        </h1>
+        <p style="margin-bottom: 2.5rem; color: var(--text-secondary);">
+            @(isEn ? "The page you are looking for has been moved, removed or does not exist." : "La pagina che stai cercando è stata spostata, rimossa o non è mai esistita.")
+        </p>
+
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: var(--spacing-md); text-align: left;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">
+                @(isEn ? "Quick Navigation Links" : "Collegamenti consigliati")
+            </h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                <li>🔗 <a href="@(isEn ? "/en" : "/")">@(isEn ? "Go to Homepage" : "Torna all'Homepage")</a></li>
+                <li>🔗 <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")">@(isEn ? "IT Consulting" : "Consulenza Informatica")</a></li>
+                <li>🔗 <a href="@(isEn ? "/en/case-studies" : "/case-study")">@(isEn ? "Case Studies" : "Sfoglia i Case Study")</a></li>
+                <li>🔗 <a href="@(isEn ? "/en/insights" : "/insights")">@(isEn ? "Insights & Guides" : "Leggi gli Insights")</a></li>
+                <li>🔗 <a href="@(isEn ? "/en/contact" : "/contatti")">@(isEn ? "Contact our Consultants" : "Contatta i nostri consulenti")</a></li>
+            </ul>
+        </div>
+    </div>
+</section>

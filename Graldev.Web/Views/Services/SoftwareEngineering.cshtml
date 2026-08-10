@@ -1,0 +1,103 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">SOFTWARE ENGINEERING</span>
+        <h1 class="section-title">
+            @(isEn ? "Custom software when it is the right path, not the default one." : "Software custom quando è la soluzione giusta, non la soluzione predefinita.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We engineer robust, high-performance backends, custom middleware, and secure business portals based on modern enterprise .NET standards." : "Ingegnerizziamo backend robusti e performanti, middleware personalizzati e portali business sicuri basati sugli standard enterprise .NET.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Software engineering as a business capability" : "L'ingegneria del software come mezzo, non come fine")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>For Graldev, writing custom software is not a pre-packaged answer. Custom software development represents a high-impact capability that should be triggered selectively. We engineer custom solutions only when commercial off-the-shelf software or simple integrations cannot fully map your actual operational model.</text>
+                }
+                else
+                {
+                    <text>Per Graldev, sviluppare codice custom non è una risposta automatica o predefinita. L'ingegneria del software è una competenza complessa che va attivata in modo mirato e strategico: solo quando i prodotti standard di mercato o le semplici configurazioni non riescono a coprire il vostro reale modello di business.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>Our engineering focus centers on backend architectures, high-concurrency microservices, robust data processing engines, custom business middleware, and advanced operational backoffices built to scale under enterprise loads.</text>
+                }
+                else
+                {
+                    <text>I nostri sviluppi si concentrano su architetture backend stabili, microservizi ad alta concorrenza, middleware di sincronizzazione dati, portali operatori per il backoffice ed interfacce gestionali complesse progettate per durare nel tempo.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "What We Engineer" : "Cosa Ingegnerizziamo")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>🖥️ Robust Enterprise Backends (.NET Core, C#)</li>
+                    <li>📡 Custom Web APIs & Integration Middleware</li>
+                    <li>👥 B2B Operator Portals & Intranet Dashboards</li>
+                    <li>⚙️ Workflow Automation and Data Processing engines</li>
+                    <li>☁️ Microservices and Cloud-native REST architectures</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Build, Buy or Integrate Section -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Build, Buy or Integrate?</h2>
+        <div class="grid-3">
+            <div class="premium-card" style="border-top: 3px solid #10b981;">
+                <h3 style="color: #10b981; margin-bottom: 0.5rem;">1. BUY</h3>
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">@(isEn ? "Utilize an existing product" : "Utilizzare un prodotto esistente")</p>
+                <p class="premium-card-text">
+                    @(isEn ? "When the business process is standard (e.g. general accounting, simple CRM). It saves time and takes advantage of market-tested solutions." : "Se il processo è standard (es. contabilità generale o CRM base). Consente di risparmiare tempo e beneficiare di una soluzione testata sul mercato.")
+                </p>
+            </div>
+            <div class="premium-card" style="border-top: 3px solid #3b82f6;">
+                <h3 style="color: #3b82f6; margin-bottom: 0.5rem;">2. INTEGRATE</h3>
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">@(isEn ? "Connect current systems" : "Collegare sistemi esistenti")</p>
+                <p class="premium-card-text">
+                    @(isEn ? "When you already have robust platforms but they work in silos. We build smart middleware to flow data without buying new licenses." : "Quando possiedi già gestionali solidi che lavorano separati. Costruiamo middleware intelligenti per far fluire i dati senza acquistare nuovi software.")
+                </p>
+            </div>
+            <div class="premium-card" style="border-top: 3px solid #06b6d4;">
+                <h3 style="color: #06b6d4; margin-bottom: 0.5rem;">3. BUILD</h3>
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">@(isEn ? "Develop custom components" : "Sviluppare codice custom")</p>
+                <p class="premium-card-text">
+                    @(isEn ? "When the business process represents your core competitive advantage and no standard market software fits its unique parameters." : "Quando il vostro processo operativo è unico, rappresenta il vostro reale vantaggio competitivo e nessun software pronto vi si adatta.")
+                </p>
+            </div>
+        </div>
+        <div class="case-quote-box" style="text-align: center; max-width: 800px; margin: 3rem auto 0 auto;">
+            <p style="font-size: 1.15rem; font-weight: 600; margin: 0;">
+                @(isEn ? "Graldev acts as the strategic consultant to guide you towards the most appropriate, sustainable decision." : "Graldev opera come consulente strategico per aiutarvi a scegliere oggettivamente la strada corretta.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "We design tech solutions matching your real workflows" : "Ingegnerizziamo software attorno ai tuoi flussi reali")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Let's review your business processes to find out if custom coding is the right solution." : "Analizziamo insieme i tuoi processi per individuare se lo sviluppo custom è la strada corretta per la tua azienda.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Schedule a Process Review meeting" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

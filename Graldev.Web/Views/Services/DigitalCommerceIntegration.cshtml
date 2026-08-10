@@ -1,0 +1,100 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">DIGITAL COMMERCE INTEGRATION</span>
+        <h1 class="section-title">
+            @(isEn ? "A single flow between production, ERP, eCommerce and marketplaces." : "Un unico flusso tra produzione, ERP, eCommerce e marketplace.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Graldev connects your ERP, catalog, and inventory directly to Shopify, Amazon, and eBay with automatic shipping and tracking workflows." : "Graldev connette ERP aziendali, inventario e produzione direttamente con Shopify, Amazon ed eBay, automatizzando ordini, spedizioni e tracking.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Omnichannel commerce without complexity" : "Sincronizzare vendite massive in tempo reale")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>When selling online across multiple channels, managing stock and orders by hand is impossible. A sale on Amazon must immediately update Shopify and inform the ERP. When an order is processed, courier labels and tracking numbers should generate automatically. We eliminate human delays and errors through direct API and automation middleware.</text>
+                }
+                else
+                {
+                    <text>Vendere online tramite store proprietari e marketplace richiede un coordinamento perfetto. Una vendita su Amazon deve aggiornare lo stock di Shopify e comunicare l'ordine al gestionale (ERP) all'istante. Quando la merce viene spedita, l'etichetta del corriere e il tracking number devono essere trasmessi al cliente in automatico. Graldev progetta flussi commerciali integrati per eliminare ritardi e doppie vendite di prodotti non disponibili.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>Our solutions unite catalog databases, availability levels, shipping, tracking, prices, and production, mapping your entire commerce ecosystem into a single unified dashboard.</text>
+                }
+                else
+                {
+                    <text>Colleghiamo in modo sicuro anagrafiche articoli, disponibilità in tempo reale, listini prezzi diversificati per canale, gestione ordini ed etichettatura per corrieri, strutturando un flusso coerente tra la produzione e la consegna finale.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Commerce Components" : "Componenti e Connessioni")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>📦 ERP & Production Databases</li>
+                    <li>🛒 Shopify & WooCommerce Stores</li>
+                    <li>🌐 Amazon, eBay & Digital Marketplaces</li>
+                    <li>📊 Global Unified Catalog & Prices</li>
+                    <li>🚚 Shipping labels, Couriers and tracking systems</li>
+                    <li>📦 Real-time multi-warehouse inventory sync</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case study Geordie spotlight -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <span class="section-eyebrow">OUR MAIN ECOMMERCE CASE STUDY</span>
+        <h2>Case Study: Geordie</h2>
+        <p class="section-subtitle">
+            @(isEn ? "Discover how our custom multi-store integration solution Geordie automates sales management and inventory synchronization across global stores." : "Scopri come la nostra soluzione integrata Geordie automatizza la gestione ordini e la sincronizzazione di stock tra gestionali e canali di vendita internazionali.")
+        </p>
+
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--spacing-md); margin-top: 2rem;">
+            <div class="grid-3" style="margin-bottom: 2rem;">
+                <div>
+                    <h4>📋 @(isEn ? "SOCIETIES" : "SOCIETÀ")</h4>
+                    <p style="font-size: 1rem; margin-top: 0.25rem;">Soncar S.r.l. & Dorenah</p>
+                </div>
+                <div>
+                    <h4>⚙️ @(isEn ? "INTEGRATIONS" : "INTEGRAZIONE")</h4>
+                    <p style="font-size: 1rem; margin-top: 0.25rem;">ERP, eBay, Amazon, Shopify, Courier Web Services</p>
+                </div>
+                <div>
+                    <h4>🚀 @(isEn ? "OUTCOME" : "RISULTATO")</h4>
+                    <p style="font-size: 1rem; margin-top: 0.25rem;">@(isEn ? "Automated order picking and inventory sync" : "Presa in carico automatica senza duplicazioni ed errori di spedizione")</p>
+                </div>
+            </div>
+            <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="btn btn-primary">
+                @(isEn ? "Read Geordie Case Study" : "Scopri il Case Study Geordie")
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Optimize your commerce architecture today" : "Mappa il tuo ecosistema commerce")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Let's review your store connections and logistics workflows to design a robust automation middleware." : "Analizziamo insieme i canali di vendita e i flussi logistici della tua azienda per eliminare passaggi manuali.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Map your Commerce Ecosystem" : "Mappiamo il tuo ecosistema commerce")
+        </a>
+    </div>
+</section>

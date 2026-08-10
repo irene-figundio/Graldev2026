@@ -1,0 +1,37 @@
+@model Graldev.Web.Controllers.InsightArticle
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container" style="max-width: 800px;">
+        <span class="section-eyebrow">@Model.Category · @Model.PublishedAt</span>
+        <h1 class="section-title" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.25; margin-bottom: 1rem;">@Model.Title</h1>
+        <p style="font-size: 1.15rem; color: var(--text-secondary); font-style: italic;">
+            @Model.Excerpt
+        </p>
+        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; display: flex; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+            <span>✍️ @Model.Author</span>
+            <span>📅 @Model.PublishedAt</span>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container" style="max-width: 800px;">
+        <!-- Inject Raw Content safely -->
+        <article style="font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary); display: flex; flex-direction: column; gap: 1.5rem;">
+            @Html.Raw(Model.Content)
+        </article>
+
+        <!-- Dynamic Back link -->
+        <div style="margin-top: 3rem; border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <a href="@(isEn ? "/en/insights" : "/insights")" class="btn btn-secondary">
+                ← @(isEn ? "Back to all Insights" : "Torna a tutti gli Insights")
+            </a>
+            <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+                @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+            </a>
+        </div>
+    </div>
+</section>

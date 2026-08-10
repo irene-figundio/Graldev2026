@@ -1,0 +1,114 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">AI & PROCESS AUTOMATION</span>
+        <h1 class="section-title">
+            @(isEn ? "We bring AI inside your business processes. Not just beside them." : "Portiamo l'AI dentro i processi aziendali. Non semplicemente accanto.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We integrate Large Language Models (LLM) and RAG secure structures to automate reading, classification, and intelligent workflows." : "Integriamo modelli di linguaggio (LLM) e strutture sicure RAG per automatizzare la lettura di documenti, la classificazione e i flussi operativi intelligenti.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Beyond simple Chatbots" : "Graldev non fa semplicemente 'Chatbot'")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>A floating chat window on a website is just one visual representation of AI. Genuine corporate value is generated when AI models are connected directly to your internal data pipelines, securely reading user manuals, matching invoices, classifying support tickets, and assisting operators in backoffice workflows.</text>
+                }
+                else
+                {
+                    <text>Una finestrella di chat sul sito pubblico è solo uno dei minimi casi d'uso dell'Intelligenza Artificiale. Il vero valore per un'azienda medio-grande nasce quando l'AI è connessa ai database interni e ai flussi operativi: per leggere ordini scritti via mail, compilare automaticamente schede tecniche, confrontare preventivi o assistere gli operatori del customer service.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>Using advanced architectures like RAG (Retrieval-Augmented Generation) and autonomous AI Agents, we build custom solutions that learn from your enterprise knowledge base while ensuring complete compliance and absolute data privacy.</text>
+                }
+                else
+                {
+                    <text>Attraverso architetture RAG (Retrieval-Augmented Generation) e Agenti AI autonomi, strutturiamo soluzioni capaci di attingere in tempo reale al patrimonio informativo aziendale (documenti, contratti, manuali, gestionali) producendo risposte e decisioni precise, verificate e prive di 'allucinazioni'.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Where AI Generates Real Value" : "Dove l'AI genera vero valore")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>📄 <strong>Document Intelligence</strong>: @(isEn ? "extracting structured data from raw PDFs." : "estrazione dati strutturati da PDF complessi.")</li>
+                    <li>🧠 <strong>Internal Copilots</strong>: @(isEn ? "rapid search across vast corporate knowledge bases." : "ricerca semantica veloce in enormi knowledge base.")</li>
+                    <li>🏷️ <strong>Auto-Classification</strong>: @(isEn ? "sorting and routing incoming support tickets." : "smistamento automatico di e-mail ed assistenze.")</li>
+                    <li>🤖 <strong>AI Agents</strong>: @(isEn ? "complex, multi-step autonomous tasks with approvals." : "automazione di workflow complessi con approvazione umana.")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Governance section -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container split-layout" style="flex-direction: row-reverse;">
+        <div class="split-left">
+            <h2>@(isEn ? "AI Enterprise means Control" : "AI enterprise significa anche controllo")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Integrating AI in a corporate environment requires deep responsibility. We design under strict AI Governance principles to ensure your data stays inside your enterprise boundaries, protected from public training loops.</text>
+                }
+                else
+                {
+                    <text>Introdurre l'Intelligenza Artificiale in un contesto enterprise richiede la massima responsabilità e disciplina ingegneristica. Progettiamo seguendo rigide linee guida di AI Governance, per garantire che i vostri dati rimangano riservati ed esclusivi.</text>
+                }
+            </p>
+            <div class="grid-2" style="margin-top: 2rem; gap: 1rem;">
+                <div>
+                    <h4>🔒 Privacy & Security</h4>
+                    <p style="font-size: 0.9rem;">@(isEn ? "Enterprise cloud endpoints protecting company secrets." : "Endpoint protetti ed isolati per non divulgare segreti industriali.")</p>
+                </div>
+                <div>
+                    <h4>👥 Permissions & Roles</h4>
+                    <p style="font-size: 0.9rem;">@(isEn ? "Strict mapping matching current user access levels." : "L'AI risponde solo basandosi sui permessi reali dell'utente.")</p>
+                </div>
+                <div>
+                    <h4>👤 Human-in-the-loop</h4>
+                    <p style="font-size: 0.9rem;">@(isEn ? "Important decisions are always checked by operators." : "Le decisioni importanti richiedono sempre validazione umana.")</p>
+                </div>
+                <div>
+                    <h4>📈 Cost & Observability</h4>
+                    <p style="font-size: 0.9rem;">@(isEn ? "Strict tokens logging and budget control pipelines." : "Monitoraggio e ottimizzazione dei costi di token a livello di API.")</p>
+                </div>
+            </div>
+        </div>
+        <div class="split-right">
+            <!-- Vitinerario case study callout -->
+            <div class="case-quote-box">
+                <h4>🎯 Case Study: Vitinerario App</h4>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem; font-style: normal;">
+                    @(isEn ? "We created a virtual AI sommelier capable of understanding semantic wine databases, advising custom pairings, and answering enological questions dynamically." : "Abbiamo ideato un assistente sommelier AI basato su LLM e RAG in grado di interrogare database enologici semantici e consigliare abbinamenti perfetti.")
+                </p>
+                <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="margin-top: 0.5rem; display: inline-block;">@(isEn ? "Read Case Study" : "Leggi il Case Study")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Bring secure, reliable AI inside your company workflows" : "Porta l'AI nei tuoi processi aziendali in modo sicuro")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Get an AI feasibility session with our senior cognitive and automation architects." : "Fissa una sessione di fattibilità tecnica per capire dove e come l'AI può generare reale valore operativo nella tua azienda.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Request an AI Feasibility Session" : "Richiedi una AI Feasibility Session")
+        </a>
+    </div>
+</section>

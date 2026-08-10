@@ -1,0 +1,86 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">AR / VR / 3D APPLICATIONS</span>
+        <h1 class="section-title">
+            @(isEn ? "Spatially rich interactive technologies: AR, VR and 3D." : "Sviluppo AR, VR e 3D per Aziende.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Interactive spatial technology and Augmented Reality applications designed for tourism, culture, product showcases and education." : "Integrazione di tecnologie tridimensionali interattive e Realtà Aumentata (AR) per la cultura, l'istruzione, cataloghi industriali ed il turismo.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Immersion that brings tangible value" : "L'interazione che genera impatto concreto")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Augmented and Virtual Reality are no longer gaming gimmicks. When applied to commerce, training, and historical tourism, they generate immediate, deep user engagement. We build responsive WebAR systems that run directly inside standard mobile web browsers without demanding complex external store installations.</text>
+                }
+                else
+                {
+                    <text>La Realtà Aumentata e le tecnologie 3D interattive rappresentano oggi strumenti commerciali e culturali di impatto incredibile. Applicate ad itinerari turistici, cataloghi interattivi di prodotti, o percorsi educativi, offrono livelli di coinvolgimento senza pari. Graldev sviluppa soluzioni WebAR agili che funzionano direttamente nei browser degli smartphone comuni, senza richiedere il download di pesanti app esterne.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>Whether you want to create interactive educational villages, immersive museum guides, or customized 3D product configurations, our spatial technical advisors will map, design, and code the proper interactive assets.</text>
+                }
+                else
+                {
+                    <text>Sia che desideriate arricchire un borgo storico con video-guide in AR attivabili inquadrando cartelli locali, sia che vogliate mostrare un macchinario tridimensionale interattivo sul vostro portale web, i nostri specialisti progetteranno gli asset e l'integrazione ideale.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Interactive Capabilities" : "Cosa Sviluppiamo")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>🕶️ WebAR (Augmented Reality directly inside mobile browsers)</li>
+                    <li>🏛️ Interactive guides for tourism, museums and historical sites</li>
+                    <li>📊 Immersive 3D product configurators for websites</li>
+                    <li>📚 Educational gaming & Interactive learning assets</li>
+                    <li>🎮 Web-based 3D simulations (Three.js, Canvas, SVG)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Case Study Gralcall -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <span class="section-eyebrow">OUR MAIN SPATIAL AR PROJECT</span>
+        <h2>Case Study: Gralcall AR</h2>
+        <p class="section-subtitle">
+            @(isEn ? "Discover how our WebAR project Gralcall, in collaboration with Associazione Manthano ETS, brings historic Italian villages to life using marker-based augmented reality and informative videos." : "Scopri come la nostra applicazione Gralcall, realizzata con il partner Associazione Manthano ETS, ha integrato la Realtà Aumentata e contenuti video per valorizzare percorsi turistici e culturali lucani.")
+        </p>
+
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--spacing-md); margin-top: 2rem;">
+            <div class="grid-3" style="margin-bottom: 2rem;">
+                <div>
+                    <h4>👥 @(isEn ? "PARTNER" : "PARTNER STRATEGICO")</h4>
+                    <p style="font-size: 1rem; margin-top: 0.25rem;">Associazione Manthano ETS</p>
+                </div>
+                <div>
+                    <h4>⚙️ @(isEn ? "TECHNOLOGY" : "TECNOLOGIA")</h4>
+                    <p style="font-size: 1rem; margin-top: 0.25rem;">WebAR, MindAR, HTML5 video, Mobile Web</p>
+                </div>
+                <div>
+                    <h4>🚀 @(isEn ? "USE" : "APPLICAZIONE")</h4>
+                    <p style="font-size: 1rem; margin-top: 0.25rem;">@(isEn ? "Historical tourism and village itineraries" : "Itinerari storici, guide interattive e valorizzazione territoriale")</p>
+                </div>
+            </div>
+            <a href="@(isEn ? "/en/case-studies/gralcall" : "/case-study/gralcall")" class="btn btn-primary">
+                @(isEn ? "Read Gralcall Case Study" : "Scopri Gralcall AR")
+            </a>
+        </div>
+    </div>
+</section>

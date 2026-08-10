@@ -1,0 +1,93 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "IT STRATEGY & ADVICE" : "CONSULENZA INFORMATICA DIREZIONALE")</span>
+        <h1 class="section-title">
+            @(isEn ? "IT consulting to turn complex technical needs into concrete operational solutions." : "Consulenza informatica per trasformare esigenze tecnologiche in soluzioni concrete.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We support enterprises in assessment, design, systems architecture, selection of platforms and digital evolution." : "Supportiamo le imprese nelle fasi di assessment, progettazione, disegno architetturale, scelta tecnologica ed evoluzione digitale.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Not every problem requires custom coding" : "Non sempre serve sviluppare nuovo software")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Unlike software vendors or traditional software houses whose main business is selling more development hours, <strong>Graldev is a consultant and technical partner</strong>. We believe that writing custom code is just one of many ways to solve a business problem.</text>
+                }
+                else
+                {
+                    <text>A differenza dei vendor di software o delle tradizionali software house il cui interesse primario è vendere ore di sviluppo aggiuntive, <strong>Graldev opera come consulente e partner tecnico strategico</strong>. Crediamo che scrivere nuovo codice da zero sia solo una delle possibili risposte a un problema aziendale.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>A strategic consulting session can open much more efficient, rapid and cost-effective paths:</text>
+                }
+                else
+                {
+                    <text>Una consulenza informatica approfondita e oggettiva può rivelare strade molto più efficienti, rapide ed economicamente sostenibili per l'azienda:</text>
+                }
+            </p>
+
+            <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.75rem; font-weight: 500; margin-top: 1rem;">
+                <li>🔗 <strong>@(isEn ? "System Integration" : "Integrazione di sistemi esistenti")</strong>: @(isEn ? "connecting software already present in the company." : "connettere gestionali e piattaforme già presenti in azienda.")</li>
+                <li>⚙️ <strong>@(isEn ? "Platform Optimization" : "Miglior configurazione")</strong>: @(isEn ? "getting more from existing software without replacing it." : "configurare o personalizzare meglio applicativi esistenti senza acquistarne di nuovi.")</li>
+                <li>🛰️ <strong>@(isEn ? "Light Middleware" : "Creazione di middleware")</strong>: @(isEn ? "building small, smart connectors to flow data automatically." : "costruire piccoli connettori mirati per automatizzare i passaggi di dati.")</li>
+                <li>🔄 <strong>@(isEn ? "Modernization" : "Modernizzazione applicativa")</strong>: @(isEn ? "evolving legacy apps without disrupting company workflows." : "ringiovanire vecchi software senza bloccare l'operatività.")</li>
+                <li>🧠 <strong>@(isEn ? "AI Orchestration" : "Introduzione dell'AI")</strong>: @(isEn ? "integrating smart cognitive layers into actual database pipelines." : "integrare modelli intelligenti (LLM) direttamente sulle basi dati esistenti.")</li>
+            </ul>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <span class="premium-card-icon">🎯</span>
+                <h3 style="margin-bottom: 0.5rem;">@(isEn ? "Core Consulting Activities" : "Attività di Consulenza")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <li>✔️ @(isEn ? "Infrastructure & Code Audit" : "Assessment Tecnologico e del Codice")</li>
+                    <li>✔️ @(isEn ? "Systems Architecture & Design" : "Disegno dell'Architettura Software")</li>
+                    <li>✔️ @(isEn ? "Software Platform Selection" : "Software Selection & Fornitori")</li>
+                    <li>✔️ @(isEn ? "AI Feasibility & Integration Review" : "Studio di fattibilità e Governance dell'AI")</li>
+                    <li>✔️ @(isEn ? "IT Security & Migration Planning" : "Strategie di migrazione e Sicurezza")</li>
+                </ul>
+                <div style="margin-top: 1.5rem;">
+                    <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="width: 100%;">
+                        @(isEn ? "Speak with our Consultant" : "Parliamo della tua esigenza")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Services & internal links -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h2>@(isEn ? "Explore our focus areas" : "Approfondisci le nostre specializzazioni")</h2>
+        <div class="grid-3" style="margin-top: 2rem;">
+            <div class="premium-card">
+                <h3>System Integration</h3>
+                <p>@(isEn ? "Automating communication between your CRM, ERP, and commerce databases." : "Collega ERP, CRM, database e software esterni eliminando passaggi manuali.")</p>
+                <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")" class="premium-card-link">@(isEn ? "System Integration" : "System Integration")</a>
+            </div>
+            <div class="premium-card">
+                <h3>AI & Automation</h3>
+                <p>@(isEn ? "Integrating advanced generative AI and LLMs inside your processes securely." : "Porta modelli AI intelligenti (RAG) all'interno dei database aziendali.")</p>
+                <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")" class="premium-card-link">@(isEn ? "AI Integration" : "AI Integration")</a>
+            </div>
+            <div class="premium-card">
+                <h3>Cloud & Architecture</h3>
+                <p>@(isEn ? "Designing highly scaling and cost-effective modern cloud structures." : "Evolvi le infrastrutture applicative per garantire alta disponibilità.")</p>
+                <a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")" class="premium-card-link">@(isEn ? "Cloud Architecture" : "Cloud Architecture")</a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "INDUSTRIAL VERTICAL" : "SETTORE INDUSTRIALE")</span>
+        <h1 class="section-title">
+            @(isEn ? "IT Consulting & System Integration for Industry" : "Consulenza IT e System Integration per l'Industria")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Optimizing production data streams, bridging hardware machines with ERP software databases, and automating department processes." : "Ottimizzazione dei flussi dati di produzione, connessione tra macchine hardware e gestionali (ERP), e automazione dei processi di reparto.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Connecting physical machinery with administrative software" : "Far dialogare macchine fisiche e software gestionali")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>In complex manufacturing environments, a large gap often exists between raw physical workshop activities and corporate administrative software. Graldev acts as the integration engineer that connects custom hardware sensors, data acquisition lines, and PLC machinery directly with your central database, enabling live stock tracking, process automation, and zero manual spreadsheet updates.</text>
+                }
+                else
+                {
+                    <text>Nei contesti manifatturieri e di fabbrica, esiste spesso una grande distanza tra i macchinari fisici di produzione e i gestionali amministrativi centrali. Graldev opera come progettista d'integrazione per connettere sensori hardware, PLC ed acquisitori dati con i database centrali, consentendo la tracciabilità delle materie prime, il controllo avanzato dei magazzini e l'automazione dei reparti produttivi.</text>
+                }
+            </p>
+            <div class="case-quote-box" style="margin-top: 1.5rem;">
+                <h4>@(isEn ? "Real experience, objective advising" : "Esperienza reale, consulenza pragmatica")</h4>
+                <p style="font-size: 1rem; margin-top: 0.25rem;">
+                    @(isEn ? "We align machines, SCADA protocols, and ERP databases safely without interrupting your continuous production workflows." : "Allineiamo macchinari industriali, protocolli di comunicazione e database ERP in sicurezza, preservando l'operatività continua della fabbrica.")
+                </p>
+            </div>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Systems Involved" : "Sistemi Coinvolti")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>⚙️ Production ERPs and Stock management software</li>
+                    <li>📡 Data collection and sensor hardware</li>
+                    <li>🤖 PLC controllers and SCADA protocols</li>
+                    <li>📊 Intranet Department Dashboards</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Evolve your manufacturing data pipelines" : "Automatizza i tuoi flussi produttivi")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Schedule a dedicated technical review meeting with Graldev senior industrial integration architects." : "Fissa un incontro con i nostri architetti senior per pianificare una sincronizzazione sicura.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

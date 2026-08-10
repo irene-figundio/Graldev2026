@@ -1,0 +1,115 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">SYSTEM INTEGRATION</span>
+        <h1 class="section-title">
+            @(isEn ? "System Integration: we make systems talk that currently work separately." : "System Integration: facciamo dialogare sistemi che oggi lavorano separati.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We eliminate manual copy-paste operations by building robust, secure, and monitorable data flows between your tools." : "Eliminiamo le inefficienze e gli inserimenti manuali ripetitivi creando flussi dati stabili, sicuri e monitorabili tra i vostri software.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>
+                @(isEn ? "The problem is not the individual software. It's what happens between them." : "Il problema non sono i singoli software. È ciò che accade tra un software e l'altro.")
+            </h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Enterprises purchase premium ERPs, CRMs, and eCommerce platforms. But when these systems work in silos, operational friction explodes. Stock updates are delayed, customer records are duplicated, and orders must be verified manually. The bottleneck is the lack of seamless communication between them.</text>
+                }
+                else
+                {
+                    <text>Spesso le aziende acquistano gestionali di alto livello, CRM avanzati e piattaforme e-commerce performanti. Tuttavia, finché lavorano separatamente, si creano colli di bottiglia: aggiornamenti di magazzino in ritardo, anagrafiche duplicate e ordini che devono essere controllati manualmente. L'inefficienza risiede nello spazio vuoto tra i software.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>Graldev engineers robust integration layers, connecting legacy software, web services (REST/SOAP), SaaS solutions, industrial machines, and databases. We ensure data moves securely with high performance, strict error-handling and observability.</text>
+                }
+                else
+                {
+                    <text>Graldev colma questo spazio. Progettiamo e sviluppiamo integrazioni e middleware per connettere ERP, CRM, database, servizi web (REST e SOAP), piattaforme SaaS, marketplace esterni ed hardware industriali, assicurando flussi automatici bidirezionali sicuri e tracciati.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Systems We Connect" : "Sistemi che Integriamo")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>💻 ERP (SAP, Microsoft Dynamics, gestionali proprietari)</li>
+                    <li>👥 CRM (Salesforce, HubSpot, custom databases)</li>
+                    <li>🛒 eCommerce & Marketplace (Shopify, Amazon, eBay)</li>
+                    <li>📡 Web Services (REST APIs, SOAP, XML, JSON, Webhooks)</li>
+                    <li>🏗️ Industrial Systems & Machine Hardware</li>
+                    <li>☁️ Cloud databases and on-premise local servers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Integration Method -->
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h2>@(isEn ? "Our Integration Pipeline" : "Il nostro metodo di integrazione")</h2>
+        <div class="method-steps">
+            <div class="method-step">
+                <div class="method-num">01</div>
+                <div class="method-name">ASSESSMENT</div>
+                <div class="method-desc">@(isEn ? "Reviewing endpoints, formats and access levels." : "Analisi di endpoint, formati dati e credenziali d'accesso.")</div>
+            </div>
+            <div class="method-step">
+                <div class="method-num">02</div>
+                <div class="method-name">DATA MAPPING</div>
+                <div class="method-desc">@(isEn ? "Structuring field conversions and translation schemas." : "Mappatura dei campi e schemi di conversione dell'informazione.")</div>
+            </div>
+            <div class="method-step">
+                <div class="method-num">03</div>
+                <div class="method-name">ARCHITECTURE</div>
+                <div class="method-desc">@(isEn ? "Designing middleware, queues, or direct connectors." : "Disegno dell'infrastruttura d'integrazione o middleware.")</div>
+            </div>
+            <div class="method-step">
+                <div class="method-num">04</div>
+                <div class="method-name">INTEGRATION</div>
+                <div class="method-desc">@(isEn ? "Coding robust connection APIs and synchronization scripts." : "Sviluppo dei connettori ed automazione dei flussi.")</div>
+            </div>
+            <div class="method-step">
+                <div class="method-num">05</div>
+                <div class="method-name">TEST</div>
+                <div class="method-desc">@(isEn ? "Dry-runs under heavy loads to verify data integrity." : "Simulazioni di carico per verificare la consistenza del dato.")</div>
+            </div>
+            <div class="method-step">
+                <div class="method-num">06</div>
+                <div class="method-name">OBSERVABILITY</div>
+                <div class="method-desc">@(isEn ? "Configuring dashboards and automatic error retry alerts." : "Setup di log avanzati e notifiche d'errore automatiche.")</div>
+            </div>
+            <div class="method-step">
+                <div class="method-num">07</div>
+                <div class="method-name">DEPLOYMENT</div>
+                <div class="method-desc">@(isEn ? "Gradual launch preserving business continuity." : "Rilascio controllato senza alcuna interruzione aziendale.")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Eliminate manual data entries in your company" : "Sincronizza i tuoi sistemi aziendali")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Schedule a dedicated Integration Assessment meeting with Graldev senior technical architects." : "Pianifica un incontro dedicato per mappare la tua infrastruttura ed eliminare i colli di bottiglia.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Request an Integration Assessment" : "Richiedi un Integration Assessment")
+        </a>
+    </div>
+</section>

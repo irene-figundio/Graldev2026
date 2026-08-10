@@ -1,0 +1,69 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">CLOUD, ARCHITECTURE & MODERNIZATION</span>
+        <h1 class="section-title">
+            @(isEn ? "Evolve the infrastructure without interrupting the business." : "Evolvere l'infrastruttura senza interrompere il business.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We provide expert software architecture advisory, legacy systems modernization, and smooth cloud migrations to guarantee high availability." : "Consulenza e revisione di architetture software, migrazioni Cloud controllate e modernizzazione di sistemi legacy senza compromettere la continuità aziendale.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Future-proof your software assets" : "Rendere scalabili e manutenibili i software aziendali")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Over time, enterprise software accumulates technical debt: outdated servers, insecure database configurations, slow queries, and monolith systems that are complex to update. Graldev acts as your senior technical advisor. We review your current system architecture and detail a precise, structured blueprint to modernize it safely.</text>
+                }
+                else
+                {
+                    <text>Con gli anni, i software aziendali accumulano debito tecnico: vecchi server fisici on-premise non ridondati, database lenti, query non ottimizzate e applicativi monolitici difficili da aggiornare. Graldev opera come consulente senior ed architetto IT. Analizziamo lo stato dell'arte dei vostri sistemi ed elaboriamo una roadmap precisa per traghettarli verso il futuro in modo sicuro.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>We specialize in structuring multi-tenant software, microservices, containerization, and redundant cloud architectures (AWS, Azure) that scale up automatically under peak traffic without costing a fortune.</text>
+                }
+                else
+                {
+                    <text>Siamo specializzati nel disegno di architetture cloud scalabili (AWS, Azure), migrazioni controllate di database relazionali complessi sul cloud, containerizzazione di servizi (Docker) e scomposizione di monoliti in microservizi per ottimizzare costi e prestazioni.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Modernization Focus Areas" : "Aree di Intervento")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>📐 System Architecture & Design</li>
+                    <li>🔄 Legacy Systems Modernization</li>
+                    <li>☁️ Cloud Readiness & Migration strategy</li>
+                    <li>🔍 Technology Assessment & Code Audits</li>
+                    <li>🛡️ Technical Due Diligence for mergers</li>
+                    <li>📋 Build vs Buy advisory</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center; background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container">
+        <h2>@(isEn ? "Evolve your legacy systems safely" : "Pianifica la modernizzazione dei tuoi sistemi")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Get an architecture review to identify security vulnerabilities, scaling bottlenecks, and cloud migration costs." : "Richiedi una revisione tecnica d'architettura con i nostri specialisti senior per mappare debito tecnico, colli di bottiglia e costi cloud.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Request an Architecture Review" : "Richiedi un Architecture Review")
+        </a>
+    </div>
+</section>

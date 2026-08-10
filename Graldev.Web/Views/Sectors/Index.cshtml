@@ -1,0 +1,55 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">INDUSTRIES & VERTICALS</span>
+        <h1 class="section-title">
+            @(isEn ? "Applied technical consulting across complex sectors." : "Consulenza tecnologica applicata a settori complessi.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "We support organizations and medium-to-large enterprises in Industry, Retail, eCommerce and Telecommunications." : "Affianchiamo organizzazioni e medie-grandi imprese nei settori dell'Industria, del Retail, dell'eCommerce e delle Telecomunicazioni.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container grid-3">
+        <!-- Sector 1: Industria -->
+        <div class="premium-card">
+            <div>
+                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🏗️</span>
+                <h3 class="premium-card-title">@(isEn ? "Industry" : "Industria")</h3>
+                <p class="premium-card-text">
+                    @(isEn ? "Optimizing production data flows, hardware/software sensor integration, process automation, and stock control." : "Ottimizzazione dei flussi produttivi, integrazione di sensori hardware/software, automazione di processo e controllo reparti.")
+                </p>
+            </div>
+            <a href="@(isEn ? "/en/sectors/industry" : "/settori/industria")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Explore Sector" : "Scopri il Settore")</a>
+        </div>
+
+        <!-- Sector 2: Retail & eCommerce -->
+        <div class="premium-card">
+            <div>
+                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🛒</span>
+                <h3 class="premium-card-title">Retail & eCommerce</h3>
+                <p class="premium-card-text">
+                    @(isEn ? "Connecting enterprise ERP databases with Shopify, Amazon, and eBay, streamlining omnichannel logistics." : "Integrazione dei database gestionali con Shopify, Amazon ed eBay, velocizzando i flussi di logistica multicanale.")
+                </p>
+            </div>
+            <a href="@(isEn ? "/en/sectors/retail-ecommerce" : "/settori/retail-ecommerce")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Explore Sector" : "Scopri il Settore")</a>
+        </div>
+
+        <!-- Sector 3: Telco -->
+        <div class="premium-card">
+            <div>
+                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">📡</span>
+                <h3 class="premium-card-title">Telco</h3>
+                <p class="premium-card-text">
+                    @(isEn ? "Structuring scalable system architectures, API marketplaces, and transactional pipelines for telecom systems." : "Architetture d'integrazione scalabili, marketplace di API e canali transazionali per operatori di telecomunicazioni.")
+                </p>
+            </div>
+            <a href="@(isEn ? "/en/sectors/telco" : "/settori/telco")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Explore Sector" : "Scopri il Settore")</a>
+        </div>
+    </div>
+</section>

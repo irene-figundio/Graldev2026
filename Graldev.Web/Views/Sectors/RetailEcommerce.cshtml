@@ -1,0 +1,64 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "RETAIL & ECOMMERCE VERTICAL" : "SETTORE RETAIL ED ECOMMERCE")</span>
+        <h1 class="section-title">
+            @(isEn ? "ERP, Shopify, Amazon & Marketplaces Integration" : "Integrazione Sistemi Retail ed eCommerce")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Sincronizing inventories, centralizing multichannel orders, and automating shipments label printing with BRT/GLS courier API lines." : "Sincronizzazione in tempo reale dei magazzini, centralizzazione degli ordini multicanale ed automazione dei flussi logistici e di spedizione.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Harmonize physical stores and online channels" : "Coordinare negozi fisici ed e-commerce digitali")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Omnichannel retail demands flawless synchronization. When a product is purchased in a physical shop or on Amazon, its availability must instantly update on Shopify, preventing double sales. Graldev designs integration layers that connect your management databases (ERP), catalogs, and warehouses directly with global digital marketplaces and courier platforms.</text>
+                }
+                else
+                {
+                    <text>Il commercio multicanale richiede un allineamento stock istantaneo. Quando un articolo viene venduto in un negozio fisico o su Amazon, la disponibilità deve modificarsi immediatamente su Shopify, impedendo vendite sfasate di prodotti esauriti. Graldev progetta layer di comunicazione per connettere i database gestionali (ERP), i magazzini di deposito e i corrieri nazionali (BRT, GLS) con le vostre piattaforme digitali.</text>
+                }
+            </p>
+            <div class="case-quote-box" style="margin-top: 1.5rem;">
+                <h4>🏆 Spotlight Project: Geordie</h4>
+                <p style="font-size: 1rem; margin-top: 0.25rem;">
+                    @(isEn ? "We automated multichannel orders and inventory syncing for Soncar S.r.l. and Dorenah with absolute zero order duplicated pickings." : "Abbiamo automatizzato la gestione ordini multicanale ed allineamento disponibilità per Soncar S.r.l. e Dorenah a zero errori di evasione.")
+                </p>
+                <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="premium-card-link" style="margin-top: 0.5rem; display: inline-block;">@(isEn ? "Discover Geordie Case" : "Leggi il Case Study")</a>
+            </div>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Unified Flow Systems" : "Sistemi Integrati")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>🛒 Shopify, WooCommerce, Magento</li>
+                    <li>🌐 Amazon Seller, eBay Developer APIs</li>
+                    <li>🏢 Corporate ERP, warehouse database</li>
+                    <li>🚚 BRT, GLS, DHL carrier tracking APIs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Scale your digital commerce smoothly" : "Velocizza le tue vendite multicanale")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Schedule a dedicated audit session with Graldev commerce integration engineers." : "Fissa un incontro con i nostri specialisti per mappare i tuoi gestionali ed automatizzare i flussi ordini.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

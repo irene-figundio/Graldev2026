@@ -1,0 +1,36 @@
+@model IEnumerable<Graldev.Web.Controllers.InsightArticle>
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">INSIGHTS, GUIDES & STRATEGY</span>
+        <h1 class="section-title">
+            @(isEn ? "Technical insight, clear business solutions." : "Competenza tecnologica, chiarezza strategica.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Guides and strategic analyses written by Graldev senior technical advisors to help you understand systems integration, enterprise AI, and modern software architectures." : "Analisi, guide ed approfondimenti curati dai consulenti Graldev per comprendere l'integrazione dei sistemi, l'AI enterprise e la modernizzazione delle architetture digitali.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container grid-3">
+        @foreach (var article in Model)
+        {
+            <div class="premium-card">
+                <div>
+                    <span style="font-size: 0.8rem; font-weight:700; text-transform:uppercase; color: var(--color-accent); display:block; margin-bottom: 0.5rem;">
+                        @article.Category · @article.PublishedAt
+                    </span>
+                    <h3 class="premium-card-title" style="font-size: 1.35rem; margin-bottom: 0.75rem;">@article.Title</h3>
+                    <p class="premium-card-text" style="font-size: 0.95rem;">@article.Excerpt</p>
+                </div>
+                <a href="@(isEn ? $"/en/insights/{article.Slug}" : $"/insights/{article.Slug}")" class="premium-card-link" style="margin-top: 1rem;">
+                    @(isEn ? "Read Article" : "Leggi l'Articolo")
+                </a>
+            </div>
+        }
+    </div>
+</section>
