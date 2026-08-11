@@ -2,362 +2,727 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<!-- Hero Section: Premium, High-Impact Visual Redesign -->
-<section class="hero-section" style="padding-bottom: 2rem;">
-    <div class="container split-layout" style="align-items: center; gap: var(--spacing-md);">
-        <div class="split-left" style="position: relative; z-index: 3; max-width: 600px;">
-            <span class="card-neomorphic" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-green); padding: 0.4rem 0.8rem; display: inline-block; margin-bottom: 1.25rem;">
-                @(isEn ? "IT CONSULTING · SYSTEM INTEGRATION · AI · SOFTWARE ENGINEERING" : "CONSULENZA INFORMATICA · SYSTEM INTEGRATION · AI · SOFTWARE ENGINEERING")
-            </span>
-            <h1 class="section-title" style="margin-top: 0.5rem; color: var(--brand-green-dark); font-weight: 900; line-height: 1.1; margin-bottom: 1rem;">
-                @(isEn ? "We transform complex IT issues into systems that work better." : "Trasformiamo problemi tecnologici complessi in sistemi che funzionano meglio.")
+<!-- 01 HERO SECTION: Premium Visual-First Design -->
+<section class="site-section hero-section" style="padding: 6rem 0 4rem 0; background: radial-gradient(circle at 75% 30%, var(--bg-cream) 0%, var(--bg-warm-ivory) 70%);">
+    <div class="container split-grid-50">
+        <!-- Hero Left: 35-40% Copy -->
+        <div style="z-index: 5;">
+            <div class="eyebrow-pill">
+                <span>✦</span>
+                @(isEn ? "Technology Consulting & Integration" : "Consulenza Informatica & Integration Partner")
+            </div>
+            <h1 style="color: var(--brand-green-dark); margin-bottom: 1.25rem; font-weight: 800; line-height: 1.1;">
+                @(isEn ? "We orchestrate technology to solve your operational bottlenecks." : "Orchestriamo la tecnologia per risolvere i tuoi colli di bottiglia operativi.")
             </h1>
-            <p class="section-subtitle" style="font-size: 1.1rem; color: var(--text-soft); line-height: 1.6; margin-bottom: 1.5rem;">
-                @(isEn ? "Connecting software, databases, infrastructures, and AI to orchestrate seamless flows and eliminate manual errors." : "Connettiamo software, database, infrastrutture e AI per orchestrare flussi continui ed eliminare inefficienze manuali.")
+            <p class="lead" style="color: var(--text-soft); margin-bottom: 2rem;">
+                @(isEn ? "Connecting fragmented applications, automating workflows, and embedding secure AI inside enterprise pipelines. No buzzwords, just engineered systems that work." : "Connettiamo applicativi isolati, automatizziamo processi e integriamo l'AI nei flussi aziendali. Nessun termine altisonante, solo sistemi ingegnerizzati che funzionano.")
             </p>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
                     @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
                 </a>
-                <a href="#metodo" class="btn btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
-                    @(isEn ? "How we work" : "Scopri come lavoriamo")
+                <a href="#servizi" class="btn btn-secondary">
+                    @(isEn ? "Explore Services" : "Scopri i servizi")
                 </a>
             </div>
         </div>
 
-        <div class="split-right hero-visual-wrapper" style="min-height: 380px;">
-            <div class="card-glass" style="width: 100%; max-width: 460px; padding: var(--spacing-sm); border-radius: var(--radius-xl); position: relative; border-color: rgba(0, 138, 38, 0.25);">
-                <!-- Graldev Dynamic Visual Flow Diagram -->
-                <svg class="hero-svg-canvas" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="z-index: 2; position: relative;">
-                    <!-- Pulse connection lines with dash array scrolling -->
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="110" y2="110" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="390" y2="110" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="110" y2="390" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="390" y2="390" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="250" y2="65" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="250" y2="435" stroke="var(--brand-green)" stroke-width="2.5" />
+        <!-- Hero Right: 60-65% High-Fidelity Visual -->
+        <div class="hero-visual-card glass-panel" style="border-color: rgba(197,160,89,0.25);">
+            <div class="diagram-canvas-wrap">
+                <svg viewBox="0 0 500 500" class="hero-svg-canvas" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="greenNodeGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="var(--brand-green)" stop-opacity="0.25" />
+                            <stop offset="100%" stop-color="var(--brand-green)" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
 
-                    <!-- Connecting Graldev Layer (Center Node) -->
-                    <circle class="center-node pulse-circle" cx="250" cy="250" r="28" fill="var(--brand-green)" />
-                    <circle class="center-node" cx="250" cy="250" r="20" fill="var(--brand-green-dark)" />
-                    <text x="250" y="254" font-size="12" font-weight="900" fill="white" text-anchor="middle" style="letter-spacing: 0;">GD</text>
+                    <!-- Connecting Pulses Lines -->
+                    <line class="pulse-line" x1="250" y1="250" x2="110" y2="120" stroke="var(--champagne-gold)" stroke-width="2" />
+                    <line class="pulse-line" x1="250" y1="250" x2="390" y2="120" stroke="var(--champagne-gold)" stroke-width="2" />
+                    <line class="pulse-line" x1="250" y1="250" x2="110" y2="380" stroke="var(--champagne-gold)" stroke-width="2" />
+                    <line class="pulse-line" x1="250" y1="250" x2="390" y2="380" stroke="var(--champagne-gold)" stroke-width="2" />
+                    <line class="pulse-line" x1="250" y1="250" x2="250" y2="55" stroke="var(--brand-green)" stroke-width="2" />
+                    <line class="pulse-line" x1="250" y1="250" x2="250" y2="445" stroke="var(--brand-green)" stroke-width="2" />
 
-                    <!-- Surrounding Interactive Technology Nodes (Neomorphic Look) -->
-                    <!-- ERP Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="110" cy="110" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="110" y="114" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">ERP</text>
-                        <title>Enterprise Resource Planning (SAP, Microsoft Dynamics, Proprietary)</title>
+                    <!-- Center Graldev Node -->
+                    <circle class="pulse-node-ring" cx="250" cy="250" r="16" fill="none" stroke="var(--brand-green)" stroke-width="2" />
+                    <circle cx="250" cy="250" r="24" fill="var(--brand-green)" />
+                    <circle cx="250" cy="250" r="18" fill="var(--brand-green-dark)" />
+                    <text x="250" y="254" font-size="11" font-weight="800" fill="white" text-anchor="middle">GD</text>
+
+                    <!-- Outer Technology Interactive Nodes -->
+                    <!-- ERP -->
+                    <g transform="translate(110, 120)" class="diagram-node" style="cursor: pointer;">
+                        <circle cx="0" cy="0" r="28" fill="var(--bg-cream)" stroke="var(--border)" stroke-width="2" />
+                        <text x="0" y="4" font-size="10" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle" class="node-text-label">ERP</text>
                     </g>
 
-                    <!-- CRM Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="390" cy="110" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="390" y="114" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">CRM</text>
-                        <title>Customer Relationship Management (Salesforce, HubSpot, Custom Databases)</title>
+                    <!-- CRM -->
+                    <g transform="translate(390, 120)" class="diagram-node" style="cursor: pointer;">
+                        <circle cx="0" cy="0" r="28" fill="var(--bg-cream)" stroke="var(--border)" stroke-width="2" />
+                        <text x="0" y="4" font-size="10" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle" class="node-text-label">CRM</text>
                     </g>
 
-                    <!-- API Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="110" cy="390" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="110" y="394" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">API</text>
-                        <title>Web Services, Webhooks, REST & SOAP connectors</title>
+                    <!-- API -->
+                    <g transform="translate(110, 380)" class="diagram-node" style="cursor: pointer;">
+                        <circle cx="0" cy="0" r="28" fill="var(--bg-cream)" stroke="var(--border)" stroke-width="2" />
+                        <text x="0" y="4" font-size="10" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle" class="node-text-label">API</text>
                     </g>
 
-                    <!-- DATA Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="390" cy="390" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="390" y="394" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">DATA</text>
-                        <title>Data Synchronizations, Warehousing, and ETL Pipelines</title>
+                    <!-- DATA -->
+                    <g transform="translate(390, 380)" class="diagram-node" style="cursor: pointer;">
+                        <circle cx="0" cy="0" r="28" fill="var(--bg-cream)" stroke="var(--border)" stroke-width="2" />
+                        <text x="0" y="4" font-size="10" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle" class="node-text-label">DATA</text>
                     </g>
 
-                    <!-- AI Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="250" cy="65" r="28" fill="var(--bg-alt)" stroke="var(--brand-green)" />
-                        <text x="250" y="69" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">AI</text>
-                        <title>Cognitive Process AI, LLM Integration, & Autonomous Agents</title>
+                    <!-- AI -->
+                    <g transform="translate(250, 55)" class="diagram-node" style="cursor: pointer;">
+                        <circle cx="0" cy="0" r="28" fill="var(--bg-very-light-green)" stroke="var(--brand-green)" stroke-width="2" />
+                        <text x="0" y="4" font-size="10" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle" class="node-text-label">AI</text>
                     </g>
 
-                    <!-- CLOUD Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="250" cy="435" r="28" fill="var(--bg-alt)" stroke="var(--brand-green)" />
-                        <text x="250" y="439" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">CLOUD</text>
-                        <title>Robust, scalable, resilient Cloud Infrastructures</title>
+                    <!-- CLOUD -->
+                    <g transform="translate(250, 445)" class="diagram-node" style="cursor: pointer;">
+                        <circle cx="0" cy="0" r="28" fill="var(--bg-very-light-green)" stroke="var(--brand-green)" stroke-width="2" />
+                        <text x="0" y="4" font-size="10" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle" class="node-text-label">CLOUD</text>
                     </g>
                 </svg>
-                <!-- Interactive Dynamic Status Indicator -->
-                <div style="display: flex; justify-content: space-around; font-size: 0.75rem; font-weight: 800; color: var(--brand-green-dark); border-top: 1px solid var(--border); padding-top: var(--spacing-sm); margin-top: 0.5rem; text-transform: uppercase;">
-                    <span style="display: flex; align-items: center; gap: 4px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block;"></span> Connected</span>
-                    <span style="display: flex; align-items: center; gap: 4px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block; animation-delay: 1s;"></span> Saligned</span>
-                    <span style="display: flex; align-items: center; gap: 4px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block; animation-delay: 2s;"></span> Optimized</span>
-                </div>
+            </div>
+            <!-- Microinteraction status footer -->
+            <div style="display: flex; justify-content: space-around; font-size: 0.75rem; font-weight: 700; color: var(--brand-green-dark); border-top: 1px solid var(--border); padding-top: 1rem; text-transform: uppercase; margin-top: 1rem; letter-spacing: 0.05em;">
+                <span style="display: flex; align-items: center; gap: 6px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block;"></span> @(isEn ? "ORCHESTRATED" : "ORCHESTRATO")</span>
+                <span style="display: flex; align-items: center; gap: 6px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--champagne-gold); border-radius: 50%; display: inline-block; animation-delay: 1s;"></span> @(isEn ? "SYNCHRONIZED" : "SINCRONIZZATO")</span>
+                <span style="display: flex; align-items: center; gap: 6px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block; animation-delay: 2s;"></span> @(isEn ? "SECURED" : "PROTETTO")</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Scannable Problem Grid: When to involve Graldev -->
-<section id="involvere" class="alt-section" style="padding: 4rem 0;">
+<!-- 02 PROBLEMS: Asymmetric Bento Visual Grid -->
+<section id="problemi" class="site-section bg-cream" style="padding: 5rem 0;">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">@(isEn ? "SITUATIONS" : "CONTESTO")</span>
-            <h2 class="section-title" style="margin: 0 auto 0.75rem auto; font-weight: 900;">@(isEn ? "When it makes sense to involve Graldev" : "Quando ha senso coinvolgere Graldev")</h2>
-            <p class="section-subtitle" style="margin: 0 auto; max-width: 600px; font-size: 1.05rem;">
-                @(isEn ? "Concrete friction points we solve inside your operational systems and data workflows:" : "Frizioni operative reali che eliminiamo dai tuoi processi e sistemi:")
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 3.5rem auto;">
+            <div class="eyebrow-pill">OPERATIONAL FRICTIONS</div>
+            <h2 style="font-weight: 800; margin-bottom: 1rem;">
+                @(isEn ? "When standard software turns into a manual bottleneck." : "Quando la tecnologia standard si trasforma in un collo di bottiglia manuale.")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.1rem;">
+                @(isEn ? "We step in when generic box software falls short and business operations require elegant architectural connections." : "Interveniamo quando le applicazioni generiche mostrano i propri limiti e le operazioni richiedono connessioni stabili.")
             </p>
         </div>
 
-        <div class="involve-items" style="gap: 1rem;">
-            <div class="involve-item" style="padding: 1rem;">
-                <span class="involve-item-icon">✓</span>
-                <span class="involve-item-text" style="font-size: 0.95rem;">@(isEn ? "Systems are disconnected." : "I tuoi sistemi non comunicano tra loro.")</span>
+        <div class="bento-grid">
+            <!-- Box 1: Disconnected Systems -->
+            <div class="bento-card col-span-8">
+                <div>
+                    <div class="icon-neo-wrap">⛓️</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Isolated Island Systems" : "Sistemi e applicativi isolati")</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6; max-width: 580px;">
+                        @(isEn ? "Your ERP doesn't speak with your CRM, databases remain locked, and invoices stay separated. We bridge custom API endpoints and build solid middle layers to sync data automatically." : "I gestionali non parlano con i CRM, i database restano sigillati e le informazioni vitali rimangono separate. Disegniamo middleware per connettere qualsiasi endpoint e sincronizzare i flussi.")
+                    </p>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--champagne-gold); font-weight: 700;">SYSTEM ARCHITECTURE</span>
+                    <span class="pill-neomorphic" style="font-size: 0.75rem;">API & Integration</span>
+                </div>
             </div>
-            <div class="involve-item" style="padding: 1rem;">
-                <span class="involve-item-icon">✓</span>
-                <span class="involve-item-text" style="font-size: 0.95rem;">@(isEn ? "Manual copy-paste entry." : "Lo stesso dato viene inserito in più piattaforme.")</span>
-            </div>
-            <div class="involve-item" style="padding: 1rem;">
-                <span class="involve-item-icon">✓</span>
-                <span class="involve-item-text" style="font-size: 0.95rem;">@(isEn ? "Workflows stuck in Excel." : "Troppi processi vitali dipendono da fogli Excel.")</span>
-            </div>
-            <div class="involve-item" style="padding: 1rem;">
-                <span class="involve-item-icon">✓</span>
-                <span class="involve-item-text" style="font-size: 0.95rem;">@(isEn ? "ERP/CRM/eCommerce out of sync." : "I cataloghi e ordini non si aggiornano da soli.")</span>
-            </div>
-            <div class="involve-item" style="padding: 1rem;">
-                <span class="involve-item-icon">✓</span>
-                <span class="involve-item-text" style="font-size: 0.95rem;">@(isEn ? "Legacy systems hold back growth." : "Il software esistente frena l'evoluzione aziendale.")</span>
-            </div>
-            <div class="involve-item" style="padding: 1rem;">
-                <span class="involve-item-icon">✓</span>
-                <span class="involve-item-text" style="font-size: 0.95rem;">@(isEn ? "Adopting AI without clear ROI." : "Vuoi usare l'AI ma non sai dove generi reale valore.")</span>
-            </div>
-        </div>
 
-        <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.75rem;">
-                @(isEn ? "Tell us your problem" : "Raccontaci il problema")
-            </a>
+            <!-- Box 2: Manual Copy Paste -->
+            <div class="bento-card col-span-4">
+                <div>
+                    <div class="icon-neo-wrap">📋</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Manual Data Entry Inefficiencies" : "Trascrizioni manuali ripetitive")</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.5;">
+                        @(isEn ? "Employees waste hours transcriptioning orders, catalogs, or emails across different systems. We automate workflows to completely remove manual errors." : "Il tuo team spreca ore preziose trascrivendo ordini, anagrafiche o preventivi tra piattaforme non comunicanti. Automatizziamo i flussi cancellando l'errore umano.")
+                    </p>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <span class="pill-neomorphic" style="font-size: 0.75rem;">100% Automated</span>
+                </div>
+            </div>
+
+            <!-- Box 3: Excel Trap -->
+            <div class="bento-card col-span-4">
+                <div>
+                    <div class="icon-neo-wrap">📊</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "The Fragile Excel Trap" : "La trappola degli Excel fragili")</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.5;">
+                        @(isEn ? "Critical business decisions and calculations rely on heavy, fragile Excel files that break at any key mistake. We consolidate data into robust web solutions." : "Processi e calcoli cruciali poggiano su file Excel pesanti e fragili che rischiano di corrompersi ad ogni modifica. Consolidiamo i dati in applicazioni web stabili.")
+                    </p>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <span class="pill-neomorphic" style="font-size: 0.75rem;">Reliability First</span>
+                </div>
+            </div>
+
+            <!-- Box 4: Obsolete Legacy -->
+            <div class="bento-card col-span-8">
+                <div>
+                    <div class="icon-neo-wrap">⚙️</div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Legacy Software Holding Back Evolution" : "Software obsoleto che frena la crescita")</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6; max-width: 580px;">
+                        @(isEn ? "Older on-premise components or isolated tools cannot scale to modern standards. We modernize and secure legacy databases safely while keeping your active business operations running." : "I vecchi programmi gestionali faticano ad evolvere e restano disconnessi dal Cloud. Modernizziamo sistemi obsoleti inserendoli in ecosistemi sicuri senza interrompere l'operatività.")
+                    </p>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--champagne-gold); font-weight: 700;">LEGACY EVOLUTION</span>
+                    <span class="pill-neomorphic" style="font-size: 0.75rem;">Cloud Migration</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Method Redesign: Scannable Consulting Timeline -->
-<section id="metodo" class="white-section" style="padding: 4rem 0;">
+<!-- 03 SERVICES: Vertical Ivory Masonry Card Layout -->
+<section id="servizi" class="site-section bg-warm-ivory" style="padding: 5rem 0;">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">@(isEn ? "OUR METHOD" : "IL NOSTRO METODO")</span>
-            <h2 class="section-title" style="margin: 0 auto; font-weight: 900;">@(isEn ? "Dalla complessità alla soluzione." : "Dalla complessità alla soluzione.")</h2>
-            <p class="section-subtitle" style="margin: 0 auto; font-size: 1.05rem;">
-                @(isEn ? "We do not sell boxed software. We analyze your infrastructure, map data, and engineer appropriate solutions." : "Non vendiamo software a scatola chiusa. Analizziamo i flussi dati e disegniamo l'architettura d'integrazione corretta.")
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 4rem auto;">
+            <div class="eyebrow-pill">CORE CAPABILITIES</div>
+            <h2 style="font-weight: 800; margin-bottom: 1rem;">
+                @(isEn ? "Our areas of technology expertise." : "Le nostre aree di intervento.")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.1rem;">
+                @(isEn ? "We analyze, build, and connect systems. No generic code, just tailored technological engineering." : "Analizziamo, sviluppiamo e connettiamo sistemi complessi. Nessuna soluzione preconfezionata, solo ingegneria tecnologica su misura.")
             </p>
         </div>
 
-        <!-- Custom Interactive Horizontal Timeline Map -->
-        <div class="method-steps" style="margin-top: 1.5rem;">
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">01</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Ascolto" : "Ascolto")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Comprensione del problema operativi." : "Comprensione del problema e degli obiettivi.")</div>
+        <div class="service-masonry-grid">
+            <!-- Cap 1: Consulenza -->
+            <div class="premium-service-card">
+                <div>
+                    <span class="premium-service-icon">🧠</span>
+                    <h3 class="premium-service-title">@(isEn ? "IT Consulting & Roadmap" : "Consulenza Informatica")</h3>
+                    <p class="premium-service-text">
+                        @(isEn ? "Analyzing configurations, evaluating custom database options, and planning scalable architectural layouts before writing code." : "Analisi di sistemi, software audit, fattibilità tecnologica e stesura di roadmap d'integrazione solide prima di avviare lo sviluppo.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")" class="premium-service-link">@(isEn ? "Explore Area" : "Scopri l'area")</a>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">02</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Assessment" : "Assessment")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Analisi approfondita sistemi e dati." : "Analisi di sistemi, dati e infrastruttura.")</div>
+
+            <!-- Cap 2: System Integration -->
+            <div class="premium-service-card">
+                <div>
+                    <span class="premium-service-icon">🔗</span>
+                    <h3 class="premium-service-title">System Integration</h3>
+                    <p class="premium-service-text">
+                        @(isEn ? "Synchronizing isolated ERP, CRM, digital commerce tools and databases through resilient APIs and unified middleware." : "Uniamo applicativi eterogenei per scambiare informazioni e allineare database aziendali in modo sicuro e senza intoppi.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")" class="premium-service-link">@(isEn ? "Explore Area" : "Explore area")</a>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">03</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Architettura" : "Architettura")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Disegno della soluzione integrata." : "Disegno della soluzione più appropriata.")</div>
+
+            <!-- Cap 3: AI Integration & Automation -->
+            <div class="premium-service-card">
+                <div>
+                    <span class="premium-service-icon">🤖</span>
+                    <h3 class="premium-service-title">@(isEn ? "AI Integration & Automation" : "AI & Automation")</h3>
+                    <p class="premium-service-text">
+                        @(isEn ? "Embedding private Large Language Models (LLM), semantic classification agents, and RAG search directly into database pipelines." : "Portiamo l'Intelligenza Artificiale dentro i flussi informativi per classificare email, estrarre dati da file ed elaborare risposte intelligenti.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")" class="premium-service-link">@(isEn ? "Explore Area" : "Scopri l'area")</a>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">04</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Integrazione" : "Integrazione")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Connessione ed eventuale custom code." : "Connessione sistemi esistenti e sviluppo.")</div>
+
+            <!-- Cap 4: Software Engineering -->
+            <div class="premium-service-card">
+                <div>
+                    <span class="premium-service-icon">💻</span>
+                    <h3 class="premium-service-title">Software Engineering</h3>
+                    <p class="premium-service-text">
+                        @(isEn ? "Building robust backends, customized integrations, secure connectors, and web environments when box applications fall short." : "Sviluppiamo codice ad alte prestazioni, portali complessi, middleware e connettori stabili strutturati per durare nel tempo.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/services/software-engineering" : "/servizi/software-engineering")" class="premium-service-link">@(isEn ? "Explore Area" : "Scopri l'area")</a>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">05</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Validazione" : "Validazione")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Test prestazionali e funzionali." : "Testing tecnico e funzionale completo.")</div>
+
+            <!-- Cap 5: API & Data Integration -->
+            <div class="premium-service-card">
+                <div>
+                    <span class="premium-service-icon">📊</span>
+                    <h3 class="premium-service-title">API & Data Integration</h3>
+                    <p class="premium-service-text">
+                        @(isEn ? "Designing clean, secure, high-availability API architectures, webhooks systems, and real-time data sync paths." : "Sviluppo di API REST/SOAP stabili e flussi di dati (ETL) per spostare in sicurezza i database aziendali dove serve.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/services/api-data-integration" : "/servizi/api-data-integration")" class="premium-service-link">@(isEn ? "Explore Area" : "Scopri l'area")</a>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">06</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Rilascio" : "Rilascio")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Deployment progressivo continuo." : "Deployment senza bloccare l'operatività.")</div>
-            </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">07</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Evoluzione" : "Evoluzione")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Supporto e monitoraggio proattivo." : "Monitoring, supporto e miglioramenti.")</div>
+
+            <!-- Cap 6: Cloud & Architecture -->
+            <div class="premium-service-card">
+                <div>
+                    <span class="premium-service-icon">☁️</span>
+                    <h3 class="premium-service-title">Cloud & Architecture</h3>
+                    <p class="premium-service-text">
+                        @(isEn ? "Migrating environments to secure clouds, designing high-availability layouts, and streamlining computing performance." : "Progettazione di infrastrutture Cloud resilienti, scalabili, conformi alle normative e ottimizzate nei consumi computazionali.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")" class="premium-service-link">@(isEn ? "Explore Area" : "Scopri l'area")</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Visual Capabilities Cards Section (Premium Grid) -->
-<section id="competenze" class="light-green-section" style="padding: 4rem 0;">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">@(isEn ? "PRACTICES" : "PRATICHE")</span>
-            <h2 class="section-title" style="margin: 0 auto 0.5rem auto; font-weight: 900;">@(isEn ? "Le Aree di Competenza" : "Le Aree di Competenza")</h2>
-        </div>
-
-        <div class="grid-3" style="gap: 1.5rem;">
-            <!-- Card 1: IT Consulting -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">🧠</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">@(isEn ? "IT Consulting" : "Consulenza Informatica")</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Assessment & Roadmap</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Analyzing infrastructures, planning future-proof architectures, build-vs-buy software audits." : "Assessment tecnico per mappare i processi, modernizzare sistemi obsoleti e definire roadmap di integrazione.")
-                    </p>
-                </div>
-                <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-
-            <!-- Card 2: System Integration -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">🔗</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">System Integration</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Automated Connections</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Synchronizing isolated systems: ERP, CRM, databases, and digital e-commerce platforms." : "Connettiamo applicativi aziendali isolati per scambiare informazioni automaticamente senza trascrizioni manuali.")
-                    </p>
-                </div>
-                <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-
-            <!-- Card 3: AI Integration -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">🤖</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">AI & Automation</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Intelligent Processes</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Embedding LLMs, semantic document classification, and private RAG inside actual business pipelines." : "Portiamo l'Intelligenza Artificiale e agenti decisionali autonomi dentro i database e flussi di lavoro esistenti.")
-                    </p>
-                </div>
-                <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-
-            <!-- Card 4: Software Engineering -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">💻</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">Software Engineering</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Custom Components</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Designing custom middleware, API systems, and backend services where standard software falls short." : "Sviluppiamo middleware, connettori specifici e portali web complessi su misura quando il software standard non basta.")
-                    </p>
-                </div>
-                <a href="@(isEn ? "/en/services/software-engineering" : "/servizi/software-engineering")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-
-            <!-- Card 5: API & Data -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">📊</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">API & Data</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Pipelines & Sync</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Secure ETL architectures, webhooks integrations, and robust real-time data sync." : "Progettiamo architetture REST/SOAP e pipeline sicure per rendere i dati utilizzabili ovunque in modo congruo.")
-                    </p>
-                </div>
-                <a href="@(isEn ? "/en/services/api-data-integration" : "/servizi/api-data-integration")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-
-            <!-- Card 6: Cloud Architecture -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">☁️</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">Cloud & Infrastructure</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Modern Resilient Servers</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Migrating application architectures to secure high-availability cloud endpoints." : "Modernizzazione applicativa, migrazioni Cloud infrastrutturali, ottimizzazione delle prestazioni e dei costi.")
-                    </p>
-                </div>
-                <a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Visual Showcase: Graldev Studios AI Media Hub -->
-<section class="dark-green-section" style="padding: 4rem 0;">
-    <div class="container split-layout" style="align-items: center; justify-content: space-between;">
-        <div class="split-left" style="max-width: 650px;">
-            <span class="section-eyebrow" style="color: var(--green-300);">GRALDEV STUDIOS</span>
-            <h2 class="section-title" style="color: white; font-weight: 900; margin-bottom: 1rem;">Creative AI & Media</h2>
-            <p style="color: var(--text-inverse-soft); font-size: 1rem; line-height: 1.5;">
-                @(isEn ? "Discover Graldev Studios: our separate creative powerhouse specializing in AI video production, generative marketing assets, and interactive visual technologies." : "Per produzione video AI, comunicazione visiva d'avanguardia e contenuti generativi d'impatto scopri Graldev Studios, la nostra unità creativa dedicata.")
+<!-- 04 TECHNOLOGY VISUAL: Slow Waves representation -->
+<section class="site-section bg-stone" style="padding: 4rem 0;">
+    <div class="container" style="text-align: center;">
+        <div style="max-width: 650px; margin: 0 auto 2.5rem auto;">
+            <div class="eyebrow-pill" style="background-color: var(--bg-warm-white);">STEADY DATA STREAM</div>
+            <h3 style="color: var(--brand-green-dark); margin-bottom: 0.5rem; font-weight: 800;">@(isEn ? "The natural, continuous flow of orchestrated data." : "Il flusso armonioso di dati orchestrati.")</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">
+                @(isEn ? "When infrastructure is integrated correctly, information flows without friction, obstacles or interruptions." : "Quando l'architettura è connessa, le informazioni scorrono in modo sicuro senza inefficienze o attriti.")
             </p>
-            <div style="margin-top: 1.5rem;">
-                <a href="https://www.graldevstudios.com" target="_blank" rel="noopener" class="btn" style="background-color: transparent; border: 2px solid var(--green-300); color: var(--green-300); padding: 0.65rem 1.25rem; font-size: 0.9rem;">
-                    @(isEn ? "Explore Graldev Studios" : "Scopri Graldev Studios")
+        </div>
+        <!-- Animated visual wave card -->
+        <div class="waves-container">
+            <div class="wave-layer wave-1"></div>
+            <div class="wave-layer wave-2"></div>
+            <div class="wave-layer wave-3"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 05 WORKFLOW: Responsive Animated consulting Stepper -->
+<section id="metodo-work" class="site-section bg-warm-white" style="padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 4rem auto;">
+            <div class="eyebrow-pill">OUR WORKFLOW</div>
+            <h2 style="font-weight: 800; margin-bottom: 1rem;">
+                @(isEn ? "From initial bottleneck to engineered solution." : "Dalla comprensione alla stabilità operativa.")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.1rem;">
+                @(isEn ? "We do not sell pre-boxed licenses. We inspect, design, deploy, and monitor robust setups tailored to your goals." : "Non vendiamo pacchetti chiusi. Analizziamo i flussi attuali, ingegnerizziamo l'architettura e la manteniamo performante.")
+            </p>
+        </div>
+
+        <!-- Horizontal Stepper (Responsive to Vertical on Mobile) -->
+        <div class="stepper-container">
+            <!-- Step 1 -->
+            <div class="step-node">
+                <div class="step-circle">01</div>
+                <div class="step-title">@(isEn ? "Ascolto" : "Ascolto")</div>
+                <div class="step-desc">@(isEn ? "Mapping operational goals." : "Comprensione delle inefficienze e degli obiettivi.")</div>
+            </div>
+            <!-- Step 2 -->
+            <div class="step-node">
+                <div class="step-circle">02</div>
+                <div class="step-title">@(isEn ? "Assessment" : "Assessment")</div>
+                <div class="step-desc">@(isEn ? "Inspecting databases and systems." : "Analisi accurata del software e dei flussi dati.")</div>
+            </div>
+            <!-- Step 3 -->
+            <div class="step-node">
+                <div class="step-circle">03</div>
+                <div class="step-title">@(isEn ? "Architettura" : "Architettura")</div>
+                <div class="step-desc">@(isEn ? "Structuring optimal pathways." : "Ingegnerizzazione del layout d'integrazione.")</div>
+            </div>
+            <!-- Step 4 -->
+            <div class="step-node">
+                <div class="step-circle">04</div>
+                <div class="step-title">@(isEn ? "Integrazione" : "Integrazione")</div>
+                <div class="step-desc">@(isEn ? "Connecting and custom coding." : "Connessione stabili tra gli applicativi aziendali.")</div>
+            </div>
+            <!-- Step 5 -->
+            <div class="step-node">
+                <div class="step-circle">05</div>
+                <div class="step-title">@(isEn ? "Validazione" : "Validazione")</div>
+                <div class="step-desc">@(isEn ? "Verifying complete functionality." : "Fase intensiva di testing funzionale e di carico.")</div>
+            </div>
+            <!-- Step 6 -->
+            <div class="step-node">
+                <div class="step-circle">06</div>
+                <div class="step-title">@(isEn ? "Rilascio" : "Rilascio")</div>
+                <div class="step-desc">@(isEn ? "Deploying without interruptions." : "Attivazione controllata senza bloccare le attività.")</div>
+            </div>
+            <!-- Step 7 -->
+            <div class="step-node">
+                <div class="step-circle">07</div>
+                <div class="step-title">@(isEn ? "Evoluzione" : "Evoluzione")</div>
+                <div class="step-desc">@(isEn ? "Continuous proactive monitoring." : "Monitoring continuo, assistenza ed espansione.")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 06 SYSTEM INTEGRATION: Unified Business Flow Visual Storytelling -->
+<section class="site-section bg-cream" style="padding: 5rem 0;">
+    <div class="container">
+        <div class="split-grid-50">
+            <!-- Left Info -->
+            <div>
+                <div class="eyebrow-pill">CONNECTIVITY LAYER</div>
+                <h2 style="font-weight: 800; margin-bottom: 1.25rem;">
+                    @(isEn ? "Synchronizing ERP, CRM, and Databases." : "L'unificazione dei tuoi canali informativi.")
+                </h2>
+                <p style="color: var(--text-soft); line-height: 1.7; margin-bottom: 1.5rem;">
+                    @(isEn ? "We eliminate manual updates. Information is shared instantly across all platforms via the Graldev Integration Layer, creating a unified business flow." : "Basta trascrizioni. Quando un ordine entra nell'eCommerce, l'anagrafica viene inviata al CRM, le scorte scalate sull'ERP e la fatturazione avviata all'istante.")
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--brand-green-dark);">
+                        <span style="color: var(--brand-green);">✔</span> @(isEn ? "Zero Manual Sync Mistakes" : "Eliminazione totale di errori manuali")
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--brand-green-dark);">
+                        <span style="color: var(--brand-green);">✔</span> @(isEn ? "Real-time Database Harmonization" : "Database perfettamente allineati in tempo reale")
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Interactive Pulse Infographic -->
+            <div class="glass-panel" style="padding: 2.5rem; border-color: rgba(197, 160, 89, 0.2);">
+                <div class="integration-stage">
+                    <div class="integration-left">ERP (Enterprise)</div>
+                    <div class="integration-line-flow"><div class="integration-pulse"></div></div>
+                    <div class="integration-right">SAP, Dynamics, custom platforms</div>
+                </div>
+                <div class="integration-stage">
+                    <div class="integration-left">CRM & Contacts</div>
+                    <div class="integration-line-flow"><div class="integration-pulse" style="animation-delay: 1.2s;"></div></div>
+                    <div class="integration-right">Salesforce, Hubspot, active directory</div>
+                </div>
+                <div class="integration-stage">
+                    <div class="integration-left">Commerce API</div>
+                    <div class="integration-line-flow"><div class="integration-pulse" style="animation-delay: 2.4s;"></div></div>
+                    <div class="integration-right">Shopify, Magento, B2B portals</div>
+                </div>
+                <div style="text-align: center; font-size: 0.8rem; font-family: var(--font-mono); color: var(--champagne-gold); font-weight: 700; border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1.5rem; letter-spacing: 0.1em;">
+                    ✦ GRALDEV INTEGRATION MIDDLEWARE ✦
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 07 AI INTEGRATION: Pipeline Representation -->
+<section class="site-section bg-warm-ivory" style="padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 3.5rem auto;">
+            <div class="eyebrow-pill">INTELLIGENT INTEGRATION</div>
+            <h2 style="font-weight: 800; margin-bottom: 1rem;">
+                @(isEn ? "Embedding AI into actual business pipelines." : "L'Intelligenza Artificiale applicata ai tuoi dati.")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.1rem;">
+                @(isEn ? "We connect secure cognitive services and private LLMs directly into your data sources. Secure, functional, and productive." : "Niente chatbot generici. Connettiamo Large Language Models privati ai tuoi database protetti per automatizzare analisi, estrazioni e risposte.")
+            </p>
+        </div>
+
+        <div class="pipeline-container">
+            <!-- Node 1 -->
+            <div class="pipeline-node">
+                <div class="pipeline-num">01 / CAPTURE</div>
+                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.5rem;">DATA</h4>
+                <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 0; line-height: 1.4;">
+                    @(isEn ? "Raw PDF files, system databases, active emails." : "PDF d'acquisto, preventivi, database e anagrafiche.")
+                </p>
+            </div>
+
+            <div class="pipeline-arrow">➔</div>
+
+            <!-- Node 2 -->
+            <div class="pipeline-node" style="border-color: var(--champagne-gold);">
+                <div class="pipeline-num">02 / STRUCTURE</div>
+                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.5rem;">KNOWLEDGE</h4>
+                <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 0; line-height: 1.4;">
+                    @(isEn ? "Semantic chunking & vector database embeddings." : "Indicizzazione vettoriale e chunking semantico protetto.")
+                </p>
+            </div>
+
+            <div class="pipeline-arrow">➔</div>
+
+            <!-- Node 3 -->
+            <div class="pipeline-node" style="border-color: var(--brand-green);">
+                <div class="pipeline-num">03 / COGNITION</div>
+                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.5rem;">AI INTEGRATION</h4>
+                <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 0; line-height: 1.4;">
+                    @(isEn ? "LLM orchestration matching specific business guidelines." : "RAG ed elaborazione linguistica tramite modelli privati.")
+                </p>
+            </div>
+
+            <div class="pipeline-arrow">➔</div>
+
+            <!-- Node 4 -->
+            <div class="pipeline-node">
+                <div class="pipeline-num">04 / DISPATCH</div>
+                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.5rem;">ACTION</h4>
+                <p style="font-size: 0.85rem; color: var(--text-soft); margin-bottom: 0; line-height: 1.4;">
+                    @(isEn ? "Automatic order draft creation or CRM logs." : "Compilazione automatica e invio dati su CRM/ERP.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 08 CASE STUDY GEORDIE: Large Visual storytelling -->
+<section class="site-section bg-cream" style="padding: 5rem 0;">
+    <div class="container">
+        <div style="margin-bottom: 3.5rem;">
+            <div class="eyebrow-pill">FEATURED CASE STUDY</div>
+            <h2 style="font-weight: 800;">@(isEn ? "Geordie: Unified commerce integrations." : "Geordie: Integrazione di canali retail & commerce.")</h2>
+        </div>
+
+        <div class="case-card-large split-grid-50" style="background-color: var(--bg-warm-white);">
+            <!-- Case Study Description -->
+            <div>
+                <span style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--brand-green); font-weight: 700;">RETAIL & DIGITAL COMMERCE</span>
+                <h3 style="margin: 0.5rem 0 1rem 0; font-size: 1.8rem; color: var(--brand-green-dark);">
+                    @(isEn ? "Synchronizing catalogs and supply chains across Europe." : "Sincronizzazione logistica e canali e-commerce.")
+                </h3>
+                <p style="color: var(--text-soft); line-height: 1.65; font-size: 1rem; margin-bottom: 1.5rem;">
+                    @(isEn ? "Connecting fragmented shop points with ERP centers, unifying inventory controls, and eliminating synchronization gaps. Real systems designed to support premium retail expansion." : "Un'architettura solida creata per unire la logistica dei negozi fisici, il portale e-commerce e i database dei gestionali. Una sincronizzazione robusta in grado di scalare sui mercati europei.")
+                </p>
+                <div class="case-card-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">@(isEn ? "Auto sync" : "Sincronizzato")</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">Zero</span>
+                        <span class="stat-label">@(isEn ? "Lag errors" : "Disallineamenti")</span>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;">
+                        @(isEn ? "Read Full Story" : "Leggi Case Study")
+                    </a>
+                </div>
+            </div>
+
+            <!-- Case Study Abstract Graphic -->
+            <div class="glass-panel" style="padding: 2rem; display: flex; align-items: center; justify-content: center; background-color: var(--bg-warm-ivory); border-color: rgba(197, 160, 89, 0.2);">
+                <div style="text-align: center;">
+                    <span style="font-size: 6rem; display: block; filter: drop-shadow(0 4px 15px rgba(20,36,26,0.04));">📦</span>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.08em;">
+                        INTEGRATED SUPPLY E-COMMERCE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 09 VITINERARIO + GRALCALL: Bento Stories -->
+<section class="site-section bg-warm-ivory" style="padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem auto;">
+            <div class="eyebrow-pill">ADDITIONAL STUDIES</div>
+            <h2 style="font-weight: 800; margin-bottom: 0.5rem;">@(isEn ? "Selected Case Studies" : "Altri Progetti di Rilievo")</h2>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Vitinerario -->
+            <div class="bento-card col-span-6" style="min-height: 380px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">TERRITORY & WEB APPLICATIONS</span>
+                    <h3 style="margin: 0.35rem 0 0.75rem 0; color: var(--brand-green-dark);">Vitinerario</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">
+                        @(isEn ? "Designing modern digital ecosystems to discover and map local winery networks and high-fidelity routes." : "Ingegnerizzazione di una piattaforma ad alte prestazioni e geolocalizzazione per valorizzare le eccellenze vitivinicole del territorio.")
+                    </p>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-service-link" style="font-size: 0.85rem;">
+                        @(isEn ? "View Story" : "Scopri Progetto")
+                    </a>
+                    <span class="pill-neomorphic" style="font-size: 0.7rem;">Interactive Map</span>
+                </div>
+            </div>
+
+            <!-- Gralcall -->
+            <div class="bento-card col-span-6" style="min-height: 380px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">COMMUNICATION ARCHITECTURES</span>
+                    <h3 style="margin: 0.35rem 0 0.75rem 0; color: var(--brand-green-dark);">Gralcall</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">
+                        @(isEn ? "Designing resilient web platforms for voice communications, smart logging, and automated telephony processes." : "Sviluppo di portali per la gestione di linee VoIP industriali, statistiche avanzate di chiamata e integrazione di centralini.")
+                    </p>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    <a href="@(isEn ? "/en/case-studies/gralcall" : "/case-study/gralcall")" class="premium-service-link" style="font-size: 0.85rem;">
+                        @(isEn ? "View Story" : "Scopri Progetto")
+                    </a>
+                    <span class="pill-neomorphic" style="font-size: 0.7rem;">VoIP Infrastructure</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 10 TRUST: Real Clients & Partners Grid -->
+<section class="site-section bg-stone" style="padding: 4rem 0;">
+    <div class="container" style="text-align: center;">
+        <span class="eyebrow-pill" style="background-color: var(--bg-warm-white);">REPUTATION & COOPERATION</span>
+        <h3 style="color: var(--brand-green-dark); margin-bottom: 2rem; font-weight: 800;">
+            @(isEn ? "Engineered solutions for international leaders." : "Tecnologie integrate per leader di settore.")
+        </h3>
+        <!-- Professional flat logo placeholders with elegant typography -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; align-items: center;">
+            <div class="pill-neomorphic" style="justify-content: center; padding: 1.25rem; font-weight: 800; opacity: 0.85;">
+                @(isEn ? "Automotive Enterprise" : "Gruppo Automotive Internazionale")
+            </div>
+            <div class="pill-neomorphic" style="justify-content: center; padding: 1.25rem; font-weight: 800; opacity: 0.85;">
+                @(isEn ? "Digital Agency Hub" : "Hub Agenzie Digitali")
+            </div>
+            <div class="pill-neomorphic" style="justify-content: center; padding: 1.25rem; font-weight: 800; opacity: 0.85;">
+                @(isEn ? "Retail Networks" : "Network Retail Europeo")
+            </div>
+            <div class="pill-neomorphic" style="justify-content: center; padding: 1.25rem; font-weight: 800; opacity: 0.85;">
+                @(isEn ? "Telecom Providers" : "Operatore Telecomunicazioni")
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 11 INSIGHTS: Editorial Grid -->
+<section id="insights-section" class="site-section bg-warm-white" style="padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 4rem auto;">
+            <div class="eyebrow-pill">LATEST INSIGHTS</div>
+            <h2 style="font-weight: 800; margin-bottom: 1rem;">
+                @(isEn ? "Sharing engineered perspectives." : "Analisi e prospettive tecnologiche.")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.1rem;">
+                @(isEn ? "No marketing buzzwords, just technical clarity about integrations, cloud migrations, and private AI environments." : "Contenuti tecnici chiari dedicati a integrazioni di sistemi, migrazioni cloud e infrastrutture AI stabili.")
+            </p>
+        </div>
+
+        <div class="editorial-grid">
+            <!-- Article 1 -->
+            <article class="bento-card" style="padding: 1.75rem; justify-content: space-between; min-height: 330px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">SYSTEM ARCHITECTURES</span>
+                    <h4 style="margin: 0.35rem 0 0.75rem 0; font-size: 1.15rem; color: var(--brand-green-dark);">
+                        @(isEn ? "Why pre-boxed APIs slow down actual business growth." : "Perché le API preconfigurate possono rallentare l'azienda.")
+                    </h4>
+                    <p style="font-size: 0.88rem; color: var(--text-soft); line-height: 1.55;">
+                        @(isEn ? "Analyzing the custom vs generic middleware approaches to avoid data synchronization bottlenecks." : "Un'analisi approfondita sui limiti delle connessioni generiche e i vantaggi dei middleware customizzati.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/insights" : "/insights")" class="premium-service-link" style="font-size: 0.85rem; margin-top: 1rem;">
+                    @(isEn ? "Read Article" : "Leggi Articolo")
+                </a>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="bento-card" style="padding: 1.75rem; justify-content: space-between; min-height: 330px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">AI ENGINES</span>
+                    <h4 style="margin: 0.35rem 0 0.75rem 0; font-size: 1.15rem; color: var(--brand-green-dark);">
+                        @(isEn ? "RAG architectures vs generic API bots in enterprise." : "Architetture RAG e LLM privati nei sistemi aziendali.")
+                    </h4>
+                    <p style="font-size: 0.88rem; color: var(--text-soft); line-height: 1.55;">
+                        @(isEn ? "How vector search index matching protects intellectual data while delivering intelligent results." : "Come proteggere la proprietà intellettuale aziendale integrando modelli di linguaggio sicuri.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/insights" : "/insights")" class="premium-service-link" style="font-size: 0.85rem; margin-top: 1rem;">
+                    @(isEn ? "Read Article" : "Leggi Articolo")
+                </a>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="bento-card" style="padding: 1.75rem; justify-content: space-between; min-height: 330px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">CLOUD HIGH AVAILABILITY</span>
+                    <h4 style="margin: 0.35rem 0 0.75rem 0; font-size: 1.15rem; color: var(--brand-green-dark);">
+                        @(isEn ? "Securing transition models during legacy migrations." : "Proteggere la transizione durante le migrazioni legacy.")
+                    </h4>
+                    <p style="font-size: 0.88rem; color: var(--text-soft); line-height: 1.55;">
+                        @(isEn ? "A strict list of safety actions to prevent downtime when moving databases to cloud environments." : "Un protocollo strutturato per trasferire anagrafiche e sistemi su cloud riducendo a zero i rischi operativi.")
+                    </p>
+                </div>
+                <a href="@(isEn ? "/en/insights" : "/insights")" class="premium-service-link" style="font-size: 0.85rem; margin-top: 1rem;">
+                    @(isEn ? "Read Article" : "Leggi Articolo")
+                </a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- 12 PREMIUM CTA: Geometric Wallpaper (Beige + Oro) with Scroll-Driven Glow Line -->
+<section id="geometric-cta" class="site-section geometric-wallpaper-section" style="padding: 6rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <!-- Static, highly-sophisticated irregular gold lines geometric wallpaper SVG -->
+    <svg class="geometric-svg-backdrop" viewBox="0 0 1440 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="goldGlowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--champagne-gold)" />
+                <stop offset="50%" stop-color="#fff5db" />
+                <stop offset="100%" stop-color="var(--champagne-gold)" />
+            </linearGradient>
+        </defs>
+
+        <!-- Elegant irregular architectural line segments -->
+        <path class="geometric-line-base" d="M -50,150 L 350,100 L 600,280 L 1100,180 L 1550,300" />
+        <path class="geometric-line-base" d="M 150,550 L 500,420 L 800,520 L 1250,320 L 1550,450" />
+        <path class="geometric-line-base" d="M 250,-50 L 550,180 L 950,50 L 1350,220" />
+        <path class="geometric-line-base" d="M 50,280 L 400,320 L 750,150 L 1050,420 L 1490,250" />
+
+        <!-- Glow overlays (these advance along paths strictly linked to scroll coordinates) -->
+        <path class="geometric-line-glow" id="glowPath1" d="M -50,150 L 350,100 L 600,280 L 1100,180 L 1550,300" />
+        <path class="geometric-line-glow" id="glowPath2" d="M 150,550 L 500,420 L 800,520 L 1250,320 L 1550,450" />
+        <path class="geometric-line-glow" id="glowPath3" d="M 250,-50 L 550,180 L 950,50 L 1350,220" />
+        <path class="geometric-line-glow" id="glowPath4" d="M 50,280 L 400,320 L 750,150 L 1050,420 L 1490,250" />
+    </svg>
+
+    <div class="container" style="position: relative; z-index: 10;">
+        <div class="glass-panel" style="max-width: 850px; margin: 0 auto; padding: 4rem var(--spacing-md); text-align: center; background-color: rgba(250, 247, 242, 0.88); border-color: rgba(197, 160, 89, 0.3); border-radius: var(--radius-xl);">
+            <div class="eyebrow-pill" style="border-color: var(--champagne-gold);">PARTIAMO DAL PROBLEMA</div>
+            <h2 style="font-weight: 800; font-size: clamp(2rem, 3.5vw, 2.6rem); color: var(--brand-green-dark); margin-bottom: 1.25rem;">
+                @(isEn ? "You don't need to know which technology you require." : "Non devi già sapere quale tecnologia ti serve.")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.15rem; max-width: 680px; margin: 0 auto 2.5rem auto; line-height: 1.65;">
+                @(isEn ? "Tell us about your operational bottleneck. We will draft the integration pathway, structure the database routes, and engineer the connections together." : "Descrivici il problema o il rallentamento operativo che riscontri ogni giorno. Disegneremo noi l'architettura di collegamento più adatta alla tua impresa.")
+            </p>
+            <div>
+                <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-champagne" style="padding: 1rem 2.25rem; font-size: 1.05rem;">
+                    @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
                 </a>
             </div>
         </div>
-        <div class="split-right" style="text-align: center;">
-            <span class="data-pulse" style="font-size: 6.5rem; line-height: 1; filter: drop-shadow(0 0 25px rgba(255,255,255,0.15)); display: inline-block;">🎨</span>
-        </div>
     </div>
 </section>
 
-<!-- SEO Long-form content wrapped elegantly below the fold in expandable Accordions -->
-<section class="white-section" style="padding: 4rem 0;">
-    <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">F.A.Q. & DEEP DIVE</span>
-            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "Frequently Asked Questions" : "Domande Frequenti")</h2>
-        </div>
+<!-- Scripts section for scroll interactions and animations -->
+@section Scripts {
+    <script>
+        // High-performance scroll listener mapping scroll progress to gold lines glow offset
+        const section = document.getElementById('geometric-cta');
+        const paths = [
+            document.getElementById('glowPath1'),
+            document.getElementById('glowPath2'),
+            document.getElementById('glowPath3'),
+            document.getElementById('glowPath4')
+        ];
 
-        <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
-                @(isEn ? "What does an IT Consulting company do exactly?" : "Cosa fa esattamente un'azienda di consulenza informatica?")
-            </button>
-            <div class="accordion-content">
-                <p>
-                    @(isEn ? "Unlike standard software houses, Graldev does not just write custom applications. We start by listening, analyzing workflows, auditing existing systems, and drafting a sustainable architectural roadmap. We implement custom integrations to make your tools communicate smoothly." : "A differenza di una tradizionale software house, non partiamo scrivendo codice da zero. Analizziamo i tuoi flussi e i sistemi già in uso, definendo una strategia che ottimizza ciò che hai, inserendo middleware e connettori stabili per unire i flussi informativi.")
-                </p>
-            </div>
-        </div>
+        // IntersectionObserver for efficiency
+        let isVisible = false;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isVisible = entry.isIntersecting;
+            });
+        }, { threshold: 0.01 });
+        observer.observe(section);
 
-        <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
-                @(isEn ? "What is the difference between buying standard software and integrating?" : "Qual è la differenza tra sviluppare custom, integrare o acquistare?")
-            </button>
-            <div class="accordion-content">
-                <p>
-                    @(isEn ? "Buying standard software (SaaS) is quick but might not match unique processes. Developing custom is tailored but requires time. Integrating connects standard tools together to offer the best of both worlds. We guide you towards the correct choice." : "L'acquisto di soluzioni standard (SaaS/SaaS) è rapido ma costringe a modificare i propri flussi. Lo sviluppo custom è sartoriale ma richiede tempo. L'integrazione connette piattaforme esistenti offrendo massima flessibilità con costi e tempi ridotti.")
-                </p>
-            </div>
-        </div>
+        // Frame callback tracking exact scroll coordinates
+        window.addEventListener('scroll', () => {
+            if (!isVisible) return;
 
-        <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
-                @(isEn ? "How can AI be integrated inside actual business processes?" : "Come viene integrata l'AI nei processi industriali reali?")
-            </button>
-            <div class="accordion-content">
-                <p>
-                    @(isEn ? "We connect cognitive services and private LLMs securely to your data lakes via Retrieval-Augmented Generation (RAG). This allows employees to securely search internal files, classify incoming emails, or match quotes safely." : "Non creiamo semplici chatbot. Connettiamo Large Language Models (LLM) privati ai tuoi server protetti tramite RAG, consentendo di classificare email, estrarre dati da PDF d'acquisto o analizzare anagrafiche in totale riservatezza.")
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+            const rect = section.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
 
-<script>
-    function toggleAccordion(element) {
-        const expanded = element.getAttribute('aria-expanded') === 'true';
-        element.setAttribute('aria-expanded', !expanded);
+            // Calculate progress of section crossing the viewport
+            const sectionHeight = rect.height;
+            const startScroll = rect.top - viewportHeight;
+            const endScroll = rect.top + sectionHeight;
 
-        const content = element.nextElementSibling;
-        if (!expanded) {
-            content.style.maxHeight = content.scrollHeight + "px";
-        } else {
-            content.style.maxHeight = "0px";
-        }
-    }
-</script>
+            const totalDistance = viewportHeight + sectionHeight;
+            const scrolledDistance = viewportHeight - rect.top;
+
+            // Percentage from 0 (entry) to 1 (exit)
+            let percent = scrolledDistance / totalDistance;
+            percent = Math.max(0, Math.min(1, percent));
+
+            // Map percentage to stroke-dashoffset: 600 (hidden) to 0 (fully drawn)
+            // Reverse direction slightly for organic flow: as scroll goes down, line shines forward and then dims back
+            const offset = 600 - (percent * 600);
+
+            section.style.setProperty('--scroll-glow-offset', offset);
+        }, { passive: true });
+    </script>
+}
