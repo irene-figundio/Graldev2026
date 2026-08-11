@@ -1,0 +1,64 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">CASE STUDIES</span>
+        <h1 class="section-title">
+            @(isEn ? "Concrete projects, solved problems, and tangible outcomes." : "Progetti reali, problemi risolti e risultati concreti.")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Explore how we partner with enterprises to turn technical complexity into operational efficiency." : "Esplora in che modo affianchiamo le aziende per trasformare la complessità tecnologica in efficienza operativa reale.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container grid-3">
+        <!-- Case Study 1: Geordie -->
+        <div class="premium-card">
+            <div>
+                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🛒</span>
+                <h3 class="premium-card-title">Geordie</h3>
+                <p style="font-size: 0.85rem; color: var(--color-primary); text-transform: uppercase; font-weight:700; margin-bottom: 0.5rem;">
+                    @(isEn ? "ERP & Multichannel Commerce Integration" : "Integrazione ERP e Multicanalità eCommerce")
+                </p>
+                <p class="premium-card-text">
+                    @(isEn ? "Automating catalog mapping, multi-store stock levels, and couriers shipment labels across Shopify, Amazon, and eBay." : "Sincronizzazione in tempo reale di cataloghi, disponibilità stock ed etichette spedizione tra gestionali aziendali, Shopify, Amazon ed eBay.")
+                </p>
+            </div>
+            <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Read Case Study" : "Scopri il Progetto")</a>
+        </div>
+
+        <!-- Case Study 2: Vitinerario -->
+        <div class="premium-card">
+            <div>
+                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🍷</span>
+                <h3 class="premium-card-title">Vitinerario</h3>
+                <p style="font-size: 0.85rem; color: var(--color-primary); text-transform: uppercase; font-weight:700; margin-bottom: 0.5rem;">
+                    @(isEn ? "AI Sommelier Assistant & RAG Knowledge Base" : "Assistente Sommelier AI e Knowledge Base RAG")
+                </p>
+                <p class="premium-card-text">
+                    @(isEn ? "Integrating Large Language Models (LLM) and cognitive databases to build a smart, conversational enological recommendation system." : "Integrazione di modelli di linguaggio avanzati e basi dati semantiche per consigliare abbinamenti e valorizzare la cultura enologica.")
+                </p>
+            </div>
+            <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Read Case Study" : "Scopri il Progetto")</a>
+        </div>
+
+        <!-- Case Study 3: Gralcall -->
+        <div class="premium-card">
+            <div>
+                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🕶️</span>
+                <h3 class="premium-card-title">Gralcall AR</h3>
+                <p style="font-size: 0.85rem; color: var(--color-primary); text-transform: uppercase; font-weight:700; margin-bottom: 0.5rem;">
+                    @(isEn ? "WebAR & Territorial Interactive Guides" : "Sviluppo WebAR e Guide Territoriali")
+                </p>
+                <p class="premium-card-text">
+                    @(isEn ? "Combining marker-based Augmented Reality and video narration to promote historic Italian villages directly inside mobile web browsers." : "Inquadratura di immagini sul territorio per lanciare video-narrazioni multimediali interattive in Realtà Aumentata senza scaricare app.")
+                </p>
+            </div>
+            <a href="@(isEn ? "/en/case-studies/gralcall" : "/case-study/gralcall")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Read Case Study" : "Scopri il Progetto")</a>
+        </div>
+    </div>
+</section>

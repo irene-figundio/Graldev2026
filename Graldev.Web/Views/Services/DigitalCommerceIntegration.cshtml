@@ -1,0 +1,84 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero" style="padding-bottom: 2rem;">
+    <div class="container">
+        <span class="section-eyebrow">DIGITAL COMMERCE INTEGRATION</span>
+        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
+            @(isEn ? "A single unified flow between production, ERP, eCommerce and marketplace." : "Un unico flusso tra produzione, ERP, eCommerce e marketplace.")
+        </h1>
+        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+            @(isEn ? "We synchronize catalogs, availability, orders, and logistics shipping between Shopify, Amazon, eBay, and your enterprise ERP." : "Colleghiamo l'ERP aziendale con Shopify, Amazon, eBay e spedizionieri per sincronizzare prezzi, disponibilità, ordini e tracking.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            @(isEn ? "Request an Integration Review" : "Mappiamo il tuo ecosistema commerce")
+        </a>
+    </div>
+</section>
+
+<!-- eCommerce Flow Infographic Diagram -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-eyebrow">ECOMMERCE PIPELINE</span>
+            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Omnichannel Automation Architecture" : "La pipeline e-commerce automatizzata")</h2>
+        </div>
+
+        <div class="method-steps" style="margin-top: 1.5rem;">
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">01</div>
+                <div class="method-name" style="font-size: 1rem;">PRODUCTION / ERP</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Stock counts and catalog details updated in ERP." : "La produzione aggiorna prezzi e stock nel gestionale.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">02</div>
+                <div class="method-name" style="font-size: 1rem;">GRALDEV HUB</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Middleware converts XML/JSON and matches listings." : "Il middleware traduce i file e smista le informazioni.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">03</div>
+                <div class="method-name" style="font-size: 1rem;">CHANNELS</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Shopify, Amazon, & eBay synchronized instantly." : "Sincronizzazione simultanea Shopify, Amazon ed eBay.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">04</div>
+                <div class="method-name" style="font-size: 1rem;">ORDERS INGEST</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Orders retrieved and sent back to ERP automatically." : "Gli ordini dei canali vengono caricati in fatturazione ERP.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">05</div>
+                <div class="method-name" style="font-size: 1rem;">FULFILLMENT</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Tracking code generated and sent back to customer." : "Spedizione ed etichette create con tracking automatico.")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study Spotlight: Geordie -->
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout" style="align-items: center;">
+        <div class="split-left" style="max-width: 550px;">
+            <span class="section-eyebrow">CASE STUDY SPOTLIGHT</span>
+            <h2 style="font-weight: 900; font-size: 2rem;">Geordie eCommerce</h2>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                @(isEn ? "We designed and programmed a custom connection between Geordie's internal enterprise ERP and Shopify, automating mass inventory counts, orders ingestion, and shipping logistics." : "Abbiamo ideato e sviluppato una sincronizzazione completa tra il sistema ERP interno di Geordie, il negozio Shopify, Amazon ed eBay, automatizzando l'allineamento dei cataloghi e la gestione delle etichette di spedizione.")
+            </p>
+            <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="premium-card-link">
+                @(isEn ? "Read Geordie Case Study" : "Leggi il Case Study Geordie")
+            </a>
+        </div>
+        <div class="split-right">
+            <!-- Glass showcase panel for systems involved -->
+            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.5rem;">
+                <h4 style="color: var(--brand-green-dark); margin-bottom: 1rem; font-size: 1.1rem;">SISTEMI COINVOLTI</h4>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 700;">
+                    <div class="card-neomorphic">🏢 ERP Interno (Produzione)</div>
+                    <div class="card-neomorphic">🛍️ Shopify Frontends</div>
+                    <div class="card-neomorphic">📦 Amazon & eBay Catalogs</div>
+                    <div class="card-neomorphic">🚚 BRT, GLS Shipping APIs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

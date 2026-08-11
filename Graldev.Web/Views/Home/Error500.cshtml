@@ -1,0 +1,19 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="container" style="max-width: 600px;">
+        <span style="font-size: 7rem; line-height: 1; font-weight: 900; color: #ef4444; display: block; filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.3));">500</span>
+        <h1 style="font-size: 2.2rem; margin-top: 1rem; margin-bottom: 1rem;">
+            @(isEn ? "System Error" : "Errore interno del server")
+        </h1>
+        <p style="margin-bottom: 2.5rem; color: var(--text-secondary);">
+            @(isEn ? "An unexpected error occurred on our server. We have logged this event and are investigating. Please try again later." : "Si è verificato un imprevisto sul nostro server. L'evento è stato registrato e stiamo investigando sulla causa. Riprova più tardi.")
+        </p>
+
+        <a href="@(isEn ? "/en" : "/")" class="btn btn-primary">
+            @(isEn ? "Return to Homepage" : "Torna all'Homepage")
+        </a>
+    </div>
+</section>

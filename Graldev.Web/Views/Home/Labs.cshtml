@@ -1,0 +1,60 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "GRALDEV LABS" : "LABORATORI DI RICERCA")</span>
+        <h1 class="section-title">Graldev Labs</h1>
+        <p class="section-subtitle">
+            @(isEn ? "Experimental tech, interactive gaming, educational tools, and applied interactive research." : "Tecnologie sperimentali, gaming interattivo, strumenti educational e ricerca applicata.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>Ludirex (Beta)</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Ludirex is an experimental gaming community social network. Built to connect online players from around the world, it provides a 'digital courtyard' where gamers can find teammates, organize guilds, share highlights, and form gaming alliances based on shared game passions.</text>
+                }
+                else
+                {
+                    <text>Ludirex (Beta) è una piattaforma social sperimentale pensata per la comunità dei videogiocatori di tutto il mondo. Un “cortile digitale” in cui i player possono interagire, conoscersi, trovare compagni di squadra, coordinare alleanze e scambiare opinioni sulla base delle proprie passioni videoludiche.</text>
+                }
+            </p>
+            <div style="margin-top: 1.5rem;">
+                <a href="https://www.ludirex.com" target="_blank" rel="noopener" class="btn btn-outline">
+                    @(isEn ? "Visit Ludirex Beta" : "Visita Ludirex Beta")
+                </a>
+            </div>
+        </div>
+        <div class="split-right" style="text-align: center;">
+            <span style="font-size: 6rem; filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));">🎮</span>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: rgba(255, 255, 255, 0.01);">
+    <div class="container split-layout" style="flex-direction: row-reverse;">
+        <div class="split-left">
+            <h2>Parcor</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Parcor is an interactive mobile-based application designed as part of the 'Segni Project'. In partnership with corporate kindergartens and local institutions, it enables families, educators, and organizations to interact, share educational news, and streamline communications securely.</text>
+                }
+                else
+                {
+                    <text>Parcor è un'applicazione interattiva e web-based nata per il Progetto Segni, relativo al mondo dei nidi interaziendali lucani. Uno strumento digitale agile che permette a famiglie, educatori e istituzioni di connettersi, condividere notizie, e facilitare comunicazioni organizzate e protette.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right" style="text-align: center;">
+            <span style="font-size: 6rem; filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3));">📱</span>
+        </div>
+    </div>
+</section>

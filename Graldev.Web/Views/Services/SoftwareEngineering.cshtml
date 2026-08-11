@@ -1,0 +1,118 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero" style="padding-bottom: 2rem;">
+    <div class="container">
+        <span class="section-eyebrow">SOFTWARE ENGINEERING</span>
+        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
+            @(isEn ? "Software custom when it is the right solution, not the default one." : "Software custom quando è la soluzione giusta, non la soluzione predefinita.")
+        </h1>
+        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+            @(isEn ? "Graldev engineers robust APIs, tailored backoffices, middleware components, and scalable microservices only when standard platforms can't cover your process." : "Ingegnerizziamo backend stabili, middleware, API e microservizi resilienti solo quando le soluzioni standard sul mercato non coprono i vostri processi.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>
+
+<!-- Interactive Pathways: Buy vs Integrate vs Build -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-eyebrow">THE DECISION MATRIX</span>
+            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">Build, Buy, or Integrate?</h2>
+            <p class="section-subtitle" style="margin: 0 auto; max-width: 600px; font-size: 1.05rem;">
+                @(isEn ? "We help you select the most sustainable technical pathway for your business processes:" : "Ti aiutiamo a scegliere la strada tecnologica più corretta per il tuo budget:")
+            </p>
+        </div>
+
+        <div class="pathway-grid">
+            <!-- BUY -->
+            <div class="pathway-card" id="card-buy" onclick="activatePathway('buy')">
+                <span class="card-neomorphic" style="font-size: 0.7rem; font-weight: 800; color: var(--text-muted); padding: 0.2rem 0.5rem; border-radius: 4px;">01. BUY</span>
+                <h3 style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Buy Standard SaaS" : "Acquista Software Pronto")</h3>
+                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 0;">
+                    @(isEn ? "Choose pre-existing platforms when the business process is standardized and has minimal unique flows." : "Usa piattaforme esistenti quando il processo aziendale è standard e non possiede regole di business particolari.")
+                </p>
+            </div>
+
+            <!-- INTEGRATE -->
+            <div class="pathway-card active-pathway" id="card-integrate" onclick="activatePathway('integrate')">
+                <span class="card-neomorphic" style="font-size: 0.7rem; font-weight: 800; color: var(--brand-green); padding: 0.2rem 0.5rem; border-radius: 4px;">02. INTEGRATE</span>
+                <h3 style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Integrate Systems" : "Sincronizza e Integra")</h3>
+                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 0;">
+                    @(isEn ? "Write lightweight API layers or custom middleware to connect pre-existing platforms securely." : "Collega software diversi tramite middleware, webhook e code dati. Ideale per limitare tempi e budget di sviluppo.")
+                </p>
+            </div>
+
+            <!-- BUILD -->
+            <div class="pathway-card" id="card-build" onclick="activatePathway('build')">
+                <span class="card-neomorphic" style="font-size: 0.7rem; font-weight: 800; color: var(--text-muted); padding: 0.2rem 0.5rem; border-radius: 4px;">03. BUILD</span>
+                <h3 style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Build Custom Code" : "Sviluppa su Misura")</h3>
+                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 0;">
+                    @(isEn ? "Code bespoke backoffices, web applications, or data pipelines only when your process is completely unique." : "Progetta e scrivi codice custom solo per processi che costituiscono un vero vantaggio competitivo unico.")
+                </p>
+            </div>
+        </div>
+
+        <!-- Dynamic Pathway Information Block -->
+        <div class="card-glass" style="margin-top: 2rem; border-color: rgba(0, 138, 38, 0.2); padding: 1.5rem;">
+            <h4 id="pathway-title" style="color: var(--brand-green-dark); font-size: 1.15rem; margin-bottom: 0.5rem;">System Integration Pathway</h4>
+            <p id="pathway-desc" style="font-size: 0.95rem; line-height: 1.5; color: var(--text-soft); margin-bottom: 0;">
+                @(isEn ? "Graldev maps and binds ERP databases, CRM contacts, and digital eCommerce points, building automated loops that reduce manual workflows." : "Colleghiamo software diversi tramite connettori dedicati e middleware, garantendo flussi d'ordine sincroni ed eliminando inserimenti duplicati.")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Scannable engineering capabilities -->
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="section-eyebrow">CAPABILITIES</span>
+            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "Bespoke Components We Architect" : "Componenti custom che ingegnerizziamo")</h2>
+        </div>
+
+        <div class="grid-3" style="gap: 1.25rem;">
+            <div class="card-base" style="padding: 1.15rem;">
+                <h4 style="margin-bottom: 0.35rem;">📦 Dedicated Middleware</h4>
+                <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Automatic sync queues preventing data collision." : "Code dati per sincronizzare software asincroni.")</p>
+            </div>
+            <div class="card-base" style="padding: 1.15rem;">
+                <h4 style="margin-bottom: 0.35rem;">🔌 Secure REST/SOAP APIs</h4>
+                <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Robust endpoints documented with strict standards." : "Endpoint protetti ed ottimizzati per scambi dati veloci.")</p>
+            </div>
+            <div class="card-base" style="padding: 1.15rem;">
+                <h4 style="margin-bottom: 0.35rem;">📊 Management dashboards</h4>
+                <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Custom internal systems tailored for backoffices." : "Portali operatori dedicati integrati con i database.")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const pathwayData = {
+        buy: {
+            title: "@(isEn ? "Buy Standard SaaS Platform" : "Acquisto Software Standard")",
+            desc: "@(isEn ? "When existing market tools completely cover your company operations, buying is the most budget-efficient roadmap. Graldev audits SaaS vendors to ensure smooth future compatibility." : "Consigliamo l'acquisto quando un applicativo pronto soddisfa a pieno le vostre esigenze. Vi aiutiamo nella scelta strategica e nella configurazione ottimale.")"
+        },
+        integrate: {
+            title: "@(isEn ? "Integrate Systems together" : "Sincronizza e Integra")",
+            desc: "@(isEn ? "We write lightweight connector layers linking your systems. This gives you custom efficiency without paying for redundant database rebuilds." : "Invece di riscrivere gestionali complessi da zero, creiamo middleware che li fanno comunicare. Risparmio di budget e salvaguardia degli investimenti pregressi.")"
+        },
+        build: {
+            title: "@(isEn ? "Build Tailored Custom Code" : "Sviluppo Software Custom")",
+            desc: "@(isEn ? "When your business process is highly specific and gives you a concrete competitive edge, we code robust, scalable, state-of-the-art software systems tailored around you." : "Quando il tuo processo è unico al mondo e rappresenta il tuo vero valore commerciale, creiamo software stabili, scalabili e moderni scritti su misura.")"
+        }
+    };
+
+    function activatePathway(key) {
+        document.querySelectorAll('.pathway-card').forEach(c => c.classList.remove('active-pathway'));
+        document.getElementById('card-' + key).classList.add('active-pathway');
+
+        document.getElementById('pathway-title').innerText = pathwayData[key].title;
+        document.getElementById('pathway-desc').innerText = pathwayData[key].desc;
+    }
+</script>

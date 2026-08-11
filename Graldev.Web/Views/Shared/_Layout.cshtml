@@ -1,0 +1,287 @@
+@using Graldev.Web.Seo
+@{
+    var seo = ViewData["SeoMetadata"] as PageSeoMetadata ?? new PageSeoMetadata();
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+<!DOCTYPE html>
+<html lang="@(isEn ? "en" : "it")">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@seo.Title</title>
+    <meta name="description" content="@seo.MetaDescription" />
+
+    @if (!string.IsNullOrEmpty(seo.Robots))
+    {
+        <meta name="robots" content="@seo.Robots" />
+    }
+
+    <!-- Canonical -->
+    @if (!string.IsNullOrEmpty(seo.CanonicalUrl))
+    {
+        <link rel="canonical" href="@seo.CanonicalUrl" />
+    }
+
+    <!-- Alternate Languages (hreflang) -->
+    @foreach (var alt in seo.AlternateLanguages)
+    {
+        <link rel="alternate" hreflang="@alt.Key" href="@alt.Value" />
+    }
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@(string.IsNullOrEmpty(seo.OgTitle) ? seo.Title : seo.OgTitle)" />
+    <meta property="og:description" content="@(string.IsNullOrEmpty(seo.OgDescription) ? seo.MetaDescription : seo.OgDescription)" />
+    <meta property="og:url" content="@seo.CanonicalUrl" />
+    <meta property="og:image" content="@seo.OgImage" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="@seo.TwitterCard" />
+    <meta name="twitter:title" content="@(string.IsNullOrEmpty(seo.OgTitle) ? seo.Title : seo.OgTitle)" />
+    <meta name="twitter:description" content="@(string.IsNullOrEmpty(seo.OgDescription) ? seo.MetaDescription : seo.OgDescription)" />
+    <meta name="twitter:image" content="@seo.OgImage" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Fonts & CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("Style", required: false)
+
+    <!-- JSON-LD Structured Data -->
+    @if (!string.IsNullOrEmpty(seo.SchemaJson))
+    {
+        <script type="application/ld+json">
+            @Html.Raw(seo.SchemaJson)
+        </script>
+    }
+    else
+    {
+        <!-- Default Organization Schema -->
+        <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "Organization",
+          "name": "Graldev",
+          "url": "https://www.graldev.com",
+          "logo": "https://www.graldev.com/images/logo.png",
+          "sameAs": [
+            "https://www.facebook.com/graldev",
+            "https://www.instagram.com/graldev",
+            "https://www.linkedin.com/company/graldev"
+          ],
+          "address": {
+            "@@type": "PostalAddress",
+            "addressLocality": "Potenza",
+            "addressRegion": "Basilicata",
+            "addressCountry": "IT"
+          }
+        }
+        </script>
+    }
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Sticky Header -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="@(isEn ? "/en" : "/")" class="logo-link">
+                Gral<span class="logo-accent">dev</span>
+            </a>
+
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="main-navigation">
+                <ul>
+                    <li>
+                        <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")" class="nav-item">
+                            @(isEn ? "Consulting" : "Consulenza")
+                        </a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#" class="nav-item dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            @(isEn ? "Services" : "Servizi")
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")">@(isEn ? "IT Consulting" : "Consulenza Informatica")</a>
+                            <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")">System Integration</a>
+                            <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")">@(isEn ? "AI Integration" : "AI Integration & Automation")</a>
+                            <a href="@(isEn ? "/en/services/software-engineering" : "/servizi/software-engineering")">@(isEn ? "Software Engineering" : "Software Engineering")</a>
+                            <a href="@(isEn ? "/en/services/api-data-integration" : "/servizi/api-data-integration")">API & Data Integration</a>
+                            <a href="@(isEn ? "/en/services/digital-commerce-integration" : "/servizi/digital-commerce-integration")">Digital Commerce Integration</a>
+                            <a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")">Cloud & Architecture</a>
+                            <a href="@(isEn ? "/en/services/business-applications" : "/servizi/business-applications")">Business Applications</a>
+                            <a href="@(isEn ? "/en/services/ar-vr-3d" : "/servizi/ar-vr-3d")">AR / VR / 3D</a>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#" class="nav-item dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            @(isEn ? "Sectors" : "Settori")
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="@(isEn ? "/en/sectors/industry" : "/settori/industria")">@(isEn ? "Industry" : "Industria")</a>
+                            <a href="@(isEn ? "/en/sectors/retail-ecommerce" : "/settori/retail-ecommerce")">Retail & eCommerce</a>
+                            <a href="@(isEn ? "/en/sectors/telco" : "/settori/telco")">Telco</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="@(isEn ? "/en/case-studies" : "/case-study")" class="nav-item">Case Study</a>
+                    </li>
+                    <li>
+                        <a href="@(isEn ? "/en/insights" : "/insights")" class="nav-item">Insights</a>
+                    </li>
+                    <li>
+                        <a href="@(isEn ? "/en/about" : "/chi-siamo")" class="nav-item">
+                            @(isEn ? "About Us" : "Chi siamo")
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <a href="@(seo.AlternateLanguages.ContainsKey("it") ? seo.AlternateLanguages["it"] : "/")" class="lang-link @(!isEn ? "active" : "")">IT</a>
+                    <a href="@(seo.AlternateLanguages.ContainsKey("en") ? seo.AlternateLanguages["en"] : "/en")" class="lang-link @(isEn ? "active" : "")">EN</a>
+                </div>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn header-cta">
+                    @(isEn ? "Let's talk" : "Parliamo della tua esigenza")
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="main-content" id="main-content" role="main">
+        @RenderBody()
+    </main>
+
+    <!-- Enterprise Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="@(isEn ? "/en" : "/")" class="logo-link" style="margin-bottom: 1rem;">
+                    Gral<span class="logo-accent">dev</span>
+                </a>
+                <p class="footer-text">
+                    @(isEn ? "IT consulting, System Integration and digital technologies for businesses." : "Consulenza informatica, System Integration e tecnologie digitali per aziende.")
+                </p>
+                <div class="footer-text" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
+                    Graldev S.a.s. di Chiera Luigi<br />
+                    P.IVA / VAT: 01986670766<br />
+                    Sede: Potenza, Italy
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>@(isEn ? "Services" : "Servizi")</h4>
+                <ul>
+                    <li><a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")">@(isEn ? "IT Consulting" : "Consulenza Informatica")</a></li>
+                    <li><a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")">System Integration</a></li>
+                    <li><a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")">AI & Automation</a></li>
+                    <li><a href="@(isEn ? "/en/services/software-engineering" : "/servizi/software-engineering")">Software Engineering</a></li>
+                    <li><a href="@(isEn ? "/en/services/api-data-integration" : "/servizi/api-data-integration")">API & Data</a></li>
+                    <li><a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")">Cloud & Architecture</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="@(isEn ? "/en/about" : "/chi-siamo")">@(isEn ? "About Us" : "Chi siamo")</a></li>
+                    <li><a href="@(isEn ? "/en/case-studies" : "/case-study")">Case Study</a></li>
+                    <li><a href="@(isEn ? "/en/insights" : "/insights")">Insights</a></li>
+                    <li><a href="@(isEn ? "/en/contact" : "/contatti")">@(isEn ? "Contact Us" : "Contatti")</a></li>
+                    <li><a href="/labs">Labs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <ul>
+                    <li><a href="https://www.graldevstudios.com" target="_blank" rel="noopener">Graldev Studios</a></li>
+                    <li><a href="@(isEn ? "/en/about" : "/chi-siamo")#partners">Partners</a></li>
+                    <li><a href="@(isEn ? "/en/about" : "/chi-siamo")#privacy">Privacy & Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <div class="footer-legal-text">
+                &copy; @DateTime.Now.Year Graldev S.a.s. di Chiera Luigi. All rights reserved.
+            </div>
+            <div class="footer-social-links">
+                <a href="https://www.facebook.com/graldev" target="_blank" rel="noopener" aria-label="Facebook">
+                    <!-- Standard text fallback or inline SVGs for premium feel -->
+                    Facebook
+                </a>
+                <a href="https://www.instagram.com/graldev" target="_blank" rel="noopener" aria-label="Instagram">
+                    Instagram
+                </a>
+                <a href="https://www.linkedin.com/company/graldev" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Translucent Header scroll class helper
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header.site-header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = "rgba(250, 247, 242, 0.96)";
+            } else {
+                header.style.backgroundColor = "rgba(250, 247, 242, 0.85)";
+            }
+        });
+
+        // Mobile Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            mainNav.classList.toggle('active');
+        });
+
+        // Keyboard navigation for dropdown menus
+        const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+        dropdownTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const expanded = trigger.getAttribute('aria-expanded') === 'true' || false;
+                trigger.setAttribute('aria-expanded', !expanded);
+
+                // Toggle display of child menu on mobile if needed
+                const menu = trigger.nextElementSibling;
+                if (window.innerWidth <= 992) {
+                    menu.style.display = expanded ? 'none' : 'flex';
+                }
+            });
+
+            // Allow closing on Escape key
+            trigger.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    trigger.setAttribute('aria-expanded', 'false');
+                    const menu = trigger.nextElementSibling;
+                    if (window.innerWidth <= 992) {
+                        menu.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

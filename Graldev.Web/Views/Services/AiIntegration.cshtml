@@ -1,0 +1,142 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<!-- AI Premium Hero Section -->
+<section class="case-study-hero" style="padding-bottom: 2rem;">
+    <div class="container">
+        <span class="section-eyebrow">AI & PROCESS AUTOMATION</span>
+        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
+            @(isEn ? "We bring AI inside your business processes. Not just beside them." : "Portiamo l'AI dentro i processi aziendali. Non semplicemente accanto.")
+        </h1>
+        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+            @(isEn ? "Integrating Large Language Models (LLM) and secure RAG frameworks to automate document parsing, smart classification, and intelligent backoffice workflows." : "Integriamo modelli di linguaggio (LLM) e strutture sicure RAG per automatizzare la lettura di documenti, la classificazione e i flussi operativi intelligenti.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            @(isEn ? "Request an AI Feasibility Session" : "Richiedi una AI Feasibility Session")
+        </a>
+    </div>
+</section>
+
+<!-- Visual AI Flow Pipeline Chart -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-eyebrow">PIPELINE</span>
+            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Graldev Intelligent AI Process Flow" : "Come funziona la nostra pipeline AI")</h2>
+        </div>
+
+        <!-- Custom Horizontal Pipeline Process Flow Diagram -->
+        <div class="method-steps" style="margin-top: 1.5rem;">
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">01</div>
+                <div class="method-name" style="font-size: 1rem;">DATA INPUT</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Secure collection of PDF invoices, emails, or SQL records." : "Raccolta e pulizia protetta di PDF, e-mail o database.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">02</div>
+                <div class="method-name" style="font-size: 1rem;">KNOWLEDGE LAYER</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Semantic chunking & vector database storage (RAG)." : "Scomposizione semantica e indicizzazione in vector database.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">03</div>
+                <div class="method-name" style="font-size: 1rem;">AI PROCESSING</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "LLM context analysis, summary or entity extraction." : "Analisi contestuale tramite LLM senza allucinazioni.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">04</div>
+                <div class="method-name" style="font-size: 1rem;">HUMAN APPROVAL</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Operator dashboard checks the extracted parameters." : "Validazione dei dati tramite dashboard dell'operatore.")</div>
+            </div>
+            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
+                <div class="method-num">05</div>
+                <div class="method-name" style="font-size: 1rem;">ACTION</div>
+                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Write-back to CRM, ERP database or API triggers." : "Scrittura automatica nel database ERP o CRM finale.")</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Governance and Case Study split section -->
+<section class="alt-section" style="padding: 3rem 0;">
+    <div class="container split-layout" style="align-items: center;">
+        <div class="split-left" style="max-width: 550px;">
+            <span class="section-eyebrow">GOVERNANCE</span>
+            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "AI enterprise means control." : "AI enterprise significa anche controllo.")</h2>
+            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                @(isEn ? "Integrating cognitive systems requires strict security. We build under strict isolation principles, ensuring your company secrets never train public models." : "L'adozione dell'AI deve essere accompagnata da rigidi standard di sicurezza, ruoli, permessi e controllo dei costi dei token.")
+            </p>
+
+            <div class="grid-2" style="gap: 1rem;">
+                <div class="card-base" style="padding: 0.75rem 1rem;">
+                    <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">🔒 Absolute Privacy</h4>
+                    <p style="font-size: 0.8rem; line-height: 1.3; margin-bottom: 0;">@(isEn ? "Isolated endpoints prevent data leakage." : "I vostri dati non lasciano mai i server dedicati.")</p>
+                </div>
+                <div class="card-base" style="padding: 0.75rem 1rem;">
+                    <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">👥 Role-Based Access</h4>
+                    <p style="font-size: 0.8rem; line-height: 1.3; margin-bottom: 0;">@(isEn ? "The AI answers only based on user permissions." : "L'AI attinge solo alle cartelle per cui l'utente ha i permessi.")</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-right">
+            <!-- Vitinerario Case Study Highlight -->
+            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft);">
+                <span class="section-eyebrow" style="font-size: 0.75rem;">CASE STUDY HIGHLIGHT</span>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">Vitinerario Sommelier AI</h3>
+                <p style="font-size: 0.9rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 1rem;">
+                    @(isEn ? "Engineered an AI enological assistant that safely interrogates semantic wine databases and recommends food pairings dynamically without hallucinations." : "Abbiamo ideato un assistente sommelier virtuale AI basato su LLM e RAG in grado di interrogare database enologici complessi e consigliare abbinamenti perfetti.")
+                </p>
+                <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="font-size: 0.85rem;">
+                    @(isEn ? "Read Vitinerario Case Study" : "Leggi il Case Study Vitinerario")
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Below Fold Accordion Section: FAQs on AI -->
+<section class="white-section" style="padding: 3rem 0;">
+    <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span class="section-eyebrow">FAQ</span>
+            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "AI Integration FAQs" : "Domande Comuni sull'AI per Aziende")</h2>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                @(isEn ? "How do you avoid AI hallucinations?" : "Come evitate le allucinazioni dell'AI?")
+            </button>
+            <div class="accordion-content">
+                <p>
+                    @(isEn ? "We use Retrieval-Augmented Generation (RAG). Instead of letting the model make up answers, we search your databases, extract the exact paragraphs, and feed them as a strict context. The LLM is forced to answer only using those paragraphs." : "Utilizziamo l'architettura RAG (Retrieval-Augmented Generation). L'AI non inventa risposte: eseguiamo prima una ricerca semantica nei vostri database, estraiamo i paragrafi corrispondenti e obblighiamo l'LLM a elaborare la risposta esclusivamente basandosi su tali dati.")
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                @(isEn ? "How are API token costs managed?" : "Come vengono tenuti sotto controllo i costi delle API?")
+            </button>
+            <div class="accordion-content">
+                <p>
+                    @(isEn ? "We optimize tokens by caching frequent semantic queries and choosing local lighter open-source models (e.g. Llama-3, Mistral) where massive reasoning is not needed, keeping your cloud budget secure." : "Ottimizziamo i token memorizzando nella cache le risposte semantiche più frequenti e configurando modelli open-source più leggeri (come Llama o Mistral) per compiti ripetitivi di classificazione.")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleAccordion(element) {
+        const expanded = element.getAttribute('aria-expanded') === 'true';
+        element.setAttribute('aria-expanded', !expanded);
+
+        const content = element.nextElementSibling;
+        if (!expanded) {
+            content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+            content.style.maxHeight = "0px";
+        }
+    }
+</script>

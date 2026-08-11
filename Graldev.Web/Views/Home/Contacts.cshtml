@@ -1,0 +1,108 @@
+@model Graldev.Web.Models.ContactViewModel
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container" style="text-align: center;">
+        <span class="section-eyebrow">@(isEn ? "CONTACT GRALDEV" : "CONTATTACI")</span>
+        <h1 class="section-title" style="margin: 0 auto 1rem auto;">
+            @(isEn ? "Let's start from the problem." : "Partiamo dal problema.")
+        </h1>
+        <p class="section-subtitle" style="margin: 0 auto;">
+            @(isEn ? "You don't need to know which technology or solution you need beforehand. Tell us what you want to improve." : "Non devi già sapere quale tecnologia o soluzione ti serve. Raccontaci cosa vuoi migliorare.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="callout-success" role="alert" style="max-width: 650px; margin: 0 auto 2rem auto;">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <div class="contact-form-wrapper">
+            <form asp-controller="Home" asp-action="SubmitContact" method="post" class="needs-validation" novalidate>
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+                <!-- Honeypot Spam Protection -->
+                @Html.TextBoxFor(m => m.Website, new { @class = "hp-field", autocomplete = "off", placeholder = "Leave empty" })
+
+                <div class="form-group-grid">
+                    <div class="form-group">
+                        <label class="form-label" asp-for="Nome">@(isEn ? "Name (Optional)" : "Nome (Opzionale)")</label>
+                        <input asp-for="Nome" class="form-control" placeholder="@(isEn ? "Enter your first name" : "Inserisci il tuo nome")" />
+                        <span asp-validation-for="Nome" class="field-validation-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="Cognome">@(isEn ? "Last Name" : "Cognome") *</label>
+                        <input asp-for="Cognome" class="form-control" required placeholder="@(isEn ? "Enter your last name" : "Inserisci il tuo cognome")" />
+                        <span asp-validation-for="Cognome" class="field-validation-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-grid">
+                    <div class="form-group">
+                        <label class="form-label" asp-for="EmailAziendale">@(isEn ? "Business Email" : "Email Aziendale") *</label>
+                        <input asp-for="EmailAziendale" type="email" class="form-control" required placeholder="name@company.com" />
+                        <span asp-validation-for="EmailAziendale" class="field-validation-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="Azienda">@(isEn ? "Company Name" : "Azienda") *</label>
+                        <input asp-for="Azienda" class="form-control" required placeholder="@(isEn ? "Your organization" : "Nome dell'azienda")" />
+                        <span asp-validation-for="Azienda" class="field-validation-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-grid">
+                    <div class="form-group">
+                        <label class="form-label" asp-for="Ruolo">@(isEn ? "Job Title / Role" : "Ruolo Aziendale") *</label>
+                        <input asp-for="Ruolo" class="form-control" required placeholder="@(isEn ? "e.g. CTO, IT Manager, Owner" : "es. CTO, IT Manager, Titolare")" />
+                        <span asp-validation-for="Ruolo" class="field-validation-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="AreaInteresse">@(isEn ? "Area of Interest" : "Area di interesse") *</label>
+                        <select asp-for="AreaInteresse" class="form-control" required>
+                            <option value="">-- @(isEn ? "Select Area" : "Seleziona un'area") --</option>
+                            <option value="Consulenza Informatica">@(isEn ? "IT Consulting" : "Consulenza Informatica")</option>
+                            <option value="System Integration">System Integration</option>
+                            <option value="AI & Automation">AI & Automation</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="API & Data">API & Data Integration</option>
+                            <option value="Digital Commerce">Digital Commerce Integration</option>
+                            <option value="Cloud & Architecture">Cloud & Architecture</option>
+                            <option value="Business Applications">Business Applications</option>
+                            <option value="AR / VR / 3D">AR / VR / 3D</option>
+                            <option value="Altro">@(isEn ? "Other / Not sure" : "Altro / Non sono sicuro")</option>
+                        </select>
+                        <span asp-validation-for="AreaInteresse" class="field-validation-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" asp-for="Messaggio">@(isEn ? "Describe your issue or need" : "Raccontaci l'esigenza o la criticità") *</label>
+                    <textarea asp-for="Messaggio" rows="5" class="form-control" required placeholder="@(isEn ? "Please describe the workflows or software systems you want to improve." : "Descrivi brevemente i processi, i sistemi coinvolti o gli ostacoli che vuoi risolvere.")"></textarea>
+                    <span asp-validation-for="Messaggio" class="field-validation-error"></span>
+                </div>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

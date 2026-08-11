@@ -1,0 +1,68 @@
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<section class="case-study-hero">
+    <div class="container">
+        <span class="section-eyebrow">@(isEn ? "TELECOM VERTICAL" : "SETTORE TELECOMUNICAZIONI")</span>
+        <h1 class="section-title">
+            @(isEn ? "IT Consulting & Architectural Scalability for Telco" : "Consulenza Informatica e Scalabilità per le Telco")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Designing high-availability transactional pipelines, secure API marketplaces, and scalable system integration layers." : "Ingegnerizzazione di architetture dati ad alta disponibilità, marketplace di API sicuri e solidi layer d'integrazione per sistemi telco.")
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container split-layout">
+        <div class="split-left">
+            <h2>@(isEn ? "Robust architecture for high-concurrency systems" : "Architetture resilienti per grandi flussi di traffico")</h2>
+            <p>
+                @if (isEn)
+                {
+                    <text>Telecommunications companies manage massive, continuous streams of data and transactions every second. System breakdowns or latency overheads result in critical business losses. Graldev acts as the technical advisor to help you assess, design, and modernize technical infrastructure under high-concurrency constraints, using microservices, modern APIs, and asynchronous queuing pipelines.</text>
+                }
+                else
+                {
+                    <text>Le società di telecomunicazioni elaborano flussi ingenti di transazioni e richieste dati ad ogni secondo. Rallentamenti o interruzioni generano disagi immediati. Graldev supporta il settore Telco offrendo consulenza di alto livello sull'assessment del codice, scomposizione di monolitici in microservizi, ottimizzazione di code transazionali asincrone e disegno di API stabili capaci di sopportare carichi elevatissimi.</text>
+                }
+            </p>
+            <p>
+                @if (isEn)
+                {
+                    <text>We pay profound attention to security headers, data structures validation, and high-availability cloud configurations (zero-downtime deployments) to ensure technical due diligence is fully met.</text>
+                }
+                else
+                {
+                    <text>Garantiamo la massima robustezza: gestione accurata degli header di sicurezza, validazione transazionale dei database e configurazioni Cloud ad alta affidabilità (zero-downtime deployment) per rispettare i requisiti di audit tecnologici complessi.</text>
+                }
+            </p>
+        </div>
+        <div class="split-right">
+            <div class="premium-card">
+                <h3>@(isEn ? "Core Technical Focus" : "Focus Tecnologico")</h3>
+                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
+                    <li>📡 High-concurrency Web API Design & Security</li>
+                    <li>💾 Asynchronous Message Queuing (RabbitMQ, Kafka, Azure Service Bus)</li>
+                    <li>⚡ Database scaling and performance tuning</li>
+                    <li>🛡️ Systems Technical Due Diligence & Code Audits</li>
+                    <li>☁️ Redundant Cloud-Native Microservices</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="text-align: center;">
+    <div class="container">
+        <h2>@(isEn ? "Consult with our senior technical architects" : "Parla con i nostri architetti senior")</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
+            @(isEn ? "Discuss technical bottlenecks, code optimization, or microservices migration with Graldev senior advisors." : "Affronta debito tecnico, colli di bottiglia o migrazione a microservizi con i consulenti Graldev.")
+        </p>
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
+        </a>
+    </div>
+</section>

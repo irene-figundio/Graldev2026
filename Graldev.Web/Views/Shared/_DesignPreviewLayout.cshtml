@@ -1,0 +1,37 @@
+@using Graldev.Web.Seo
+@{
+    var seo = ViewData["SeoMetadata"] as PageSeoMetadata ?? new PageSeoMetadata();
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+<!DOCTYPE html>
+<html lang="@currentCulture">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@seo.Title</title>
+    <meta name="description" content="@seo.MetaDescription" />
+    <link rel="canonical" href="@seo.CanonicalUrl" />
+    @if (seo.NoIndex)
+    {
+        <meta name="robots" content="noindex, nofollow" />
+    }
+    else
+    {
+        <meta name="robots" content="index, follow" />
+    }
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS styles specific to Design Preview -->
+    <link rel="stylesheet" href="~/css/design-preview.css" asp-append-version="true" />
+</head>
+<body>
+    @RenderBody()
+
+    <script src="~/js/design-preview.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
