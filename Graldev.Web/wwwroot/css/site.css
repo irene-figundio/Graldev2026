@@ -1,7 +1,13 @@
-/* Graldev Brand Design System - Light-First Enterprise Theme */
+/* Graldev Brand Design System - Warm Minimalist / Soft Tech Theme */
 
 :root {
     /* Brand Colors */
+    --bg-warm-ivory: #faf7f2;
+    --bg-cream: #f5efe6;
+    --bg-stone: #e8dfd0;
+    --bg-greige: #dfd5c6;
+    --bg-white: #ffffff;
+
     --brand-green: #008a26;
     --brand-green-hover: #006b1e;
     --brand-green-dark: #104928;
@@ -21,51 +27,52 @@
     --green-900: #14532d;
 
     /* Surfaces */
-    --bg-light: #ffffff;
-    --bg-alt: #f8fafc; /* Elegant Slate Off-White */
+    --bg-light: #faf7f2; /* Warm Ivory base */
+    --bg-alt: #f5efe6; /* Cream */
     --bg-surface: #ffffff;
-    --bg-dark: #104928; /* Deep Graldev Green for premium contrast */
+    --bg-dark: #104928; /* Deep Graldev Green */
     --bg-dark-deep: #082914;
 
     /* Glassmorphism Surface */
-    --bg-glass: rgba(255, 255, 255, 0.85);
+    --bg-glass: rgba(250, 247, 242, 0.85);
     --bg-glass-dark: rgba(16, 73, 40, 0.88);
-    --border-glass: rgba(0, 138, 38, 0.12);
-    --shadow-glass: 0 12px 32px 0 rgba(0, 138, 38, 0.05);
+    --border-glass: rgba(16, 73, 40, 0.12);
+    --shadow-glass: 0 12px 32px 0 rgba(16, 73, 40, 0.04);
 
     /* Text */
-    --text-main: #1e293b; /* Dark Charcoal Slate */
-    --text-soft: #475569; /* Soft Slate */
-    --text-muted: #64748b;
+    --text-main: #1b1c19; /* Dark Charcoal Warm */
+    --text-soft: #4c4e48; /* Soft Warm Gray */
+    --text-muted: #82857a;
     --text-inverse: #ffffff;
     --text-inverse-soft: #cbd5e1;
 
     /* Borders & Outlines */
-    --border: #e2e8f0;
-    --border-soft: rgba(0, 138, 38, 0.08);
+    --border: rgba(16, 73, 40, 0.08);
+    --border-soft: rgba(16, 73, 40, 0.08);
     --border-strong: #008a26;
+    --border-warm: #ebdcc5;
 
-    /* Neomorphism Shadow Tokens (Subtle & Elegant) */
-    --neo-shadow-flat: 5px 5px 10px #e2e8f0, -5px -5px 10px #ffffff;
-    --neo-shadow-inset: inset 2px 2px 5px #cbd5e1, inset -2px -2px 5px #ffffff;
-    --neo-shadow-soft: 8px 8px 16px rgba(148, 163, 184, 0.12), -8px -8px 16px #ffffff;
+    /* Neomorphism Shadow Tokens */
+    --neo-shadow-flat: 5px 5px 10px #eadecc, -5px -5px 10px #ffffff;
+    --neo-shadow-inset: inset 2px 2px 5px #eadecc, inset -2px -2px 5px #ffffff;
+    --neo-shadow-soft: 8px 8px 16px rgba(27, 28, 25, 0.06), -8px -8px 16px #ffffff;
 
     /* General Settings */
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 32px;
+    --radius-xl: 48px;
 
-    --header-height: 80px;
+    --header-height: 90px;
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2.5rem;
     --spacing-lg: 5rem;
     --spacing-xl: 9rem;
 
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Global Resets */
@@ -76,7 +83,7 @@
 }
 
 body {
-    background-color: var(--bg-light);
+    background-color: var(--bg-warm-ivory);
     color: var(--text-main);
     font-family: var(--font-sans);
     line-height: 1.6;
@@ -136,11 +143,11 @@ header.site-header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border-glass);
-    transition: background-color var(--transition-fast), padding var(--transition-fast);
+    background-color: rgba(250, 247, 242, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.5s var(--transition-normal);
     box-shadow: var(--shadow-glass);
 }
 

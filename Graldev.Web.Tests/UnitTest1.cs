@@ -64,6 +64,7 @@ namespace Graldev.Web.Tests
         [InlineData("/consulenza-informatica-potenza")]
         [InlineData("/en/it-consulting-potenza")]
         [InlineData("/labs")]
+        [InlineData("/design-preview")]
         public async Task MainRoutes_ReturnSuccessAndCorrectSeo(string url)
         {
             // Arrange

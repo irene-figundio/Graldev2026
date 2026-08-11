@@ -2,94 +2,65 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<!-- Hero Section: Premium, High-Impact Visual Redesign -->
-<section class="hero-section" style="padding-bottom: 2rem;">
-    <div class="container split-layout" style="align-items: center; gap: var(--spacing-md);">
-        <div class="split-left" style="position: relative; z-index: 3; max-width: 600px;">
-            <span class="card-neomorphic" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-green); padding: 0.4rem 0.8rem; display: inline-block; margin-bottom: 1.25rem;">
+<!-- Premium Warm Minimalist Hero Section with 3D Layers -->
+<section class="hero-section" style="padding: var(--spacing-xl) 0 var(--spacing-lg) 0; overflow: hidden; background-color: var(--bg-warm-ivory); position: relative;">
+    <div class="dp-floating-blob dp-blob-green"></div>
+    <div class="dp-floating-blob dp-blob-warm"></div>
+
+    <div class="container split-layout" style="align-items: center; position: relative; z-index: 5; gap: var(--spacing-md);">
+        <div class="split-left" style="max-width: 600px;">
+            <span class="dp-hero-eyebrow" style="color: var(--brand-green); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; display: inline-block; margin-bottom: 1rem;">
                 @(isEn ? "IT CONSULTING · SYSTEM INTEGRATION · AI · SOFTWARE ENGINEERING" : "CONSULENZA INFORMATICA · SYSTEM INTEGRATION · AI · SOFTWARE ENGINEERING")
             </span>
-            <h1 class="section-title" style="margin-top: 0.5rem; color: var(--brand-green-dark); font-weight: 900; line-height: 1.1; margin-bottom: 1rem;">
+            <h1 class="dp-hero-title" style="font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.04em; color: var(--brand-green-dark); margin-bottom: 1.5rem;">
                 @(isEn ? "We transform complex IT issues into systems that work better." : "Trasformiamo problemi tecnologici complessi in sistemi che funzionano meglio.")
             </h1>
-            <p class="section-subtitle" style="font-size: 1.1rem; color: var(--text-soft); line-height: 1.6; margin-bottom: 1.5rem;">
-                @(isEn ? "Connecting software, databases, infrastructures, and AI to orchestrate seamless flows and eliminate manual errors." : "Connettiamo software, database, infrastrutture e AI per orchestrare flussi continui ed eliminare inefficienze manuali.")
+            <p class="dp-hero-desc" style="font-size: 1.1rem; line-height: 1.6; color: var(--text-soft); margin-bottom: 2.5rem;">
+                @(isEn ? "Graldev partners with enterprises to analyze, design, and implement integrated IT solutions. We connect software, data, infrastructures, and AI to streamline processes and eliminate inefficiencies." : "Graldev affianca le aziende nell'analisi, progettazione e realizzazione di soluzioni IT integrate. Connettiamo software, dati, infrastrutture e AI per semplificare processi, eliminare inefficienze e supportare l'evoluzione del business.")
             </p>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+            <div class="dp-hero-actions" style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <a href="@(isEn ? "/en/contact" : "/contatti")" class="dp-btn dp-btn-primary">
                     @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
                 </a>
-                <a href="#metodo" class="btn btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+                <a href="#metodo" class="dp-btn dp-btn-secondary">
                     @(isEn ? "How we work" : "Scopri come lavoriamo")
                 </a>
             </div>
         </div>
 
-        <div class="split-right hero-visual-wrapper" style="min-height: 380px;">
-            <div class="card-glass" style="width: 100%; max-width: 460px; padding: var(--spacing-sm); border-radius: var(--radius-xl); position: relative; border-color: rgba(0, 138, 38, 0.25);">
-                <!-- Graldev Dynamic Visual Flow Diagram -->
-                <svg class="hero-svg-canvas" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="z-index: 2; position: relative;">
-                    <!-- Pulse connection lines with dash array scrolling -->
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="110" y2="110" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="390" y2="110" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="110" y2="390" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="390" y2="390" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="250" y2="65" stroke="var(--brand-green)" stroke-width="2.5" />
-                    <line class="link-line pulse-line" x1="250" y1="250" x2="250" y2="435" stroke="var(--brand-green)" stroke-width="2.5" />
+        <div class="split-right dp-hero-visual" style="height: 520px; background-color: var(--bg-cream); border-radius: var(--radius-lg); border: 1.5px solid var(--border-warm); box-shadow: var(--shadow-soft-depth); overflow: hidden; display: flex; justify-content: center; align-items: center; position: relative;">
+            <div class="dp-visual-scene" id="interactive-scene">
+                <!-- Floating badging -->
+                <div class="dp-floating-node dp-fn-1" style="transform: translateZ(30px);">
+                    <span style="font-size: 1.2rem;">🔗</span> System Integration
+                </div>
+                <div class="dp-floating-node dp-fn-2" style="transform: translateZ(50px);">
+                    <span style="font-size: 1.2rem;">🤖</span> AI Integration
+                </div>
+                <div class="dp-floating-node dp-fn-3" style="transform: translateZ(40px);">
+                    <span style="font-size: 1.2rem;">🧠</span> IT Consulting
+                </div>
 
-                    <!-- Connecting Graldev Layer (Center Node) -->
-                    <circle class="center-node pulse-circle" cx="250" cy="250" r="28" fill="var(--brand-green)" />
-                    <circle class="center-node" cx="250" cy="250" r="20" fill="var(--brand-green-dark)" />
-                    <text x="250" y="254" font-size="12" font-weight="900" fill="white" text-anchor="middle" style="letter-spacing: 0;">GD</text>
+                <!-- Three dimensional plates representing systemic convergence -->
+                <div class="dp-glass-plate dp-glass-plate-1" style="transform: rotateY(-32deg) rotateX(15deg) translateZ(100px) translateX(-110px);">
+                    <div class="dp-glass-plate-bg" style="background-color: var(--brand-green); opacity: 0.05;"></div>
+                    <div style="font-weight: 800; font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase;">ERP & CRM Data</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: var(--brand-green-dark); line-height: 1.2;">Enterprise Systems</div>
+                    <div style="font-size: 0.8rem; color: var(--text-soft);">Core repositories synchronized.</div>
+                </div>
 
-                    <!-- Surrounding Interactive Technology Nodes (Neomorphic Look) -->
-                    <!-- ERP Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="110" cy="110" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="110" y="114" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">ERP</text>
-                        <title>Enterprise Resource Planning (SAP, Microsoft Dynamics, Proprietary)</title>
-                    </g>
+                <div class="dp-glass-plate dp-glass-plate-2" style="transform: rotateY(-32deg) rotateX(15deg) translateZ(20px) translateX(0px);">
+                    <div class="dp-glass-plate-bg" style="background-color: var(--brand-green-dark); opacity: 0.15;"></div>
+                    <div style="font-weight: 800; font-size: 0.8rem; color: var(--green-300); text-transform: uppercase;">Graldev Layer</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: white; line-height: 1.2;">Integration & Consulting</div>
+                    <div style="font-size: 0.8rem; color: var(--text-inverse-soft);">The orchestrator.</div>
+                </div>
 
-                    <!-- CRM Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="390" cy="110" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="390" y="114" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">CRM</text>
-                        <title>Customer Relationship Management (Salesforce, HubSpot, Custom Databases)</title>
-                    </g>
-
-                    <!-- API Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="110" cy="390" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="110" y="394" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">API</text>
-                        <title>Web Services, Webhooks, REST & SOAP connectors</title>
-                    </g>
-
-                    <!-- DATA Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="390" cy="390" r="30" fill="var(--bg-alt)" stroke="var(--green-400)" />
-                        <text x="390" y="394" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">DATA</text>
-                        <title>Data Synchronizations, Warehousing, and ETL Pipelines</title>
-                    </g>
-
-                    <!-- AI Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="250" cy="65" r="28" fill="var(--bg-alt)" stroke="var(--brand-green)" />
-                        <text x="250" y="69" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">AI</text>
-                        <title>Cognitive Process AI, LLM Integration, & Autonomous Agents</title>
-                    </g>
-
-                    <!-- CLOUD Node -->
-                    <g class="diagram-node-svg" style="cursor: pointer;">
-                        <circle class="node" cx="250" cy="435" r="28" fill="var(--bg-alt)" stroke="var(--brand-green)" />
-                        <text x="250" y="439" font-size="11" font-weight="800" fill="var(--brand-green-dark)" text-anchor="middle">CLOUD</text>
-                        <title>Robust, scalable, resilient Cloud Infrastructures</title>
-                    </g>
-                </svg>
-                <!-- Interactive Dynamic Status Indicator -->
-                <div style="display: flex; justify-content: space-around; font-size: 0.75rem; font-weight: 800; color: var(--brand-green-dark); border-top: 1px solid var(--border); padding-top: var(--spacing-sm); margin-top: 0.5rem; text-transform: uppercase;">
-                    <span style="display: flex; align-items: center; gap: 4px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block;"></span> Connected</span>
-                    <span style="display: flex; align-items: center; gap: 4px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block; animation-delay: 1s;"></span> Saligned</span>
-                    <span style="display: flex; align-items: center; gap: 4px;"><span class="data-pulse" style="width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; display: inline-block; animation-delay: 2s;"></span> Optimized</span>
+                <div class="dp-glass-plate dp-glass-plate-3" style="transform: rotateY(-32deg) rotateX(15deg) translateZ(-80px) translateX(110px);">
+                    <div class="dp-glass-plate-bg" style="background-color: var(--bg-stone); opacity: 0.25;"></div>
+                    <div style="font-weight: 800; font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase;">Cognitive AI</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: var(--brand-green-dark); line-height: 1.2;">Autonomous Flow</div>
+                    <div style="font-size: 0.8rem; color: var(--text-soft);">Intelligent agents orchestrating.</div>
                 </div>
             </div>
         </div>
@@ -142,143 +113,129 @@
     </div>
 </section>
 
-<!-- Method Redesign: Scannable Consulting Timeline -->
-<section id="metodo" class="white-section" style="padding: 4rem 0;">
+<!-- Method Redesign: Scannable Consulting Timeline with Neomorphic Icon Boxes -->
+<section id="metodo" class="white-section" style="padding: 6rem 0; background-color: var(--bg-cream);">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">@(isEn ? "OUR METHOD" : "IL NOSTRO METODO")</span>
-            <h2 class="section-title" style="margin: 0 auto; font-weight: 900;">@(isEn ? "Dalla complessità alla soluzione." : "Dalla complessità alla soluzione.")</h2>
-            <p class="section-subtitle" style="margin: 0 auto; font-size: 1.05rem;">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <span class="dp-section-eyebrow">@(isEn ? "OUR METHOD" : "IL NOSTRO METODO")</span>
+            <h2 class="dp-section-title" style="margin: 0 auto 1rem auto;">@(isEn ? "Dalla complessità alla soluzione." : "Dalla complessità alla soluzione.")</h2>
+            <p class="dp-section-desc" style="margin: 0 auto; max-width: 680px;">
                 @(isEn ? "We do not sell boxed software. We analyze your infrastructure, map data, and engineer appropriate solutions." : "Non vendiamo software a scatola chiusa. Analizziamo i flussi dati e disegniamo l'architettura d'integrazione corretta.")
             </p>
         </div>
 
-        <!-- Custom Interactive Horizontal Timeline Map -->
-        <div class="method-steps" style="margin-top: 1.5rem;">
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">01</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Ascolto" : "Ascolto")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Comprensione del problema operativi." : "Comprensione del problema e degli obiettivi.")</div>
+        <div class="dp-workflow-timeline" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; position: relative;">
+            <div class="dp-workflow-step">
+                <div class="dp-workflow-icon-box">👂</div>
+                <div class="dp-workflow-num">01 · ASCOLTO</div>
+                <div class="dp-workflow-name" style="font-size: 1.15rem;">@(isEn ? "Ascolto" : "Ascolto")</div>
+                <div class="dp-workflow-desc">@(isEn ? "Comprensione del problema e degli obiettivi." : "Comprensione del problema e degli obiettivi.")</div>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">02</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Assessment" : "Assessment")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Analisi approfondita sistemi e dati." : "Analisi di sistemi, dati e infrastruttura.")</div>
+            <div class="dp-workflow-step">
+                <div class="dp-workflow-icon-box">🔍</div>
+                <div class="dp-workflow-num">02 · ASSESSMENT</div>
+                <div class="dp-workflow-name" style="font-size: 1.15rem;">@(isEn ? "Assessment" : "Assessment")</div>
+                <div class="dp-workflow-desc">@(isEn ? "Analisi di sistemi, dati e infrastruttura." : "Analisi di sistemi, dati e infrastruttura.")</div>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">03</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Architettura" : "Architettura")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Disegno della soluzione integrata." : "Disegno della soluzione più appropriata.")</div>
+            <div class="dp-workflow-step">
+                <div class="dp-workflow-icon-box">📐</div>
+                <div class="dp-workflow-num">03 · ARCHITETTURA</div>
+                <div class="dp-workflow-name" style="font-size: 1.15rem;">@(isEn ? "Architettura" : "Architettura")</div>
+                <div class="dp-workflow-desc">@(isEn ? "Disegno della soluzione più appropriata." : "Disegno della soluzione più appropriata.")</div>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">04</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Integrazione" : "Integrazione")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Connessione ed eventuale custom code." : "Connessione sistemi esistenti e sviluppo.")</div>
+            <div class="dp-workflow-step">
+                <div class="dp-workflow-icon-box">🛠️</div>
+                <div class="dp-workflow-num">04 · INTEGRATION</div>
+                <div class="dp-workflow-name" style="font-size: 1.15rem;">@(isEn ? "Integrazione" : "Integrazione / Sviluppo")</div>
+                <div class="dp-workflow-desc">@(isEn ? "Connessione sistemi esistenti e sviluppo." : "Connessione sistemi esistenti e sviluppo.")</div>
             </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">05</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Validazione" : "Validazione")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Test prestazionali e funzionali." : "Testing tecnico e funzionale completo.")</div>
-            </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">06</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Rilascio" : "Rilascio")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Deployment progressivo continuo." : "Deployment senza bloccare l'operatività.")</div>
-            </div>
-            <div class="method-step" style="padding-top: 0.75rem;">
-                <div class="method-num">07</div>
-                <div class="method-name" style="font-size: 1rem;">@(isEn ? "Evoluzione" : "Evoluzione")</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Supporto e monitoraggio proattivo." : "Monitoring, supporto e miglioramenti.")</div>
+            <div class="dp-workflow-step">
+                <div class="dp-workflow-icon-box">📈</div>
+                <div class="dp-workflow-num">05 · EVOLUTION</div>
+                <div class="dp-workflow-name" style="font-size: 1.15rem;">@(isEn ? "Evoluzione" : "Evoluzione")</div>
+                <div class="dp-workflow-desc">@(isEn ? "Monitoring, supporto e miglioramenti." : "Monitoring, supporto e miglioramenti.")</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Visual Capabilities Cards Section (Premium Grid) -->
-<section id="competenze" class="light-green-section" style="padding: 4rem 0;">
+<!-- Visual Capabilities Bento Cards Section (Bento Grid Redesign) -->
+<section id="competenze" class="light-green-section" style="padding: 6rem 0; background-color: var(--bg-warm-ivory);">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">@(isEn ? "PRACTICES" : "PRATICHE")</span>
-            <h2 class="section-title" style="margin: 0 auto 0.5rem auto; font-weight: 900;">@(isEn ? "Le Aree di Competenza" : "Le Aree di Competenza")</h2>
+        <div style="text-align: center; margin-bottom: 3.5rem;">
+            <span class="dp-section-eyebrow">@(isEn ? "PRACTICES" : "PRATICHE")</span>
+            <h2 class="dp-section-title" style="margin: 0 auto;">@(isEn ? "Le Aree di Competenza" : "Le Aree di Competenza")</h2>
         </div>
 
-        <div class="grid-3" style="gap: 1.5rem;">
-            <!-- Card 1: IT Consulting -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">🧠</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">@(isEn ? "IT Consulting" : "Consulenza Informatica")</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Assessment & Roadmap</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Analyzing infrastructures, planning future-proof architectures, build-vs-buy software audits." : "Assessment tecnico per mappare i processi, modernizzare sistemi obsoleti e definire roadmap di integrazione.")
+        <div class="dp-bento-grid" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+            <!-- Card 1: IT Consulting (Bento Big) -->
+            <div class="dp-bento-card dp-bc-lg-1" style="grid-column: span 8; grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="dp-bento-card-header">
+                    <span class="dp-bento-card-eyebrow">Assessment & Strategy</span>
+                    <h3 class="dp-bento-card-title" style="font-size: 1.8rem; margin-bottom: 0.5rem;">@(isEn ? "IT Consulting" : "Consulenza Informatica")</h3>
+                    <p class="dp-bento-card-desc" style="max-width: 480px;">
+                        @(isEn ? "Analyzing infrastructures, planning future-proof architectures, and build-vs-buy software audits." : "Assessment tecnico per mappare i processi, modernizzare sistemi obsoleti, strutturare roadmap di integrazione e decidere consapevolmente tra Build, Buy o Integrate.")
                     </p>
                 </div>
-                <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
+                <div class="dp-bento-card-footer">
+                    <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")" class="dp-bento-link">@(isEn ? "Discover Approach" : "Scopri l'approccio") <span>→</span></a>
+                </div>
             </div>
 
             <!-- Card 2: System Integration -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">🔗</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">System Integration</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Automated Connections</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Synchronizing isolated systems: ERP, CRM, databases, and digital e-commerce platforms." : "Connettiamo applicativi aziendali isolati per scambiare informazioni automaticamente senza trascrizioni manuali.")
+            <div class="dp-bento-card dp-bc-md-1" style="grid-column: span 4; grid-row: span 1;">
+                <div class="dp-bento-card-header">
+                    <span class="dp-bento-card-eyebrow">Connected Flows</span>
+                    <h3 class="dp-bento-card-title">System Integration</h3>
+                    <p class="dp-bento-card-desc">
+                        @(isEn ? "Connettiamo applicativi aziendali isolati per scambiare informazioni automaticamente." : "Facciamo comunicare CRM, ERP e database proprietari eliminando passaggi manuali e silos di dati.")
                     </p>
                 </div>
-                <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
+                <div class="dp-bento-card-footer">
+                    <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")" class="dp-bento-link">@(isEn ? "Explore Area" : "Scopri l'Area") <span>→</span></a>
+                </div>
             </div>
 
             <!-- Card 3: AI Integration -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">🤖</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">AI & Automation</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Intelligent Processes</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Embedding LLMs, semantic document classification, and private RAG inside actual business pipelines." : "Portiamo l'Intelligenza Artificiale e agenti decisionali autonomi dentro i database e flussi di lavoro esistenti.")
+            <div class="dp-bento-card dp-bc-md-2" style="grid-column: span 4; grid-row: span 1;">
+                <div class="dp-bento-card-header">
+                    <span class="dp-bento-card-eyebrow">Intelligent Workflow</span>
+                    <h3 class="dp-bento-card-title">AI Integration</h3>
+                    <p class="dp-bento-card-desc">
+                        @(isEn ? "Rendiamo intelligenti i workflow interni integrando LLM e Knowledge Base." : "Rendiamo intelligenti i workflow interni integrando LLM e Knowledge Base proprietarie.")
                     </p>
                 </div>
-                <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
+                <div class="dp-bento-card-footer">
+                    <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")" class="dp-bento-link">@(isEn ? "Explore Area" : "Scopri l'Area") <span>→</span></a>
+                </div>
             </div>
 
             <!-- Card 4: Software Engineering -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">💻</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">Software Engineering</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Custom Components</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Designing custom middleware, API systems, and backend services where standard software falls short." : "Sviluppiamo middleware, connettori specifici e portali web complessi su misura quando il software standard non basta.")
+            <div class="dp-bento-card dp-bc-sm-1" style="grid-column: span 4;">
+                <div class="dp-bento-card-header">
+                    <span class="dp-bento-card-eyebrow">Custom Solutions</span>
+                    <h3 class="dp-bento-card-title">Software Engineering</h3>
+                    <p class="dp-bento-card-desc">
+                        @(isEn ? "Sviluppiamo componenti e middleware robusti solo quando le piattaforme standard non bastano." : "Sviluppiamo componenti e middleware robusti solo quando le piattaforme standard non bastano.")
                     </p>
                 </div>
-                <a href="@(isEn ? "/en/services/software-engineering" : "/servizi/software-engineering")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
+                <div class="dp-bento-card-footer">
+                    <a href="@(isEn ? "/en/services/software-engineering" : "/servizi/software-engineering")" class="dp-bento-link">@(isEn ? "Explore Area" : "Scopri l'Area") <span>→</span></a>
+                </div>
             </div>
 
-            <!-- Card 5: API & Data -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">📊</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">API & Data</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Pipelines & Sync</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Secure ETL architectures, webhooks integrations, and robust real-time data sync." : "Progettiamo architetture REST/SOAP e pipeline sicure per rendere i dati utilizzabili ovunque in modo congruo.")
+            <!-- Card 5: API & Cloud (Bento Large) -->
+            <div class="dp-bento-card dp-bc-lg-2" style="grid-column: span 8; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="dp-bento-card-header">
+                    <span class="dp-bento-card-eyebrow">Data Synchronization</span>
+                    <h3 class="dp-bento-card-title">API & Data Integration</h3>
+                    <p class="dp-bento-card-desc" style="max-width: 450px;">
+                        @(isEn ? "ETL pipelines, webhook integrations, and cloud migration architecture assessments." : "Sincronizzazione in tempo reale e data flow affidabili tra tutti i software e servizi esterni, con particolare focus su architetture cloud sicure e resilienti.")
                     </p>
                 </div>
-                <a href="@(isEn ? "/en/services/api-data-integration" : "/servizi/api-data-integration")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
-            </div>
-
-            <!-- Card 6: Cloud Architecture -->
-            <div class="premium-card" style="padding: var(--spacing-sm);">
-                <div>
-                    <div class="icon-neo-wrap" style="width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0.75rem;">☁️</div>
-                    <h3 class="premium-card-title" style="font-size: 1.2rem; margin-bottom: 0.35rem;">Cloud & Infrastructure</h3>
-                    <p style="font-size: 0.8rem; color: var(--brand-green); text-transform: uppercase; font-weight: 800; margin-bottom: 0.5rem;">Modern Resilient Servers</p>
-                    <p class="premium-card-text" style="font-size: 0.9rem; line-height: 1.4;">
-                        @(isEn ? "Migrating application architectures to secure high-availability cloud endpoints." : "Modernizzazione applicativa, migrazioni Cloud infrastrutturali, ottimizzazione delle prestazioni e dei costi.")
-                    </p>
+                <div class="dp-bento-card-footer">
+                    <a href="@(isEn ? "/en/services/api-data-integration" : "/servizi/api-data-integration")" class="dp-bento-link">@(isEn ? "Explore Area" : "Scopri l'Area") <span>→</span></a>
                 </div>
-                <a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")" class="premium-card-link" style="font-size: 0.85rem;">@(isEn ? "Explore Area" : "Scopri l'Area")</a>
             </div>
         </div>
     </div>

@@ -23,6 +23,21 @@ namespace Graldev.Web.Controllers
             return View();
         }
 
+        [Route("design-preview")]
+        public IActionResult DesignPreview()
+        {
+            SetupSeo(
+                titleIt: "Design Preview | Graldev",
+                titleEn: "Design Preview | Graldev",
+                descIt: "Anteprima della nuova direzione artistica e del design system di Graldev.",
+                descEn: "Preview of Graldev's new premium design system and artistic direction.",
+                canonicalPathIt: "/design-preview",
+                canonicalPathEn: "/design-preview",
+                noIndex: true
+            );
+            return View();
+        }
+
         [Route("chi-siamo")]
         [Route("en/about")]
         public IActionResult About()

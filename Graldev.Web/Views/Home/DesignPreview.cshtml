@@ -1,0 +1,334 @@
+@{
+    Layout = "_DesignPreviewLayout";
+}
+
+<!-- Skip Navigation Link for Accessibility -->
+<a href="#main-content" class="skip-link">Salta al contenuto principale</a>
+
+<!-- 1. HEADER -->
+<header class="dp-header">
+    <div class="dp-container">
+        <a href="/" class="dp-logo">Gral<span>dev</span></a>
+
+        <nav class="dp-nav">
+            <ul class="dp-nav-list">
+                <li><a href="/consulenza-informatica" class="dp-nav-item">Consulenza</a></li>
+                <li><a href="/servizi" class="dp-nav-item">Servizi</a></li>
+                <li><a href="/case-study" class="dp-nav-item">Case Study</a></li>
+                <li><a href="/chi-siamo" class="dp-nav-item">Chi Siamo</a></li>
+                <li><a href="/insights" class="dp-nav-item">Insights</a></li>
+            </ul>
+        </nav>
+
+        <a href="/contatti" class="dp-header-cta">Parliamo della tua esigenza</a>
+
+        <button class="dp-hamburger" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<main class="dp-main" id="main-content">
+
+    <!-- 2. HERO -->
+    <section class="dp-hero">
+        <div class="dp-container">
+            <div class="dp-hero-grid">
+
+                <!-- 35% Copy Section -->
+                <div class="dp-hero-content">
+                    <span class="dp-hero-eyebrow">IT CONSULTING PARTNER B2B</span>
+                    <h1 class="dp-hero-title">Connettiamo tecnologia, sistemi e <span>dati</span>.</h1>
+                    <p class="dp-hero-desc">
+                        Graldev affianca le aziende nell'analisi, progettazione e realizzazione di soluzioni IT integrate. Semplifichiamo processi complessi per ottimizzare la tua operatività aziendale.
+                    </p>
+                    <div class="dp-hero-actions">
+                        <a href="/contatti" class="dp-btn dp-btn-primary">Parliamo della tua esigenza</a>
+                        <a href="#services" class="dp-btn dp-btn-secondary">Scopri come lavoriamo</a>
+                    </div>
+                </div>
+
+                <!-- 65% Premium Visual Composition (Soft 3D / Glass Layers) -->
+                <div class="dp-hero-visual">
+                    <div class="dp-floating-blob dp-blob-green"></div>
+                    <div class="dp-floating-blob dp-blob-warm"></div>
+
+                    <div class="dp-visual-scene">
+
+                        <!-- Back Glass Plate 3 -->
+                        <div class="dp-glass-plate dp-glass-plate-3">
+                            <div class="dp-glass-plate-bg" style="background-color: var(--brand-green-dark); opacity: 0.1;"></div>
+                            <div style="font-weight: 800; font-size: 0.8rem; color: var(--brand-green-dark);">LAYER 03 / DATA</div>
+                            <svg width="100%" height="80px" viewBox="0 0 100 40">
+                                <path d="M0,20 Q25,5 50,20 T100,20" fill="none" stroke="var(--brand-green)" stroke-width="2"></path>
+                            </svg>
+                            <div style="font-size: 0.75rem; color: var(--text-soft);">Sincronizzazione dati e middleware</div>
+                        </div>
+
+                        <!-- Center Glass Plate 2 (Deep Green Accent Glass) -->
+                        <div class="dp-glass-plate dp-glass-plate-2">
+                            <div style="font-weight: 800; font-size: 0.8rem; color: var(--text-white);">LAYER 02 / AI COGNITIVE</div>
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center;">
+                                <div style="width:16px; height:16px; border-radius:50%; background:#fff;"></div>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #cbd5e1;">Integrazione agenti e flussi cognitivi</div>
+                        </div>
+
+                        <!-- Front Glass Plate 1 -->
+                        <div class="dp-glass-plate dp-glass-plate-1">
+                            <div class="dp-glass-plate-bg" style="background-color: var(--brand-green); opacity: 0.05;"></div>
+                            <div style="font-weight: 800; font-size: 0.8rem; color: var(--brand-green);">LAYER 01 / INTEGRATION</div>
+                            <div style="display:flex; gap: 8px;">
+                                <span style="font-size: 1.2rem;">⚡</span>
+                                <span style="font-size: 1.2rem;">🔌</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-soft);">Flussi aziendali, ERP e CRM unificati</div>
+                        </div>
+
+                        <!-- Floating Micro Neomorphic Badges -->
+                        <div class="dp-floating-node dp-fn-1">
+                            <span style="color: var(--brand-green);">■</span> System Integration
+                        </div>
+                        <div class="dp-floating-node dp-fn-2">
+                            <span style="color: #e6c594;">●</span> AI & Automation
+                        </div>
+                        <div class="dp-floating-node dp-fn-3">
+                            <span style="color: var(--brand-green-dark);">▲</span> API Cloud
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. BENTO SERVICES -->
+    <section class="dp-section" id="services" style="background-color: var(--bg-white);">
+        <div class="dp-container">
+            <span class="dp-section-eyebrow">AREE DI INTERVENTO</span>
+            <h2 class="dp-section-title">Soluzioni modellate sulla tua infrastruttura.</h2>
+            <p class="dp-section-desc">
+                Non partiamo dalla tecnologia, ma dal collo di bottiglia operativo. Progettiamo l'architettura ideale integrando i sistemi che usi ogni giorno.
+            </p>
+
+            <div class="dp-bento-grid">
+
+                <!-- Card Large 1: System Integration -->
+                <div class="dp-bento-card dp-bc-lg-1">
+                    <div class="dp-bento-card-header">
+                        <span class="dp-bento-card-eyebrow">CONNETTIVITÀ COMPLESSA</span>
+                        <h3 class="dp-bento-card-title">System Integration</h3>
+                        <p class="dp-bento-card-desc">Facciamo comunicare CRM, ERP e database proprietari eliminando passaggi manuali e silos di dati.</p>
+                    </div>
+                    <div class="dp-bento-card-footer">
+                        <a href="/servizi/system-integration" class="dp-bento-link">Scopri l'approccio <span>→</span></a>
+                    </div>
+                    <div class="dp-bento-visual-wrapper">
+                        <div class="dp-bento-artwork">
+                            <svg width="100%" height="100%" viewBox="0 0 160 120">
+                                <circle cx="40" cy="60" r="15" fill="none" stroke="var(--brand-green)" stroke-width="2"></circle>
+                                <circle cx="120" cy="60" r="15" fill="none" stroke="var(--brand-green)" stroke-width="2"></circle>
+                                <line x1="55" y1="60" x2="105" y2="60" stroke="var(--text-muted)" stroke-dasharray="4" stroke-width="1.5"></line>
+                                <path d="M 80 50 L 85 60 L 75 60 Z" fill="var(--brand-green)"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Medium 1: AI Integration -->
+                <div class="dp-bento-card dp-bc-md-1">
+                    <div class="dp-bento-card-header">
+                        <span class="dp-bento-card-eyebrow">AUTOMATION</span>
+                        <h3 class="dp-bento-card-title">AI Integration</h3>
+                        <p class="dp-bento-card-desc">Rendiamo intelligenti i workflow interni integrando LLM e Knowledge Base proprietarie.</p>
+                    </div>
+                    <div class="dp-bento-card-footer">
+                        <a href="/servizi/ai-integration" class="dp-bento-link">Vedi Casi d'Uso <span>→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card Medium 2: Software Engineering -->
+                <div class="dp-bento-card dp-bc-md-2">
+                    <div class="dp-bento-card-header">
+                        <span class="dp-bento-card-eyebrow">CUSTOM ENGINEERING</span>
+                        <h3 class="dp-bento-card-title">Software Engineering</h3>
+                        <p class="dp-bento-card-desc">Sviluppiamo componenti e middleware robusti solo quando le piattaforme standard non bastano.</p>
+                    </div>
+                    <div class="dp-bento-card-footer">
+                        <a href="/servizi/software-engineering" class="dp-bento-link">Esplora capability <span>→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card Small 1: Cloud & Architecture -->
+                <div class="dp-bento-card dp-bc-sm-1">
+                    <div class="dp-bento-card-header">
+                        <span class="dp-bento-card-eyebrow">SCALABILITÀ</span>
+                        <h3 class="dp-bento-card-title">Cloud & Architecture</h3>
+                        <p class="dp-bento-card-desc">Analizziamo la tua infrastruttura per renderla scalabile e pronta all'evoluzione tecnologica.</p>
+                    </div>
+                    <div class="dp-bento-card-footer">
+                        <a href="/servizi/cloud-architecture" class="dp-bento-link">Review Tecnica <span>→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card Large 2: API & Data Integration -->
+                <div class="dp-bento-card dp-bc-lg-2">
+                    <div class="dp-bento-card-header">
+                        <span class="dp-bento-card-eyebrow">DATA FLOWS</span>
+                        <h3 class="dp-bento-card-title">API & Data Integration</h3>
+                        <p class="dp-bento-card-desc">Sincronizzazione real-time e data flow affidabili tra tutti i software e servizi esterni.</p>
+                    </div>
+                    <div class="dp-bento-card-footer">
+                        <a href="/servizi/api-data-integration" class="dp-bento-link">Documentazione <span>→</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. LARGE TECHNOLOGY VISUAL -->
+    <section class="dp-section dp-large-visual-section">
+        <div class="dp-container">
+            <div class="dp-large-visual-card">
+
+                <!-- Abstract Green/Beige Fluid Wave Artwork representing Data Flow -->
+                <div class="dp-wave-canvas-wrapper">
+                    <svg class="dp-wave-svg" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0,288 C120,240 240,192 360,208 C480,224 600,304 720,314.7 C840,325 960,267 1080,218.7 C1200,171 1320,133 1380,114.7 L1440,96 L1440,600 L1380,600 C1320,600 1200,600 1080,600 C960,600 840,600 720,600 C600,600 480,600 360,600 C240,600 120,600 0,600 Z" fill="#faf7f2" fill-opacity="0.85"></path>
+                        <path d="M0,220 C180,310 320,120 540,180 C760,240 880,380 1100,280 C1320,180 1380,220 1440,240" stroke="var(--brand-green)" stroke-width="3" stroke-opacity="0.25" fill="none"></path>
+                        <path d="M0,150 C220,100 440,320 660,240 C880,160 1100,80 1320,180 C1380,210 1410,210 1440,210" stroke="#e6c594" stroke-width="2.5" stroke-opacity="0.4" fill="none"></path>
+                        <circle cx="540" cy="180" r="8" fill="var(--brand-green)" class="data-pulse"></circle>
+                        <circle cx="1100" cy="280" r="10" fill="#e6c594" class="data-pulse" style="animation-delay:-1.5s;"></circle>
+                    </svg>
+                </div>
+
+                <div class="dp-large-visual-overlay">
+                    <h3 class="dp-large-visual-title">Integrazione Invisibile, Flusso Continuo</h3>
+                    <p class="dp-large-visual-text">I tuoi dati viaggiano in sicurezza tra cloud, ERP locali e applicazioni cognitive di ultima generazione.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. WORKFLOW -->
+    <section class="dp-section dp-workflow-section">
+        <div class="dp-container">
+            <div style="text-align: center;">
+                <span class="dp-section-eyebrow">IL METODO CONSULENZIALE</span>
+                <h2 class="dp-section-title" style="margin-left: auto; margin-right: auto;">Dalla complessità alla soluzione.</h2>
+                <p class="dp-section-desc" style="margin-left: auto; margin-right: auto;">
+                    Non compriamo o sviluppiamo software a scatola chiusa. Entriamo nei processi aziendali per disegnare la soluzione ottimale.
+                </p>
+            </div>
+
+            <!-- Custom neomorphic step timeline -->
+            <div class="dp-workflow-timeline">
+
+                <!-- Step 01 -->
+                <div class="dp-workflow-step">
+                    <div class="dp-workflow-icon-box">💬</div>
+                    <span class="dp-workflow-num">Fase 01</span>
+                    <h3 class="dp-workflow-name">Ascolto</h3>
+                    <p class="dp-workflow-desc">Comprensione degli obiettivi aziendali e dei colli di bottiglia operativi.</p>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="dp-workflow-step">
+                    <div class="dp-workflow-icon-box">🔍</div>
+                    <span class="dp-workflow-num">Fase 02</span>
+                    <h3 class="dp-workflow-name">Assessment</h3>
+                    <p class="dp-workflow-desc">Analisi approfondita dell'infrastruttura, dei sistemi e dei dati esistenti.</p>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="dp-workflow-step">
+                    <div class="dp-workflow-icon-box">📐</div>
+                    <span class="dp-workflow-num">Fase 03</span>
+                    <h3 class="dp-workflow-name">Architettura</h3>
+                    <p class="dp-workflow-desc">Disegno formale dei data-flow e delle integrazioni di sistema necessarie.</p>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="dp-workflow-step">
+                    <div class="dp-workflow-icon-box">⚙️</div>
+                    <span class="dp-workflow-num">Fase 04</span>
+                    <h3 class="dp-workflow-name">Implementazione</h3>
+                    <p class="dp-workflow-desc">Integrazione dei sistemi e sviluppo degli eventuali componenti custom.</p>
+                </div>
+
+                <!-- Step 05 -->
+                <div class="dp-workflow-step">
+                    <div class="dp-workflow-icon-box">📈</div>
+                    <span class="dp-workflow-num">Fase 05</span>
+                    <h3 class="dp-workflow-name">Evoluzione</h3>
+                    <p class="dp-workflow-desc">Monitoraggio continuo, supporto proattivo e ottimizzazione delle performance.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CASE STUDY -->
+    <section class="dp-section" style="background-color: var(--bg-white);">
+        <div class="dp-container">
+            <span class="dp-section-eyebrow">STORIE DI SUCCESSO REALI</span>
+            <h2 class="dp-section-title">Esperienza applicata sul campo.</h2>
+            <p class="dp-section-desc">
+                Scopri come abbiamo risolto colli di bottiglia e sincronizzato ecosistemi complessi per i nostri partner B2B.
+            </p>
+
+            <div class="dp-case-card">
+
+                <!-- Left Visual Mockup Panel -->
+                <div class="dp-case-visual">
+                    <div class="dp-case-mockup">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid var(--border-light); padding-bottom:12px; margin-bottom:16px;">
+                            <div style="font-weight:800; font-size:0.9rem; color:var(--brand-green-dark)">GEORDIE PORTAL</div>
+                            <span style="font-size:0.8rem; background-color:var(--brand-green-light); color:var(--brand-green); padding:4px 8px; border-radius:12px; font-weight:700">ACTIVE</span>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:12px;">
+                            <div style="height:8px; background-color:var(--bg-cream); border-radius:4px; width:70%"></div>
+                            <div style="height:8px; background-color:var(--bg-cream); border-radius:4px; width:90%"></div>
+                            <div style="height:8px; background-color:var(--bg-cream); border-radius:4px; width:40%"></div>
+                        </div>
+                        <div style="margin-top:24px; padding:12px; background-color:var(--bg-warm-ivory); border-radius:var(--radius-sm); border:1px solid var(--border-warm)">
+                            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px">CONNESSO A:</div>
+                            <div style="font-weight:700; font-size:0.8rem; color:var(--brand-green)">ERP + SHOPIFY + AMAZON + EBAY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Copy Panel -->
+                <div class="dp-case-content">
+                    <span class="dp-case-eyebrow">DIGITAL COMMERCE INTEGRATION</span>
+                    <h3 class="dp-case-title">Geordie: Unificazione Flussi B2B/B2C</h3>
+                    <p class="dp-case-desc">
+                        Sincronizzazione in tempo reale tra la produzione aziendale, l'ERP interno, lo store Shopify, i cataloghi Amazon ed eBay. Eliminati i colli di bottiglia nella gestione degli ordini e delle spedizioni.
+                    </p>
+                    <a href="/case-study/geordie" class="dp-case-cta" aria-label="Leggi il case study Geordie">→</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA -->
+    <section class="dp-section" style="background-color: var(--bg-cream);">
+        <div class="dp-container">
+            <div class="dp-cta-card">
+                <span class="dp-cta-eyebrow">CONTATTACI PER UNA CONSULENZA</span>
+                <h2 class="dp-cta-title">Partiamo dal problema.</h2>
+                <p class="dp-cta-desc">
+                    Non devi già sapere quale tecnologia o architettura ti serve. Raccontaci l'inefficienza che vuoi eliminare oggi stesso.
+                </p>
+                <a href="/contatti" class="dp-btn dp-cta-btn">Parliamo della tua esigenza</a>
+            </div>
+        </div>
+    </section>
+
+</main>
