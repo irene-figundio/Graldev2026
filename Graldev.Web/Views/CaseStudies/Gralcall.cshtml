@@ -2,76 +2,237 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+@section Style {
+    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+}
+
+<section class="consulting-hero metal-v3-section" data-metal-v3="case-gralcall-hero">
+    <div class="hero-metal-pattern-wrap" aria-hidden="true">
+        <svg class="hero-metal-pattern-svg"
+             viewBox="0 0 1600 1000"
+             preserveAspectRatio="xMidYMid slice"
+             focusable="false"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="gralcallGoldBase"
+                                x1="0"
+                                y1="0"
+                                x2="1600"
+                                y2="1000"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8f651c" />
+                    <stop offset="18%" stop-color="#d4a93d" />
+                    <stop offset="34%" stop-color="#fff0a8" />
+                    <stop offset="46%" stop-color="#b77d16" />
+                    <stop offset="62%" stop-color="#f5d56d" />
+                    <stop offset="79%" stop-color="#9e6b16" />
+                    <stop offset="100%" stop-color="#e1b84d" />
+                </linearGradient>
+
+                <linearGradient id="gralcallMetalHighlight"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                    <stop offset="0%" stop-color="#c68c19" />
+                    <stop offset="28%" stop-color="#ffe793" />
+                    <stop offset="46%" stop-color="#ffffff" />
+                    <stop offset="58%" stop-color="#fff0ad" />
+                    <stop offset="78%" stop-color="#d8a42d" />
+                    <stop offset="100%" stop-color="#a26a12" />
+                </linearGradient>
+
+                <radialGradient id="gralcallShineMaskGradient">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
+                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+
+                <mask id="gralcallShineMask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="1600"
+                      height="1000">
+                    <rect width="1600" height="1000" fill="#000000" />
+                    <circle class="hero-metal-shine-circle"
+                            cx="800"
+                            cy="350"
+                            r="280"
+                            fill="url(#gralcallShineMaskGradient)" />
+                </mask>
+
+                <filter id="gralcallEmboss"
+                        x="-20%"
+                        y="-20%"
+                        width="140%"
+                        height="140%">
+                    <feDropShadow dx="0"
+                                  dy="1"
+                                  stdDeviation=".7"
+                                  flood-color="#ffffff"
+                                  flood-opacity=".72" />
+                    <feDropShadow dx="0"
+                                  dy="2"
+                                  stdDeviation="1.6"
+                                  flood-color="#7c5517"
+                                  flood-opacity=".14" />
+                </filter>
+
+                <symbol id="gralcallMetalMotif" viewBox="0 0 520 520">
+                    <path d="
+                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
+                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
+                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
+                    M260 0 L260 92
+                    M0 155 L128 232
+                    M520 155 L392 232
+                    M0 390 L128 313
+                    M520 390 L392 313
+                    M260 412 L260 520
+                    " />
+                </symbol>
+            </defs>
+
+            <g class="hero-metal-pattern-soft">
+                <use href="#gralcallMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-base"
+               style="stroke:url(#gralcallGoldBase);filter:url(#gralcallEmboss);">
+                <use href="#gralcallMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-shine"
+               style="stroke:url(#gralcallMetalHighlight);mask:url(#gralcallShineMask);">
+                <use href="#gralcallMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#gralcallMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+        </svg>
+    </div>
+
     <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
+            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
+                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li><a href="@(isEn ? "/en/case-studies" : "/case-study")" style="color: var(--brand-green); text-decoration: none;">Case Study</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li style="color: var(--text-soft);" aria-current="page">Gralcall</li>
+            </ol>
+        </nav>
+
         <span class="section-eyebrow">CASE STUDY: AR & INTERACTIVE TECH</span>
         <h1 class="section-title">Gralcall AR: Spatial Web Augmented Reality</h1>
         <p class="section-subtitle">
             @(isEn ? "How Graldev merged spatial WebAR technologies with video narration to create marker-based tourism and museum guides." : "In che modo Graldev ha unito la tecnologia WebAR ad itinerari video interattivi per valorizzare musei e borghi storici.")
         </p>
+    </div>
+</section>
 
-        <div class="case-study-meta-grid">
-            <div>
-                <div class="case-meta-label">Client & Partner</div>
-                <div class="case-meta-value">Associazione Manthano ETS</div>
+<!-- Project Meta Cards -->
+<section class="premium-pale-green" style="padding: 3rem 0; border-bottom: 1px solid var(--border);">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Client & Partner</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Associazione Manthano ETS</div>
             </div>
-            <div>
-                <div class="case-meta-label">Sectors / Settori</div>
-                <div class="case-meta-value">Tourism, Education, Cultural Heritage</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Sectors / Settori</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Tourism, Education, Cultural Heritage</div>
             </div>
-            <div>
-                <div class="case-meta-label">Key Integrations / Sistemi</div>
-                <div class="case-meta-value">WebAR engines, HTML5 video frameworks, Mobile Web</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Key Integrations / Sistemi</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">WebAR & HTML5 video frameworks</div>
             </div>
-            <div>
-                <div class="case-meta-label">Target / Canali</div>
-                <div class="case-meta-value">Mobile Web Browser, no-app WebAR</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Target / Canali</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Mobile Browsers (no-app WebAR)</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Visual Storytelling columns -->
-<section class="white-section" style="padding: 3rem 0;">
+<!-- THE CHALLENGE -->
+<section class="consulting-main-section bg-warm-white soft-transition transition-from-green">
     <div class="container split-layout">
         <div class="split-left">
-            <h3 class="case-block-title">THE CHALLENGE</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
+            <span class="section-eyebrow">THE CHALLENGE</span>
+            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "The Zero-App Installation Friction" : "L'ostacolo del download dell'applicazione")</h2>
+            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
                 @(isEn ? "Traditional tourism mobile applications fail because tourists refuse to download and install heavy, platform-specific apps (iOS/Android) from stores merely to read a plaque or watch a short video. The solution had to be immediate, web-based, and zero-install." : "I tradizionali progetti basati su app native falliscono perché i turisti si rifiutano di scaricare ed installare pesanti applicazioni dagli store semplicemente per inquadrare una targa o guardare un breve video descrittivo. La soluzione doveva essere immediata, accessibile tramite web e senza alcuna installazione.")
             </p>
         </div>
         <div class="split-right">
-            <!-- Systems Involved Glass Panel -->
-            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.25rem;">
-                <h4 style="color: var(--brand-green-dark); margin-bottom: 0.75rem; font-size: 1rem;">INTEGRATED AR TECHS</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;">
-                    <div class="card-neomorphic" style="padding: 0.5rem;">📱 Native Web Browsers</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🕶️ MindAR Spatial Markers</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🎨 Three.js / WebGL Renderers</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">📹 Interactive HTML5 video layers</div>
-                </div>
+            <div class="premium-card" data-motif="network" style="padding: 2rem; border-radius: 22px;">
+                <h4 style="color: var(--brand-green-dark); margin-bottom: 1rem; font-size: 1.15rem;">INTEGRATED AR TECHS</h4>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        📱 Native Web Browsers
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🕶️ MindAR Spatial Markers
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🎨 Three.js / WebGL Renderers
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        📹 Interactive HTML5 video layers
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="flex-direction: row-reverse;">
-        <div class="split-left">
-            <h3 class="case-block-title">THE SOLUTION</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
+<!-- THE SOLUTION -->
+<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
+    <div class="container split-layout" style="direction: rtl;">
+        <div class="split-left" style="direction: ltr; text-align: left;">
+            <span class="section-eyebrow">THE SOLUTION</span>
+            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "Spatial WebAR Integration" : "Integrazione WebAR Spaziale")</h2>
+            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
                 @(isEn ? "Graldev engineered 'Gralcall AR', a versatile web application that activates augmented reality directly inside standard mobile web browsers. Users scan a custom QR-code on physical plaques, pointing their mobile cameras at designated target images to overlay digital reconstructions or videos." : "Graldev ha sviluppato Gralcall AR, una web-app universale che abilita la realtà aumentata direttamente nel browser nativo del cellulare, inquadrando un QR-code e sovrapponendo video storici e modelli 3D in tempo reale.")
             </p>
         </div>
-        <div class="split-right">
-            <!-- Outcomes -->
-            <div class="premium-card">
-                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
-                    <li>✔️ 100% Zero-app installation required</li>
-                    <li>✔️ Attivazione istantanea tramite fotocamera</li>
-                    <li>✔️ Supporto a video nativi e modelli 3D</li>
-                    <li>✔️ Statistiche sulle scansioni collegate nel backoffice</li>
+        <div class="split-right" style="direction: ltr;">
+            <div class="premium-card" data-motif="roadmap" style="padding: 2rem; border-radius: 22px;">
+                <h3 style="color: var(--brand-green-dark); font-size: 1.25rem; margin-bottom: 1rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        100% Zero-app installation required
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Attivazione istantanea tramite fotocamera
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Supporto a video nativi e modelli 3D
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Statistiche sulle scansioni collegate nel backoffice
+                    </li>
                 </ul>
             </div>
         </div>
@@ -79,14 +240,20 @@
 </section>
 
 <!-- Call to Action -->
-<section style="text-align: center; background-color: var(--brand-green-soft);">
+<section class="consulting-main-section bg-warm-white" style="text-align: center;">
     <div class="container">
-        <h2>@(isEn ? "Bring immersive interactive spatial technology to your audience" : "Porta la Realtà Aumentata nei tuoi progetti")</h2>
-        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
+        <h2 style="color: var(--brand-green-dark); font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.04em; margin-bottom: 1rem;">
+            @(isEn ? "Bring immersive interactive spatial technology to your audience" : "Porta la Realtà Aumentata nei tuoi progetti")
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto; color: var(--text-soft); line-height: 1.6; font-size: 1rem;">
             @(isEn ? "Talk to our spatial technology consultants to design custom WebAR campaigns, educational tools or interactive showcases." : "Pianifica un incontro con i nostri specialisti di tecnologie immersive per ideare percorsi museali, cataloghi 3D o progetti educativi.")
         </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.85rem 2rem;">
             @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
         </a>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
+}

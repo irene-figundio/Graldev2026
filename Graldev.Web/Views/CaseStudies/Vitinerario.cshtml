@@ -2,76 +2,238 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+@section Style {
+    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+}
+
+<section class="consulting-hero metal-v3-section" data-metal-v3="case-vitinerario-hero">
+    <div class="hero-metal-pattern-wrap" aria-hidden="true">
+        <svg class="hero-metal-pattern-svg"
+             viewBox="0 0 1600 1000"
+             preserveAspectRatio="xMidYMid slice"
+             focusable="false"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="vitinerarioGoldBase"
+                                x1="0"
+                                y1="0"
+                                x2="1600"
+                                y2="1000"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8f651c" />
+                    <stop offset="18%" stop-color="#d4a93d" />
+                    <stop offset="34%" stop-color="#fff0a8" />
+                    <stop offset="46%" stop-color="#b77d16" />
+                    <stop offset="62%" stop-color="#f5d56d" />
+                    <stop offset="79%" stop-color="#9e6b16" />
+                    <stop offset="100%" stop-color="#e1b84d" />
+                </linearGradient>
+
+                <linearGradient id="vitinerarioMetalHighlight"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                    <stop offset="0%" stop-color="#c68c19" />
+                    <stop offset="28%" stop-color="#ffe793" />
+                    <stop offset="46%" stop-color="#ffffff" />
+                    <stop offset="58%" stop-color="#fff0ad" />
+                    <stop offset="78%" stop-color="#d8a42d" />
+                    <stop offset="100%" stop-color="#a26a12" />
+                </linearGradient>
+
+                <radialGradient id="vitinerarioShineMaskGradient">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
+                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+
+                <mask id="vitinerarioShineMask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="1600"
+                      height="1000">
+                    <rect width="1600" height="1000" fill="#000000" />
+                    <circle class="hero-metal-shine-circle"
+                            cx="800"
+                            cy="350"
+                            r="280"
+                            fill="url(#vitinerarioShineMaskGradient)" />
+                </mask>
+
+                <filter id="vitinerarioEmboss"
+                        x="-20%"
+                        y="-20%"
+                        width="140%"
+                        height="140%">
+                    <feDropShadow dx="0"
+                                  dy="1"
+                                  stdDeviation=".7"
+                                  flood-color="#ffffff"
+                                  flood-opacity=".72" />
+                    <feDropShadow dx="0"
+                                  dy="2"
+                                  stdDeviation="1.6"
+                                  flood-color="#7c5517"
+                                  flood-opacity=".14" />
+                </filter>
+
+                <symbol id="vitinerarioMetalMotif" viewBox="0 0 520 520">
+                    <path d="
+                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
+                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
+                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
+                    M260 0 L260 92
+                    M0 155 L128 232
+                    M520 155 L392 232
+                    M0 390 L128 313
+                    M520 390 L392 313
+                    M260 412 L260 520
+                    " />
+                </symbol>
+            </defs>
+
+            <g class="hero-metal-pattern-soft">
+                <use href="#vitinerarioMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-base"
+               style="stroke:url(#vitinerarioGoldBase);filter:url(#vitinerarioEmboss);">
+                <use href="#vitinerarioMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-shine"
+               style="stroke:url(#vitinerarioMetalHighlight);mask:url(#vitinerarioShineMask);">
+                <use href="#vitinerarioMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#vitinerarioMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+        </svg>
+    </div>
+
     <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
+            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
+                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li><a href="@(isEn ? "/en/case-studies" : "/case-study")" style="color: var(--brand-green); text-decoration: none;">Case Study</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li style="color: var(--text-soft);" aria-current="page">Vitinerario</li>
+            </ol>
+        </nav>
+
         <span class="section-eyebrow">CASE STUDY: AI INTEGRATION</span>
         <h1 class="section-title">Vitinerario: Virtual Sommelier AI Assistant</h1>
         <p class="section-subtitle">
             @(isEn ? "Integrating Large Language Models and Retrieval-Augmented Generation to build an interactive enological conversational advisor." : "Integrazione di Modelli Generativi di Linguaggio (LLM) e sistemi RAG per dare vita a un consulente enologico conversazionale interattivo.")
         </p>
+    </div>
+</section>
 
-        <div class="case-study-meta-grid">
-            <div>
-                <div class="case-meta-label">Client / Clienti</div>
-                <div class="case-meta-value">Vitinerario App</div>
+<!-- Project Meta Cards -->
+<section class="premium-pale-green" style="padding: 3rem 0; border-bottom: 1px solid var(--border);">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Client / Clienti</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Vitinerario App</div>
             </div>
-            <div>
-                <div class="case-meta-label">Sectors / Settori</div>
-                <div class="case-meta-value">Agri-Tech, Food & Beverage, Tourism</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Sectors / Settori</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Agri-Tech, Food & Tourism</div>
             </div>
-            <div>
-                <div class="case-meta-label">Key Integrations / Sistemi</div>
-                <div class="case-meta-value">Semantic Databases, Vector Databases, OpenAI</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Key Integrations / Sistemi</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Semantic & Vector DB, OpenAI</div>
             </div>
-            <div>
-                <div class="case-meta-label">Target / Canali</div>
-                <div class="case-meta-value">Mobile Web App, Conversational Assistant</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Target / Canali</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Mobile Web & Conversational AI</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Visual Storytelling split sections -->
-<section class="white-section" style="padding: 3rem 0;">
+<!-- THE CHALLENGE -->
+<section class="consulting-main-section bg-warm-white soft-transition transition-from-green">
     <div class="container split-layout">
         <div class="split-left">
-            <h3 class="case-block-title">THE CHALLENGE</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
+            <span class="section-eyebrow">THE CHALLENGE</span>
+            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "Beyond Rigid Filter Searches" : "Superare la rigidità delle ricerche a filtri")</h2>
+            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
                 @(isEn ? "Standard search engines or rigid filter forms on gastronomy platforms fail to answer complex, human conversational queries like 'Which white wine from Basilicata matches truffle-based dishes?'. Traditional chatbots felt robotic, while generic public AI models lacked verified enological databases and often hallucinated." : "I tradizionali sistemi a filtri rigidi faticano ad accogliere richieste complesse e sfumate come 'Quale vino bianco lucano posso abbinare a un risotto al tartufo?'. D'altro canto, i chatbot commerciali tradizionali erano troppo rigidi e i modelli AI generici pubblici mancavano di fonti verificate ed allucinavano.")
             </p>
         </div>
         <div class="split-right">
-            <!-- Systems Involved Glass panel -->
-            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.25rem;">
-                <h4 style="color: var(--brand-green-dark); margin-bottom: 0.75rem; font-size: 1rem;">DATA SOURCES USED</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;">
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🍷 Specialized Wine Databases</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">💾 Vector Embeddings Databases</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🧠 OpenAI GPT-4 Large Language Model</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">📡 API Connectors mapping local cellars</div>
-                </div>
+            <div class="premium-card" data-motif="ai" style="padding: 2rem; border-radius: 22px;">
+                <h4 style="color: var(--brand-green-dark); margin-bottom: 1rem; font-size: 1.15rem;">DATA SOURCES USED</h4>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🍷 Specialized Wine Databases
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        💾 Vector Embeddings Databases
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🧠 OpenAI GPT-4 Large Language Model
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        📡 API Connectors mapping local cellars
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="flex-direction: row-reverse;">
-        <div class="split-left">
-            <h3 class="case-block-title">THE SOLUTION</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
-                @(isEn ? "Graldev designed an enterprise RAG (Retrieval-Augmented Generation) pipeline. We segmented catalogs and winery cards, converting them into vector embeddings inside an isolated database. When a user asks a question, the system retrieves the verified parameters first, feeding them to the LLM as strict context, ensuring absolute accuracy." : "Graldev ha strutturato un'architettura RAG (Retrieval-Augmented Generation) sicura. Abbiamo suddiviso cataloghi enologici e schede cantine, memorizzandoli come vettori in un database cognitivo isolato. L'AI formula risposte precise ancorate esclusivamente a dati reali, suggerendo cantine ed etichette certificate.")
+<!-- THE SOLUTION -->
+<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
+    <div class="container split-layout" style="direction: rtl;">
+        <!-- direction rtl ensures split-right and split-left are visually reversed while keeping markup semantic -->
+        <div class="split-left" style="direction: ltr; text-align: left;">
+            <span class="section-eyebrow">THE SOLUTION</span>
+            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "An Enterprise RAG Architecture" : "Architettura RAG di livello Enterprise")</h2>
+            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
+                @(isEn ? "Graldev designed an enterprise RAG (Retrieval-Augmented Generation) pipeline. We segmented catalogs and winery cards, converting them into vector embeddings inside an isolated database. When a user asks a question, the system retrieves the verified parameters first, feeding them to the LLM as strict context, ensuring absolute accuracy." : "Graldev ha strutturato un'architettura RAG (Retrieval-Augmented Generation) sicura. Abbiamo suddiviso cataloghi enologici e schede cantine, memorizzandoli come vettori in un database cognitivo isolato. L'AI formula risposte precise ancorate esclusivamente a dati reali, suggerendo cantine ed etichette certificate con precisione chirurgica.")
             </p>
         </div>
-        <div class="split-right">
-            <!-- Outcomes -->
-            <div class="premium-card">
-                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
-                    <li>✔️ 100% Conversational Sommelier advice</li>
-                    <li>✔️ Zero AI hallucinations on Wine types</li>
-                    <li>✔️ Fully compliant with Graldev AI Governance</li>
-                    <li>✔️ Responsive conversational interface</li>
+        <div class="split-right" style="direction: ltr;">
+            <div class="premium-card" data-motif="roadmap" style="padding: 2rem; border-radius: 22px;">
+                <h3 style="color: var(--brand-green-dark); font-size: 1.25rem; margin-bottom: 1rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        100% Conversational Sommelier advice
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Zero AI hallucinations on Wine types
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Fully compliant with Graldev AI Governance
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Responsive conversational interface
+                    </li>
                 </ul>
             </div>
         </div>
@@ -79,14 +241,20 @@
 </section>
 
 <!-- Call to Action -->
-<section style="text-align: center; background-color: var(--brand-green-soft);">
+<section class="consulting-main-section bg-warm-white" style="text-align: center;">
     <div class="container">
-        <h2>@(isEn ? "Do you want to integrate AI securely into your company workflows?" : "Vuoi integrare l'Intelligenza Artificiale nei tuoi flussi in modo sicuro?")</h2>
-        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
+        <h2 style="color: var(--brand-green-dark); font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.04em; margin-bottom: 1rem;">
+            @(isEn ? "Do you want to integrate AI securely into your company workflows?" : "Vuoi integrare l'Intelligenza Artificiale nei tuoi flussi in modo sicuro?")
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto; color: var(--text-soft); line-height: 1.6; font-size: 1rem;">
             @(isEn ? "Schedule a dedicated AI feasibility review with Graldev cognitive technology partners." : "Fissa un incontro per mappare i tuoi dati ed individuare dove e come l'AI può portare reale efficienza operativa.")
         </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.85rem 2rem;">
             @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
         </a>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
+}

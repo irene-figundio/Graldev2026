@@ -2,8 +2,139 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+@section Style {
+    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+}
+
+<section class="consulting-hero metal-v3-section" data-metal-v3="industry-vertical-hero">
+    <div class="hero-metal-pattern-wrap" aria-hidden="true">
+        <svg class="hero-metal-pattern-svg"
+             viewBox="0 0 1600 1000"
+             preserveAspectRatio="xMidYMid slice"
+             focusable="false"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="industryGoldBase"
+                                x1="0"
+                                y1="0"
+                                x2="1600"
+                                y2="1000"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8f651c" />
+                    <stop offset="18%" stop-color="#d4a93d" />
+                    <stop offset="34%" stop-color="#fff0a8" />
+                    <stop offset="46%" stop-color="#b77d16" />
+                    <stop offset="62%" stop-color="#f5d56d" />
+                    <stop offset="79%" stop-color="#9e6b16" />
+                    <stop offset="100%" stop-color="#e1b84d" />
+                </linearGradient>
+
+                <linearGradient id="industryMetalHighlight"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                    <stop offset="0%" stop-color="#c68c19" />
+                    <stop offset="28%" stop-color="#ffe793" />
+                    <stop offset="46%" stop-color="#ffffff" />
+                    <stop offset="58%" stop-color="#fff0ad" />
+                    <stop offset="78%" stop-color="#d8a42d" />
+                    <stop offset="100%" stop-color="#a26a12" />
+                </linearGradient>
+
+                <radialGradient id="industryShineMaskGradient">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
+                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+
+                <mask id="industryShineMask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="1600"
+                      height="1000">
+                    <rect width="1600" height="1000" fill="#000000" />
+                    <circle class="hero-metal-shine-circle"
+                            cx="800"
+                            cy="350"
+                            r="280"
+                            fill="url(#industryShineMaskGradient)" />
+                </mask>
+
+                <filter id="industryEmboss"
+                        x="-20%"
+                        y="-20%"
+                        width="140%"
+                        height="140%">
+                    <feDropShadow dx="0"
+                                  dy="1"
+                                  stdDeviation=".7"
+                                  flood-color="#ffffff"
+                                  flood-opacity=".72" />
+                    <feDropShadow dx="0"
+                                  dy="2"
+                                  stdDeviation="1.6"
+                                  flood-color="#7c5517"
+                                  flood-opacity=".14" />
+                </filter>
+
+                <symbol id="industryMetalMotif" viewBox="0 0 520 520">
+                    <path d="
+                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
+                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
+                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
+                    M260 0 L260 92
+                    M0 155 L128 232
+                    M520 155 L392 232
+                    M0 390 L128 313
+                    M520 390 L392 313
+                    M260 412 L260 520
+                    " />
+                </symbol>
+            </defs>
+
+            <g class="hero-metal-pattern-soft">
+                <use href="#industryMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#industryMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-base"
+               style="stroke:url(#industryGoldBase);filter:url(#industryEmboss);">
+                <use href="#industryMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#industryMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-shine"
+               style="stroke:url(#industryMetalHighlight);mask:url(#industryShineMask);">
+                <use href="#industryMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#industryMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#industryMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+        </svg>
+    </div>
+
     <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
+            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
+                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li><a href="@(isEn ? "/en/sectors" : "/settori")" style="color: var(--brand-green); text-decoration: none;">@(isEn ? "Sectors" : "Settori")</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li style="color: var(--text-soft);" aria-current="page">@(isEn ? "Industry" : "Industria")</li>
+            </ol>
+        </nav>
+
         <span class="section-eyebrow">@(isEn ? "INDUSTRIAL VERTICAL" : "SETTORE INDUSTRIALE")</span>
         <h1 class="section-title">
             @(isEn ? "IT Consulting & System Integration for Industry" : "Consulenza IT e System Integration per l'Industria")
@@ -14,7 +145,7 @@
     </div>
 </section>
 
-<section>
+<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
     <div class="container split-layout">
         <div class="split-left">
             <h2>@(isEn ? "Connecting physical machinery with administrative software" : "Far dialogare macchine fisiche e software gestionali")</h2>
@@ -25,24 +156,36 @@
                 }
                 else
                 {
-                    <text>Nei contesti manifatturieri e di fabbrica, esiste spesso una grande distanza tra i macchinari fisici di produzione e i gestionali amministrativi centrali. Graldev opera come progettista d'integrazione per connettere sensori hardware, PLC ed acquisitori dati con i database centrali, consentendo la tracciabilità delle materie prime, il controllo avanzato dei magazzini e l'automazione dei reparti produttivi.</text>
+                    <text>Nei contesti manifatturieri e di fabbrica, esiste spesso una grande distanza tra i macchinari fisici di produzione e i gestionali amministrativi centrali. Graldev opera come partner d'integrazione e consulente tecnologico per connettere sensori hardware, PLC ed acquisitori dati con i database centrali, consentendo la tracciabilità delle materie prime, il controllo avanzato dei magazzini e l'automazione dei reparti produttivi.</text>
                 }
             </p>
-            <div class="case-quote-box" style="margin-top: 1.5rem;">
-                <h4>@(isEn ? "Real experience, objective advising" : "Esperienza reale, consulenza pragmatica")</h4>
-                <p style="font-size: 1rem; margin-top: 0.25rem;">
+            <div class="premium-card" style="margin-top: 2rem; padding: 1.5rem; border-radius: 18px;" data-motif="roadmap">
+                <h4 style="color: var(--brand-green-dark); margin: 0 0 0.5rem 0; font-size: 1.15rem;">@(isEn ? "Real experience, objective advising" : "Esperienza reale, consulenza pragmatica")</h4>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin: 0; color: var(--text-soft);">
                     @(isEn ? "We align machines, SCADA protocols, and ERP databases safely without interrupting your continuous production workflows." : "Allineiamo macchinari industriali, protocolli di comunicazione e database ERP in sicurezza, preservando l'operatività continua della fabbrica.")
                 </p>
             </div>
         </div>
         <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Systems Involved" : "Sistemi Coinvolti")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>⚙️ Production ERPs and Stock management software</li>
-                    <li>📡 Data collection and sensor hardware</li>
-                    <li>🤖 PLC controllers and SCADA protocols</li>
-                    <li>📊 Intranet Department Dashboards</li>
+            <div class="premium-card" data-motif="network" style="padding: 2rem; border-radius: 22px;">
+                <h3 style="color: var(--brand-green-dark); font-size: 1.3rem; margin-bottom: 1rem;">@(isEn ? "Systems Involved" : "Sistemi Coinvolti")</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.95rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        @(isEn ? "Production ERPs and Stock management software" : "ERP di produzione e software di gestione stock")
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        @(isEn ? "Data collection and sensor hardware" : "Sistemi di acquisizione dati e sensori")
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        @(isEn ? "PLC controllers and SCADA protocols" : "Controllori PLC e protocolli SCADA")
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        @(isEn ? "Intranet Department Dashboards" : "Dashboard Intranet per i reparti")
+                    </li>
                 </ul>
             </div>
         </div>
@@ -50,14 +193,20 @@
 </section>
 
 <!-- Call to Action -->
-<section style="text-align: center;">
+<section class="consulting-main-section bg-warm-white" style="text-align: center;">
     <div class="container">
-        <h2>@(isEn ? "Evolve your manufacturing data pipelines" : "Automatizza i tuoi flussi produttivi")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Schedule a dedicated technical review meeting with Graldev senior industrial integration architects." : "Fissa un incontro con i nostri architetti senior per pianificare una sincronizzazione sicura.")
+        <h2 style="color: var(--brand-green-dark); font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.04em; margin-bottom: 1rem;">
+            @(isEn ? "Evolve your manufacturing data pipelines" : "Automatizza i tuoi flussi produttivi")
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto; color: var(--text-soft); line-height: 1.6;">
+            @(isEn ? "Schedule a dedicated technical review meeting with Graldev senior industrial integration architects." : "Fissa un incontro con i nostri architetti senior per pianificare una sincronizzazione sicura dei tuoi flussi.")
         </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.85rem 2rem;">
             @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
         </a>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
+}

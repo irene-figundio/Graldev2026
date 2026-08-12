@@ -3,35 +3,170 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container" style="max-width: 800px;">
+@section Style {
+    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+}
+
+<section class="consulting-hero metal-v3-section" data-metal-v3="insight-detail-hero" style="min-height: auto; padding: 10rem 0 4rem 0;">
+    <div class="hero-metal-pattern-wrap" aria-hidden="true">
+        <svg class="hero-metal-pattern-svg"
+             viewBox="0 0 1600 1000"
+             preserveAspectRatio="xMidYMid slice"
+             focusable="false"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="insightGoldBase"
+                                x1="0"
+                                y1="0"
+                                x2="1600"
+                                y2="1000"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8f651c" />
+                    <stop offset="18%" stop-color="#d4a93d" />
+                    <stop offset="34%" stop-color="#fff0a8" />
+                    <stop offset="46%" stop-color="#b77d16" />
+                    <stop offset="62%" stop-color="#f5d56d" />
+                    <stop offset="79%" stop-color="#9e6b16" />
+                    <stop offset="100%" stop-color="#e1b84d" />
+                </linearGradient>
+
+                <linearGradient id="insightMetalHighlight"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                    <stop offset="0%" stop-color="#c68c19" />
+                    <stop offset="28%" stop-color="#ffe793" />
+                    <stop offset="46%" stop-color="#ffffff" />
+                    <stop offset="58%" stop-color="#fff0ad" />
+                    <stop offset="78%" stop-color="#d8a42d" />
+                    <stop offset="100%" stop-color="#a26a12" />
+                </linearGradient>
+
+                <radialGradient id="insightShineMaskGradient">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
+                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+
+                <mask id="insightShineMask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="1600"
+                      height="1000">
+                    <rect width="1600" height="1000" fill="#000000" />
+                    <circle class="hero-metal-shine-circle"
+                            cx="800"
+                            cy="350"
+                            r="280"
+                            fill="url(#insightShineMaskGradient)" />
+                </mask>
+
+                <filter id="insightEmboss"
+                        x="-20%"
+                        y="-20%"
+                        width="140%"
+                        height="140%">
+                    <feDropShadow dx="0"
+                                  dy="1"
+                                  stdDeviation=".7"
+                                  flood-color="#ffffff"
+                                  flood-opacity=".72" />
+                    <feDropShadow dx="0"
+                                  dy="2"
+                                  stdDeviation="1.6"
+                                  flood-color="#7c5517"
+                                  flood-opacity=".14" />
+                </filter>
+
+                <symbol id="insightMetalMotif" viewBox="0 0 520 520">
+                    <path d="
+                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
+                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
+                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
+                    M260 0 L260 92
+                    M0 155 L128 232
+                    M520 155 L392 232
+                    M0 390 L128 313
+                    M520 390 L392 313
+                    M260 412 L260 520
+                    " />
+                </symbol>
+            </defs>
+
+            <g class="hero-metal-pattern-soft">
+                <use href="#insightMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#insightMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-base"
+               style="stroke:url(#insightGoldBase);filter:url(#insightEmboss);">
+                <use href="#insightMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#insightMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-shine"
+               style="stroke:url(#insightMetalHighlight);mask:url(#insightShineMask);">
+                <use href="#insightMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#insightMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#insightMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="container" style="max-width: 840px;">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
+            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
+                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li><a href="@(isEn ? "/en/insights" : "/insights")" style="color: var(--brand-green); text-decoration: none;">Insights</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li style="color: var(--text-soft); word-break: break-all;" aria-current="page">@Model.Title</li>
+            </ol>
+        </nav>
+
         <span class="section-eyebrow">@Model.Category · @Model.PublishedAt</span>
-        <h1 class="section-title" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.25; margin-bottom: 1rem;">@Model.Title</h1>
-        <p style="font-size: 1.15rem; color: var(--text-secondary); font-style: italic;">
+        <h1 class="section-title" style="font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.15; margin-bottom: 1.5rem; color: var(--brand-green-dark);">@Model.Title</h1>
+        <p style="font-size: 1.2rem; color: var(--text-soft); font-style: italic; line-height: 1.6; margin-bottom: 2rem;">
             @Model.Excerpt
         </p>
-        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; display: flex; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+        <div style="font-size: 0.9rem; color: var(--text-soft); display: flex; gap: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.2rem;">
             <span>✍️ @Model.Author</span>
             <span>📅 @Model.PublishedAt</span>
         </div>
     </div>
 </section>
 
-<section>
-    <div class="container" style="max-width: 800px;">
+<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
+    <div class="container" style="max-width: 840px;">
         <!-- Inject Raw Content safely -->
-        <article style="font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary); display: flex; flex-direction: column; gap: 1.5rem;">
+        <article class="premium-frosted" style="padding: 2.5rem; border-radius: 24px; font-size: 1.12rem; line-height: 1.85; color: var(--text-soft); display: flex; flex-direction: column; gap: 1.5rem; box-shadow: var(--shadow-md);">
             @Html.Raw(Model.Content)
         </article>
 
         <!-- Dynamic Back link -->
-        <div style="margin-top: 3rem; border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <a href="@(isEn ? "/en/insights" : "/insights")" class="btn btn-secondary">
+        <div style="margin-top: 3.5rem; border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.25rem;">
+            <a href="@(isEn ? "/en/insights" : "/insights")" class="btn btn-secondary" style="padding: 0.8rem 1.6rem;">
                 ← @(isEn ? "Back to all Insights" : "Torna a tutti gli Insights")
             </a>
-            <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
+            <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.8rem 1.6rem;">
                 @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
             </a>
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
+}

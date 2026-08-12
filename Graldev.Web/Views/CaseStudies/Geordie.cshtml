@@ -2,76 +2,237 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
+@section Style {
+    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+}
+
+<section class="consulting-hero metal-v3-section" data-metal-v3="case-geordie-hero">
+    <div class="hero-metal-pattern-wrap" aria-hidden="true">
+        <svg class="hero-metal-pattern-svg"
+             viewBox="0 0 1600 1000"
+             preserveAspectRatio="xMidYMid slice"
+             focusable="false"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="geordieGoldBase"
+                                x1="0"
+                                y1="0"
+                                x2="1600"
+                                y2="1000"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8f651c" />
+                    <stop offset="18%" stop-color="#d4a93d" />
+                    <stop offset="34%" stop-color="#fff0a8" />
+                    <stop offset="46%" stop-color="#b77d16" />
+                    <stop offset="62%" stop-color="#f5d56d" />
+                    <stop offset="79%" stop-color="#9e6b16" />
+                    <stop offset="100%" stop-color="#e1b84d" />
+                </linearGradient>
+
+                <linearGradient id="geordieMetalHighlight"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                    <stop offset="0%" stop-color="#c68c19" />
+                    <stop offset="28%" stop-color="#ffe793" />
+                    <stop offset="46%" stop-color="#ffffff" />
+                    <stop offset="58%" stop-color="#fff0ad" />
+                    <stop offset="78%" stop-color="#d8a42d" />
+                    <stop offset="100%" stop-color="#a26a12" />
+                </linearGradient>
+
+                <radialGradient id="geordieShineMaskGradient">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
+                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+
+                <mask id="geordieShineMask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="1600"
+                      height="1000">
+                    <rect width="1600" height="1000" fill="#000000" />
+                    <circle class="hero-metal-shine-circle"
+                            cx="800"
+                            cy="350"
+                            r="280"
+                            fill="url(#geordieShineMaskGradient)" />
+                </mask>
+
+                <filter id="geordieEmboss"
+                        x="-20%"
+                        y="-20%"
+                        width="140%"
+                        height="140%">
+                    <feDropShadow dx="0"
+                                  dy="1"
+                                  stdDeviation=".7"
+                                  flood-color="#ffffff"
+                                  flood-opacity=".72" />
+                    <feDropShadow dx="0"
+                                  dy="2"
+                                  stdDeviation="1.6"
+                                  flood-color="#7c5517"
+                                  flood-opacity=".14" />
+                </filter>
+
+                <symbol id="geordieMetalMotif" viewBox="0 0 520 520">
+                    <path d="
+                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
+                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
+                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
+                    M260 0 L260 92
+                    M0 155 L128 232
+                    M520 155 L392 232
+                    M0 390 L128 313
+                    M520 390 L392 313
+                    M260 412 L260 520
+                    " />
+                </symbol>
+            </defs>
+
+            <g class="hero-metal-pattern-soft">
+                <use href="#geordieMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-base"
+               style="stroke:url(#geordieGoldBase);filter:url(#geordieEmboss);">
+                <use href="#geordieMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-shine"
+               style="stroke:url(#geordieMetalHighlight);mask:url(#geordieShineMask);">
+                <use href="#geordieMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#geordieMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+        </svg>
+    </div>
+
     <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
+            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
+                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li><a href="@(isEn ? "/en/case-studies" : "/case-study")" style="color: var(--brand-green); text-decoration: none;">Case Study</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li style="color: var(--text-soft);" aria-current="page">Geordie</li>
+            </ol>
+        </nav>
+
         <span class="section-eyebrow">CASE STUDY: DIGITAL COMMERCE</span>
         <h1 class="section-title">Geordie: Omnichannel ERP & Multistore Integration</h1>
         <p class="section-subtitle">
             @(isEn ? "How Graldev engineered an automated middleware to synchronize inventory, prices, and massive sales flows across global eCommerce and marketplaces." : "In che modo Graldev ha ingegnerizzato un middleware automatico per sincronizzare magazzini, listini e ordini massivi tra ERP e canali di vendita digitali.")
         </p>
+    </div>
+</section>
 
-        <div class="case-study-meta-grid">
-            <div>
-                <div class="case-meta-label">Client / Clienti</div>
-                <div class="case-meta-value">Soncar S.r.l. & Dorenah</div>
+<!-- Project Meta Cards -->
+<section class="premium-pale-green" style="padding: 3rem 0; border-bottom: 1px solid var(--border);">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Client / Clienti</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Soncar S.r.l. & Dorenah</div>
             </div>
-            <div>
-                <div class="case-meta-label">Sectors / Settori</div>
-                <div class="case-meta-value">Retail, eCommerce & Automotive</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Sectors / Settori</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Retail, eCommerce & Automotive</div>
             </div>
-            <div>
-                <div class="case-meta-label">Key Integrations / Sistemi</div>
-                <div class="case-meta-value">Shopify, Amazon, eBay, GLS, BRT APIs</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Key Integrations / Sistemi</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Shopify, Amazon, eBay, GLS/BRT</div>
             </div>
-            <div>
-                <div class="case-meta-label">Target / Canali</div>
-                <div class="case-meta-value">Desktop, Mobile Web Application</div>
+            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Target / Canali</div>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Desktop & Mobile Web App</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Visual Storytelling: Scannable Case study split into report layout -->
-<section class="white-section" style="padding: 3rem 0;">
+<!-- THE CHALLENGE -->
+<section class="consulting-main-section bg-warm-white soft-transition transition-from-green">
     <div class="container split-layout">
         <div class="split-left">
-            <h3 class="case-block-title">THE CHALLENGE</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
+            <span class="section-eyebrow">THE CHALLENGE</span>
+            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "The Omnichannel Inventory Disalignment" : "Disallineamento degli stock multicanale")</h2>
+            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
                 @(isEn ? "Managing high-volume online stores manually caused inventory mismatches, double sales of unavailable stock, delayed shipping label creation, and human errors. Orders were picked multiple times or missed due to lack of real-time synchronization between the main warehouse database and eBay, Amazon, and Shopify channels." : "La gestione manuale di svariati store online ad alto volume causava continui disallineamenti di stock, doppie vendite di merce esaurita, e pesanti rallentamenti nell'elaborazione delle spedizioni. Senza un allineamento in tempo reale, gli operatori commettevano errori di copia-incolla per compilare le prese in carico e i tracking dei corrieri.")
             </p>
         </div>
         <div class="split-right">
-            <!-- Systems Diagram -->
-            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.25rem;">
-                <h4 style="color: var(--brand-green-dark); margin-bottom: 0.75rem; font-size: 1rem;">SISTEMI COLLEGATI</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;">
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🏢 ERP Interno (Produzione)</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🛍️ Shopify Stores</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">📦 eBay & Amazon Accounts</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🚚 GLS / BRT Carrier APIs</div>
-                </div>
+            <div class="premium-card" data-motif="network" style="padding: 2rem; border-radius: 22px;">
+                <h4 style="color: var(--brand-green-dark); margin-bottom: 1rem; font-size: 1.15rem;">SISTEMI COLLEGATI</h4>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🏢 ERP Interno (Produzione)
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🛍️ Shopify Stores
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        📦 eBay & Amazon Accounts
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        🚚 GLS / BRT Carrier APIs
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="flex-direction: row-reverse;">
-        <div class="split-left">
-            <h3 class="case-block-title">THE SOLUTION</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
+<!-- THE SOLUTION -->
+<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
+    <div class="container split-layout" style="direction: rtl;">
+        <div class="split-left" style="direction: ltr; text-align: left;">
+            <span class="section-eyebrow">THE SOLUTION</span>
+            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "Centralized Automated Middleware" : "Middleware di automazione centralizzato")</h2>
+            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
                 @(isEn ? "Graldev mapped API limits and drafted a custom centralized middleware. Geordie automatically downloads orders, maps records with the SQL database, schedules automated shipments with GLS/BRT, prints physical carrier labels, and updates customers with tracking numbers." : "Graldev ha progettato un middleware denominato Geordie. Il sistema allinea stock e prezzi su tutti i canali, preleva automaticamente le anagrafiche ordine per la fatturazione locale, invia le chiamate alle API GLS/BRT per generare le etichette di spedizione e spedisce le email con il codice di tracciamento.")
             </p>
         </div>
-        <div class="split-right">
-            <!-- Outcome points -->
-            <div class="premium-card">
-                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
-                    <li>✔️ 24/365 Sincronizzazione automatica</li>
-                    <li>✔️ Zero errori di presa in carico ordini</li>
-                    <li>✔️ Emissione etichette istantanea in magazzino</li>
-                    <li>✔️ Controllo completo del flusso dei corrieri</li>
+        <div class="split-right" style="direction: ltr;">
+            <div class="premium-card" data-motif="roadmap" style="padding: 2rem; border-radius: 22px;">
+                <h3 style="color: var(--brand-green-dark); font-size: 1.25rem; margin-bottom: 1rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        24/365 Sincronizzazione automatica
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Zero errori di presa in carico ordini
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Emissione etichette istantanea in magazzino
+                    </li>
+                    <li style="position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
+                        Controllo completo del flusso dei corrieri
+                    </li>
                 </ul>
             </div>
         </div>
@@ -79,40 +240,46 @@
 </section>
 
 <!-- Reviews and Real Quotes -->
-<section class="white-section" style="padding: 3rem 0;">
+<section class="consulting-main-section bg-warm-white" style="border-top: 1px solid var(--border);">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="text-align: center; margin-bottom: 3rem;">
             <span class="section-eyebrow">FEEDBACK</span>
-            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "Client Testimonials" : "Cosa dicono i nostri clienti")</h2>
+            <h2 style="color: var(--brand-green-dark); font-size: clamp(2rem, 3.5vw, 2.75rem); letter-spacing: -0.04em;">@(isEn ? "Client Testimonials" : "Cosa dicono i nostri clienti")</h2>
         </div>
 
-        <div class="grid-2" style="gap: 1.5rem;">
-            <div class="case-quote-box">
-                <p style="font-size: 0.95rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <div class="premium-card" style="padding: 2rem; border-radius: 22px;">
+                <p style="font-size: 1rem; line-height: 1.7; color: var(--text-soft); font-style: italic; margin-bottom: 1.5rem;">
                     "Da quando Geordie gestisce i nostri stores online le vendite sono aumentate e si è accelerato tutto il sistema degli ordini. Raccoglie e gestisce tutti gli ordini automaticamente, eliminando l'invio multiplo di merci."
                 </p>
-                <div style="font-weight: 700; margin-top: 0.75rem; color: var(--brand-green-dark); font-size: 0.9rem;">— Soncar S.r.l.</div>
+                <div style="font-weight: 800; color: var(--brand-green-dark); font-size: 0.95rem;">— Soncar S.r.l.</div>
             </div>
 
-            <div class="case-quote-box">
-                <p style="font-size: 0.95rem;">
+            <div class="premium-card" style="padding: 2rem; border-radius: 22px;">
+                <p style="font-size: 1rem; line-height: 1.7; color: var(--text-soft); font-style: italic; margin-bottom: 1.5rem;">
                     "Geordie ha contribuito all'aumento del nostro fatturato. Un software molto semplice ed intuitivo con funzionalità cucite su misura per il nostro negozio online."
                 </p>
-                <div style="font-weight: 700; margin-top: 0.75rem; color: var(--brand-green-dark); font-size: 0.9rem;">— Dorenah</div>
+                <div style="font-weight: 800; color: var(--brand-green-dark); font-size: 0.95rem;">— Dorenah</div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Call to Action -->
-<section style="text-align: center; background-color: var(--brand-green-soft);">
+<section class="consulting-main-section premium-pale-green" style="text-align: center;">
     <div class="container">
-        <h2>@(isEn ? "Do you need to automate your commerce operations?" : "Devi ottimizzare i tuoi processi di vendita online?")</h2>
-        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
+        <h2 style="color: var(--brand-green-dark); font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.04em; margin-bottom: 1rem;">
+            @(isEn ? "Do you need to automate your commerce operations?" : "Devi ottimizzare i tuoi processi di vendita online?")
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto; color: var(--text-soft); line-height: 1.6; font-size: 1rem;">
             @(isEn ? "Schedule a dedicated technical review with Graldev senior integration consultants." : "Parla con i nostri consulenti per mappare i tuoi gestionali ed automatizzare i flussi ordini.")
         </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.85rem 2rem;">
             @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
         </a>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
+}

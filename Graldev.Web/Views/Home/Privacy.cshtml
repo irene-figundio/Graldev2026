@@ -1,6 +1,199 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@section Style {
+    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+}
+
+<section class="consulting-hero metal-v3-section" data-metal-v3="privacy-hero" style="min-height: auto; padding: 10rem 0 4rem 0;">
+    <div class="hero-metal-pattern-wrap" aria-hidden="true">
+        <svg class="hero-metal-pattern-svg"
+             viewBox="0 0 1600 1000"
+             preserveAspectRatio="xMidYMid slice"
+             focusable="false"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="privacyGoldBase"
+                                x1="0"
+                                y1="0"
+                                x2="1600"
+                                y2="1000"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8f651c" />
+                    <stop offset="18%" stop-color="#d4a93d" />
+                    <stop offset="34%" stop-color="#fff0a8" />
+                    <stop offset="46%" stop-color="#b77d16" />
+                    <stop offset="62%" stop-color="#f5d56d" />
+                    <stop offset="79%" stop-color="#9e6b16" />
+                    <stop offset="100%" stop-color="#e1b84d" />
+                </linearGradient>
+
+                <linearGradient id="privacyMetalHighlight"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1">
+                    <stop offset="0%" stop-color="#c68c19" />
+                    <stop offset="28%" stop-color="#ffe793" />
+                    <stop offset="46%" stop-color="#ffffff" />
+                    <stop offset="58%" stop-color="#fff0ad" />
+                    <stop offset="78%" stop-color="#d8a42d" />
+                    <stop offset="100%" stop-color="#a26a12" />
+                </linearGradient>
+
+                <radialGradient id="privacyShineMaskGradient">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
+                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+
+                <mask id="privacyShineMask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="1600"
+                      height="1000">
+                    <rect width="1600" height="1000" fill="#000000" />
+                    <circle class="hero-metal-shine-circle"
+                            cx="800"
+                            cy="350"
+                            r="280"
+                            fill="url(#privacyShineMaskGradient)" />
+                </mask>
+
+                <filter id="privacyEmboss"
+                        x="-20%"
+                        y="-20%"
+                        width="140%"
+                        height="140%">
+                    <feDropShadow dx="0"
+                                  dy="1"
+                                  stdDeviation=".7"
+                                  flood-color="#ffffff"
+                                  flood-opacity=".72" />
+                    <feDropShadow dx="0"
+                                  dy="2"
+                                  stdDeviation="1.6"
+                                  flood-color="#7c5517"
+                                  flood-opacity=".14" />
+                </filter>
+
+                <symbol id="privacyMetalMotif" viewBox="0 0 520 520">
+                    <path d="
+                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
+                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
+                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
+                    M260 0 L260 92
+                    M0 155 L128 232
+                    M520 155 L392 232
+                    M0 390 L128 313
+                    M520 390 L392 313
+                    M260 412 L260 520
+                    " />
+                </symbol>
+            </defs>
+
+            <g class="hero-metal-pattern-soft">
+                <use href="#privacyMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-base"
+               style="stroke:url(#privacyGoldBase);filter:url(#privacyEmboss);">
+                <use href="#privacyMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+
+            <g class="hero-metal-pattern-shine"
+               style="stroke:url(#privacyMetalHighlight);mask:url(#privacyShineMask);">
+                <use href="#privacyMetalMotif" x="-20" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="520" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="1060" y="-110" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="250" y="380" width="540" height="540" />
+                <use href="#privacyMetalMotif" x="790" y="380" width="540" height="540" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="container" style="max-width: 900px;">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
+            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
+                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
+                <li style="color: var(--text-soft);">&gt;</li>
+                <li style="color: var(--text-soft);" aria-current="page">@(isEn ? "Privacy & Cookies" : "Privacy & Cookie Policy")</li>
+            </ol>
+        </nav>
+
+        <span class="section-eyebrow">LEGAL INFORMATION</span>
+        <h1 class="section-title" style="color: var(--brand-green-dark); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.25; margin-bottom: 1rem;">
+            @(isEn ? "Privacy & Cookies Policy" : "Informativa sulla Privacy e sui Cookie")
+        </h1>
+        <p class="section-subtitle">
+            @(isEn ? "Information on how we collect, protect, and process user data on Graldev digital platforms." : "Informazioni su come raccogliamo, proteggiamo e trattiamo i dati degli utenti sulle piattaforme digitali Graldev.")
+        </p>
+    </div>
+</section>
+
+<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
+    <div class="container" style="max-width: 900px;">
+        <div class="premium-frosted" style="padding: 2.5rem; border-radius: 24px; color: var(--text-soft); line-height: 1.8;">
+            @if (isEn)
+            {
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">1. Data Controller</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    The data controller is **Graldev S.a.s. di Chiera Luigi**, VAT number **01986670766**, with registered office in Potenza, Italy. For any inquiry regarding data privacy, you can reach out via email.
+                </p>
+
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">2. Collected Information</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    We process information voluntarily submitted via our contact forms (such as corporate email, company name, representative name, and details of your technological operational bottleneck) or metrics gathered via functional cookies. We use this strictly to address your advisory needs.
+                </p>
+
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">3. Spam Prevention (Honeypot)</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    Our contact forms feature an automated invisible honeypot field. Submissions including content within this hidden field are automatically discarded to prevent bot-induced spam, preserving the operability of our communication systems.
+                </p>
+
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">4. Cookie Usage</h3>
+                <p>
+                    We leverage extremely lightweight, privacy-focused functional and analytical tools to measure performance metrics (ensuring rapid page load speeds, INP, and LCP targets are met). No behavioral profiles are created, and no third-party marketing trackers are loaded.
+                </p>
+            }
+            else
+            {
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">1. Titolare del Trattamento</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    Il Titolare del trattamento dei dati è **Graldev S.a.s. di Chiera Luigi**, Partita IVA **01986670766**, con sede a Potenza, Italia. Per qualsiasi richiesta relativa alla riservatezza dei dati, è possibile contattare l'azienda tramite i canali istituzionali.
+                </p>
+
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">2. Dati Raccolti</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    Trattiamo i dati inviati volontariamente dagli utenti tramite i form di contatto (come email aziendale, nome dell'azienda, referente e dettagli sul problema operativo aziendale) o metriche aggregate sull'utilizzo del sito. Questi dati vengono usati esclusivamente per fornire la consulenza richiesta.
+                </p>
+
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">3. Protezione Antispam (Honeypot)</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    I form di contatto utilizzano un sistema di protezione invisibile honeypot. Qualsiasi compilazione automatizzata rilevata in questo campo nascosto comporta lo scarto silente della richiesta al fine di tutelare l'integrità dei nostri sistemi informatici.
+                </p>
+
+                <h3 style="color: var(--brand-green-dark); font-size: 1.35rem; margin-bottom: 1rem;">4. Gestione dei Cookie</h3>
+                <p>
+                    Utilizziamo cookie tecnici ed analitici estremamente leggeri, volti unicamente a misurare le performance di caricamento del sito (per garantire il rispetto delle linee guida LCP, INP e CLS). Non tracciamo profili comportamentali degli utenti né carichiamo tracker pubblicitari di terze parti.
+                </p>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
+}
