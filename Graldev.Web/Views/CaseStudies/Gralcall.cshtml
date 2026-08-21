@@ -1,259 +1,1282 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
 @section Style {
-    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+    <style>
+        .gralcall-page {
+            --gralcall-copy: 760px;
+        }
+
+        /* =========================================================
+                   PROJECT OVERVIEW
+                   ========================================================= */
+
+        .gralcall-overview {
+            position: relative;
+            padding: 0 0 6.5rem;
+        }
+
+        .gralcall-overview-shell {
+            position: relative;
+            z-index: 5;
+            margin-top: -2rem;
+        }
+
+        .gralcall-overview-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1.15fr 1.35fr 1fr;
+            overflow: hidden;
+            border-radius: 27px;
+            border: 1px solid rgba(255,255,255,.8);
+            background: linear-gradient( 145deg, rgba(255,255,255,.69), rgba(247,252,249,.52) 45%, rgba(231,245,237,.43) );
+            -webkit-backdrop-filter: blur(22px) saturate(122%);
+            backdrop-filter: blur(22px) saturate(122%);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.09), -10px -10px 30px rgba(255,255,255,.74), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+        .gralcall-meta {
+            position: relative;
+            min-height: 148px;
+            padding: 1.8rem 1.65rem;
+        }
+
+            .gralcall-meta + .gralcall-meta {
+                border-left: 1px solid rgba(16,73,40,.065);
+            }
+
+            .gralcall-meta::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 1.65rem;
+                width: 34px;
+                height: 2px;
+                border-radius: 999px;
+                background: linear-gradient( 90deg, var(--champagne-gold), rgba(197,160,89,.15) );
+            }
+
+        .gralcall-meta-label {
+            display: block;
+            margin-bottom: .75rem;
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .095em;
+            text-transform: uppercase;
+        }
+
+        .gralcall-meta-value {
+            max-width: 255px;
+            color: var(--brand-green-dark);
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            font-weight: 780;
+            line-height: 1.4;
+            letter-spacing: -.025em;
+        }
+
+        /* =========================================================
+                   CONTENT SECTIONS
+                   ========================================================= */
+
+        .gralcall-content-section {
+            position: relative;
+            padding: 7.5rem 0;
+        }
+
+        .gralcall-section-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.04fr) minmax(390px, .96fr);
+            gap: clamp(3.5rem, 7vw, 7.5rem);
+            align-items: center;
+        }
+
+        .gralcall-section-grid--reverse {
+            grid-template-columns: minmax(390px, .96fr) minmax(0, 1.04fr);
+        }
+
+        .gralcall-copy {
+            max-width: var(--gralcall-copy);
+        }
+
+            .gralcall-copy h2 {
+                max-width: 700px;
+                margin: 0 0 1.4rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.02;
+                letter-spacing: -.045em;
+            }
+
+            .gralcall-copy > p {
+                max-width: 700px;
+                margin: 0;
+                color: var(--text-soft);
+                font-size: clamp(1rem, 1.4vw, 1.08rem);
+                line-height: 1.82;
+            }
+
+        .gralcall-highlight {
+            margin-top: 2rem;
+            padding: 1.25rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .98rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   TECHNOLOGY CARD
+                   ========================================================= */
+
+        .gralcall-tech-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .gralcall-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .7rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .gralcall-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .gralcall-tech-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .gralcall-tech-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .gralcall-tech-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 70px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .gralcall-tech-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .gralcall-tech-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .gralcall-tech-copy span {
+            display: block;
+            margin-top: .14rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   EXPERIENCE FLOW
+                   ========================================================= */
+
+        .gralcall-flow-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+            .gralcall-flow-card h3 {
+                margin: 0 0 .45rem;
+                color: var(--brand-green-dark);
+                font-size: 1.45rem;
+                letter-spacing: -.035em;
+            }
+
+        .gralcall-flow-intro {
+            margin: 0 0 1.6rem;
+            color: var(--text-muted);
+            font-size: .87rem;
+            line-height: 1.55;
+        }
+
+        .gralcall-flow {
+            display: grid;
+            gap: .65rem;
+        }
+
+        .gralcall-flow-step {
+            display: grid;
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: .85rem;
+            align-items: center;
+            min-height: 67px;
+            padding: .72rem .85rem;
+            border: 1px solid rgba(255,255,255,.50);
+            border-radius: 16px;
+            background: rgba(255,255,255,.27);
+        }
+
+        .gralcall-flow-index {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .7rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.42) );
+            border: 1px solid rgba(255,255,255,.78);
+        }
+
+        .gralcall-flow-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .gralcall-flow-copy span {
+            display: block;
+            margin-top: .17rem;
+            color: var(--text-muted);
+            font-size: .72rem;
+            line-height: 1.35;
+        }
+
+        /* =========================================================
+                   OUTCOMES
+                   ========================================================= */
+
+        .gralcall-results-section {
+            padding: 7rem 0;
+        }
+
+        .gralcall-results-heading {
+            max-width: 810px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+        }
+
+            .gralcall-results-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4vw, 3.4rem);
+                line-height: 1.04;
+                letter-spacing: -.045em;
+            }
+
+            .gralcall-results-heading p {
+                max-width: 650px;
+                margin: 0 auto;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .gralcall-results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .gralcall-result {
+            min-height: 230px;
+            padding: 1.6rem;
+            border-radius: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .gralcall-result-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .gralcall-result h3 {
+            margin: 2.2rem 0 .7rem;
+            color: var(--brand-green-dark);
+            font-size: 1.18rem;
+            line-height: 1.2;
+            letter-spacing: -.03em;
+        }
+
+        .gralcall-result p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .82rem;
+            line-height: 1.56;
+        }
+
+        /* =========================================================
+                   PARTNERSHIP
+                   ========================================================= */
+
+        .gralcall-partner-section {
+            padding: 0 0 7rem;
+        }
+
+        .gralcall-partner {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(330px, .8fr);
+            gap: clamp(2.5rem, 6vw, 5.5rem);
+            align-items: center;
+            padding: clamp(2.8rem, 5vw, 4.6rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .gralcall-partner::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+                pointer-events: none;
+            }
+
+        .gralcall-partner-copy,
+        .gralcall-partner-meta {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gralcall-partner h2 {
+            margin: 0 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .gralcall-partner-copy p {
+            max-width: 700px;
+            margin: 0;
+            color: var(--text-soft);
+            line-height: 1.76;
+        }
+
+        .gralcall-partner-meta {
+            display: grid;
+            gap: .7rem;
+        }
+
+        .gralcall-partner-meta-item {
+            padding: 1rem 1.1rem;
+            border-radius: 16px;
+            background: rgba(255,255,255,.27);
+            border: 1px solid rgba(255,255,255,.48);
+        }
+
+        .gralcall-partner-meta-label {
+            display: block;
+            margin-bottom: .25rem;
+            color: var(--champagne-gold);
+            font-size: .64rem;
+            font-weight: 820;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .gralcall-partner-meta-value {
+            color: var(--brand-green-dark);
+            font-size: .86rem;
+            font-weight: 720;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .gralcall-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .gralcall-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.9), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .gralcall-cta h2 {
+                max-width: 860px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .gralcall-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 1100px) {
+
+            .gralcall-overview-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .gralcall-meta:nth-child(3) {
+                border-left: 0;
+                border-top: 1px solid rgba(16,73,40,.065);
+            }
+
+            .gralcall-meta:nth-child(4) {
+                border-top: 1px solid rgba(16,73,40,.065);
+            }
+
+            .gralcall-results-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @@media (max-width: 900px) {
+
+            .gralcall-section-grid,
+            .gralcall-section-grid--reverse,
+            .gralcall-partner {
+                grid-template-columns: 1fr;
+            }
+
+            .gralcall-content-section {
+                padding: 5.5rem 0;
+            }
+
+            .gralcall-section-grid--reverse .gralcall-visual {
+                order: 2;
+            }
+
+            .gralcall-section-grid--reverse .gralcall-copy {
+                order: 1;
+            }
+        }
+
+        @@media (max-width: 620px) {
+
+            .gralcall-overview-shell {
+                margin-top: -1.2rem;
+            }
+
+            .gralcall-overview-grid {
+                grid-template-columns: 1fr;
+                border-radius: 23px;
+            }
+
+            .gralcall-meta {
+                min-height: 118px;
+                padding: 1.45rem;
+            }
+
+                .gralcall-meta + .gralcall-meta,
+                .gralcall-meta:nth-child(3),
+                .gralcall-meta:nth-child(4) {
+                    border-left: 0;
+                    border-top: 1px solid rgba(16,73,40,.065);
+                }
+
+            .gralcall-tech-card,
+            .gralcall-flow-card {
+                padding: 1.3rem;
+                border-radius: 22px;
+            }
+
+            .gralcall-results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gralcall-result {
+                min-height: 190px;
+            }
+
+            .gralcall-partner,
+            .gralcall-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
 }
 
-<section class="consulting-hero metal-v3-section" data-metal-v3="case-gralcall-hero">
-    <div class="hero-metal-pattern-wrap" aria-hidden="true">
-        <svg class="hero-metal-pattern-svg"
-             viewBox="0 0 1600 1000"
-             preserveAspectRatio="xMidYMid slice"
-             focusable="false"
-             xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="gralcallGoldBase"
-                                x1="0"
-                                y1="0"
-                                x2="1600"
-                                y2="1000"
-                                gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#8f651c" />
-                    <stop offset="18%" stop-color="#d4a93d" />
-                    <stop offset="34%" stop-color="#fff0a8" />
-                    <stop offset="46%" stop-color="#b77d16" />
-                    <stop offset="62%" stop-color="#f5d56d" />
-                    <stop offset="79%" stop-color="#9e6b16" />
-                    <stop offset="100%" stop-color="#e1b84d" />
-                </linearGradient>
+<div class="gralcall-page">
 
-                <linearGradient id="gralcallMetalHighlight"
-                                x1="0"
-                                y1="0"
-                                x2="1"
-                                y2="1">
-                    <stop offset="0%" stop-color="#c68c19" />
-                    <stop offset="28%" stop-color="#ffe793" />
-                    <stop offset="46%" stop-color="#ffffff" />
-                    <stop offset="58%" stop-color="#fff0ad" />
-                    <stop offset="78%" stop-color="#d8a42d" />
-                    <stop offset="100%" stop-color="#a26a12" />
-                </linearGradient>
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "case-gralcall",
 
-                <radialGradient id="gralcallShineMaskGradient">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
-                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
-                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
-                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
-                </radialGradient>
+            Size = "large",
 
-                <mask id="gralcallShineMask"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="1600"
-                      height="1000">
-                    <rect width="1600" height="1000" fill="#000000" />
-                    <circle class="hero-metal-shine-circle"
-                            cx="800"
-                            cy="350"
-                            r="280"
-                            fill="url(#gralcallShineMaskGradient)" />
-                </mask>
+            Eyebrow = isEn
+                ? "CASE STUDY · WEBAR & INTERACTIVE TECH"
+                : "CASE STUDY · WEBAR & TECNOLOGIE INTERATTIVE",
 
-                <filter id="gralcallEmboss"
-                        x="-20%"
-                        y="-20%"
-                        width="140%"
-                        height="140%">
-                    <feDropShadow dx="0"
-                                  dy="1"
-                                  stdDeviation=".7"
-                                  flood-color="#ffffff"
-                                  flood-opacity=".72" />
-                    <feDropShadow dx="0"
-                                  dy="2"
-                                  stdDeviation="1.6"
-                                  flood-color="#7c5517"
-                                  flood-opacity=".14" />
-                </filter>
+            Title = isEn
+                ? "Gralcall AR: cultural experiences directly inside the mobile browser."
+                : "Gralcall AR: esperienze culturali direttamente nel browser dello smartphone.",
 
-                <symbol id="gralcallMetalMotif" viewBox="0 0 520 520">
-                    <path d="
-                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
-                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
-                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
-                    M260 0 L260 92
-                    M0 155 L128 232
-                    M520 155 L392 232
-                    M0 390 L128 313
-                    M520 390 L392 313
-                    M260 412 L260 520
-                    " />
-                </symbol>
-            </defs>
+            Subtitle = isEn
+                ? "A WebAR experience designed to connect physical places with video, augmented content and interactive storytelling without requiring a dedicated native app."
+                : "Un'esperienza WebAR progettata per collegare luoghi fisici, video, contenuti aumentati e storytelling interattivo senza richiedere un'app nativa dedicata.",
 
-            <g class="hero-metal-pattern-soft">
-                <use href="#gralcallMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn ? "Case Studies" : "Case Study",
+                    Url = isEn
+                        ? "/en/case-studies"
+                        : "/case-study"
+                },
+                new()
+                {
+                    Label = "Gralcall AR",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
 
-            <g class="hero-metal-pattern-base"
-               style="stroke:url(#gralcallGoldBase);filter:url(#gralcallEmboss);">
-                <use href="#gralcallMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
 
-            <g class="hero-metal-pattern-shine"
-               style="stroke:url(#gralcallMetalHighlight);mask:url(#gralcallShineMask);">
-                <use href="#gralcallMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#gralcallMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-        </svg>
-    </div>
+    <!-- ==========================================================
+         PROJECT OVERVIEW
+         ========================================================== -->
+    <section class="premium-pale-green gralcall-overview">
 
-    <div class="container">
-        <!-- Breadcrumbs -->
-        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
-            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
-                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
-                <li style="color: var(--text-soft);">&gt;</li>
-                <li><a href="@(isEn ? "/en/case-studies" : "/case-study")" style="color: var(--brand-green); text-decoration: none;">Case Study</a></li>
-                <li style="color: var(--text-soft);">&gt;</li>
-                <li style="color: var(--text-soft);" aria-current="page">Gralcall</li>
-            </ol>
-        </nav>
+        <div class="container gralcall-overview-shell">
 
-        <span class="section-eyebrow">CASE STUDY: AR & INTERACTIVE TECH</span>
-        <h1 class="section-title">Gralcall AR: Spatial Web Augmented Reality</h1>
-        <p class="section-subtitle">
-            @(isEn ? "How Graldev merged spatial WebAR technologies with video narration to create marker-based tourism and museum guides." : "In che modo Graldev ha unito la tecnologia WebAR ad itinerari video interattivi per valorizzare musei e borghi storici.")
-        </p>
-    </div>
-</section>
+            <div class="gralcall-overview-grid">
 
-<!-- Project Meta Cards -->
-<section class="premium-pale-green" style="padding: 3rem 0; border-bottom: 1px solid var(--border);">
-    <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
-            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
-                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Client & Partner</div>
-                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Associazione Manthano ETS</div>
+                <article class="gralcall-meta">
+
+                    <span class="gralcall-meta-label">
+                        @(isEn
+                            ? "Partner"
+                            : "Partner")
+                    </span>
+
+                    <div class="gralcall-meta-value">
+                        Associazione Manthano ETS
+                    </div>
+
+                </article>
+
+
+                <article class="gralcall-meta">
+
+                    <span class="gralcall-meta-label">
+                        @(isEn
+                            ? "Sectors"
+                            : "Settori")
+                    </span>
+
+                    <div class="gralcall-meta-value">
+                        @(isEn
+                            ? "Tourism, Education & Cultural Heritage"
+                            : "Turismo, Educazione & Patrimonio Culturale")
+                    </div>
+
+                </article>
+
+
+                <article class="gralcall-meta">
+
+                    <span class="gralcall-meta-label">
+                        @(isEn
+                            ? "Technology"
+                            : "Tecnologia")
+                    </span>
+
+                    <div class="gralcall-meta-value">
+                        WebAR · MindAR · Three.js · HTML5
+                    </div>
+
+                </article>
+
+
+                <article class="gralcall-meta">
+
+                    <span class="gralcall-meta-label">
+                        @(isEn
+                            ? "Experience"
+                            : "Esperienza")
+                    </span>
+
+                    <div class="gralcall-meta-value">
+                        Mobile Browser · No Dedicated App
+                    </div>
+
+                </article>
+
             </div>
-            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
-                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Sectors / Settori</div>
-                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Tourism, Education, Cultural Heritage</div>
-            </div>
-            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
-                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Key Integrations / Sistemi</div>
-                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">WebAR & HTML5 video frameworks</div>
-            </div>
-            <div class="premium-card" style="padding: 1.5rem; border-radius: 16px;">
-                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--champagne-gold); font-weight: 700; margin-bottom: 0.5rem;">Target / Canali</div>
-                <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark);">Mobile Browsers (no-app WebAR)</div>
-            </div>
+
         </div>
-    </div>
-</section>
 
-<!-- THE CHALLENGE -->
-<section class="consulting-main-section bg-warm-white soft-transition transition-from-green">
-    <div class="container split-layout">
-        <div class="split-left">
-            <span class="section-eyebrow">THE CHALLENGE</span>
-            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "The Zero-App Installation Friction" : "L'ostacolo del download dell'applicazione")</h2>
-            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
-                @(isEn ? "Traditional tourism mobile applications fail because tourists refuse to download and install heavy, platform-specific apps (iOS/Android) from stores merely to read a plaque or watch a short video. The solution had to be immediate, web-based, and zero-install." : "I tradizionali progetti basati su app native falliscono perché i turisti si rifiutano di scaricare ed installare pesanti applicazioni dagli store semplicemente per inquadrare una targa o guardare un breve video descrittivo. La soluzione doveva essere immediata, accessibile tramite web e senza alcuna installazione.")
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="premium-card" data-motif="network" style="padding: 2rem; border-radius: 22px;">
-                <h4 style="color: var(--brand-green-dark); margin-bottom: 1rem; font-size: 1.15rem;">INTEGRATED AR TECHS</h4>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        📱 Native Web Browsers
-                    </li>
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        🕶️ MindAR Spatial Markers
-                    </li>
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        🎨 Three.js / WebGL Renderers
-                    </li>
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        📹 Interactive HTML5 video layers
-                    </li>
-                </ul>
+    </section>
+
+
+    <!-- ==========================================================
+         CHALLENGE
+         ========================================================== -->
+    <section class="gralcall-content-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container gralcall-section-grid">
+
+            <div class="gralcall-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "THE CHALLENGE"
+                        : "LA SFIDA")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Immersive content loses value if accessing it creates friction."
+                        : "Un contenuto immersivo perde valore se accedervi crea troppo attrito.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "For a visitor walking through a museum, village or cultural itinerary, asking them to search an app store, install a dedicated application and complete an onboarding process can interrupt the experience before it even begins."
+                        : "Per un visitatore che percorre un museo, un borgo o un itinerario culturale, chiedere di cercare un'app nello store, installarla e completare un onboarding può interrompere l'esperienza prima ancora che inizi.")
+                </p>
+
+                <div class="gralcall-highlight">
+                    @(isEn
+                        ? "The experience needed to start from something already familiar to every visitor: the smartphone camera and the browser."
+                        : "L'esperienza doveva partire da strumenti già familiari a ogni visitatore: la fotocamera dello smartphone e il browser.")
+                </div>
+
             </div>
-        </div>
-    </div>
-</section>
 
-<!-- THE SOLUTION -->
-<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
-    <div class="container split-layout" style="direction: rtl;">
-        <div class="split-left" style="direction: ltr; text-align: left;">
-            <span class="section-eyebrow">THE SOLUTION</span>
-            <h2 style="color: var(--brand-green-dark); margin-bottom: 1.5rem;">@(isEn ? "Spatial WebAR Integration" : "Integrazione WebAR Spaziale")</h2>
-            <p style="color: var(--text-soft); line-height: 1.75; font-size: 1.05rem;">
-                @(isEn ? "Graldev engineered 'Gralcall AR', a versatile web application that activates augmented reality directly inside standard mobile web browsers. Users scan a custom QR-code on physical plaques, pointing their mobile cameras at designated target images to overlay digital reconstructions or videos." : "Graldev ha sviluppato Gralcall AR, una web-app universale che abilita la realtà aumentata direttamente nel browser nativo del cellulare, inquadrando un QR-code e sovrapponendo video storici e modelli 3D in tempo reale.")
-            </p>
-        </div>
-        <div class="split-right" style="direction: ltr;">
-            <div class="premium-card" data-motif="roadmap" style="padding: 2rem; border-radius: 22px;">
-                <h3 style="color: var(--brand-green-dark); font-size: 1.25rem; margin-bottom: 1rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text-soft);">
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        100% Zero-app installation required
-                    </li>
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        Attivazione istantanea tramite fotocamera
-                    </li>
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        Supporto a video nativi e modelli 3D
-                    </li>
-                    <li style="position: relative; padding-left: 1.5rem;">
-                        <span style="position: absolute; left: 0; color: var(--brand-green);">✔</span>
-                        Statistiche sulle scansioni collegate nel backoffice
-                    </li>
-                </ul>
+
+            <div class="gralcall-visual">
+
+                <aside class="premium-card gralcall-tech-card"
+                       data-motif="network">
+
+                    <span class="gralcall-card-kicker">
+                        @(isEn
+                            ? "Technology stack"
+                            : "Stack tecnologico")
+                    </span>
+
+                    <h3>
+                        @(isEn
+                            ? "Interactive web technologies"
+                            : "Tecnologie web interattive")
+                    </h3>
+
+                    <ul class="gralcall-tech-list">
+
+                        <li class="gralcall-tech-item">
+
+                            <span class="gralcall-tech-code">
+                                WEB
+                            </span>
+
+                            <span class="gralcall-tech-copy">
+
+                                <strong>
+                                    Mobile Web Browser
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Access without a dedicated native application"
+                                        : "Accesso senza un'applicazione nativa dedicata")
+                                </span>
+
+                            </span>
+
+                        </li>
+
+
+                        <li class="gralcall-tech-item">
+
+                            <span class="gralcall-tech-code">
+                                AR
+                            </span>
+
+                            <span class="gralcall-tech-copy">
+
+                                <strong>
+                                    MindAR
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Image-target augmented reality"
+                                        : "Realtà aumentata basata su image target")
+                                </span>
+
+                            </span>
+
+                        </li>
+
+
+                        <li class="gralcall-tech-item">
+
+                            <span class="gralcall-tech-code">
+                                3D
+                            </span>
+
+                            <span class="gralcall-tech-copy">
+
+                                <strong>
+                                    Three.js / WebGL
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Interactive spatial rendering"
+                                        : "Rendering spaziale interattivo")
+                                </span>
+
+                            </span>
+
+                        </li>
+
+
+                        <li class="gralcall-tech-item">
+
+                            <span class="gralcall-tech-code">
+                                VID
+                            </span>
+
+                            <span class="gralcall-tech-copy">
+
+                                <strong>
+                                    HTML5 Video
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Multimedia storytelling layers"
+                                        : "Layer narrativi multimediali")
+                                </span>
+
+                            </span>
+
+                        </li>
+
+                    </ul>
+
+                </aside>
+
             </div>
+
         </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section class="consulting-main-section bg-warm-white" style="text-align: center;">
-    <div class="container">
-        <h2 style="color: var(--brand-green-dark); font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.04em; margin-bottom: 1rem;">
-            @(isEn ? "Bring immersive interactive spatial technology to your audience" : "Porta la Realtà Aumentata nei tuoi progetti")
-        </h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto; color: var(--text-soft); line-height: 1.6; font-size: 1rem;">
-            @(isEn ? "Talk to our spatial technology consultants to design custom WebAR campaigns, educational tools or interactive showcases." : "Pianifica un incontro con i nostri specialisti di tecnologie immersive per ideare percorsi museali, cataloghi 3D o progetti educativi.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.85rem 2rem;">
-            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
-        </a>
-    </div>
-</section>
+    </section>
 
-@section Scripts {
-    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
-}
+
+    <!-- ==========================================================
+         SOLUTION
+         ========================================================== -->
+    <section class="gralcall-content-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container gralcall-section-grid gralcall-section-grid--reverse">
+
+            <div class="gralcall-visual">
+
+                <article class="premium-card gralcall-flow-card"
+                         data-motif="roadmap">
+
+                    <span class="gralcall-card-kicker">
+                        @(isEn
+                            ? "Visitor journey"
+                            : "Esperienza del visitatore")
+                    </span>
+
+                    <h3>
+                        @(isEn
+                            ? "From physical place to digital layer"
+                            : "Dal luogo fisico al contenuto digitale")
+                    </h3>
+
+                    <p class="gralcall-flow-intro">
+                        @(isEn
+                            ? "The interaction is designed around a short, browser-based sequence."
+                            : "L'interazione è costruita attorno a una sequenza breve direttamente nel browser.")
+                    </p>
+
+
+                    <div class="gralcall-flow">
+
+                        <div class="gralcall-flow-step">
+
+                            <span class="gralcall-flow-index">
+                                01
+                            </span>
+
+                            <span class="gralcall-flow-copy">
+
+                                <strong>
+                                    @(isEn
+                                        ? "Open the experience"
+                                        : "Apri l'esperienza")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "A QR code or web entry point launches the WebAR page"
+                                        : "Un QR code o punto di accesso web apre la pagina WebAR")
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="gralcall-flow-step">
+
+                            <span class="gralcall-flow-index">
+                                02
+                            </span>
+
+                            <span class="gralcall-flow-copy">
+
+                                <strong>
+                                    @(isEn
+                                        ? "Enable the camera"
+                                        : "Abilita la fotocamera")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "The browser requests camera access for the AR interaction"
+                                        : "Il browser richiede l'accesso alla fotocamera per l'interazione AR")
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="gralcall-flow-step">
+
+                            <span class="gralcall-flow-index">
+                                03
+                            </span>
+
+                            <span class="gralcall-flow-copy">
+
+                                <strong>
+                                    @(isEn
+                                        ? "Recognize the target"
+                                        : "Riconosci il target")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "A designated physical image becomes the anchor for digital content"
+                                        : "Un'immagine fisica designata diventa l'ancora del contenuto digitale")
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="gralcall-flow-step">
+
+                            <span class="gralcall-flow-index">
+                                04
+                            </span>
+
+                            <span class="gralcall-flow-copy">
+
+                                <strong>
+                                    @(isEn
+                                        ? "Overlay the story"
+                                        : "Sovrapponi la narrazione")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Video or interactive content is connected to the real environment"
+                                        : "Video o contenuti interattivi vengono collegati all'ambiente reale")
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="gralcall-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "THE SOLUTION"
+                        : "LA SOLUZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "WebAR designed around the visitor, not the application."
+                        : "WebAR progettata attorno al visitatore, non all'applicazione.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Gralcall AR was designed as a browser-based augmented reality experience. Visitors can enter through a web link or QR code, authorize the camera and interact with designated image targets that connect physical locations with videos and digital content."
+                        : "Gralcall AR è stata progettata come esperienza di realtà aumentata direttamente nel browser. Il visitatore accede tramite link web o QR code, autorizza la fotocamera e interagisce con image target che collegano luoghi fisici, video e contenuti digitali.")
+                </p>
+
+                <div class="gralcall-highlight">
+                    @(isEn
+                        ? "The browser becomes the distribution channel: the cultural organization can create an interactive layer over a physical itinerary without requiring visitors to maintain another dedicated application."
+                        : "Il browser diventa il canale di distribuzione: l'organizzazione culturale può creare un layer interattivo sopra un itinerario fisico senza richiedere al visitatore di mantenere un'altra applicazione dedicata.")
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         OUTCOMES
+         ========================================================== -->
+    <section class="gralcall-results-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="gralcall-results-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "THE OUTCOME"
+                        : "IL RISULTATO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "A lighter entry point for interactive cultural experiences."
+                        : "Un accesso più leggero alle esperienze culturali interattive.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Gralcall brings augmented multimedia content into a mobile-web experience designed for tourism, education and cultural heritage scenarios."
+                        : "Gralcall porta contenuti multimediali aumentati all'interno di un'esperienza mobile-web pensata per turismo, educazione e patrimonio culturale.")
+                </p>
+
+            </div>
+
+
+            <div class="gralcall-results-grid">
+
+                <article class="premium-card gralcall-result">
+
+                    <span class="gralcall-result-number">
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            @(isEn
+                                ? "No dedicated app"
+                                : "Nessuna app dedicata")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The experience is distributed through the web instead of a dedicated store application."
+                                : "L'esperienza viene distribuita attraverso il web invece che tramite un'applicazione dedicata negli store.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card gralcall-result">
+
+                    <span class="gralcall-result-number">
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            @(isEn
+                                ? "Physical-to-digital interaction"
+                                : "Interazione fisico-digitale")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Image targets connect physical elements of an itinerary with contextual digital content."
+                                : "Gli image target collegano elementi fisici dell'itinerario a contenuti digitali contestuali.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card gralcall-result">
+
+                    <span class="gralcall-result-number">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            @(isEn
+                                ? "Multimedia storytelling"
+                                : "Storytelling multimediale")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Video and interactive web layers can enrich historical, educational and territorial narratives."
+                                : "Video e layer web interattivi possono arricchire narrazioni storiche, educative e territoriali.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card gralcall-result">
+
+                    <span class="gralcall-result-number">
+                        04
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            @(isEn
+                                ? "Web-based analytics"
+                                : "Analytics web")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Interaction and scan events can be connected to supporting backoffice analytics."
+                                : "Interazioni ed eventi di scansione possono essere collegati a statistiche gestite dal backoffice.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PARTNERSHIP
+         ========================================================== -->
+    <section class="gralcall-partner-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="gralcall-partner">
+
+                <div class="gralcall-partner-copy">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "CULTURE & TECHNOLOGY"
+                            : "CULTURA & TECNOLOGIA")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Technology supporting cultural and territorial storytelling."
+                            : "Tecnologia al servizio della narrazione culturale e territoriale.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "The project combines Graldev's interactive technology capabilities with the cultural and educational context provided by Associazione Manthano ETS, creating a bridge between digital experimentation and territorial heritage."
+                            : "Il progetto combina le competenze tecnologiche interattive di Graldev con il contesto culturale e didattico di Associazione Manthano ETS, creando un ponte tra sperimentazione digitale e valorizzazione del territorio.")
+                    </p>
+
+                </div>
+
+
+                <div class="gralcall-partner-meta">
+
+                    <div class="gralcall-partner-meta-item">
+
+                        <span class="gralcall-partner-meta-label">
+                            @(isEn
+                                ? "Partner"
+                                : "Partner")
+                        </span>
+
+                        <span class="gralcall-partner-meta-value">
+                            Associazione Manthano ETS
+                        </span>
+
+                    </div>
+
+
+                    <div class="gralcall-partner-meta-item">
+
+                        <span class="gralcall-partner-meta-label">
+                            @(isEn
+                                ? "Use cases"
+                                : "Applicazioni")
+                        </span>
+
+                        <span class="gralcall-partner-meta-value">
+                            @(isEn
+                                ? "Tourism · Museums · Education · Heritage"
+                                : "Turismo · Musei · Educazione · Patrimonio")
+                        </span>
+
+                    </div>
+
+
+                    <div class="gralcall-partner-meta-item">
+
+                        <span class="gralcall-partner-meta-label">
+                            Platform
+                        </span>
+
+                        <span class="gralcall-partner-meta-value">
+                            WebAR · Mobile Web
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="gralcall-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="gralcall-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "WEBAR · 3D · INTERACTIVE MEDIA"
+                        : "WEBAR · 3D · MEDIA INTERATTIVI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "What could your audience discover by pointing a camera at the physical world?"
+                        : "Cosa potrebbe scoprire il tuo pubblico semplicemente inquadrando il mondo reale?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's explore how WebAR, interactive video and 3D content can support cultural itineraries, education, product experiences or territorial storytelling."
+                        : "Valutiamo come WebAR, video interattivi e contenuti 3D possono supportare itinerari culturali, formazione, esperienze di prodotto o valorizzazione territoriale.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss an interactive project"
+                        : "Parliamo del tuo progetto")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

@@ -1,172 +1,419 @@
 @model Graldev.Web.Controllers.InsightArticle
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
 @section Style {
-    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+    <style>
+        .insight-detail-page {
+            --insight-width: 900px;
+        }
+
+            /* =========================================================
+                   HERO OVERRIDES
+                   ========================================================= */
+
+            .insight-detail-page .metal-hero-compact .section-title {
+                max-width: 900px;
+                font-size: clamp(2.6rem, 5vw, 4.5rem);
+                line-height: 1.03;
+            }
+
+            .insight-detail-page .metal-hero-compact .section-subtitle {
+                max-width: 780px;
+                font-size: clamp(1.05rem, 1.5vw, 1.18rem);
+                line-height: 1.7;
+            }
+
+        /* =========================================================
+                   ARTICLE META
+                   ========================================================= */
+
+        .insight-meta-section {
+            position: relative;
+            padding: 0;
+        }
+
+        .insight-meta-shell {
+            position: relative;
+            z-index: 5;
+            width: min(var(--insight-width), 100%);
+            margin-top: -2rem;
+        }
+
+        .insight-meta-card {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .insight-meta-item {
+            position: relative;
+            min-height: 105px;
+            padding: 1.35rem 1.4rem;
+        }
+
+            .insight-meta-item + .insight-meta-item {
+                border-left: 1px solid rgba(16,73,40,.065);
+            }
+
+        .insight-meta-label {
+            display: block;
+            margin-bottom: .4rem;
+            color: var(--champagne-gold);
+            font-size: .65rem;
+            font-weight: 820;
+            letter-spacing: .085em;
+            text-transform: uppercase;
+        }
+
+        .insight-meta-value {
+            color: var(--brand-green-dark);
+            font-size: .88rem;
+            font-weight: 720;
+            line-height: 1.45;
+        }
+
+        /* =========================================================
+                   ARTICLE BODY
+                   ========================================================= */
+
+        .insight-article-section {
+            position: relative;
+            padding: 5.5rem 0 7rem;
+        }
+
+        .insight-article-container {
+            width: min(var(--insight-width), 100%);
+        }
+
+        .insight-article {
+            position: relative;
+            padding: clamp(1.7rem, 4vw, 3.1rem);
+            border-radius: 30px;
+            color: var(--text-soft);
+            font-size: 1.03rem;
+            line-height: 1.85;
+        }
+
+            .insight-article > *:first-child {
+                margin-top: 0;
+            }
+
+            .insight-article > *:last-child {
+                margin-bottom: 0;
+            }
+
+            .insight-article h2,
+            .insight-article h3,
+            .insight-article h4 {
+                color: var(--brand-green-dark);
+                letter-spacing: -.035em;
+            }
+
+            .insight-article h2 {
+                margin: 2.5rem 0 1rem;
+                font-size: clamp(1.8rem, 3vw, 2.5rem);
+                line-height: 1.08;
+            }
+
+            .insight-article h3 {
+                margin: 2rem 0 .85rem;
+                font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+                line-height: 1.15;
+            }
+
+            .insight-article h4 {
+                margin: 1.7rem 0 .75rem;
+                font-size: 1.2rem;
+            }
+
+            .insight-article p {
+                margin: 0 0 1.25rem;
+            }
+
+            .insight-article ul,
+            .insight-article ol {
+                margin: 1rem 0 1.5rem;
+                padding-left: 1.35rem;
+            }
+
+            .insight-article li + li {
+                margin-top: .5rem;
+            }
+
+            .insight-article strong {
+                color: var(--brand-green-dark);
+                font-weight: 760;
+            }
+
+            .insight-article a {
+                color: var(--brand-green-dark);
+                font-weight: 700;
+                text-decoration-color: rgba(197,160,89,.75);
+                text-underline-offset: .16em;
+            }
+
+            .insight-article blockquote {
+                margin: 2rem 0;
+                padding: 1.25rem 1.4rem;
+                border-left: 2px solid var(--champagne-gold);
+                color: var(--brand-green-dark);
+                font-weight: 620;
+                line-height: 1.7;
+                background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+            }
+
+            .insight-article code {
+                padding: .16rem .34rem;
+                border-radius: 6px;
+                color: var(--brand-green-dark);
+                background: rgba(16,73,40,.055);
+                font-size: .9em;
+            }
+
+            .insight-article pre {
+                overflow-x: auto;
+                margin: 1.5rem 0;
+                padding: 1.2rem;
+                border-radius: 16px;
+                color: var(--brand-green-dark);
+                background: rgba(255,255,255,.48);
+                border: 1px solid rgba(16,73,40,.07);
+                line-height: 1.55;
+            }
+
+            .insight-article img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 2rem auto;
+                border-radius: 18px;
+                box-shadow: 0 14px 32px rgba(42,79,57,.08);
+            }
+
+            .insight-article table {
+                width: 100%;
+                margin: 1.7rem 0;
+                border-collapse: collapse;
+                font-size: .92rem;
+            }
+
+            .insight-article th,
+            .insight-article td {
+                padding: .8rem .9rem;
+                text-align: left;
+                border-bottom: 1px solid rgba(16,73,40,.08);
+            }
+
+            .insight-article th {
+                color: var(--brand-green-dark);
+                font-weight: 780;
+            }
+
+        /* =========================================================
+                   FOOTER ACTIONS
+                   ========================================================= */
+
+        .insight-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(16,73,40,.08);
+        }
+
+            .insight-actions .btn {
+                min-height: 49px;
+                padding: .82rem 1.5rem;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 760px) {
+            .insight-meta-shell {
+                margin-top: -1rem;
+            }
+
+            .insight-meta-card {
+                grid-template-columns: 1fr;
+                border-radius: 21px;
+            }
+
+            .insight-meta-item {
+                min-height: auto;
+                padding: 1.15rem 1.25rem;
+            }
+
+                .insight-meta-item + .insight-meta-item {
+                    border-left: 0;
+                    border-top: 1px solid rgba(16,73,40,.065);
+                }
+
+            .insight-article-section {
+                padding: 4rem 0 5.5rem;
+            }
+
+            .insight-article {
+                padding: 1.4rem;
+                border-radius: 23px;
+                font-size: .98rem;
+            }
+
+            .insight-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+                .insight-actions .btn {
+                    width: 100%;
+                    justify-content: center;
+                }
+        }
+    </style>
 }
 
-<section class="consulting-hero metal-v3-section" data-metal-v3="insight-detail-hero" style="min-height: auto; padding: 10rem 0 4rem 0;">
-    <div class="hero-metal-pattern-wrap" aria-hidden="true">
-        <svg class="hero-metal-pattern-svg"
-             viewBox="0 0 1600 1000"
-             preserveAspectRatio="xMidYMid slice"
-             focusable="false"
-             xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="insightGoldBase"
-                                x1="0"
-                                y1="0"
-                                x2="1600"
-                                y2="1000"
-                                gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#8f651c" />
-                    <stop offset="18%" stop-color="#d4a93d" />
-                    <stop offset="34%" stop-color="#fff0a8" />
-                    <stop offset="46%" stop-color="#b77d16" />
-                    <stop offset="62%" stop-color="#f5d56d" />
-                    <stop offset="79%" stop-color="#9e6b16" />
-                    <stop offset="100%" stop-color="#e1b84d" />
-                </linearGradient>
+<div class="insight-detail-page">
 
-                <linearGradient id="insightMetalHighlight"
-                                x1="0"
-                                y1="0"
-                                x2="1"
-                                y2="1">
-                    <stop offset="0%" stop-color="#c68c19" />
-                    <stop offset="28%" stop-color="#ffe793" />
-                    <stop offset="46%" stop-color="#ffffff" />
-                    <stop offset="58%" stop-color="#fff0ad" />
-                    <stop offset="78%" stop-color="#d8a42d" />
-                    <stop offset="100%" stop-color="#a26a12" />
-                </linearGradient>
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "insight-detail",
 
-                <radialGradient id="insightShineMaskGradient">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
-                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
-                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
-                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
-                </radialGradient>
+            Size = "compact",
 
-                <mask id="insightShineMask"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="1600"
-                      height="1000">
-                    <rect width="1600" height="1000" fill="#000000" />
-                    <circle class="hero-metal-shine-circle"
-                            cx="800"
-                            cy="350"
-                            r="280"
-                            fill="url(#insightShineMaskGradient)" />
-                </mask>
+            Eyebrow = $"{Model.Category} · {Model.PublishedAt}",
 
-                <filter id="insightEmboss"
-                        x="-20%"
-                        y="-20%"
-                        width="140%"
-                        height="140%">
-                    <feDropShadow dx="0"
-                                  dy="1"
-                                  stdDeviation=".7"
-                                  flood-color="#ffffff"
-                                  flood-opacity=".72" />
-                    <feDropShadow dx="0"
-                                  dy="2"
-                                  stdDeviation="1.6"
-                                  flood-color="#7c5517"
-                                  flood-opacity=".14" />
-                </filter>
+            Title = Model.Title,
 
-                <symbol id="insightMetalMotif" viewBox="0 0 520 520">
-                    <path d="
-                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
-                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
-                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
-                    M260 0 L260 92
-                    M0 155 L128 232
-                    M520 155 L392 232
-                    M0 390 L128 313
-                    M520 390 L392 313
-                    M260 412 L260 520
-                    " />
-                </symbol>
-            </defs>
+            Subtitle = Model.Excerpt,
 
-            <g class="hero-metal-pattern-soft">
-                <use href="#insightMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#insightMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = "Insights",
+                    Url = isEn ? "/en/insights" : "/insights"
+                },
+                new()
+                {
+                    Label = Model.Title,
+                    IsCurrent = true
+                }
+            }
+        }
+    )
 
-            <g class="hero-metal-pattern-base"
-               style="stroke:url(#insightGoldBase);filter:url(#insightEmboss);">
-                <use href="#insightMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#insightMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
 
-            <g class="hero-metal-pattern-shine"
-               style="stroke:url(#insightMetalHighlight);mask:url(#insightShineMask);">
-                <use href="#insightMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#insightMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#insightMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-        </svg>
-    </div>
+    <!-- ==========================================================
+         ARTICLE META
+         ========================================================== -->
+    <section class="insight-meta-section premium-pale-green">
 
-    <div class="container" style="max-width: 840px;">
-        <!-- Breadcrumbs -->
-        <nav aria-label="Breadcrumb" class="premium-breadcrumb" style="margin-bottom: 1.5rem;">
-            <ol style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; font-weight: 600;">
-                <li><a href="@(isEn ? "/en" : "/")" style="color: var(--brand-green); text-decoration: none;">Home</a></li>
-                <li style="color: var(--text-soft);">&gt;</li>
-                <li><a href="@(isEn ? "/en/insights" : "/insights")" style="color: var(--brand-green); text-decoration: none;">Insights</a></li>
-                <li style="color: var(--text-soft);">&gt;</li>
-                <li style="color: var(--text-soft); word-break: break-all;" aria-current="page">@Model.Title</li>
-            </ol>
-        </nav>
+        <div class="container insight-meta-shell">
 
-        <span class="section-eyebrow">@Model.Category · @Model.PublishedAt</span>
-        <h1 class="section-title" style="font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.15; margin-bottom: 1.5rem; color: var(--brand-green-dark);">@Model.Title</h1>
-        <p style="font-size: 1.2rem; color: var(--text-soft); font-style: italic; line-height: 1.6; margin-bottom: 2rem;">
-            @Model.Excerpt
-        </p>
-        <div style="font-size: 0.9rem; color: var(--text-soft); display: flex; gap: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.2rem;">
-            <span>✍️ @Model.Author</span>
-            <span>📅 @Model.PublishedAt</span>
+            <div class="premium-card insight-meta-card">
+
+                <div class="insight-meta-item">
+
+                    <span class="insight-meta-label">
+                        @(isEn ? "Author" : "Autore")
+                    </span>
+
+                    <div class="insight-meta-value">
+                        @Model.Author
+                    </div>
+
+                </div>
+
+                <div class="insight-meta-item">
+
+                    <span class="insight-meta-label">
+                        @(isEn ? "Published" : "Pubblicato")
+                    </span>
+
+                    <div class="insight-meta-value">
+                        @Model.PublishedAt
+                    </div>
+
+                </div>
+
+                <div class="insight-meta-item">
+
+                    <span class="insight-meta-label">
+                        @(isEn ? "Category" : "Categoria")
+                    </span>
+
+                    <div class="insight-meta-value">
+                        @Model.Category
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
-</section>
 
-<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
-    <div class="container" style="max-width: 840px;">
-        <!-- Inject Raw Content safely -->
-        <article class="premium-frosted" style="padding: 2.5rem; border-radius: 24px; font-size: 1.12rem; line-height: 1.85; color: var(--text-soft); display: flex; flex-direction: column; gap: 1.5rem; box-shadow: var(--shadow-md);">
-            @Html.Raw(Model.Content)
-        </article>
+    </section>
 
-        <!-- Dynamic Back link -->
-        <div style="margin-top: 3.5rem; border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.25rem;">
-            <a href="@(isEn ? "/en/insights" : "/insights")" class="btn btn-secondary" style="padding: 0.8rem 1.6rem;">
-                ← @(isEn ? "Back to all Insights" : "Torna a tutti gli Insights")
-            </a>
-            <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.8rem 1.6rem;">
-                @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
-            </a>
+
+    <!-- ==========================================================
+         ARTICLE
+         ========================================================== -->
+    <section class="insight-article-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container insight-article-container">
+
+            <article class="premium-card insight-article"
+                     data-motif="architecture">
+
+                @Html.Raw(Model.Content)
+
+            </article>
+
+
+            <div class="insight-actions">
+
+                <a href="@(isEn
+                                               ? "/en/insights"
+                                               : "/insights")"
+                   class="btn btn-secondary">
+
+                    ← @(isEn
+                                            ? "Back to Insights"
+                                            : "Torna agli Insights")
+
+                </a>
+
+                <a href="@(isEn
+                                               ? "/en/contact"
+                                               : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your requirement"
+                        : "Parliamo della tua esigenza")
+
+                </a>
+
+            </div>
+
         </div>
-    </div>
-</section>
 
-@section Scripts {
-    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
-}
+    </section>
+
+</div>

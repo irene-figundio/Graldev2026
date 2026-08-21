@@ -1,82 +1,991 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero" style="padding-bottom: 2rem;">
-    <div class="container">
-        <span class="section-eyebrow">API & DATA INTEGRATION</span>
-        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
-            @(isEn ? "Data available where it's needed, when it's needed." : "Dati disponibili dove servono, quando servono.")
-        </h1>
-        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-            @(isEn ? "We engineer reliable REST/SOAP APIs, webhook triggers, and automated ETL pipelines to sync corporate databases and SaaS applications in real time." : "Progettiamo e sviluppiamo connettori API REST/SOAP, webhook e pipeline ETL per sincronizzare database aziendali e piattaforme SaaS.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
-            @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
-        </a>
-    </div>
-</section>
+@section Style {
+    <style>
+        .api-data-page {
+            --api-copy: 760px;
+        }
 
-<!-- Visual Data Flow Pipeline Diagram -->
-<section class="white-section" style="padding: 3rem 0;">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">PIPELINE MAP</span>
-            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Automated Secure Data Pipelines" : "Architettura dei flussi dati sincronizzati")</h2>
-        </div>
+        /* =========================================================
+                   OVERVIEW
+                   ========================================================= */
 
-        <div class="flow-comparison">
-            <!-- Sources -->
-            <div class="card-glass" style="text-align: center; padding: 1.25rem;">
-                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.75rem;">SOURCES</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 700;">
-                    <div class="card-neomorphic">ERP Database</div>
-                    <div class="card-neomorphic">CRM Contacts</div>
-                    <div class="card-neomorphic">Shopify Listings</div>
+        .api-overview-section {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .api-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .api-copy {
+            max-width: var(--api-copy);
+        }
+
+            .api-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .api-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+        .api-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   INTEGRATION CAPABILITIES
+                   ========================================================= */
+
+        .api-capability-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .api-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .api-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .api-capability-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .api-capability-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .api-capability-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 70px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .api-capability-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .api-capability-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .api-capability-copy span {
+            display: block;
+            margin-top: .14rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   PIPELINE
+                   ========================================================= */
+
+        .api-pipeline-section {
+            padding: 7rem 0;
+        }
+
+        .api-pipeline-heading {
+            max-width: 820px;
+            margin-bottom: 3.5rem;
+        }
+
+            .api-pipeline-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .api-pipeline-heading p {
+                max-width: 680px;
+                margin: 0;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .api-pipeline {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(220px, .52fr) minmax(0, 1fr);
+            gap: 1.25rem;
+            align-items: stretch;
+        }
+
+        .api-pipeline-card {
+            padding: 2rem;
+            border-radius: 27px;
+        }
+
+        .api-pipeline-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+            .api-pipeline-title h3 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: 1.35rem;
+                letter-spacing: -.035em;
+            }
+
+        .api-pipeline-badge {
+            padding: .4rem .65rem;
+            border-radius: 999px;
+            color: var(--brand-green);
+            background: rgba(17,171,100,.055);
+            border: 1px solid rgba(17,171,100,.08);
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .api-system-stack {
+            display: grid;
+            gap: .65rem;
+        }
+
+        .api-system {
+            min-height: 58px;
+            padding: .75rem .85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .8rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.50);
+            background: rgba(255,255,255,.28);
+        }
+
+            .api-system strong {
+                color: var(--brand-green-dark);
+                font-size: .82rem;
+                line-height: 1.3;
+            }
+
+            .api-system span {
+                color: var(--text-muted);
+                font-size: .66rem;
+                font-weight: 700;
+            }
+
+        .api-transform {
+            position: relative;
+            min-height: 100%;
+            padding: 1.6rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 27px;
+        }
+
+        .api-transform-core {
+            width: 112px;
+            height: 112px;
+            display: grid;
+            place-items: center;
+            border-radius: 28px;
+            color: var(--brand-green-dark);
+            font-size: .78rem;
+            font-weight: 850;
+            line-height: 1.2;
+            text-align: center;
+            background: linear-gradient( 145deg, rgba(255,255,255,.78), rgba(229,244,235,.52) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 10px 12px 26px rgba(42,79,57,.07), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .api-transform-label {
+            margin-top: 1rem;
+            color: var(--champagne-gold);
+            font-size: .65rem;
+            font-weight: 820;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+                   ARCHITECTURE
+                   ========================================================= */
+
+        .api-architecture-section {
+            padding: 7rem 0;
+        }
+
+        .api-architecture-heading {
+            max-width: 800px;
+            margin-bottom: 3.2rem;
+        }
+
+            .api-architecture-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.5rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .api-architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .api-architecture-card {
+            min-height: 275px;
+            padding: 1.6rem;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .api-architecture-number {
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .api-architecture-card h3 {
+            margin: 2.3rem 0 .7rem;
+            color: var(--brand-green-dark);
+            font-size: 1.17rem;
+            line-height: 1.2;
+            letter-spacing: -.03em;
+        }
+
+        .api-architecture-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .82rem;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+                   RELIABILITY
+                   ========================================================= */
+
+        .api-reliability-section {
+            padding: 0 0 7rem;
+        }
+
+        .api-reliability {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.6rem);
+            border-radius: 31px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .api-reliability::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .api-reliability-content {
+            position: relative;
+            z-index: 2;
+            max-width: 880px;
+        }
+
+        .api-reliability h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .api-reliability p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .api-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .api-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.6rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .api-cta h2 {
+                max-width: 850px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .api-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 1050px) {
+            .api-architecture-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @@media (max-width: 920px) {
+            .api-overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .api-pipeline {
+                grid-template-columns: 1fr;
+            }
+
+            .api-transform {
+                min-height: 220px;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .api-overview-section,
+            .api-pipeline-section,
+            .api-architecture-section {
+                padding: 5.5rem 0;
+            }
+
+            .api-architecture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .api-architecture-card {
+                min-height: 220px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .api-capability-card,
+            .api-pipeline-card,
+            .api-transform,
+            .api-architecture-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .api-reliability,
+            .api-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="api-data-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "api-data-integration",
+
+            Size = "large",
+
+            Eyebrow = "API & DATA INTEGRATION",
+
+            Title = isEn
+                ? "Data available where it is needed, when it is needed."
+                : "Dati disponibili dove servono, quando servono.",
+
+            Subtitle = isEn
+                ? "We design API integrations, event-driven connectors and data pipelines that synchronize databases, enterprise applications and SaaS platforms without forcing organizations to replace the systems they already use."
+                : "Progettiamo integrazioni API, connettori event-driven e pipeline dati che sincronizzano database, applicazioni enterprise e piattaforme SaaS senza obbligare le aziende a sostituire i sistemi che già utilizzano.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn
+                        ? "API & Data Integration"
+                        : "API & Integrazione Dati",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         OVERVIEW
+         ========================================================== -->
+    <section class="api-overview-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container api-overview-grid">
+
+            <div class="api-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "SYSTEMS THAT NEED TO COMMUNICATE"
+                        : "SISTEMI CHE DEVONO COMUNICARE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Integration is the layer between isolated systems and one operational workflow."
+                        : "L'integrazione è il livello che trasforma sistemi isolati in un unico workflow operativo.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Companies often already have the applications they need: ERP platforms, CRM systems, databases, eCommerce tools and external SaaS products. The problem appears when the same information has to be copied, transformed or reconciled manually between them."
+                        : "Le aziende dispongono spesso già delle applicazioni di cui hanno bisogno: ERP, CRM, database, strumenti eCommerce e piattaforme SaaS esterne. Il problema nasce quando la stessa informazione deve essere copiata, trasformata o riconciliata manualmente tra sistemi differenti.")
+                </p>
+
+                <div class="api-highlight">
+                    @(isEn
+                        ? "We design the integration layer around the existing architecture, choosing APIs, events, ETL processes or middleware according to the actual data flow instead of forcing every scenario into the same pattern."
+                        : "Progettiamo il layer di integrazione attorno all'architettura esistente, scegliendo API, eventi, processi ETL o middleware in base al flusso dati reale invece di forzare ogni scenario nello stesso pattern.")
                 </div>
+
             </div>
 
-            <!-- Webhook Connection Line -->
-            <div class="flow-arrow-container" style="flex-direction: column; gap: 0.5rem;">
-                <span style="font-size: 0.75rem; font-weight: 800; color: var(--brand-green); text-transform: uppercase;">TRANSFORM</span>
-                <span class="data-pulse" style="display: inline-block; font-size: 2rem;">⇅</span>
-                <span style="font-size: 0.75rem; font-weight: 800; color: var(--brand-green); text-transform: uppercase;">SYNC</span>
+
+            <aside class="premium-card api-capability-card"
+                   data-motif="network">
+
+                <span class="api-card-kicker">
+                    @(isEn
+                        ? "Integration capabilities"
+                        : "Capacità di integrazione")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Different interfaces, one coordinated flow"
+                        : "Interfacce diverse, un unico flusso coordinato")
+                </h3>
+
+                <ul class="api-capability-list">
+
+                    <li class="api-capability-item">
+                        <span class="api-capability-code">
+                            REST
+                        </span>
+
+                        <span class="api-capability-copy">
+                            <strong>REST APIs</strong>
+                            <span>
+                                @(isEn
+                                    ? "Modern application and SaaS integration"
+                                    : "Integrazione tra applicazioni moderne e SaaS")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="api-capability-item">
+                        <span class="api-capability-code">
+                            SOAP
+                        </span>
+
+                        <span class="api-capability-copy">
+                            <strong>SOAP Services</strong>
+                            <span>
+                                @(isEn
+                                    ? "Legacy enterprise service interoperability"
+                                    : "Interoperabilità con servizi enterprise legacy")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="api-capability-item">
+                        <span class="api-capability-code">
+                            EVT
+                        </span>
+
+                        <span class="api-capability-copy">
+                            <strong>Webhooks &amp; Events</strong>
+                            <span>
+                                @(isEn
+                                    ? "Event-driven synchronization between systems"
+                                    : "Sincronizzazione event-driven tra sistemi")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="api-capability-item">
+                        <span class="api-capability-code">
+                            ETL
+                        </span>
+
+                        <span class="api-capability-copy">
+                            <strong>ETL / Data Pipelines</strong>
+                            <span>
+                                @(isEn
+                                    ? "Extraction, transformation and controlled data movement"
+                                    : "Estrazione, trasformazione e movimentazione controllata dei dati")
+                            </span>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PIPELINE MAP
+         ========================================================== -->
+    <section class="api-pipeline-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="api-pipeline-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "PIPELINE MAP"
+                        : "MAPPA DEL FLUSSO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Move data without losing context, consistency or control."
+                        : "Spostare dati senza perdere contesto, coerenza o controllo.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "A reliable pipeline separates source systems, transformation logic and destination systems so that each integration can be monitored, retried and evolved independently."
+                        : "Una pipeline affidabile separa sistemi sorgente, logiche di trasformazione e sistemi di destinazione, così che ogni integrazione possa essere monitorata, ritentata ed evoluta in modo indipendente.")
+                </p>
+
             </div>
 
-            <!-- Target Systems -->
-            <div class="card-glass" style="text-align: center; padding: 1.25rem;">
-                <h4 style="font-size: 1.1rem; color: var(--brand-green-dark); margin-bottom: 0.75rem;">TARGET</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 700;">
-                    <div class="card-neomorphic">Dashboard Panels</div>
-                    <div class="card-neomorphic">External Marketplace</div>
-                    <div class="card-neomorphic">Private AI Vaults</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Scannable specs -->
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="align-items: center;">
-        <div class="split-left" style="max-width: 550px;">
-            <span class="section-eyebrow">FEATURES</span>
-            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "API Architectures We Deploy" : "Architetture API stabili e sicure")</h2>
-            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-                @(isEn ? "All our API integrations feature real-time health-checks, automatic retries, strict error log alert systems, and encrypted storage." : "Progettiamo connettori dotati di log automatici, gestione delle eccezioni e crittografia end-to-end dei dati sensibili.")
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="grid-2" style="gap: 1rem;">
-                <div class="card-base" style="padding: 1rem;">
-                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">📡 REST & Webhooks</h4>
-                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Fast, lightweight real-time communications." : "Sincronizzazioni veloci guidate da eventi.")</p>
-                </div>
-                <div class="card-base" style="padding: 1rem;">
-                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">🔒 Dynamic OAuth</h4>
-                    <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Secure encrypted authentication layers." : "Autenticazione solida tramite chiavi e token protetti.")</p>
-                </div>
+            <div class="api-pipeline">
+
+                <!-- SOURCES -->
+                <article class="premium-card api-pipeline-card"
+                         data-motif="data">
+
+                    <div class="api-pipeline-title">
+                        <h3>
+                            @(isEn ? "Sources" : "Sorgenti")
+                        </h3>
+
+                        <span class="api-pipeline-badge">
+                            Input
+                        </span>
+                    </div>
+
+                    <div class="api-system-stack">
+
+                        <div class="api-system">
+                            <strong>ERP Database</strong>
+                            <span>SQL</span>
+                        </div>
+
+                        <div class="api-system">
+                            <strong>CRM</strong>
+                            <span>API</span>
+                        </div>
+
+                        <div class="api-system">
+                            <strong>Shopify / SaaS</strong>
+                            <span>REST</span>
+                        </div>
+
+                        <div class="api-system">
+                            <strong>
+                                @(isEn
+                                    ? "External Services"
+                                    : "Servizi esterni")
+                            </strong>
+                            <span>SOAP</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TRANSFORM -->
+                <article class="premium-card api-transform"
+                         data-motif="architecture">
+
+                    <div class="api-transform-core">
+                        API<br />
+                        MIDDLEWARE
+                    </div>
+
+                    <span class="api-transform-label">
+                        Validate · Transform · Route
+                    </span>
+
+                </article>
+
+
+                <!-- TARGETS -->
+                <article class="premium-card api-pipeline-card"
+                         data-motif="network">
+
+                    <div class="api-pipeline-title">
+                        <h3>
+                            @(isEn ? "Destinations" : "Destinazioni")
+                        </h3>
+
+                        <span class="api-pipeline-badge">
+                            Output
+                        </span>
+                    </div>
+
+                    <div class="api-system-stack">
+
+                        <div class="api-system">
+                            <strong>
+                                @(isEn
+                                    ? "Operational Dashboards"
+                                    : "Dashboard operative")
+                            </strong>
+                            <span>UI</span>
+                        </div>
+
+                        <div class="api-system">
+                            <strong>Marketplace</strong>
+                            <span>API</span>
+                        </div>
+
+                        <div class="api-system">
+                            <strong>ERP / CRM</strong>
+                            <span>WRITE</span>
+                        </div>
+
+                        <div class="api-system">
+                            <strong>
+                                @(isEn
+                                    ? "AI Knowledge Layer"
+                                    : "Knowledge Layer AI")
+                            </strong>
+                            <span>DATA</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
             </div>
+
         </div>
-    </div>
-</section>
+
+    </section>
+
+
+    <!-- ==========================================================
+         ARCHITECTURE FEATURES
+         ========================================================== -->
+    <section class="api-architecture-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="api-architecture-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "RELIABLE INTEGRATION"
+                        : "INTEGRAZIONE AFFIDABILE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "An API is useful only if the whole integration remains observable."
+                        : "Un'API è utile soltanto se l'intera integrazione rimane osservabile.")
+                </h2>
+
+            </div>
+
+
+            <div class="api-architecture-grid">
+
+                <article class="premium-card api-architecture-card"
+                         data-motif="network">
+
+                    <span class="api-architecture-number">
+                        01 / EVENTS
+                    </span>
+
+                    <div>
+                        <h3>
+                            REST &amp; Webhooks
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Event-driven integrations reduce unnecessary polling and propagate changes when they actually occur."
+                                : "Le integrazioni event-driven riducono il polling non necessario e propagano le modifiche quando avvengono realmente.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card api-architecture-card"
+                         data-motif="security">
+
+                    <span class="api-architecture-number">
+                        02 / SECURITY
+                    </span>
+
+                    <div>
+                        <h3>
+                            OAuth &amp; Token Security
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Authentication and authorization are designed around the capabilities exposed by each connected service."
+                                : "Autenticazione e autorizzazione vengono progettate attorno alle capacità esposte da ciascun servizio collegato.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card api-architecture-card"
+                         data-motif="roadmap">
+
+                    <span class="api-architecture-number">
+                        03 / RESILIENCE
+                    </span>
+
+                    <div>
+                        <h3>
+                            Retry &amp; Error Handling
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Transient failures can be retried safely while persistent errors are logged and surfaced for intervention."
+                                : "Gli errori transitori possono essere ritentati in sicurezza, mentre quelli persistenti vengono registrati e portati all'attenzione degli operatori.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card api-architecture-card"
+                         data-motif="data">
+
+                    <span class="api-architecture-number">
+                        04 / OBSERVABILITY
+                    </span>
+
+                    <div>
+                        <h3>
+                            Logging &amp; Health Checks
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Integration status, failures and processing flows can be monitored instead of remaining hidden between systems."
+                                : "Stato delle integrazioni, errori e flussi di elaborazione possono essere monitorati invece di rimanere nascosti tra sistemi differenti.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         RELIABILITY
+         ========================================================== -->
+    <section class="api-reliability-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="api-reliability">
+
+                <div class="api-reliability-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "INTEGRATION WITH CONTEXT"
+                            : "INTEGRAZIONE CON CONTESTO")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Not every synchronization should be real-time."
+                            : "Non ogni sincronizzazione deve necessariamente essere real-time.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "Some information must move immediately, while other workloads are safer and more efficient as scheduled batches, queues or asynchronous processes. We choose the integration pattern according to consistency requirements, traffic, external API limits and operational impact."
+                            : "Alcune informazioni devono essere trasferite immediatamente, mentre altri workload risultano più sicuri ed efficienti tramite batch pianificati, code o processi asincroni. Scegliamo il pattern di integrazione in base a requisiti di consistenza, traffico, limiti delle API esterne e impatto operativo.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="api-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="api-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "API · DATA · INTEGRATION"
+                        : "API · DATI · INTEGRAZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Where are your teams still moving data manually?"
+                        : "Dove i tuoi team stanno ancora spostando dati manualmente?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's map applications, databases and external services to identify where an integration layer can remove repetitive work and reduce data inconsistencies."
+                        : "Mappiamo applicazioni, database e servizi esterni per individuare dove un layer di integrazione può eliminare attività ripetitive e ridurre le incoerenze dei dati.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your integration"
+                        : "Parliamo della tua integrazione")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

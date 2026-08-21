@@ -46,10 +46,25 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin>
 
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @RenderSection("Style", required: false)
+    <link rel="stylesheet"
+      href="~/css/site.css"
+      asp-append-version="true" />
+
+<link rel="stylesheet"
+      href="~/css/graldev-premium-shared.css"
+      asp-append-version="true" />
+
+<link rel="stylesheet"
+      href="~/css/graldev-metal.css"
+      asp-append-version="true" />
+
+<link rel="stylesheet"
+      href="~/css/graldev-header.css"
+      asp-append-version="true" />
+
+@await RenderSectionAsync("Style", required: false)
 
     <!-- JSON-LD Structured Data -->
     @if (!string.IsNullOrEmpty(seo.SchemaJson))
@@ -235,6 +250,9 @@
 
     <!-- Scripts -->
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/graldev-metal-v3.js"
+        asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

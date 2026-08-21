@@ -1,142 +1,1154 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<!-- AI Premium Hero Section -->
-<section class="case-study-hero" style="padding-bottom: 2rem;">
-    <div class="container">
-        <span class="section-eyebrow">AI & PROCESS AUTOMATION</span>
-        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
-            @(isEn ? "We bring AI inside your business processes. Not just beside them." : "Portiamo l'AI dentro i processi aziendali. Non semplicemente accanto.")
-        </h1>
-        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-            @(isEn ? "Integrating Large Language Models (LLM) and secure RAG frameworks to automate document parsing, smart classification, and intelligent backoffice workflows." : "Integriamo modelli di linguaggio (LLM) e strutture sicure RAG per automatizzare la lettura di documenti, la classificazione e i flussi operativi intelligenti.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
-            @(isEn ? "Request an AI Feasibility Session" : "Richiedi una AI Feasibility Session")
-        </a>
-    </div>
-</section>
-
-<!-- Visual AI Flow Pipeline Chart -->
-<section class="white-section" style="padding: 3rem 0;">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">PIPELINE</span>
-            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Graldev Intelligent AI Process Flow" : "Come funziona la nostra pipeline AI")</h2>
-        </div>
-
-        <!-- Custom Horizontal Pipeline Process Flow Diagram -->
-        <div class="method-steps" style="margin-top: 1.5rem;">
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">01</div>
-                <div class="method-name" style="font-size: 1rem;">DATA INPUT</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Secure collection of PDF invoices, emails, or SQL records." : "Raccolta e pulizia protetta di PDF, e-mail o database.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">02</div>
-                <div class="method-name" style="font-size: 1rem;">KNOWLEDGE LAYER</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Semantic chunking & vector database storage (RAG)." : "Scomposizione semantica e indicizzazione in vector database.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">03</div>
-                <div class="method-name" style="font-size: 1rem;">AI PROCESSING</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "LLM context analysis, summary or entity extraction." : "Analisi contestuale tramite LLM senza allucinazioni.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">04</div>
-                <div class="method-name" style="font-size: 1rem;">HUMAN APPROVAL</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Operator dashboard checks the extracted parameters." : "Validazione dei dati tramite dashboard dell'operatore.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">05</div>
-                <div class="method-name" style="font-size: 1rem;">ACTION</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Write-back to CRM, ERP database or API triggers." : "Scrittura automatica nel database ERP o CRM finale.")</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- AI Governance and Case Study split section -->
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="align-items: center;">
-        <div class="split-left" style="max-width: 550px;">
-            <span class="section-eyebrow">GOVERNANCE</span>
-            <h2 style="font-weight: 900; font-size: 2rem;">@(isEn ? "AI enterprise means control." : "AI enterprise significa anche controllo.")</h2>
-            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-                @(isEn ? "Integrating cognitive systems requires strict security. We build under strict isolation principles, ensuring your company secrets never train public models." : "L'adozione dell'AI deve essere accompagnata da rigidi standard di sicurezza, ruoli, permessi e controllo dei costi dei token.")
-            </p>
-
-            <div class="grid-2" style="gap: 1rem;">
-                <div class="card-base" style="padding: 0.75rem 1rem;">
-                    <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">🔒 Absolute Privacy</h4>
-                    <p style="font-size: 0.8rem; line-height: 1.3; margin-bottom: 0;">@(isEn ? "Isolated endpoints prevent data leakage." : "I vostri dati non lasciano mai i server dedicati.")</p>
-                </div>
-                <div class="card-base" style="padding: 0.75rem 1rem;">
-                    <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">👥 Role-Based Access</h4>
-                    <p style="font-size: 0.8rem; line-height: 1.3; margin-bottom: 0;">@(isEn ? "The AI answers only based on user permissions." : "L'AI attinge solo alle cartelle per cui l'utente ha i permessi.")</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="split-right">
-            <!-- Vitinerario Case Study Highlight -->
-            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft);">
-                <span class="section-eyebrow" style="font-size: 0.75rem;">CASE STUDY HIGHLIGHT</span>
-                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">Vitinerario Sommelier AI</h3>
-                <p style="font-size: 0.9rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 1rem;">
-                    @(isEn ? "Engineered an AI enological assistant that safely interrogates semantic wine databases and recommends food pairings dynamically without hallucinations." : "Abbiamo ideato un assistente sommelier virtuale AI basato su LLM e RAG in grado di interrogare database enologici complessi e consigliare abbinamenti perfetti.")
-                </p>
-                <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="font-size: 0.85rem;">
-                    @(isEn ? "Read Vitinerario Case Study" : "Leggi il Case Study Vitinerario")
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Below Fold Accordion Section: FAQs on AI -->
-<section class="white-section" style="padding: 3rem 0;">
-    <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="section-eyebrow">FAQ</span>
-            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "AI Integration FAQs" : "Domande Comuni sull'AI per Aziende")</h2>
-        </div>
-
-        <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
-                @(isEn ? "How do you avoid AI hallucinations?" : "Come evitate le allucinazioni dell'AI?")
-            </button>
-            <div class="accordion-content">
-                <p>
-                    @(isEn ? "We use Retrieval-Augmented Generation (RAG). Instead of letting the model make up answers, we search your databases, extract the exact paragraphs, and feed them as a strict context. The LLM is forced to answer only using those paragraphs." : "Utilizziamo l'architettura RAG (Retrieval-Augmented Generation). L'AI non inventa risposte: eseguiamo prima una ricerca semantica nei vostri database, estraiamo i paragrafi corrispondenti e obblighiamo l'LLM a elaborare la risposta esclusivamente basandosi su tali dati.")
-                </p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
-                @(isEn ? "How are API token costs managed?" : "Come vengono tenuti sotto controllo i costi delle API?")
-            </button>
-            <div class="accordion-content">
-                <p>
-                    @(isEn ? "We optimize tokens by caching frequent semantic queries and choosing local lighter open-source models (e.g. Llama-3, Mistral) where massive reasoning is not needed, keeping your cloud budget secure." : "Ottimizziamo i token memorizzando nella cache le risposte semantiche più frequenti e configurando modelli open-source più leggeri (come Llama o Mistral) per compiti ripetitivi di classificazione.")
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-    function toggleAccordion(element) {
-        const expanded = element.getAttribute('aria-expanded') === 'true';
-        element.setAttribute('aria-expanded', !expanded);
-
-        const content = element.nextElementSibling;
-        if (!expanded) {
-            content.style.maxHeight = content.scrollHeight + "px";
-        } else {
-            content.style.maxHeight = "0px";
+@section Style {
+    <style>
+        .ai-page {
+            --ai-copy: 760px;
         }
-    }
-</script>
+
+        /* =========================================================
+                   INTRO / POSITIONING
+                   ========================================================= */
+
+        .ai-intro-section {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .ai-intro-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .ai-copy {
+            max-width: var(--ai-copy);
+        }
+
+            .ai-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .ai-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .ai-copy p + p {
+                    margin-top: 1.1rem;
+                }
+
+        .ai-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   AI CAPABILITIES
+                   ========================================================= */
+
+        .ai-capability-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .ai-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .ai-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .ai-capability-card h3 {
+            margin: 0 0 1.45rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .ai-capability-list {
+            display: grid;
+            gap: .7rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .ai-capability-item {
+            display: grid;
+            grid-template-columns: 45px minmax(0, 1fr);
+            gap: .85rem;
+            align-items: center;
+            min-height: 67px;
+            padding: .72rem .82rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,.50);
+            background: rgba(255,255,255,.26);
+        }
+
+        .ai-capability-code {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .ai-capability-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .86rem;
+            line-height: 1.3;
+        }
+
+        .ai-capability-copy span {
+            display: block;
+            margin-top: .12rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   PIPELINE
+                   ========================================================= */
+
+        .ai-pipeline-section {
+            padding: 7rem 0;
+        }
+
+        .ai-pipeline-heading {
+            max-width: 820px;
+            margin-bottom: 3.5rem;
+        }
+
+            .ai-pipeline-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .ai-pipeline-heading p {
+                max-width: 680px;
+                margin: 0;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .ai-pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: .85rem;
+        }
+
+        .ai-pipeline-step {
+            position: relative;
+            min-height: 285px;
+            padding: 1.45rem;
+            border-radius: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .ai-pipeline-step:not(:last-child)::after {
+                content: "→";
+                position: absolute;
+                top: 50%;
+                right: -.72rem;
+                z-index: 4;
+                transform: translateY(-50%);
+                color: var(--champagne-gold);
+                font-size: 1rem;
+                font-weight: 800;
+            }
+
+        .ai-pipeline-index {
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .ai-pipeline-step h3 {
+            margin: 2.2rem 0 .75rem;
+            color: var(--brand-green-dark);
+            font-size: 1.05rem;
+            line-height: 1.2;
+            letter-spacing: -.025em;
+        }
+
+        .ai-pipeline-step p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .8rem;
+            line-height: 1.58;
+        }
+
+        /* =========================================================
+                   GOVERNANCE
+                   ========================================================= */
+
+        .ai-governance-section {
+            padding: 7rem 0;
+        }
+
+        .ai-governance-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .ai-governance-copy h2 {
+            max-width: 720px;
+            margin: 0 0 1.3rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.1rem, 4vw, 3.5rem);
+            line-height: 1.03;
+            letter-spacing: -.045em;
+        }
+
+        .ai-governance-copy > p {
+            max-width: 700px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.78;
+        }
+
+        .ai-governance-points {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: .85rem;
+            margin-top: 2rem;
+        }
+
+        .ai-governance-point {
+            min-height: 150px;
+            padding: 1.25rem;
+            border-radius: 20px;
+        }
+
+        .ai-governance-number {
+            display: block;
+            margin-bottom: 1.4rem;
+            color: var(--champagne-gold);
+            font-size: .67rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .ai-governance-point h3 {
+            margin: 0 0 .45rem;
+            color: var(--brand-green-dark);
+            font-size: 1rem;
+            letter-spacing: -.025em;
+        }
+
+        .ai-governance-point p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .79rem;
+            line-height: 1.55;
+        }
+
+        /* =========================================================
+                   CASE STUDY
+                   ========================================================= */
+
+        .ai-case-card {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+            .ai-case-card::after {
+                content: "";
+                position: absolute;
+                width: 260px;
+                height: 260px;
+                right: -110px;
+                top: -130px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .ai-case-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ai-case-card h3 {
+            margin: 0 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            line-height: 1.05;
+            letter-spacing: -.04em;
+        }
+
+        .ai-case-card p {
+            margin: 0 0 1.6rem;
+            color: var(--text-soft);
+            font-size: .9rem;
+            line-height: 1.7;
+        }
+
+        .ai-case-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .45rem;
+            margin-bottom: 1.7rem;
+        }
+
+        .ai-case-tag {
+            padding: .42rem .68rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            font-size: .66rem;
+            font-weight: 720;
+            background: rgba(255,255,255,.42);
+            border: 1px solid rgba(16,73,40,.07);
+        }
+
+        .ai-case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            color: var(--brand-green-dark);
+            font-size: .82rem;
+            font-weight: 780;
+            text-decoration: none;
+        }
+
+            .ai-case-link::after {
+                content: "↗";
+                color: var(--champagne-gold);
+                transition: transform 180ms ease;
+            }
+
+            .ai-case-link:hover::after {
+                transform: translate(2px, -2px);
+            }
+
+        /* =========================================================
+                   FAQ
+                   ========================================================= */
+
+        .ai-faq-section {
+            padding: 7rem 0;
+        }
+
+        .ai-faq-container {
+            max-width: 900px;
+        }
+
+        .ai-faq-heading {
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+            .ai-faq-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2rem, 4vw, 3.25rem);
+                line-height: 1.05;
+                letter-spacing: -.045em;
+            }
+
+        .ai-faq-list {
+            display: grid;
+            gap: .85rem;
+        }
+
+        .ai-faq {
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+            .ai-faq summary {
+                position: relative;
+                padding: 1.25rem 3.3rem 1.25rem 1.35rem;
+                cursor: pointer;
+                list-style: none;
+                color: var(--brand-green-dark);
+                font-size: .95rem;
+                font-weight: 760;
+                line-height: 1.4;
+            }
+
+                .ai-faq summary::-webkit-details-marker {
+                    display: none;
+                }
+
+                .ai-faq summary::after {
+                    content: "+";
+                    position: absolute;
+                    top: 50%;
+                    right: 1.35rem;
+                    transform: translateY(-50%);
+                    color: var(--champagne-gold);
+                    font-size: 1.35rem;
+                    font-weight: 500;
+                }
+
+            .ai-faq[open] summary::after {
+                content: "−";
+            }
+
+        .ai-faq-content {
+            padding: 0 1.35rem 1.35rem;
+        }
+
+            .ai-faq-content p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: .9rem;
+                line-height: 1.7;
+            }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .ai-cta-section {
+            padding: 0 0 7rem;
+        }
+
+        .ai-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .ai-cta h2 {
+                max-width: 850px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .ai-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 1050px) {
+            .ai-pipeline {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .ai-pipeline-step::after {
+                display: none;
+            }
+        }
+
+        @@media (max-width: 920px) {
+            .ai-intro-grid,
+            .ai-governance-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .ai-intro-section,
+            .ai-pipeline-section,
+            .ai-governance-section,
+            .ai-faq-section {
+                padding: 5.5rem 0;
+            }
+
+            .ai-pipeline {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-pipeline-step {
+                min-height: 215px;
+            }
+
+            .ai-governance-points {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .ai-capability-card,
+            .ai-case-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .ai-pipeline-step {
+                padding: 1.35rem;
+                border-radius: 21px;
+            }
+
+            .ai-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="ai-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "ai-automation",
+
+            Size = "large",
+
+            Eyebrow = "AI & PROCESS AUTOMATION",
+
+            Title = isEn
+                ? "AI inside your business processes. Not simply beside them."
+                : "AI dentro i processi aziendali. Non semplicemente accanto.",
+
+            Subtitle = isEn
+                ? "We integrate language models, retrieval architectures and automation workflows into existing systems to transform documents, data and business knowledge into operational actions."
+                : "Integriamo modelli linguistici, architetture RAG e workflow di automazione nei sistemi esistenti per trasformare documenti, dati e conoscenza aziendale in azioni operative.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn
+                        ? "AI & Automation"
+                        : "AI & Automazione",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         POSITIONING
+         ========================================================== -->
+    <section class="ai-intro-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container ai-intro-grid">
+
+            <div class="ai-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "FROM GENERATIVE AI TO OPERATIONS"
+                        : "DALL'AI GENERATIVA ALL'OPERATIVITÀ")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "The useful AI is the one connected to the workflow."
+                        : "L'AI utile è quella collegata al workflow.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "A standalone chatbot rarely changes an operational process. Real value appears when artificial intelligence can safely read the information already available to the company, interpret it within a defined context and trigger the appropriate next step."
+                        : "Un chatbot isolato raramente modifica davvero un processo operativo. Il valore emerge quando l'Intelligenza Artificiale può leggere in sicurezza le informazioni già disponibili in azienda, interpretarle all'interno di un contesto definito e attivare il passaggio operativo successivo.")
+                </p>
+
+                <div class="ai-highlight">
+                    @(isEn
+                        ? "The model is only one component. Data access, permissions, retrieval, validation, integration and human supervision are what turn AI into an enterprise system."
+                        : "Il modello è soltanto uno dei componenti. Accesso ai dati, permessi, retrieval, validazione, integrazione e supervisione umana sono ciò che trasforma l'AI in un sistema enterprise.")
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card ai-capability-card"
+                   data-motif="ai">
+
+                <span class="ai-card-kicker">
+                    @(isEn
+                        ? "Applied capabilities"
+                        : "Capacità applicative")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Where AI can enter the process"
+                        : "Dove l'AI può entrare nel processo")
+                </h3>
+
+                <ul class="ai-capability-list">
+
+                    <li class="ai-capability-item">
+                        <span class="ai-capability-code">DOC</span>
+
+                        <span class="ai-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Document understanding"
+                                    : "Comprensione documentale")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Invoices, PDFs, emails and structured extraction"
+                                    : "Fatture, PDF, email ed estrazione strutturata")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="ai-capability-item">
+                        <span class="ai-capability-code">RAG</span>
+
+                        <span class="ai-capability-copy">
+                            <strong>
+                                Retrieval-Augmented Generation
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Answers grounded in controlled company knowledge"
+                                    : "Risposte ancorate alla conoscenza aziendale controllata")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="ai-capability-item">
+                        <span class="ai-capability-code">CLS</span>
+
+                        <span class="ai-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Classification & routing"
+                                    : "Classificazione e routing")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Automatic categorization and workflow assignment"
+                                    : "Categorizzazione automatica e assegnazione ai workflow")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="ai-capability-item">
+                        <span class="ai-capability-code">API</span>
+
+                        <span class="ai-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Operational actions"
+                                    : "Azioni operative")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "ERP, CRM, APIs and backoffice integrations"
+                                    : "Integrazioni con ERP, CRM, API e backoffice")
+                            </span>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PIPELINE
+         ========================================================== -->
+    <section class="ai-pipeline-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="ai-pipeline-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "AI PROCESS PIPELINE"
+                        : "PIPELINE AI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "From raw information to controlled action."
+                        : "Dall'informazione grezza all'azione controllata.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "A reliable enterprise AI workflow separates data acquisition, knowledge retrieval, model processing, validation and execution instead of delegating everything to a single prompt."
+                        : "Un workflow AI enterprise affidabile separa acquisizione dei dati, retrieval della conoscenza, elaborazione del modello, validazione ed esecuzione invece di delegare tutto a un singolo prompt.")
+                </p>
+
+            </div>
+
+
+            <div class="ai-pipeline">
+
+                <article class="premium-card ai-pipeline-step"
+                         data-motif="data">
+
+                    <span class="ai-pipeline-index">01</span>
+
+                    <div>
+                        <h3>
+                            Data Input
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "PDFs, emails, databases, APIs and enterprise records are acquired through controlled interfaces."
+                                : "PDF, email, database, API e dati aziendali vengono acquisiti attraverso interfacce controllate.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card ai-pipeline-step"
+                         data-motif="network">
+
+                    <span class="ai-pipeline-index">02</span>
+
+                    <div>
+                        <h3>
+                            Knowledge Layer
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Relevant information is indexed, segmented and retrieved through semantic and structured search."
+                                : "Le informazioni rilevanti vengono indicizzate, segmentate e recuperate tramite ricerca semantica e strutturata.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card ai-pipeline-step"
+                         data-motif="ai">
+
+                    <span class="ai-pipeline-index">03</span>
+
+                    <div>
+                        <h3>
+                            AI Processing
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The model operates on controlled context for extraction, classification, reasoning or summarization."
+                                : "Il modello opera su un contesto controllato per estrazione, classificazione, analisi o sintesi.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card ai-pipeline-step"
+                         data-motif="roadmap">
+
+                    <span class="ai-pipeline-index">04</span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Human Validation"
+                                : "Validazione Umana")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Critical outputs can be reviewed before they affect operational systems."
+                                : "Gli output critici possono essere verificati prima di produrre effetti sui sistemi operativi.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card ai-pipeline-step"
+                         data-motif="automation">
+
+                    <span class="ai-pipeline-index">05</span>
+
+                    <div>
+                        <h3>
+                            Action
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Approved outputs can update ERP or CRM data, invoke APIs or trigger subsequent workflows."
+                                : "Gli output approvati possono aggiornare ERP o CRM, invocare API o attivare workflow successivi.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         GOVERNANCE + CASE STUDY
+         ========================================================== -->
+    <section class="ai-governance-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container ai-governance-grid">
+
+            <div class="ai-governance-copy">
+
+                <span class="section-eyebrow">
+                    AI GOVERNANCE
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Enterprise AI requires control, not only intelligence."
+                        : "L'AI enterprise richiede controllo, non soltanto intelligenza.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Access to company knowledge must follow the same security principles as the systems that already protect that information. We design AI architectures around controlled data boundaries, user permissions, explicit workflows and measurable consumption."
+                        : "L'accesso alla conoscenza aziendale deve rispettare gli stessi principi di sicurezza dei sistemi che già proteggono quelle informazioni. Progettiamo architetture AI basate su confini dati controllati, permessi utente, workflow espliciti e consumi misurabili.")
+                </p>
+
+
+                <div class="ai-governance-points">
+
+                    <article class="premium-card ai-governance-point">
+                        <span class="ai-governance-number">01 / DATA</span>
+
+                        <h3>
+                            @(isEn
+                                ? "Controlled data access"
+                                : "Accesso controllato ai dati")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "AI components receive only the information required for the current workflow."
+                                : "I componenti AI ricevono soltanto le informazioni necessarie al workflow corrente.")
+                        </p>
+                    </article>
+
+
+                    <article class="premium-card ai-governance-point">
+                        <span class="ai-governance-number">02 / ACCESS</span>
+
+                        <h3>
+                            Role-Based Access
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Retrieved knowledge can respect the permissions already associated with each user or role."
+                                : "La conoscenza recuperata può rispettare i permessi già associati a ciascun utente o ruolo.")
+                        </p>
+                    </article>
+
+
+                    <article class="premium-card ai-governance-point">
+                        <span class="ai-governance-number">03 / CONTROL</span>
+
+                        <h3>
+                            Human-in-the-loop
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Sensitive actions can require operator approval before execution."
+                                : "Le operazioni sensibili possono richiedere approvazione umana prima dell'esecuzione.")
+                        </p>
+                    </article>
+
+
+                    <article class="premium-card ai-governance-point">
+                        <span class="ai-governance-number">04 / COST</span>
+
+                        <h3>
+                            @(isEn
+                                ? "Usage governance"
+                                : "Governance dei consumi")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Caching, model selection and token monitoring keep operational costs observable."
+                                : "Caching, scelta del modello e monitoraggio dei token rendono osservabili i costi operativi.")
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card ai-case-card"
+                   data-motif="ai">
+
+                <div class="ai-case-content">
+
+                    <span class="ai-card-kicker">
+                        @(isEn
+                            ? "Case study"
+                            : "Case study")
+                    </span>
+
+                    <h3>
+                        Vitinerario
+                    </h3>
+
+                    <p>
+                        @(isEn
+                            ? "For Vitinerario, Graldev designed a conversational virtual sommelier that combines language models with semantic retrieval and verified enological information, allowing the system to answer contextual questions while remaining anchored to domain knowledge."
+                            : "Per Vitinerario, Graldev ha progettato un sommelier virtuale conversazionale che combina modelli linguistici, retrieval semantico e informazioni enologiche verificate, permettendo al sistema di rispondere a richieste contestuali rimanendo ancorato alla conoscenza di dominio.")
+                    </p>
+
+                    <div class="ai-case-stack">
+                        <span class="ai-case-tag">LLM</span>
+                        <span class="ai-case-tag">RAG</span>
+                        <span class="ai-case-tag">Vector DB</span>
+                        <span class="ai-case-tag">OpenAI</span>
+                        <span class="ai-case-tag">Grounded AI</span>
+                    </div>
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/vitinerario"
+                                                       : "/case-study/vitinerario")"
+                       class="ai-case-link">
+
+                        @(isEn
+                            ? "Explore the Vitinerario case study"
+                            : "Scopri il case study Vitinerario")
+
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         FAQ
+         ========================================================== -->
+    <section class="ai-faq-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container ai-faq-container">
+
+            <div class="ai-faq-heading">
+
+                <span class="section-eyebrow">
+                    FAQ
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Common questions about enterprise AI."
+                        : "Domande comuni sull'AI in azienda.")
+                </h2>
+
+            </div>
+
+
+            <div class="ai-faq-list">
+
+                <details class="premium-card ai-faq">
+
+                    <summary>
+                        @(isEn
+                            ? "How do you reduce AI hallucinations?"
+                            : "Come riducete le allucinazioni dell'AI?")
+                    </summary>
+
+                    <div class="ai-faq-content">
+                        <p>
+                            @(isEn
+                                ? "Where appropriate, we use Retrieval-Augmented Generation to retrieve relevant information before asking the model to produce an answer. This allows the model to work from controlled business context instead of relying exclusively on its general training knowledge."
+                                : "Quando appropriato utilizziamo Retrieval-Augmented Generation per recuperare le informazioni rilevanti prima di chiedere al modello di generare una risposta. In questo modo l'AI lavora su un contesto aziendale controllato invece di affidarsi esclusivamente alla propria conoscenza generale.")
+                        </p>
+                    </div>
+
+                </details>
+
+
+                <details class="premium-card ai-faq">
+
+                    <summary>
+                        @(isEn
+                            ? "How are API and token costs controlled?"
+                            : "Come vengono controllati i costi di API e token?")
+                    </summary>
+
+                    <div class="ai-faq-content">
+                        <p>
+                            @(isEn
+                                ? "Model selection, prompt optimization, retrieval limits, caching and usage monitoring can all be used to control consumption. Different tasks do not necessarily require the same model, so architecture decisions can balance capability, latency and cost."
+                                : "Selezione del modello, ottimizzazione dei prompt, limiti al retrieval, caching e monitoraggio dei consumi permettono di governare i costi. Attività differenti non richiedono necessariamente lo stesso modello, quindi l'architettura può bilanciare capacità, latenza e costo.")
+                        </p>
+                    </div>
+
+                </details>
+
+
+                <details class="premium-card ai-faq">
+
+                    <summary>
+                        @(isEn
+                            ? "Does every AI workflow need a RAG architecture?"
+                            : "Ogni workflow AI ha bisogno di un'architettura RAG?")
+                    </summary>
+
+                    <div class="ai-faq-content">
+                        <p>
+                            @(isEn
+                                ? "No. RAG is useful when a model must operate on external or frequently changing knowledge. Classification, extraction, structured transformation or deterministic automation may require different and often simpler architectures."
+                                : "No. La RAG è utile quando il modello deve lavorare su conoscenza esterna o frequentemente aggiornata. Classificazione, estrazione, trasformazione strutturata o automazioni deterministiche possono richiedere architetture differenti e spesso più semplici.")
+                        </p>
+                    </div>
+
+                </details>
+
+
+                <details class="premium-card ai-faq">
+
+                    <summary>
+                        @(isEn
+                            ? "Can AI integrate with an existing ERP or CRM?"
+                            : "L'AI può integrarsi con ERP o CRM già esistenti?")
+                    </summary>
+
+                    <div class="ai-faq-content">
+                        <p>
+                            @(isEn
+                                ? "Yes, when the underlying systems expose suitable APIs, database interfaces or controlled integration points. The AI layer can therefore become one component of the existing workflow rather than requiring the company to replace its core applications."
+                                : "Sì, quando i sistemi sottostanti espongono API, interfacce database o punti di integrazione controllati. Il layer AI può quindi diventare un componente del workflow esistente senza obbligare l'azienda a sostituire le proprie applicazioni core.")
+                        </p>
+                    </div>
+
+                </details>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="ai-cta-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="ai-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "AI · DATA · AUTOMATION"
+                        : "AI · DATI · AUTOMAZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Where could AI remove a manual decision from your workflow?"
+                        : "Dove potrebbe l'AI eliminare un passaggio manuale dal tuo workflow?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's map the process, available data and existing systems before deciding whether AI is actually the right solution."
+                        : "Mappiamo processo, dati disponibili e sistemi esistenti prima di decidere se l'AI sia davvero la soluzione corretta.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Request an AI feasibility review"
+                        : "Richiedi un assessment AI")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

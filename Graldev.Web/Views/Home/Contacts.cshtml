@@ -1,107 +1,909 @@
 @model Graldev.Web.Models.ContactViewModel
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container" style="text-align: center;">
-        <span class="section-eyebrow">@(isEn ? "CONTACT GRALDEV" : "CONTATTACI")</span>
-        <h1 class="section-title" style="margin: 0 auto 1rem auto;">
-            @(isEn ? "Let's start from the problem." : "Partiamo dal problema.")
-        </h1>
-        <p class="section-subtitle" style="margin: 0 auto;">
-            @(isEn ? "You don't need to know which technology or solution you need beforehand. Tell us what you want to improve." : "Non devi già sapere quale tecnologia o soluzione ti serve. Raccontaci cosa vuoi migliorare.")
-        </p>
-    </div>
-</section>
-
-<section>
-    <div class="container">
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="callout-success" role="alert" style="max-width: 650px; margin: 0 auto 2rem auto;">
-                @TempData["SuccessMessage"]
-            </div>
+@section Style {
+    <style>
+        .contact-graldev {
+            --contact-copy: 760px;
         }
 
-        <div class="contact-form-wrapper">
-            <form asp-controller="Home" asp-action="SubmitContact" method="post" class="needs-validation" novalidate>
-                @Html.AntiForgeryToken()
+        /* =========================================================
+                   CONTACT BODY
+                   ========================================================= */
 
-                <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+        .contact-main {
+            position: relative;
+            padding: 0 0 7.5rem;
+        }
 
-                <!-- Honeypot Spam Protection -->
-                @Html.TextBoxFor(m => m.Website, new { @class = "hp-field", autocomplete = "off", placeholder = "Leave empty" })
+        .contact-shell {
+            position: relative;
+            z-index: 5;
+            margin-top: -2rem;
+        }
 
-                <div class="form-group-grid">
-                    <div class="form-group">
-                        <label class="form-label" asp-for="Nome">@(isEn ? "Name (Optional)" : "Nome (Opzionale)")</label>
-                        <input asp-for="Nome" class="form-control" placeholder="@(isEn ? "Enter your first name" : "Inserisci il tuo nome")" />
-                        <span asp-validation-for="Nome" class="field-validation-error"></span>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr);
+            gap: 1.4rem;
+            align-items: start;
+        }
+
+        /* =========================================================
+                   SUCCESS MESSAGE
+                   ========================================================= */
+
+        .contact-success {
+            max-width: 850px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            color: var(--brand-green-dark);
+            font-size: .92rem;
+            font-weight: 650;
+            line-height: 1.5;
+            background: linear-gradient( 145deg, rgba(235,249,241,.92), rgba(255,255,255,.76) );
+            border: 1px solid rgba(17,171,100,.14);
+            box-shadow: 0 12px 30px rgba(35,80,52,.05), inset 1px 1px 0 rgba(255,255,255,.9);
+        }
+
+        /* =========================================================
+                   FORM CARD
+                   ========================================================= */
+
+        .contact-form-card {
+            position: relative;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border-radius: 30px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.72), rgba(249,253,251,.56) 45%, rgba(232,245,237,.42) );
+            border: 1px solid rgba(255,255,255,.82);
+            -webkit-backdrop-filter: blur(22px) saturate(120%);
+            backdrop-filter: blur(22px) saturate(120%);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.09), -10px -10px 28px rgba(255,255,255,.76), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .contact-form-heading {
+            margin-bottom: 2rem;
+        }
+
+        .contact-form-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .65rem;
+            color: var(--brand-green);
+            font-size: .7rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .contact-form-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .contact-form-heading h2 {
+            margin: 0;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            letter-spacing: -.04em;
+        }
+
+        .contact-form-heading p {
+            max-width: 620px;
+            margin: .7rem 0 0;
+            color: var(--text-muted);
+            font-size: .9rem;
+            line-height: 1.6;
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .contact-field {
+            margin-bottom: 1.15rem;
+        }
+
+        .contact-field--full {
+            grid-column: 1 / -1;
+        }
+
+        .contact-label {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            margin-bottom: .48rem;
+            color: var(--brand-green-dark);
+            font-size: .78rem;
+            font-weight: 750;
+            letter-spacing: -.01em;
+        }
+
+        .contact-required {
+            color: var(--champagne-gold);
+        }
+
+        .contact-control {
+            width: 100%;
+            min-height: 52px;
+            padding: .82rem .95rem;
+            border-radius: 14px;
+            border: 1px solid rgba(16,73,40,.09);
+            background: linear-gradient( 145deg, rgba(255,255,255,.77), rgba(247,251,248,.64) );
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: .92rem;
+            outline: none;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,.92), 0 5px 14px rgba(35,66,48,.035);
+            transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+        }
+
+        textarea.contact-control {
+            min-height: 155px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        select.contact-control {
+            cursor: pointer;
+        }
+
+        .contact-control::placeholder {
+            color: rgba(64,77,68,.55);
+        }
+
+        .contact-control:hover {
+            border-color: rgba(17,171,100,.16);
+        }
+
+        .contact-control:focus {
+            border-color: rgba(17,171,100,.42);
+            background: rgba(255,255,255,.88);
+            box-shadow: 0 0 0 4px rgba(17,171,100,.07), inset 1px 1px 0 rgba(255,255,255,1);
+        }
+
+        .field-validation-error {
+            display: block;
+            margin-top: .4rem;
+            color: #a63c32;
+            font-size: .72rem;
+            font-weight: 650;
+            line-height: 1.35;
+        }
+
+        .validation-summary-errors {
+            margin-bottom: 1.4rem;
+            padding: .9rem 1rem;
+            border-radius: 14px;
+            color: #8f342d;
+            background: rgba(194,73,62,.06);
+            border: 1px solid rgba(194,73,62,.12);
+            font-size: .82rem;
+        }
+
+            .validation-summary-errors ul {
+                margin: 0;
+                padding-left: 1.1rem;
+            }
+
+        .hp-field {
+            position: absolute !important;
+            left: -9999px !important;
+            width: 1px !important;
+            height: 1px !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* =========================================================
+                   SUBMIT
+                   ========================================================= */
+
+        .contact-submit {
+            margin-top: .6rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(16,73,40,.065);
+        }
+
+            .contact-submit .btn {
+                width: 100%;
+                min-height: 54px;
+                font-size: .94rem;
+            }
+
+        .contact-submit-note {
+            margin: .8rem 0 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .7rem;
+            line-height: 1.45;
+        }
+
+        /* =========================================================
+                   SIDEBAR
+                   ========================================================= */
+
+        .contact-sidebar {
+            position: sticky;
+            top: 112px;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-info-card {
+            padding: 1.8rem;
+            border-radius: 26px;
+        }
+
+            .contact-info-card h3 {
+                margin: 0 0 .8rem;
+                color: var(--brand-green-dark);
+                font-size: 1.35rem;
+                letter-spacing: -.035em;
+            }
+
+            .contact-info-card > p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: .88rem;
+                line-height: 1.65;
+            }
+
+        .contact-steps {
+            display: grid;
+            gap: .65rem;
+            margin: 1.35rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .contact-step {
+            display: grid;
+            grid-template-columns: 37px minmax(0, 1fr);
+            gap: .75rem;
+            align-items: center;
+            min-height: 58px;
+            padding: .62rem;
+            border-radius: 14px;
+            background: rgba(255,255,255,.24);
+            border: 1px solid rgba(255,255,255,.46);
+        }
+
+        .contact-step-index {
+            width: 37px;
+            height: 37px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.74), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 5px 6px 14px rgba(42,79,57,.055), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .contact-step strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .79rem;
+            line-height: 1.3;
+        }
+
+        .contact-step span {
+            display: block;
+            margin-top: .1rem;
+            color: var(--text-muted);
+            font-size: .68rem;
+            line-height: 1.35;
+        }
+
+        /* =========================================================
+                   PRINCIPLE CARD
+                   ========================================================= */
+
+        .contact-principle-card {
+            position: relative;
+            overflow: hidden;
+            padding: 1.7rem;
+            border-radius: 24px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.56), rgba(238,248,242,.40) );
+            border: 1px solid rgba(255,255,255,.76);
+            box-shadow: 12px 15px 30px rgba(49,73,59,.065), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .contact-principle-card::after {
+                content: "";
+                position: absolute;
+                width: 180px;
+                height: 180px;
+                right: -80px;
+                top: -90px;
+                border-radius: 50%;
+                background: radial-gradient( circle, rgba(197,160,89,.13), transparent 68% );
+            }
+
+        .contact-principle-label {
+            display: block;
+            margin-bottom: .65rem;
+            color: var(--champagne-gold);
+            font-size: .65rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .contact-principle-card p {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            color: var(--brand-green-dark);
+            font-size: .91rem;
+            font-weight: 650;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 960px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-sidebar {
+                position: relative;
+                top: auto;
+                grid-template-columns: 1.1fr .9fr;
+            }
+        }
+
+        @@media (max-width: 720px) {
+            .contact-main {
+                padding-bottom: 5.5rem;
+            }
+
+            .contact-shell {
+                margin-top: -1.2rem;
+            }
+
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-field--full {
+                grid-column: auto;
+            }
+
+            .contact-sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .contact-form-card {
+                padding: 1.25rem;
+                border-radius: 23px;
+            }
+
+            .contact-info-card,
+            .contact-principle-card {
+                padding: 1.35rem;
+                border-radius: 21px;
+            }
+
+            .contact-control {
+                min-height: 50px;
+            }
+        }
+    </style>
+}
+
+<div class="contact-graldev">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "contact",
+            Size = "large",
+            Centered = true,
+            Eyebrow = isEn
+                ? "CONTACT GRALDEV"
+                : "CONTATTACI",
+
+            Title = isEn
+                ? "Let's start from the problem."
+                : "Partiamo dal problema.",
+
+            Subtitle = isEn
+                ? "You don't need to know which technology or solution you need beforehand. Tell us what you want to improve, automate or connect."
+                : "Non devi già sapere quale tecnologia o soluzione ti serve. Raccontaci cosa vuoi migliorare, automatizzare o collegare.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn ? "Contact" : "Contatti",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <section class="contact-main premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container contact-shell">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="contact-success"
+                     role="alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+
+            <div class="contact-layout">
+
+                <!-- ==================================================
+                     FORM
+                     ================================================== -->
+                <div class="contact-form-card">
+
+                    <div class="contact-form-heading">
+
+                        <span class="contact-form-kicker">
+                            @(isEn ? "Project brief" : "Raccontaci l'esigenza")
+                        </span>
+
+                        <h2>
+                            @(isEn
+                                ? "Give us the context."
+                                : "Dacci il contesto.")
+                        </h2>
+
+                        <p>
+                            @(isEn
+                                ? "A few details are enough to help us understand the systems, processes and people involved."
+                                : "Bastano poche informazioni per aiutarci a comprendere sistemi, processi e persone coinvolte.")
+                        </p>
+
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" asp-for="Cognome">@(isEn ? "Last Name" : "Cognome") *</label>
-                        <input asp-for="Cognome" class="form-control" required placeholder="@(isEn ? "Enter your last name" : "Inserisci il tuo cognome")" />
-                        <span asp-validation-for="Cognome" class="field-validation-error"></span>
-                    </div>
+
+                    <form asp-controller="Home"
+                          asp-action="SubmitContact"
+                          method="post"
+                          class="needs-validation"
+                          novalidate>
+
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="validation-summary-errors">
+                        </div>
+
+                        @Html.TextBoxFor(
+                            m => m.Website,
+                            new
+                            {
+                                @class = "hp-field",
+                                autocomplete = "off",
+                                placeholder = "Leave empty",
+                                tabindex = "-1",
+                                aria_hidden = "true"
+                            })
+
+
+                        <div class="contact-form-grid">
+
+                            <!-- NAME -->
+                            <div class="contact-field">
+
+                                <label asp-for="Nome"
+                                       class="contact-label">
+                                    @(isEn ? "Name" : "Nome")
+                                    <span>
+                                        @(isEn ? "(optional)" : "(opzionale)")
+                                    </span>
+                                </label>
+
+                                <input asp-for="Nome"
+                                       class="contact-control"
+                                       autocomplete="given-name"
+                                       placeholder="@(isEn
+                                                                           ? "Your first name"
+                                                                           : "Il tuo nome")" />
+
+                                <span asp-validation-for="Nome"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+
+                            <!-- LAST NAME -->
+                            <div class="contact-field">
+
+                                <label asp-for="Cognome"
+                                       class="contact-label">
+
+                                    @(isEn ? "Last name" : "Cognome")
+
+                                    <span class="contact-required">*</span>
+
+                                </label>
+
+                                <input asp-for="Cognome"
+                                       class="contact-control"
+                                       autocomplete="family-name"
+                                       required
+                                       placeholder="@(isEn
+                                                                           ? "Your last name"
+                                                                           : "Il tuo cognome")" />
+
+                                <span asp-validation-for="Cognome"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+                            <div class="contact-field">
+
+                                <label asp-for="EmailAziendale"
+                                       class="contact-label">
+
+                                    @(isEn ? "Business email" : "Email aziendale")
+
+                                    <span class="contact-required">*</span>
+
+                                </label>
+
+                                <input asp-for="EmailAziendale"
+                                       type="email"
+                                       class="contact-control"
+                                       autocomplete="email"
+                                       required
+                                       placeholder="name@company.com" />
+
+                                <span asp-validation-for="EmailAziendale"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+
+                            <!-- COMPANY -->
+                            <div class="contact-field">
+
+                                <label asp-for="Azienda"
+                                       class="contact-label">
+
+                                    @(isEn ? "Company" : "Azienda")
+
+                                    <span class="contact-required">*</span>
+
+                                </label>
+
+                                <input asp-for="Azienda"
+                                       class="contact-control"
+                                       autocomplete="organization"
+                                       required
+                                       placeholder="@(isEn
+                                                                           ? "Your organization"
+                                                                           : "Nome dell'azienda")" />
+
+                                <span asp-validation-for="Azienda"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+
+                            <!-- ROLE -->
+                            <div class="contact-field">
+
+                                <label asp-for="Ruolo"
+                                       class="contact-label">
+
+                                    @(isEn ? "Role / Job title" : "Ruolo aziendale")
+
+                                    <span class="contact-required">*</span>
+
+                                </label>
+
+                                <input asp-for="Ruolo"
+                                       class="contact-control"
+                                       autocomplete="organization-title"
+                                       required
+                                       placeholder="@(isEn
+                                                                           ? "e.g. CTO, IT Manager, Owner"
+                                                                           : "es. CTO, IT Manager, Titolare")" />
+
+                                <span asp-validation-for="Ruolo"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+
+                            <!-- AREA -->
+                            <div class="contact-field">
+
+                                <label asp-for="AreaInteresse"
+                                       class="contact-label">
+
+                                    @(isEn ? "Area of interest" : "Area di interesse")
+
+                                    <span class="contact-required">*</span>
+
+                                </label>
+
+                                <select asp-for="AreaInteresse"
+                                        class="contact-control"
+                                        required>
+
+                                    <option value="">
+                                        @(isEn
+                                            ? "Select an area"
+                                            : "Seleziona un'area")
+                                    </option>
+
+                                    <option value="Consulenza Informatica">
+                                        @(isEn
+                                            ? "IT Consulting"
+                                            : "Consulenza Informatica")
+                                    </option>
+
+                                    <option value="System Integration">
+                                        System Integration
+                                    </option>
+
+                                    <option value="AI & Automation">
+                                        AI &amp; Automation
+                                    </option>
+
+                                    <option value="Software Engineering">
+                                        Software Engineering
+                                    </option>
+
+                                    <option value="API & Data">
+                                        API &amp; Data Integration
+                                    </option>
+
+                                    <option value="Digital Commerce">
+                                        Digital Commerce Integration
+                                    </option>
+
+                                    <option value="Cloud & Architecture">
+                                        Cloud &amp; Architecture
+                                    </option>
+
+                                    <option value="Business Applications">
+                                        Business Applications
+                                    </option>
+
+                                    <option value="AR / VR / 3D">
+                                        AR / VR / 3D
+                                    </option>
+
+                                    <option value="Altro">
+                                        @(isEn
+                                            ? "Other / Not sure yet"
+                                            : "Altro / Non sono ancora sicuro")
+                                    </option>
+
+                                </select>
+
+                                <span asp-validation-for="AreaInteresse"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+
+                            <!-- MESSAGE -->
+                            <div class="contact-field contact-field--full">
+
+                                <label asp-for="Messaggio"
+                                       class="contact-label">
+
+                                    @(isEn
+                                        ? "Describe the problem or need"
+                                        : "Raccontaci l'esigenza o la criticità")
+
+                                    <span class="contact-required">*</span>
+
+                                </label>
+
+                                <textarea asp-for="Messaggio"
+                                          rows="6"
+                                          class="contact-control"
+                                          required
+                                          placeholder="@(isEn
+                                                                              ? "Describe the processes, systems or bottlenecks you want to improve. You don't need to propose a technical solution."
+                                                                              : "Descrivi i processi, i sistemi coinvolti o gli ostacoli che vuoi risolvere. Non serve proporre già una soluzione tecnica.")"></textarea>
+
+                                <span asp-validation-for="Messaggio"
+                                      class="field-validation-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-submit">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                @(isEn
+                                    ? "Discuss your requirement"
+                                    : "Parliamo della tua esigenza")
+
+                            </button>
+
+                            <p class="contact-submit-note">
+                                @(isEn
+                                    ? "No predefined package. We first understand the problem, then evaluate the right approach."
+                                    : "Nessun pacchetto predefinito. Prima comprendiamo il problema, poi valutiamo l'approccio più adatto.")
+                            </p>
+
+                        </div>
+
+                    </form>
+
                 </div>
 
-                <div class="form-group-grid">
-                    <div class="form-group">
-                        <label class="form-label" asp-for="EmailAziendale">@(isEn ? "Business Email" : "Email Aziendale") *</label>
-                        <input asp-for="EmailAziendale" type="email" class="form-control" required placeholder="name@company.com" />
-                        <span asp-validation-for="EmailAziendale" class="field-validation-error"></span>
+
+                <!-- ==================================================
+                     SIDEBAR
+                     ================================================== -->
+                <aside class="contact-sidebar">
+
+                    <div class="premium-card contact-info-card"
+                         data-motif="roadmap">
+
+                        <span class="contact-form-kicker">
+                            @(isEn ? "What happens next" : "Cosa succede dopo")
+                        </span>
+
+                        <h3>
+                            @(isEn
+                                ? "We start by understanding the context."
+                                : "Partiamo dal contesto.")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The first conversation is focused on your workflow, existing systems and operational constraints — not on selling a predefined product."
+                                : "Il primo confronto riguarda workflow, sistemi esistenti e vincoli operativi, non la vendita di un prodotto preconfezionato.")
+                        </p>
+
+
+                        <ol class="contact-steps">
+
+                            <li class="contact-step">
+
+                                <span class="contact-step-index">
+                                    01
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        @(isEn
+                                            ? "Context review"
+                                            : "Analisi del contesto")
+                                    </strong>
+
+                                    <span>
+                                        @(isEn
+                                            ? "We understand the need and the systems involved."
+                                            : "Comprendiamo esigenza e sistemi coinvolti.")
+                                    </span>
+                                </div>
+
+                            </li>
+
+
+                            <li class="contact-step">
+
+                                <span class="contact-step-index">
+                                    02
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        @(isEn
+                                            ? "Technical mapping"
+                                            : "Mappatura tecnica")
+                                    </strong>
+
+                                    <span>
+                                        @(isEn
+                                            ? "We identify dependencies, integrations and constraints."
+                                            : "Individuiamo dipendenze, integrazioni e vincoli.")
+                                    </span>
+                                </div>
+
+                            </li>
+
+
+                            <li class="contact-step">
+
+                                <span class="contact-step-index">
+                                    03
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        @(isEn
+                                            ? "Recommended path"
+                                            : "Percorso consigliato")
+                                    </strong>
+
+                                    <span>
+                                        @(isEn
+                                            ? "We define the most sustainable technical approach."
+                                            : "Definiamo l'approccio tecnologico più sostenibile.")
+                                    </span>
+                                </div>
+
+                            </li>
+
+                        </ol>
+
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" asp-for="Azienda">@(isEn ? "Company Name" : "Azienda") *</label>
-                        <input asp-for="Azienda" class="form-control" required placeholder="@(isEn ? "Your organization" : "Nome dell'azienda")" />
-                        <span asp-validation-for="Azienda" class="field-validation-error"></span>
+
+                    <div class="contact-principle-card">
+
+                        <span class="contact-principle-label">
+                            @(isEn
+                                ? "Our consulting principle"
+                                : "Il nostro principio")
+                        </span>
+
+                        <p>
+                            @(isEn
+                                ? "You don't need to arrive with the solution. Understanding which solution makes sense is part of our job."
+                                : "Non devi arrivare con la soluzione. Capire quale soluzione abbia senso fa parte del nostro lavoro.")
+                        </p>
+
                     </div>
-                </div>
 
-                <div class="form-group-grid">
-                    <div class="form-group">
-                        <label class="form-label" asp-for="Ruolo">@(isEn ? "Job Title / Role" : "Ruolo Aziendale") *</label>
-                        <input asp-for="Ruolo" class="form-control" required placeholder="@(isEn ? "e.g. CTO, IT Manager, Owner" : "es. CTO, IT Manager, Titolare")" />
-                        <span asp-validation-for="Ruolo" class="field-validation-error"></span>
-                    </div>
+                </aside>
 
-                    <div class="form-group">
-                        <label class="form-label" asp-for="AreaInteresse">@(isEn ? "Area of Interest" : "Area di interesse") *</label>
-                        <select asp-for="AreaInteresse" class="form-control" required>
-                            <option value="">-- @(isEn ? "Select Area" : "Seleziona un'area") --</option>
-                            <option value="Consulenza Informatica">@(isEn ? "IT Consulting" : "Consulenza Informatica")</option>
-                            <option value="System Integration">System Integration</option>
-                            <option value="AI & Automation">AI & Automation</option>
-                            <option value="Software Engineering">Software Engineering</option>
-                            <option value="API & Data">API & Data Integration</option>
-                            <option value="Digital Commerce">Digital Commerce Integration</option>
-                            <option value="Cloud & Architecture">Cloud & Architecture</option>
-                            <option value="Business Applications">Business Applications</option>
-                            <option value="AR / VR / 3D">AR / VR / 3D</option>
-                            <option value="Altro">@(isEn ? "Other / Not sure" : "Altro / Non sono sicuro")</option>
-                        </select>
-                        <span asp-validation-for="AreaInteresse" class="field-validation-error"></span>
-                    </div>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="form-label" asp-for="Messaggio">@(isEn ? "Describe your issue or need" : "Raccontaci l'esigenza o la criticità") *</label>
-                    <textarea asp-for="Messaggio" rows="5" class="form-control" required placeholder="@(isEn ? "Please describe the workflows or software systems you want to improve." : "Descrivi brevemente i processi, i sistemi coinvolti o gli ostacoli che vuoi risolvere.")"></textarea>
-                    <span asp-validation-for="Messaggio" class="field-validation-error"></span>
-                </div>
-
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
-                    </button>
-                </div>
-            </form>
         </div>
-    </div>
-</section>
+
+    </section>
+
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

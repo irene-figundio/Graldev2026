@@ -2,18 +2,415 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;">
-    <div class="container" style="max-width: 600px;">
-        <span style="font-size: 7rem; line-height: 1; font-weight: 900; color: #ef4444; display: block; filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.3));">500</span>
-        <h1 style="font-size: 2.2rem; margin-top: 1rem; margin-bottom: 1rem;">
-            @(isEn ? "System Error" : "Errore interno del server")
-        </h1>
-        <p style="margin-bottom: 2.5rem; color: var(--text-secondary);">
-            @(isEn ? "An unexpected error occurred on our server. We have logged this event and are investigating. Please try again later." : "Si è verificato un imprevisto sul nostro server. L'evento è stato registrato e stiamo investigando sulla causa. Riprova più tardi.")
-        </p>
+@section Style {
+    <link rel="stylesheet"
+          href="~/css/graldev-premium-shared.css"
+          asp-append-version="true" />
 
-        <a href="@(isEn ? "/en" : "/")" class="btn btn-primary">
-            @(isEn ? "Return to Homepage" : "Torna all'Homepage")
-        </a>
+    <style>
+        .error-page {
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100svh - var(--header-height));
+            padding: 10rem 0 6rem;
+            display: flex;
+            align-items: center;
+            background: radial-gradient( circle at 78% 18%, rgba(17,171,100,.065), transparent 30% ), radial-gradient( circle at 18% 12%, rgba(197,160,89,.11), transparent 34% ), linear-gradient( 180deg, var(--bg-warm-ivory), var(--bg-warm-white) );
+        }
+
+            .error-page::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                opacity: .5;
+                background: linear-gradient( 135deg, transparent 0 49.5%, rgba(197,160,89,.048) 50%, transparent 50.5% 100% );
+                background-size: 110px 110px;
+            }
+
+        .error-shell {
+            position: relative;
+            z-index: 2;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .error-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(310px, .7fr);
+            gap: clamp(2rem, 6vw, 5.5rem);
+            align-items: center;
+        }
+
+        .error-copy {
+            max-width: 650px;
+        }
+
+        .error-code {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: 1.4rem;
+            padding: .55rem .85rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            background: rgba(255,255,255,.42);
+            border: 1px solid rgba(197,160,89,.15);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            font-size: .73rem;
+            font-weight: 850;
+            letter-spacing: .095em;
+            text-transform: uppercase;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,.85), 0 8px 20px rgba(42,79,57,.035);
+        }
+
+            .error-code::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: #c46b5e;
+                box-shadow: 0 0 0 5px rgba(196,107,94,.09);
+            }
+
+        .error-title {
+            margin: 0 0 1.2rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.7rem, 5vw, 4.6rem);
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .error-description {
+            max-width: 610px;
+            margin: 0 0 2rem;
+            color: var(--text-soft);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+        }
+
+        .error-secondary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: .75rem 1.2rem;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            background: rgba(255,255,255,.36);
+            border: 1px solid rgba(16,73,40,.08);
+            font-size: .84rem;
+            font-weight: 720;
+            text-decoration: none;
+            transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+        }
+
+            .error-secondary-link:hover {
+                transform: translateY(-2px);
+                background: rgba(255,255,255,.6);
+                border-color: rgba(17,171,100,.15);
+            }
+
+        .error-status-card {
+            position: relative;
+            overflow: hidden;
+            padding: 1.8rem;
+            border-radius: 27px;
+        }
+
+            .error-status-card::after {
+                content: "";
+                position: absolute;
+                width: 220px;
+                height: 220px;
+                right: -105px;
+                top: -115px;
+                border-radius: 50%;
+                background: radial-gradient( circle, rgba(196,107,94,.11), transparent 68% );
+                pointer-events: none;
+            }
+
+        .error-status-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-status-kicker {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: .65rem;
+            color: var(--brand-green);
+            font-size: .68rem;
+            font-weight: 820;
+            letter-spacing: .085em;
+            text-transform: uppercase;
+        }
+
+            .error-status-kicker::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #c46b5e;
+            }
+
+        .error-status-card h2 {
+            margin: 0 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: 1.4rem;
+            letter-spacing: -.035em;
+        }
+
+        .error-status-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .86rem;
+            line-height: 1.65;
+        }
+
+        .error-status-list {
+            display: grid;
+            gap: .55rem;
+            margin: 1.3rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .error-status-item {
+            display: grid;
+            grid-template-columns: 37px minmax(0, 1fr);
+            gap: .75rem;
+            align-items: center;
+            min-height: 58px;
+            padding: .62rem;
+            border-radius: 14px;
+            background: rgba(255,255,255,.25);
+            border: 1px solid rgba(255,255,255,.48);
+        }
+
+        .error-status-index {
+            width: 37px;
+            height: 37px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.74), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 5px 6px 14px rgba(42,79,57,.055), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .error-status-item strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .79rem;
+            line-height: 1.3;
+        }
+
+        .error-status-item span {
+            display: block;
+            margin-top: .1rem;
+            color: var(--text-muted);
+            font-size: .68rem;
+            line-height: 1.35;
+        }
+
+        @@media (max-width: 860px) {
+            .error-page {
+                min-height: auto;
+                padding: 8.5rem 0 5.5rem;
+            }
+
+            .error-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .error-copy,
+            .error-status-card {
+                max-width: 720px;
+            }
+        }
+
+        @@media (max-width: 560px) {
+            .error-page {
+                padding-top: 8rem;
+            }
+
+            .error-title {
+                font-size: clamp(2.7rem, 12vw, 4rem);
+            }
+
+            .error-actions {
+                flex-direction: column;
+            }
+
+                .error-actions .btn,
+                .error-secondary-link {
+                    width: 100%;
+                }
+
+            .error-status-card {
+                padding: 1.3rem;
+                border-radius: 22px;
+            }
+        }
+    </style>
+}
+
+<section class="error-page">
+
+    <div class="container error-shell">
+
+        <div class="error-layout">
+
+            <div class="error-copy">
+
+                <span class="error-code">
+                    500 · @(isEn ? "System error" : "Errore di sistema")
+                </span>
+
+                <h1 class="error-title">
+                    @(isEn
+                        ? "Something went wrong."
+                        : "Qualcosa è andato storto.")
+                </h1>
+
+                <p class="error-description">
+                    @(isEn
+                        ? "An unexpected server error occurred while processing your request. The event has been recorded. You can return to the homepage or try again later."
+                        : "Si è verificato un errore imprevisto durante l'elaborazione della richiesta. L'evento è stato registrato. Puoi tornare alla homepage oppure riprovare più tardi.")
+                </p>
+
+                <div class="error-actions">
+
+                    <a href="@(isEn ? "/en" : "/")"
+                       class="btn btn-primary">
+                        @(isEn
+                            ? "Back to homepage"
+                            : "Torna alla homepage")
+                    </a>
+
+                    <a href="@(isEn ? "/en/contact" : "/contatti")"
+                       class="error-secondary-link">
+                        @(isEn
+                            ? "Contact Graldev"
+                            : "Contatta Graldev")
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card error-status-card"
+                   data-motif="network">
+
+                <div class="error-status-content">
+
+                    <span class="error-status-kicker">
+                        @(isEn
+                            ? "Request interrupted"
+                            : "Richiesta interrotta")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "What you can do"
+                            : "Cosa puoi fare")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "This error is related to the server, not to anything you entered."
+                            : "Questo errore riguarda il server e non dipende dai dati che hai inserito.")
+                    </p>
+
+                    <ul class="error-status-list">
+
+                        <li class="error-status-item">
+
+                            <span class="error-status-index">
+                                01
+                            </span>
+
+                            <div>
+                                <strong>
+                                    @(isEn
+                                        ? "Return to the site"
+                                        : "Torna al sito")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Continue from the homepage."
+                                        : "Riprendi la navigazione dalla homepage.")
+                                </span>
+                            </div>
+
+                        </li>
+
+                        <li class="error-status-item">
+
+                            <span class="error-status-index">
+                                02
+                            </span>
+
+                            <div>
+                                <strong>
+                                    @(isEn
+                                        ? "Try again later"
+                                        : "Riprova più tardi")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "The issue may be temporary."
+                                        : "Il problema potrebbe essere temporaneo.")
+                                </span>
+                            </div>
+
+                        </li>
+
+                        <li class="error-status-item">
+
+                            <span class="error-status-index">
+                                03
+                            </span>
+
+                            <div>
+                                <strong>
+                                    @(isEn
+                                        ? "Still having trouble?"
+                                        : "Il problema continua?")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Contact us if the error persists."
+                                        : "Contattaci se l'errore continua a verificarsi.")
+                                </span>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </aside>
+
+        </div>
+
     </div>
+
 </section>

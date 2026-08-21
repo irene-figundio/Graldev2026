@@ -1,69 +1,930 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">CLOUD, ARCHITECTURE & MODERNIZATION</span>
-        <h1 class="section-title">
-            @(isEn ? "Evolve the infrastructure without interrupting the business." : "Evolvere l'infrastruttura senza interrompere il business.")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "We provide expert software architecture advisory, legacy systems modernization, and smooth cloud migrations to guarantee high availability." : "Consulenza e revisione di architetture software, migrazioni Cloud controllate e modernizzazione di sistemi legacy senza compromettere la continuità aziendale.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .cloud-page {
+            --cloud-copy: 760px;
+        }
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Future-proof your software assets" : "Rendere scalabili e manutenibili i software aziendali")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Over time, enterprise software accumulates technical debt: outdated servers, insecure database configurations, slow queries, and monolith systems that are complex to update. Graldev acts as your senior technical advisor. We review your current system architecture and detail a precise, structured blueprint to modernize it safely.</text>
+        /* =========================================================
+                   OVERVIEW
+                   ========================================================= */
+
+        .cloud-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .cloud-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .cloud-copy {
+            max-width: var(--cloud-copy);
+        }
+
+            .cloud-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .cloud-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .cloud-copy p + p {
+                    margin-top: 1.1rem;
                 }
-                else
+
+        .cloud-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   FOCUS AREAS
+                   ========================================================= */
+
+        .cloud-focus-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .cloud-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .cloud-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .cloud-focus-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .cloud-focus-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .cloud-focus-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 70px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .cloud-focus-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .cloud-focus-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .cloud-focus-copy span {
+            display: block;
+            margin-top: .14rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   MODERNIZATION AREAS
+                   ========================================================= */
+
+        .cloud-areas {
+            padding: 7rem 0;
+        }
+
+        .cloud-areas-heading {
+            max-width: 830px;
+            margin-bottom: 3.3rem;
+        }
+
+            .cloud-areas-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .cloud-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .cloud-area-card {
+            min-height: 325px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cloud-area-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .cloud-area-card h3 {
+            margin: 2.7rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .cloud-area-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+                   ROADMAP
+                   ========================================================= */
+
+        .cloud-roadmap-section {
+            padding: 0 0 7rem;
+        }
+
+        .cloud-roadmap {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(350px, .9fr);
+            gap: clamp(2.5rem, 6vw, 5.5rem);
+            align-items: center;
+            padding: clamp(2.8rem, 5vw, 4.7rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .cloud-roadmap::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .cloud-roadmap-copy,
+        .cloud-roadmap-steps {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cloud-roadmap h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .cloud-roadmap-copy p {
+            max-width: 700px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        .cloud-roadmap-steps {
+            display: grid;
+            gap: .7rem;
+        }
+
+        .cloud-roadmap-step {
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: .8rem;
+            align-items: center;
+            min-height: 64px;
+            padding: .68rem .75rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.48);
+            background: rgba(255,255,255,.25);
+        }
+
+        .cloud-roadmap-index {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 5px 6px 14px rgba(42,79,57,.055), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .cloud-roadmap-step strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .81rem;
+            line-height: 1.3;
+        }
+
+        .cloud-roadmap-step span {
+            display: block;
+            margin-top: .12rem;
+            color: var(--text-muted);
+            font-size: .68rem;
+            line-height: 1.35;
+        }
+
+        /* =========================================================
+                   PRINCIPLE
+                   ========================================================= */
+
+        .cloud-principle-section {
+            padding: 0 0 7rem;
+        }
+
+        .cloud-principle {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.6rem);
+            border-radius: 31px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+        .cloud-principle-content {
+            max-width: 880px;
+        }
+
+        .cloud-principle h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .cloud-principle p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .cloud-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .cloud-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.6rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .cloud-cta h2 {
+                max-width: 860px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .cloud-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .cloud-overview-grid,
+            .cloud-roadmap {
+                grid-template-columns: 1fr;
+            }
+
+            .cloud-areas-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .cloud-area-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .cloud-overview,
+            .cloud-areas {
+                padding: 5.5rem 0;
+            }
+
+            .cloud-areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cloud-area-card,
+            .cloud-area-card:last-child {
+                grid-column: auto;
+                min-height: 260px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .cloud-focus-card,
+            .cloud-area-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .cloud-roadmap,
+            .cloud-principle,
+            .cloud-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="cloud-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "cloud-architecture",
+
+            Size = "large",
+
+            Eyebrow = "CLOUD · ARCHITECTURE · MODERNIZATION",
+
+            Title = isEn
+                ? "Evolve the architecture without interrupting the business."
+                : "Evolvere l'architettura senza interrompere il business.",
+
+            Subtitle = isEn
+                ? "We assess legacy systems, design modernization roadmaps and evolve software architecture, infrastructure and cloud environments without treating migration as a blind rewrite."
+                : "Analizziamo sistemi legacy, progettiamo roadmap di modernizzazione ed evolviamo architetture software, infrastrutture e ambienti cloud senza trasformare la migrazione in una riscrittura indiscriminata.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>Con gli anni, i software aziendali accumulano debito tecnico: vecchi server fisici on-premise non ridondati, database lenti, query non ottimizzate e applicativi monolitici difficili da aggiornare. Graldev opera come consulente senior ed architetto IT. Analizziamo lo stato dell'arte dei vostri sistemi ed elaboriamo una roadmap precisa per traghettarli verso il futuro in modo sicuro.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>We specialize in structuring multi-tenant software, microservices, containerization, and redundant cloud architectures (AWS, Azure) that scale up automatically under peak traffic without costing a fortune.</text>
+                    Label = isEn
+                        ? "Cloud & Architecture"
+                        : "Cloud & Architettura",
+                    IsCurrent = true
                 }
-                else
-                {
-                    <text>Siamo specializzati nel disegno di architetture cloud scalabili (AWS, Azure), migrazioni controllate di database relazionali complessi sul cloud, containerizzazione di servizi (Docker) e scomposizione di monoliti in microservizi per ottimizzare costi e prestazioni.</text>
-                }
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Modernization Focus Areas" : "Aree di Intervento")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>📐 System Architecture & Design</li>
-                    <li>🔄 Legacy Systems Modernization</li>
-                    <li>☁️ Cloud Readiness & Migration strategy</li>
-                    <li>🔍 Technology Assessment & Code Audits</li>
-                    <li>🛡️ Technical Due Diligence for mergers</li>
-                    <li>📋 Build vs Buy advisory</li>
-                </ul>
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         OVERVIEW
+         ========================================================== -->
+    <section class="cloud-overview premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container cloud-overview-grid">
+
+            <div class="cloud-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "MODERNIZATION WITH CONTEXT"
+                        : "MODERNIZZAZIONE CON CONTESTO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Technical debt should be understood before it is rewritten."
+                        : "Il debito tecnico va compreso prima di essere riscritto.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Enterprise systems naturally accumulate technical debt over time: obsolete components, fragile dependencies, slow database operations, manual deployments and applications that have become increasingly difficult to modify safely."
+                        : "I sistemi enterprise accumulano naturalmente debito tecnico nel tempo: componenti obsoleti, dipendenze fragili, operazioni database lente, deployment manuali e applicazioni che diventano progressivamente più difficili da modificare in sicurezza.")
+                </p>
+
+                <p>
+                    @(isEn
+                        ? "Our role is to assess the current architecture, understand which constraints are actually creating risk or cost, and define a modernization path that preserves business continuity."
+                        : "Il nostro ruolo è analizzare l'architettura attuale, capire quali vincoli generano realmente rischio o costo e definire un percorso di modernizzazione che preservi la continuità operativa.")
+                </p>
+
+                <div class="cloud-highlight">
+                    @(isEn
+                        ? "Modernization does not automatically mean microservices, containers or cloud. Those are options. The correct architecture depends on the system, load, team and business constraints."
+                        : "Modernizzare non significa automaticamente microservizi, container o cloud. Sono opzioni. L'architettura corretta dipende dal sistema, dal carico, dal team e dai vincoli di business.")
+                </div>
+
             </div>
-        </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section style="text-align: center; background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-        <h2>@(isEn ? "Evolve your legacy systems safely" : "Pianifica la modernizzazione dei tuoi sistemi")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Get an architecture review to identify security vulnerabilities, scaling bottlenecks, and cloud migration costs." : "Richiedi una revisione tecnica d'architettura con i nostri specialisti senior per mappare debito tecnico, colli di bottiglia e costi cloud.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
-            @(isEn ? "Request an Architecture Review" : "Richiedi un Architecture Review")
-        </a>
-    </div>
-</section>
+
+            <aside class="premium-card cloud-focus-card"
+                   data-motif="cloud">
+
+                <span class="cloud-card-kicker">
+                    @(isEn
+                        ? "Modernization focus"
+                        : "Aree di modernizzazione")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "What we assess"
+                        : "Cosa analizziamo")
+                </h3>
+
+                <ul class="cloud-focus-list">
+
+                    <li class="cloud-focus-item">
+                        <span class="cloud-focus-code">ARC</span>
+
+                        <span class="cloud-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Software architecture"
+                                    : "Architettura software")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Dependencies, boundaries and structural bottlenecks"
+                                    : "Dipendenze, boundary e colli di bottiglia strutturali")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="cloud-focus-item">
+                        <span class="cloud-focus-code">LEG</span>
+
+                        <span class="cloud-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Legacy modernization"
+                                    : "Modernizzazione legacy")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Incremental evolution of existing applications"
+                                    : "Evoluzione incrementale delle applicazioni esistenti")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="cloud-focus-item">
+                        <span class="cloud-focus-code">CLD</span>
+
+                        <span class="cloud-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Cloud readiness"
+                                    : "Cloud readiness")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Workload suitability, migration constraints and operating model"
+                                    : "Idoneità dei workload, vincoli di migrazione e modello operativo")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="cloud-focus-item">
+                        <span class="cloud-focus-code">AUD</span>
+
+                        <span class="cloud-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Technical assessment"
+                                    : "Assessment tecnico")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Code, infrastructure, databases and operational risk"
+                                    : "Codice, infrastruttura, database e rischio operativo")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="cloud-focus-item">
+                        <span class="cloud-focus-code">B/B</span>
+
+                        <span class="cloud-focus-copy">
+                            <strong>
+                                Build vs Buy
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "When to build, integrate, replace or retain"
+                                    : "Quando sviluppare, integrare, sostituire o mantenere")
+                            </span>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         MODERNIZATION AREAS
+         ========================================================== -->
+    <section class="cloud-areas bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="cloud-areas-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "MODERNIZATION PATHS"
+                        : "PERCORSI DI MODERNIZZAZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Different problems require different modernization strategies."
+                        : "Problemi diversi richiedono strategie di modernizzazione differenti.")
+                </h2>
+
+            </div>
+
+
+            <div class="cloud-areas-grid">
+
+                <article class="premium-card cloud-area-card"
+                         data-motif="architecture">
+
+                    <span class="cloud-area-number">
+                        01 / APPLICATION
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Application modernization"
+                                : "Modernizzazione applicativa")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "We identify where modularization, framework upgrades, service extraction or architectural refactoring can reduce maintenance cost and deployment risk."
+                                : "Individuiamo dove modularizzazione, aggiornamento dei framework, estrazione di servizi o refactoring architetturale possono ridurre costi di manutenzione e rischio di deployment.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card cloud-area-card"
+                         data-motif="data">
+
+                    <span class="cloud-area-number">
+                        02 / DATA
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Database & data modernization"
+                                : "Modernizzazione database e dati")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Query analysis, indexing, schema evolution and migration planning help improve performance without treating the database as an isolated component."
+                                : "Analisi delle query, indicizzazione, evoluzione degli schemi e pianificazione delle migrazioni permettono di migliorare le performance senza trattare il database come un componente isolato.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card cloud-area-card"
+                         data-motif="cloud">
+
+                    <span class="cloud-area-number">
+                        03 / INFRASTRUCTURE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Cloud & infrastructure evolution"
+                                : "Evoluzione cloud e infrastrutturale")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "When appropriate, workloads can move toward managed cloud services, containerized deployment or redundant infrastructure with a migration plan built around operational continuity."
+                                : "Quando appropriato, i workload possono evolvere verso servizi cloud gestiti, deployment containerizzati o infrastrutture ridondate attraverso un piano costruito attorno alla continuità operativa.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         ROADMAP
+         ========================================================== -->
+    <section class="cloud-roadmap-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="cloud-roadmap">
+
+                <div class="cloud-roadmap-copy">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "CONTROLLED MODERNIZATION"
+                            : "MODERNIZZAZIONE CONTROLLATA")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Modernize in stages, not in one irreversible jump."
+                            : "Modernizzare per fasi, non con un unico salto irreversibile.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "A modernization roadmap should reduce technical risk progressively. We separate discovery, stabilization, architectural evolution and migration so that business value can be validated before the next level of change."
+                            : "Una roadmap di modernizzazione dovrebbe ridurre il rischio tecnico progressivamente. Separiamo discovery, stabilizzazione, evoluzione architetturale e migrazione, così che il valore prodotto possa essere verificato prima di passare al livello successivo.")
+                    </p>
+
+                </div>
+
+
+                <div class="cloud-roadmap-steps">
+
+                    <div class="cloud-roadmap-step">
+                        <span class="cloud-roadmap-index">01</span>
+
+                        <div>
+                            <strong>
+                                @(isEn
+                                    ? "Assess the current state"
+                                    : "Analizzare lo stato attuale")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Architecture, code, infrastructure and dependencies"
+                                    : "Architettura, codice, infrastruttura e dipendenze")
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="cloud-roadmap-step">
+                        <span class="cloud-roadmap-index">02</span>
+
+                        <div>
+                            <strong>
+                                @(isEn
+                                    ? "Prioritize technical risk"
+                                    : "Prioritizzare il rischio tecnico")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Security, availability, performance and maintainability"
+                                    : "Sicurezza, disponibilità, performance e manutenibilità")
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="cloud-roadmap-step">
+                        <span class="cloud-roadmap-index">03</span>
+
+                        <div>
+                            <strong>
+                                @(isEn
+                                    ? "Define the target architecture"
+                                    : "Definire l'architettura target")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Only as complex as the problem requires"
+                                    : "Complessa soltanto quanto richiesto dal problema")
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="cloud-roadmap-step">
+                        <span class="cloud-roadmap-index">04</span>
+
+                        <div>
+                            <strong>
+                                @(isEn
+                                    ? "Migrate incrementally"
+                                    : "Migrare in modo incrementale")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Controlled releases and measurable operational impact"
+                                    : "Rilasci controllati e impatto operativo misurabile")
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PRINCIPLE
+         ========================================================== -->
+    <section class="cloud-principle-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="cloud-principle">
+
+                <div class="cloud-principle-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "ARCHITECTURE BEFORE CLOUD"
+                            : "ARCHITETTURA PRIMA DEL CLOUD")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Moving a problem to the cloud does not automatically solve it."
+                            : "Spostare un problema sul cloud non significa automaticamente risolverlo.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "A poorly structured application can remain expensive, fragile or slow after migration. Cloud strategy therefore begins with workload characteristics, architecture and operating constraints, not with the provider logo."
+                            : "Un'applicazione mal strutturata può rimanere costosa, fragile o lenta anche dopo una migrazione. La strategia cloud parte quindi dalle caratteristiche del workload, dall'architettura e dai vincoli operativi, non dal logo del provider.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="cloud-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="cloud-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "ARCHITECTURE · LEGACY · CLOUD"
+                        : "ARCHITETTURA · LEGACY · CLOUD")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Which part of your architecture has become too risky to change?"
+                        : "Quale parte della tua architettura è diventata troppo rischiosa da modificare?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's review your current systems, technical debt and operational constraints to define a modernization roadmap that is realistic, incremental and measurable."
+                        : "Analizziamo sistemi attuali, debito tecnico e vincoli operativi per definire una roadmap di modernizzazione realistica, incrementale e misurabile.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Request an architecture review"
+                        : "Richiedi un architecture review")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

@@ -1,118 +1,1057 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero" style="padding-bottom: 2rem;">
-    <div class="container">
-        <span class="section-eyebrow">SOFTWARE ENGINEERING</span>
-        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
-            @(isEn ? "Software custom when it is the right solution, not the default one." : "Software custom quando è la soluzione giusta, non la soluzione predefinita.")
-        </h1>
-        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-            @(isEn ? "Graldev engineers robust APIs, tailored backoffices, middleware components, and scalable microservices only when standard platforms can't cover your process." : "Ingegnerizziamo backend stabili, middleware, API e microservizi resilienti solo quando le soluzioni standard sul mercato non coprono i vostri processi.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
-            @(isEn ? "Let's talk about your needs" : "Parliamo della tua esigenza")
-        </a>
-    </div>
-</section>
-
-<!-- Interactive Pathways: Buy vs Integrate vs Build -->
-<section class="white-section" style="padding: 3rem 0;">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">THE DECISION MATRIX</span>
-            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">Build, Buy, or Integrate?</h2>
-            <p class="section-subtitle" style="margin: 0 auto; max-width: 600px; font-size: 1.05rem;">
-                @(isEn ? "We help you select the most sustainable technical pathway for your business processes:" : "Ti aiutiamo a scegliere la strada tecnologica più corretta per il tuo budget:")
-            </p>
-        </div>
-
-        <div class="pathway-grid">
-            <!-- BUY -->
-            <div class="pathway-card" id="card-buy" onclick="activatePathway('buy')">
-                <span class="card-neomorphic" style="font-size: 0.7rem; font-weight: 800; color: var(--text-muted); padding: 0.2rem 0.5rem; border-radius: 4px;">01. BUY</span>
-                <h3 style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Buy Standard SaaS" : "Acquista Software Pronto")</h3>
-                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 0;">
-                    @(isEn ? "Choose pre-existing platforms when the business process is standardized and has minimal unique flows." : "Usa piattaforme esistenti quando il processo aziendale è standard e non possiede regole di business particolari.")
-                </p>
-            </div>
-
-            <!-- INTEGRATE -->
-            <div class="pathway-card active-pathway" id="card-integrate" onclick="activatePathway('integrate')">
-                <span class="card-neomorphic" style="font-size: 0.7rem; font-weight: 800; color: var(--brand-green); padding: 0.2rem 0.5rem; border-radius: 4px;">02. INTEGRATE</span>
-                <h3 style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Integrate Systems" : "Sincronizza e Integra")</h3>
-                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 0;">
-                    @(isEn ? "Write lightweight API layers or custom middleware to connect pre-existing platforms securely." : "Collega software diversi tramite middleware, webhook e code dati. Ideale per limitare tempi e budget di sviluppo.")
-                </p>
-            </div>
-
-            <!-- BUILD -->
-            <div class="pathway-card" id="card-build" onclick="activatePathway('build')">
-                <span class="card-neomorphic" style="font-size: 0.7rem; font-weight: 800; color: var(--text-muted); padding: 0.2rem 0.5rem; border-radius: 4px;">03. BUILD</span>
-                <h3 style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--brand-green-dark);">@(isEn ? "Build Custom Code" : "Sviluppa su Misura")</h3>
-                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-soft); margin-bottom: 0;">
-                    @(isEn ? "Code bespoke backoffices, web applications, or data pipelines only when your process is completely unique." : "Progetta e scrivi codice custom solo per processi che costituiscono un vero vantaggio competitivo unico.")
-                </p>
-            </div>
-        </div>
-
-        <!-- Dynamic Pathway Information Block -->
-        <div class="card-glass" style="margin-top: 2rem; border-color: rgba(0, 138, 38, 0.2); padding: 1.5rem;">
-            <h4 id="pathway-title" style="color: var(--brand-green-dark); font-size: 1.15rem; margin-bottom: 0.5rem;">System Integration Pathway</h4>
-            <p id="pathway-desc" style="font-size: 0.95rem; line-height: 1.5; color: var(--text-soft); margin-bottom: 0;">
-                @(isEn ? "Graldev maps and binds ERP databases, CRM contacts, and digital eCommerce points, building automated loops that reduce manual workflows." : "Colleghiamo software diversi tramite connettori dedicati e middleware, garantendo flussi d'ordine sincroni ed eliminando inserimenti duplicati.")
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- Scannable engineering capabilities -->
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <span class="section-eyebrow">CAPABILITIES</span>
-            <h2 style="font-weight: 900; font-size: 1.8rem;">@(isEn ? "Bespoke Components We Architect" : "Componenti custom che ingegnerizziamo")</h2>
-        </div>
-
-        <div class="grid-3" style="gap: 1.25rem;">
-            <div class="card-base" style="padding: 1.15rem;">
-                <h4 style="margin-bottom: 0.35rem;">📦 Dedicated Middleware</h4>
-                <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Automatic sync queues preventing data collision." : "Code dati per sincronizzare software asincroni.")</p>
-            </div>
-            <div class="card-base" style="padding: 1.15rem;">
-                <h4 style="margin-bottom: 0.35rem;">🔌 Secure REST/SOAP APIs</h4>
-                <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Robust endpoints documented with strict standards." : "Endpoint protetti ed ottimizzati per scambi dati veloci.")</p>
-            </div>
-            <div class="card-base" style="padding: 1.15rem;">
-                <h4 style="margin-bottom: 0.35rem;">📊 Management dashboards</h4>
-                <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 0;">@(isEn ? "Custom internal systems tailored for backoffices." : "Portali operatori dedicati integrati con i database.")</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-    const pathwayData = {
-        buy: {
-            title: "@(isEn ? "Buy Standard SaaS Platform" : "Acquisto Software Standard")",
-            desc: "@(isEn ? "When existing market tools completely cover your company operations, buying is the most budget-efficient roadmap. Graldev audits SaaS vendors to ensure smooth future compatibility." : "Consigliamo l'acquisto quando un applicativo pronto soddisfa a pieno le vostre esigenze. Vi aiutiamo nella scelta strategica e nella configurazione ottimale.")"
-        },
-        integrate: {
-            title: "@(isEn ? "Integrate Systems together" : "Sincronizza e Integra")",
-            desc: "@(isEn ? "We write lightweight connector layers linking your systems. This gives you custom efficiency without paying for redundant database rebuilds." : "Invece di riscrivere gestionali complessi da zero, creiamo middleware che li fanno comunicare. Risparmio di budget e salvaguardia degli investimenti pregressi.")"
-        },
-        build: {
-            title: "@(isEn ? "Build Tailored Custom Code" : "Sviluppo Software Custom")",
-            desc: "@(isEn ? "When your business process is highly specific and gives you a concrete competitive edge, we code robust, scalable, state-of-the-art software systems tailored around you." : "Quando il tuo processo è unico al mondo e rappresenta il tuo vero valore commerciale, creiamo software stabili, scalabili e moderni scritti su misura.")"
+@section Style {
+    <style>
+        .engineering-page {
+            --engineering-copy: 760px;
         }
-    };
 
-    function activatePathway(key) {
-        document.querySelectorAll('.pathway-card').forEach(c => c.classList.remove('active-pathway'));
-        document.getElementById('card-' + key).classList.add('active-pathway');
+        /* =========================================================
+                   OVERVIEW
+                   ========================================================= */
 
-        document.getElementById('pathway-title').innerText = pathwayData[key].title;
-        document.getElementById('pathway-desc').innerText = pathwayData[key].desc;
-    }
-</script>
+        .engineering-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .engineering-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .engineering-copy {
+            max-width: var(--engineering-copy);
+        }
+
+            .engineering-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .engineering-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .engineering-copy p + p {
+                    margin-top: 1.1rem;
+                }
+
+        .engineering-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   DECISION CARD
+                   ========================================================= */
+
+        .engineering-decision-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .engineering-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .engineering-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .engineering-decision-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .engineering-decision-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .engineering-decision-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 70px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .engineering-decision-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .engineering-decision-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .engineering-decision-copy span {
+            display: block;
+            margin-top: .14rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   DECISION MATRIX
+                   ========================================================= */
+
+        .engineering-matrix-section {
+            padding: 7rem 0;
+        }
+
+        .engineering-matrix-heading {
+            max-width: 830px;
+            margin-bottom: 3.4rem;
+        }
+
+            .engineering-matrix-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .engineering-matrix-heading p {
+                max-width: 690px;
+                margin: 0;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .engineering-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .engineering-path {
+            position: relative;
+            min-height: 360px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+            .engineering-path:hover {
+                transform: translateY(-2px);
+            }
+
+            .engineering-path.is-active {
+                border-color: rgba(197,160,89,.26);
+                box-shadow: 18px 22px 48px rgba(49,73,59,.09), inset 0 0 0 1px rgba(197,160,89,.11);
+            }
+
+        .engineering-path-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .engineering-path h3 {
+            margin: 2.7rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            line-height: 1.1;
+            letter-spacing: -.035em;
+        }
+
+        .engineering-path p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .91rem;
+            line-height: 1.68;
+        }
+
+        .engineering-path-label {
+            display: inline-flex;
+            align-items: center;
+            width: max-content;
+            margin-top: 1.5rem;
+            padding: .42rem .68rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            font-size: .65rem;
+            font-weight: 760;
+            background: rgba(255,255,255,.42);
+            border: 1px solid rgba(16,73,40,.07);
+        }
+
+        .engineering-path.is-active .engineering-path-label {
+            color: var(--brand-green);
+            border-color: rgba(17,171,100,.12);
+            background: rgba(17,171,100,.055);
+        }
+
+        .engineering-path-detail {
+            margin-top: 1.25rem;
+            padding: 2rem;
+            border-radius: 27px;
+        }
+
+        .engineering-path-detail-kicker {
+            display: block;
+            margin-bottom: .55rem;
+            color: var(--champagne-gold);
+            font-size: .67rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .engineering-path-detail h3 {
+            margin: 0 0 .65rem;
+            color: var(--brand-green-dark);
+            font-size: 1.4rem;
+            letter-spacing: -.035em;
+        }
+
+        .engineering-path-detail p {
+            max-width: 850px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .93rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+                   CAPABILITIES
+                   ========================================================= */
+
+        .engineering-capabilities-section {
+            padding: 7rem 0;
+        }
+
+        .engineering-capabilities-heading {
+            max-width: 820px;
+            margin-bottom: 3.3rem;
+        }
+
+            .engineering-capabilities-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .engineering-capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .engineering-capability {
+            min-height: 310px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .engineering-capability-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .engineering-capability h3 {
+            margin: 2.7rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .engineering-capability p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .9rem;
+            line-height: 1.68;
+        }
+
+        /* =========================================================
+                   ENGINEERING PRINCIPLE
+                   ========================================================= */
+
+        .engineering-principle-section {
+            padding: 0 0 7rem;
+        }
+
+        .engineering-principle {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.7rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .engineering-principle::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .engineering-principle-content {
+            position: relative;
+            z-index: 2;
+            max-width: 880px;
+        }
+
+        .engineering-principle h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .engineering-principle p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .engineering-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .engineering-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .engineering-cta h2 {
+                max-width: 860px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .engineering-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .engineering-overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .engineering-matrix-grid,
+            .engineering-capabilities-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .engineering-path:last-child,
+            .engineering-capability:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .engineering-overview,
+            .engineering-matrix-section,
+            .engineering-capabilities-section {
+                padding: 5.5rem 0;
+            }
+
+            .engineering-matrix-grid,
+            .engineering-capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .engineering-path,
+            .engineering-path:last-child,
+            .engineering-capability,
+            .engineering-capability:last-child {
+                grid-column: auto;
+                min-height: 250px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .engineering-decision-card,
+            .engineering-path,
+            .engineering-path-detail,
+            .engineering-capability {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .engineering-principle,
+            .engineering-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="engineering-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "software-engineering",
+
+            Size = "large",
+
+            Eyebrow = "SOFTWARE ENGINEERING",
+
+            Title = isEn
+                ? "Custom software when it is the right solution, not the default one."
+                : "Software custom quando è la soluzione giusta, non la soluzione predefinita.",
+
+            Subtitle = isEn
+                ? "We engineer APIs, middleware, backend services, operational applications and scalable components when standard platforms or integration alone cannot solve the business requirement effectively."
+                : "Ingegnerizziamo API, middleware, servizi backend, applicazioni operative e componenti scalabili quando piattaforme standard o sola integrazione non possono risolvere efficacemente l'esigenza aziendale.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = "Software Engineering",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         OVERVIEW
+         ========================================================== -->
+    <section class="engineering-overview premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container engineering-overview-grid">
+
+            <div class="engineering-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "ENGINEERING WITH A REASON"
+                        : "SVILUPPO CON UNA RAGIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Custom development should solve a constraint that existing software cannot."
+                        : "Lo sviluppo custom dovrebbe risolvere un vincolo che il software esistente non riesce a coprire.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Building software from scratch is expensive and creates long-term ownership responsibilities. For this reason, we first evaluate whether an existing SaaS platform, ERP module or integration layer can solve the requirement sustainably."
+                        : "Sviluppare software da zero ha un costo e crea responsabilità di manutenzione nel lungo periodo. Per questo valutiamo prima se una piattaforma SaaS, un modulo ERP o un layer di integrazione possano risolvere l'esigenza in modo sostenibile.")
+                </p>
+
+                <p>
+                    @(isEn
+                        ? "When the workflow is genuinely specific, existing products introduce unacceptable compromises, or a custom component creates measurable operational value, software engineering becomes the correct answer."
+                        : "Quando il workflow è realmente specifico, i prodotti esistenti introducono compromessi non accettabili o un componente custom genera un valore operativo misurabile, allora il software engineering diventa la risposta corretta.")
+                </p>
+
+                <div class="engineering-highlight">
+                    @(isEn
+                        ? "The question is not whether we can build it. The question is whether building it is the most sustainable technical decision."
+                        : "La domanda non è se possiamo svilupparlo. La domanda è se svilupparlo rappresenta la decisione tecnologica più sostenibile.")
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card engineering-decision-card"
+                   data-motif="architecture">
+
+                <span class="engineering-card-kicker">
+                    @(isEn
+                        ? "Engineering scope"
+                        : "Ambito engineering")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Components we engineer"
+                        : "Componenti che ingegnerizziamo")
+                </h3>
+
+                <ul class="engineering-decision-list">
+
+                    <li class="engineering-decision-item">
+                        <span class="engineering-decision-code">API</span>
+
+                        <span class="engineering-decision-copy">
+                            <strong>REST / SOAP APIs</strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Service interfaces and data contracts"
+                                    : "Interfacce di servizio e contratti dati")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="engineering-decision-item">
+                        <span class="engineering-decision-code">MID</span>
+
+                        <span class="engineering-decision-copy">
+                            <strong>Middleware</strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Orchestration between existing applications"
+                                    : "Orchestrazione tra applicazioni esistenti")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="engineering-decision-item">
+                        <span class="engineering-decision-code">APP</span>
+
+                        <span class="engineering-decision-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Operational applications"
+                                    : "Applicazioni operative")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Backoffice, B2B and internal workflows"
+                                    : "Backoffice, B2B e workflow interni")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="engineering-decision-item">
+                        <span class="engineering-decision-code">SVC</span>
+
+                        <span class="engineering-decision-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Backend services"
+                                    : "Servizi backend")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Focused components and scalable service boundaries"
+                                    : "Componenti mirati e boundary di servizio scalabili")
+                            </span>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         DECISION MATRIX
+         ========================================================== -->
+    <section class="engineering-matrix-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="engineering-matrix-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "THE DECISION MATRIX"
+                        : "LA MATRICE DECISIONALE")
+                </span>
+
+                <h2>
+                    Build, Buy or Integrate?
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "The correct technical path depends on how specific the process is, what systems already exist and what long-term ownership makes sense for the organization."
+                        : "Il percorso tecnologico corretto dipende da quanto è specifico il processo, dai sistemi già presenti e da quale livello di ownership abbia senso sostenere nel lungo periodo.")
+                </p>
+
+            </div>
+
+
+            <div class="engineering-matrix-grid">
+
+                <!-- BUY -->
+                <article class="premium-card engineering-path"
+                         id="engineering-path-buy"
+                         role="button"
+                         tabindex="0"
+                         data-path="buy"
+                         data-motif="roadmap"
+                         onclick="activateEngineeringPath('buy')"
+                         onkeydown="handleEngineeringPathKey(event, 'buy')">
+
+                    <span class="engineering-path-number">
+                        01 / BUY
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Use an existing platform"
+                                : "Utilizzare una piattaforma esistente")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The best choice when the business process is standard and a mature product already covers the requirement reliably."
+                                : "La scelta migliore quando il processo è standard e un prodotto maturo copre già l'esigenza in modo affidabile.")
+                        </p>
+
+                        <span class="engineering-path-label">
+                            @(isEn ? "Lowest custom ownership" : "Minore ownership custom")
+                        </span>
+                    </div>
+
+                </article>
+
+
+                <!-- INTEGRATE -->
+                <article class="premium-card engineering-path is-active"
+                         id="engineering-path-integrate"
+                         role="button"
+                         tabindex="0"
+                         data-path="integrate"
+                         data-motif="network"
+                         onclick="activateEngineeringPath('integrate')"
+                         onkeydown="handleEngineeringPathKey(event, 'integrate')">
+
+                    <span class="engineering-path-number">
+                        02 / INTEGRATE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Connect what already works"
+                                : "Collegare ciò che già funziona")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "APIs, events and middleware can create a coordinated workflow without replacing mature systems already used by the company."
+                                : "API, eventi e middleware possono creare un workflow coordinato senza sostituire sistemi maturi già utilizzati dall'azienda.")
+                        </p>
+
+                        <span class="engineering-path-label">
+                            @(isEn ? "Often the most efficient path" : "Spesso il percorso più efficiente")
+                        </span>
+                    </div>
+
+                </article>
+
+
+                <!-- BUILD -->
+                <article class="premium-card engineering-path"
+                         id="engineering-path-build"
+                         role="button"
+                         tabindex="0"
+                         data-path="build"
+                         data-motif="architecture"
+                         onclick="activateEngineeringPath('build')"
+                         onkeydown="handleEngineeringPathKey(event, 'build')">
+
+                    <span class="engineering-path-number">
+                        03 / BUILD
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Engineer a custom solution"
+                                : "Ingegnerizzare una soluzione custom")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The right choice when workflow rules are truly specific or when custom software creates strategic or operational value that standard products cannot."
+                                : "La scelta corretta quando le regole del workflow sono realmente specifiche o il software custom crea un valore strategico o operativo non coperto dai prodotti standard.")
+                        </p>
+
+                        <span class="engineering-path-label">
+                            @(isEn ? "Maximum flexibility" : "Massima flessibilità")
+                        </span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="premium-card engineering-path-detail"
+                 data-motif="roadmap">
+
+                <span class="engineering-path-detail-kicker"
+                      id="engineering-path-kicker">
+                    INTEGRATE
+                </span>
+
+                <h3 id="engineering-path-title">
+                    @(isEn
+                        ? "Connect existing systems before replacing them."
+                        : "Collega i sistemi esistenti prima di sostituirli.")
+                </h3>
+
+                <p id="engineering-path-description">
+                    @(isEn
+                        ? "When the company already owns mature ERP, CRM or SaaS platforms, we can introduce lightweight integration layers that automate information exchange and preserve previous technology investments."
+                        : "Quando l'azienda dispone già di ERP, CRM o piattaforme SaaS mature, possiamo introdurre layer di integrazione leggeri che automatizzano lo scambio di informazioni e preservano gli investimenti tecnologici già effettuati.")
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CAPABILITIES
+         ========================================================== -->
+    <section class="engineering-capabilities-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="engineering-capabilities-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "ENGINEERING CAPABILITIES"
+                        : "CAPACITÀ DI ENGINEERING")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Focused components designed for real operational requirements."
+                        : "Componenti mirati progettati attorno a requisiti operativi reali.")
+                </h2>
+
+            </div>
+
+
+            <div class="engineering-capabilities-grid">
+
+                <article class="premium-card engineering-capability"
+                         data-motif="network">
+
+                    <span class="engineering-capability-number">
+                        01 / MIDDLEWARE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Integration middleware"
+                                : "Middleware di integrazione")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Services that orchestrate APIs, queues, events and transformations between systems without forcing each application to understand every other one."
+                                : "Servizi che orchestrano API, code, eventi e trasformazioni tra sistemi senza obbligare ogni applicazione a conoscere direttamente tutte le altre.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card engineering-capability"
+                         data-motif="architecture">
+
+                    <span class="engineering-capability-number">
+                        02 / API
+                    </span>
+
+                    <div>
+                        <h3>
+                            Secure REST / SOAP APIs
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Stable service contracts, validation, authentication and error handling designed around the systems consuming them."
+                                : "Contratti di servizio stabili, validazione, autenticazione e gestione degli errori progettati attorno ai sistemi che li utilizzano.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card engineering-capability"
+                         data-motif="roadmap">
+
+                    <span class="engineering-capability-number">
+                        03 / APPLICATION
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Operational applications"
+                                : "Applicazioni operative")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Custom backoffice tools, management interfaces and internal applications designed around specific workflows and data."
+                                : "Backoffice, interfacce gestionali e applicazioni interne progettate attorno a workflow e dati specifici.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PRINCIPLE
+         ========================================================== -->
+    <section class="engineering-principle-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="engineering-principle">
+
+                <div class="engineering-principle-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "ENGINEERING PRINCIPLE"
+                            : "PRINCIPIO DI ENGINEERING")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Custom does not have to mean large, monolithic or over-engineered."
+                            : "Custom non significa necessariamente grande, monolitico o sovra-ingegnerizzato.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "Often the best custom component is a small, well-defined service that removes one important constraint and integrates cleanly with the rest of the architecture. We aim for the smallest sustainable solution that solves the problem properly."
+                            : "Spesso il miglior componente custom è un servizio piccolo e ben delimitato che elimina un vincolo importante e si integra in modo pulito con il resto dell'architettura. Puntiamo alla soluzione sostenibile più piccola che risolva correttamente il problema.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="engineering-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="engineering-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "BUY · INTEGRATE · BUILD"
+                        : "ACQUISTA · INTEGRA · SVILUPPA")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Do you actually need custom software?"
+                        : "Ti serve davvero software custom?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's map the workflow, existing platforms and technical constraints first. If custom development is the right path, we will know exactly why and what should be built."
+                        : "Mappiamo prima workflow, piattaforme esistenti e vincoli tecnici. Se lo sviluppo custom è davvero il percorso corretto, sapremo esattamente perché e cosa deve essere costruito.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Evaluate the right engineering path"
+                        : "Valutiamo il percorso più adatto")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+@section Scripts {
+    <script>
+        const engineeringPathData = {
+            buy: {
+                kicker: "@(isEn ? "BUY" : "ACQUISTA")",
+                title: "@(isEn ? "Use a mature platform when the problem is already solved." : "Usa una piattaforma matura quando il problema è già stato risolto.")",
+                description: "@(isEn ? "When an existing product covers the process reliably, buying and configuring it is generally more sustainable than owning custom code. We can support software selection, compatibility review and integration planning." : "Quando un prodotto esistente copre il processo in modo affidabile, acquistarlo e configurarlo è generalmente più sostenibile rispetto alla gestione di codice custom. Possiamo supportare software selection, verifica della compatibilità e pianificazione delle integrazioni.")"
+            },
+
+            integrate: {
+                kicker: "@(isEn ? "INTEGRATE" : "INTEGRA")",
+                title: "@(isEn ? "Connect existing systems before replacing them." : "Collega i sistemi esistenti prima di sostituirli.")",
+                description: "@(isEn ? "When the company already owns mature ERP, CRM or SaaS platforms, we can introduce lightweight integration layers that automate information exchange and preserve previous technology investments." : "Quando l'azienda dispone già di ERP, CRM o piattaforme SaaS mature, possiamo introdurre layer di integrazione leggeri che automatizzano lo scambio di informazioni e preservano gli investimenti tecnologici già effettuati.")"
+            },
+
+            build: {
+                kicker: "@(isEn ? "BUILD" : "SVILUPPA")",
+                title: "@(isEn ? "Build only the part that genuinely needs to be unique." : "Sviluppa soltanto la parte che deve essere realmente unica.")",
+                description: "@(isEn ? "Custom engineering becomes appropriate when workflow rules, data models or strategic requirements cannot be represented effectively by available products. Even then, we prefer focused components and clear service boundaries over unnecessary complexity." : "Lo sviluppo custom diventa appropriato quando regole di workflow, modelli dati o requisiti strategici non possono essere rappresentati efficacemente dai prodotti disponibili. Anche in quel caso preferiamo componenti mirati e boundary di servizio chiari rispetto a complessità non necessaria.")"
+            }
+        };
+
+        function activateEngineeringPath(key) {
+            document
+                .querySelectorAll(".engineering-path")
+                .forEach(function(item) {
+                    item.classList.remove("is-active");
+                });
+
+            const selected = document.getElementById("engineering-path-" + key);
+
+            if (selected) {
+                selected.classList.add("is-active");
+            }
+
+            const data = engineeringPathData[key];
+
+            if (!data) {
+                return;
+            }
+
+            document.getElementById("engineering-path-kicker").textContent =
+                data.kicker;
+
+            document.getElementById("engineering-path-title").textContent =
+                data.title;
+
+            document.getElementById("engineering-path-description").textContent =
+                data.description;
+        }
+
+        function handleEngineeringPathKey(event, key) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                activateEngineeringPath(key);
+            }
+        }
+    </script>
+}

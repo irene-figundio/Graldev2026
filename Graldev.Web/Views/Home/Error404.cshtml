@@ -2,27 +2,378 @@
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;">
-    <div class="container" style="max-width: 600px;">
-        <span style="font-size: 7rem; line-height: 1; font-weight: 900; color: var(--brand-green); display: block; filter: drop-shadow(0 0 15px rgba(0, 138, 38, 0.2));">404</span>
-        <h1 style="font-size: 2.2rem; margin-top: 1rem; margin-bottom: 1rem;">
-            @(isEn ? "Page Not Found" : "Pagina non trovata")
-        </h1>
-        <p style="margin-bottom: 2.5rem; color: var(--text-soft);">
-            @(isEn ? "The page you are looking for has been moved, removed or does not exist." : "La pagina che stai cercando è stata spostata, rimossa o non è mai esistita.")
-        </p>
+@section Style {
+    <link rel="stylesheet"
+          href="~/css/graldev-premium-shared.css"
+          asp-append-version="true" />
 
-        <div style="background-color: var(--bg-warm-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 2rem; text-align: left;">
-            <h3 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--brand-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">
-                @(isEn ? "Quick Navigation Links" : "Collegamenti consigliati")
-            </h3>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
-                <li>🔗 <a href="@(isEn ? "/en" : "/")">@(isEn ? "Go to Homepage" : "Torna all'Homepage")</a></li>
-                <li>🔗 <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")">@(isEn ? "IT Consulting" : "Consulenza Informatica")</a></li>
-                <li>🔗 <a href="@(isEn ? "/en/case-studies" : "/case-study")">@(isEn ? "Case Studies" : "Sfoglia i Case Study")</a></li>
-                <li>🔗 <a href="@(isEn ? "/en/insights" : "/insights")">@(isEn ? "Insights & Guides" : "Leggi gli Insights")</a></li>
-                <li>🔗 <a href="@(isEn ? "/en/contact" : "/contatti")">@(isEn ? "Contact our Consultants" : "Contatta i nostri consulenti")</a></li>
-            </ul>
+    <style>
+        .error-page {
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100svh - var(--header-height));
+            padding: 10rem 0 6rem;
+            display: flex;
+            align-items: center;
+            background: radial-gradient( circle at 78% 18%, rgba(17,171,100,.075), transparent 30% ), radial-gradient( circle at 18% 12%, rgba(197,160,89,.12), transparent 34% ), linear-gradient( 180deg, var(--bg-warm-ivory), var(--bg-warm-white) );
+        }
+
+            .error-page::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                opacity: .52;
+                background: linear-gradient( 135deg, transparent 0 49.5%, rgba(197,160,89,.05) 50%, transparent 50.5% 100% );
+                background-size: 110px 110px;
+            }
+
+        .error-shell {
+            position: relative;
+            z-index: 2;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .error-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr);
+            gap: clamp(2rem, 6vw, 5.5rem);
+            align-items: center;
+        }
+
+        .error-copy {
+            max-width: 650px;
+        }
+
+        .error-code {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: 1.4rem;
+            padding: .55rem .85rem;
+            border-radius: 999px;
+            color: var(--brand-green);
+            background: rgba(255,255,255,.42);
+            border: 1px solid rgba(197,160,89,.15);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            font-size: .73rem;
+            font-weight: 850;
+            letter-spacing: .095em;
+            text-transform: uppercase;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,.85), 0 8px 20px rgba(42,79,57,.035);
+        }
+
+            .error-code::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.1);
+            }
+
+        .error-title {
+            margin: 0 0 1.2rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(3rem, 6vw, 5.6rem);
+            line-height: .98;
+            letter-spacing: -.055em;
+        }
+
+        .error-title-accent {
+            position: relative;
+            display: inline;
+        }
+
+            .error-title-accent::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: .04em;
+                height: .075em;
+                border-radius: 999px;
+                z-index: -1;
+                background: linear-gradient( 90deg, rgba(197,160,89,.15), rgba(197,160,89,.92), rgba(17,171,100,.24) );
+            }
+
+        .error-description {
+            max-width: 610px;
+            margin: 0 0 2rem;
+            color: var(--text-soft);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+        }
+
+        .error-secondary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: .75rem 1.2rem;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            background: rgba(255,255,255,.36);
+            border: 1px solid rgba(16,73,40,.08);
+            font-size: .84rem;
+            font-weight: 720;
+            text-decoration: none;
+            transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+        }
+
+            .error-secondary-link:hover {
+                transform: translateY(-2px);
+                background: rgba(255,255,255,.6);
+                border-color: rgba(17,171,100,.15);
+            }
+
+        .error-nav-card {
+            position: relative;
+            overflow: hidden;
+            padding: 1.8rem;
+            border-radius: 27px;
+        }
+
+            .error-nav-card::after {
+                content: "";
+                position: absolute;
+                width: 210px;
+                height: 210px;
+                right: -100px;
+                top: -110px;
+                border-radius: 50%;
+                background: radial-gradient( circle, rgba(197,160,89,.13), transparent 68% );
+                pointer-events: none;
+            }
+
+        .error-nav-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-nav-kicker {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: .65rem;
+            color: var(--brand-green);
+            font-size: .68rem;
+            font-weight: 820;
+            letter-spacing: .085em;
+            text-transform: uppercase;
+        }
+
+            .error-nav-kicker::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+            }
+
+        .error-nav-card h2 {
+            margin: 0 0 1.3rem;
+            color: var(--brand-green-dark);
+            font-size: 1.4rem;
+            letter-spacing: -.035em;
+        }
+
+        .error-links {
+            display: grid;
+            gap: .55rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            .error-links a {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                min-height: 52px;
+                padding: .72rem .8rem;
+                border-radius: 14px;
+                color: var(--brand-green-dark);
+                background: rgba(255,255,255,.25);
+                border: 1px solid rgba(255,255,255,.48);
+                font-size: .82rem;
+                font-weight: 700;
+                text-decoration: none;
+                transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+            }
+
+                .error-links a::after {
+                    content: "↗";
+                    color: var(--champagne-gold);
+                    font-size: .8rem;
+                    transition: transform 180ms ease;
+                }
+
+                .error-links a:hover {
+                    transform: translateY(-2px);
+                    background: rgba(255,255,255,.45);
+                    border-color: rgba(255,255,255,.75);
+                }
+
+                    .error-links a:hover::after {
+                        transform: translate(2px,-2px);
+                    }
+
+        @@media (max-width: 860px) {
+            .error-page {
+                min-height: auto;
+                padding: 8.5rem 0 5.5rem;
+            }
+
+            .error-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .error-copy {
+                max-width: 720px;
+            }
+
+            .error-nav-card {
+                max-width: 720px;
+            }
+        }
+
+        @@media (max-width: 560px) {
+            .error-page {
+                padding-top: 8rem;
+            }
+
+            .error-title {
+                font-size: clamp(2.8rem, 13vw, 4.4rem);
+            }
+
+            .error-actions {
+                flex-direction: column;
+            }
+
+                .error-actions .btn,
+                .error-secondary-link {
+                    width: 100%;
+                }
+
+            .error-nav-card {
+                padding: 1.3rem;
+                border-radius: 22px;
+            }
+        }
+    </style>
+}
+
+<section class="error-page">
+
+    <div class="container error-shell">
+
+        <div class="error-layout">
+
+            <div class="error-copy">
+
+                <span class="error-code">
+                    404 · @(isEn ? "Page not found" : "Pagina non trovata")
+                </span>
+
+                <h1 class="error-title">
+                    @(isEn ? "Looks like you're lost." : "Sembra che tu ti sia perso.")
+                </h1>
+
+                <p class="error-description">
+                    @(isEn
+                        ? "The page may have been moved, removed or never existed. You can return to the homepage or continue exploring the main areas of Graldev."
+                        : "La pagina potrebbe essere stata spostata, rimossa o non essere mai esistita. Puoi tornare alla homepage oppure continuare a esplorare le principali aree di Graldev.")
+                </p>
+
+                <div class="error-actions">
+
+                    <a href="@(isEn ? "/en" : "/")"
+                       class="btn btn-primary">
+                        @(isEn ? "Back to homepage" : "Torna alla homepage")
+                    </a>
+
+                    <a href="@(isEn ? "/en/contact" : "/contatti")"
+                       class="error-secondary-link">
+                        @(isEn ? "Contact Graldev" : "Contatta Graldev")
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card error-nav-card"
+                   data-motif="network">
+
+                <div class="error-nav-content">
+
+                    <span class="error-nav-kicker">
+                        @(isEn ? "Keep exploring" : "Continua a esplorare")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Useful destinations"
+                            : "Destinazioni utili")
+                    </h2>
+
+                    <nav aria-label="@(isEn ? "Recommended navigation" : "Navigazione consigliata")">
+
+                        <ul class="error-links">
+
+                            <li>
+                                <a href="@(isEn ? "/en/it-consulting" : "/consulenza-informatica")">
+                                    @(isEn
+                                        ? "IT Consulting"
+                                        : "Consulenza Informatica")
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@(isEn ? "/en/case-studies" : "/case-study")">
+                                    @(isEn
+                                        ? "Case Studies"
+                                        : "Case Study")
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@(isEn ? "/en/insights" : "/insights")">
+                                    @(isEn
+                                        ? "Insights & Guides"
+                                        : "Insights e Guide")
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@(isEn ? "/en/contact" : "/contatti")">
+                                    @(isEn
+                                        ? "Talk to our consultants"
+                                        : "Parla con i nostri consulenti")
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+
+            </aside>
+
         </div>
+
     </div>
+
 </section>
