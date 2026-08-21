@@ -539,3 +539,44 @@ section.site-section.bg-cream,
         aspect-ratio: 16 / 8;
     }
 }
+
+/* =========================================================
+   DARK MODE SHARED OVERRIDES
+   ========================================================= */
+
+[data-theme="dark"] section.site-section.bg-cream,
+[data-theme="dark"] .premium-pale-green {
+    background: radial-gradient(circle at 18% 12%, #0e2217 0%, #09180e 100%) !important;
+    border-top-color: rgba(17, 171, 100, 0.12) !important;
+    border-bottom-color: rgba(17, 171, 100, 0.12) !important;
+}
+
+[data-theme="dark"] :is(
+    .hero-visual-card,
+    .glass-panel,
+    .bento-card,
+    .premium-service-card,
+    .pipeline-node,
+    .case-card-large,
+    .step-node,
+    .waves-container,
+    .premium-card
+) {
+    background: linear-gradient(145deg, rgba(20, 42, 30, 0.72) 0%, rgba(14, 30, 21, 0.65) 100%) !important;
+    border-color: rgba(212, 175, 102, 0.22) !important;
+    box-shadow: 16px 18px 36px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] :is(
+    .hero-visual-card,
+    .glass-panel,
+    .bento-card,
+    .premium-service-card,
+    .pipeline-node,
+    .case-card-large,
+    .step-node,
+    .premium-card
+):hover {
+    border-color: rgba(212, 175, 102, 0.45) !important;
+    box-shadow: 19px 22px 42px rgba(0, 0, 0, 0.65), inset 1px 1px 0 rgba(255, 255, 255, 0.15) !important;
+}

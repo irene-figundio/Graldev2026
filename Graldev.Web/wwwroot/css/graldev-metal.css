@@ -122,6 +122,35 @@
         will-change: auto;
     }
 }
+
+/* =========================================================
+   DARK MODE METAL HERO OVERRIDES
+   ========================================================= */
+
+[data-theme="dark"] .metal-v3-section {
+    background:
+        radial-gradient(
+            circle at 52% 28%,
+            #0f2217 0%,
+            #09170e 34%,
+            #050d08 100%
+        ) !important;
+}
+
+[data-theme="dark"] .metal-v3-section::after {
+    background:
+        radial-gradient(
+            circle at var(--hero-metal-mx) var(--hero-metal-my),
+            rgba(17, 171, 100, 0.20) 0%,
+            rgba(212, 175, 102, 0.12) 15%,
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(12, 26, 18, 0.20),
+            rgba(5, 13, 8, 0.40)
+        ) !important;
+}
 /* =========================================================
    SHARED METAL HERO
    Used by _MetalHero.cshtml
@@ -333,8 +362,10 @@
 
     .consulting-hero .section-title {
         margin-bottom: 1.15rem;
-        font-size: clamp(2.45rem, 12vw, 3.8rem);
-        line-height: 1;
+        font-size: clamp(2rem, 9vw, 3.5rem);
+        line-height: 1.05;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     .consulting-hero .section-subtitle {

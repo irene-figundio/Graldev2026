@@ -6,6 +6,16 @@
 <!DOCTYPE html>
 <html lang="@(isEn ? "en" : "it")">
 <head>
+    <script>
+        (function() {
+            var saved = localStorage.getItem('graldev-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@seo.Title</title>
@@ -108,10 +118,9 @@
                 Gral<span class="logo-accent">dev</span>
             </a>
 
-            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="hamburger" aria-label="@(isEn ? "Toggle navigation menu" : "Menu di navigazione")" aria-expanded="false" aria-controls="main-navigation">
+                <span class="line-1"></span>
+                <span class="line-2"></span>
             </button>
 
             <nav class="main-nav" id="main-navigation">
@@ -164,8 +173,8 @@
 
                 <!-- Language Selector -->
                 <div class="lang-selector">
-                    <a href="@(seo.AlternateLanguages.ContainsKey("it") ? seo.AlternateLanguages["it"] : "/")" class="lang-link @(!isEn ? "active" : "")">IT</a>
-                    <a href="@(seo.AlternateLanguages.ContainsKey("en") ? seo.AlternateLanguages["en"] : "/en")" class="lang-link @(isEn ? "active" : "")">EN</a>
+                    <a href="@seo.PathIt" class="lang-link @(!isEn ? "active" : "")">IT</a>
+                    <a href="@seo.PathEn" class="lang-link @(isEn ? "active" : "")">EN</a>
                 </div>
 
                 <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn header-cta">
@@ -225,7 +234,7 @@
                 <ul>
                     <li><a href="https://www.graldevstudios.com" target="_blank" rel="noopener">Graldev Studios</a></li>
                     <li><a href="@(isEn ? "/en/about" : "/chi-siamo")#partners">Partners</a></li>
-                    <li><a href="@(isEn ? "/en/about" : "/chi-siamo")#privacy">Privacy & Cookies</a></li>
+                    <li><a href="@(isEn ? "/en/privacy" : "/privacy")">Privacy & Cookies</a></li>
                 </ul>
             </div>
         </div>
@@ -245,8 +254,28 @@
                     LinkedIn
                 </a>
             </div>
+            <div class="footer-theme-switch">
+                <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="@(isEn ? "Toggle theme" : "Cambia tema")" title="@(isEn ? "Toggle Light / Dark theme" : "Cambia tema Chiaro / Scuro")">
+                    <span class="theme-toggle-icon theme-sun" aria-hidden="true">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    </span>
+                    <span class="theme-toggle-track">
+                        <span class="theme-toggle-thumb"></span>
+                    </span>
+                    <span class="theme-toggle-icon theme-moon" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </footer>
+
+    <!-- Back to Top Floating Button -->
+    <button id="backToTop" class="back-to-top" type="button" aria-label="@(isEn ? "Back to top" : "Torna in cima")" title="@(isEn ? "Back to top" : "Torna in cima")">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Scripts -->
     <script src="~/js/site.js" asp-append-version="true"></script>

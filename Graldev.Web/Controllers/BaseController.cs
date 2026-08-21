@@ -19,26 +19,29 @@ namespace Graldev.Web.Controllers
 
             var baseUrl = "https://www.graldev.com";
 
+            seo.PathIt = string.IsNullOrEmpty(canonicalPathIt) ? "/" : canonicalPathIt;
+            seo.PathEn = string.IsNullOrEmpty(canonicalPathEn) ? "/en" : canonicalPathEn;
+
             if (IsEn)
             {
                 seo.Title = titleEn;
                 seo.MetaDescription = descEn;
-                seo.CanonicalUrl = $"{baseUrl}{canonicalPathEn}";
+                seo.CanonicalUrl = $"{baseUrl}{seo.PathEn}";
             }
             else
             {
                 seo.Title = titleIt;
                 seo.MetaDescription = descIt;
-                seo.CanonicalUrl = $"{baseUrl}{canonicalPathIt}";
+                seo.CanonicalUrl = $"{baseUrl}{seo.PathIt}";
             }
 
             seo.OgTitle = seo.Title;
             seo.OgDescription = seo.MetaDescription;
 
-            // Alternate languages
-            seo.AlternateLanguages["it"] = $"{baseUrl}{canonicalPathIt}";
-            seo.AlternateLanguages["en"] = $"{baseUrl}{canonicalPathEn}";
-            seo.AlternateLanguages["x-default"] = $"{baseUrl}{canonicalPathIt}"; // Default to Italian
+            // Alternate languages for SEO link tags
+            seo.AlternateLanguages["it"] = $"{baseUrl}{seo.PathIt}";
+            seo.AlternateLanguages["en"] = $"{baseUrl}{seo.PathEn}";
+            seo.AlternateLanguages["x-default"] = $"{baseUrl}{seo.PathIt}"; // Default to Italian
 
             ViewData["SeoMetadata"] = seo;
             ViewData["IsEn"] = IsEn;
