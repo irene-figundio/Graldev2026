@@ -1,63 +1,737 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">@(isEn ? "INDUSTRIAL VERTICAL" : "SETTORE INDUSTRIALE")</span>
-        <h1 class="section-title">
-            @(isEn ? "IT Consulting & System Integration for Industry" : "Consulenza IT e System Integration per l'Industria")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "Optimizing production data streams, bridging hardware machines with ERP software databases, and automating department processes." : "Ottimizzazione dei flussi dati di produzione, connessione tra macchine hardware e gestionali (ERP), e automazione dei processi di reparto.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .industry-page {
+            --industry-copy: 760px;
+        }
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Connecting physical machinery with administrative software" : "Far dialogare macchine fisiche e software gestionali")</h2>
-            <p>
-                @if (isEn)
+        /* =========================================================
+                   INDUSTRIAL OVERVIEW
+                   ========================================================= */
+
+        .industry-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .industry-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .industry-copy {
+            max-width: var(--industry-copy);
+        }
+
+            .industry-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .industry-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+        .industry-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   SYSTEM MAP
+                   ========================================================= */
+
+        .industry-systems-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .industry-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .industry-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .industry-systems-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .industry-system-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .industry-system-item {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 69px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .industry-system-code {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .65rem;
+            font-weight: 850;
+            letter-spacing: -.02em;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .industry-system-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .88rem;
+            line-height: 1.3;
+        }
+
+        .industry-system-copy span {
+            display: block;
+            margin-top: .15rem;
+            color: var(--text-muted);
+            font-size: .72rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   OPERATING AREAS
+                   ========================================================= */
+
+        .industry-areas {
+            padding: 7rem 0;
+        }
+
+        .industry-areas-heading {
+            max-width: 830px;
+            margin-bottom: 3.3rem;
+        }
+
+            .industry-areas-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .industry-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .industry-area-card {
+            min-height: 320px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .industry-area-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .industry-area-card h3 {
+            margin: 2.6rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .industry-area-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+                   POSITIONING
+                   ========================================================= */
+
+        .industry-positioning-section {
+            padding: 0 0 7rem;
+        }
+
+        .industry-positioning {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.6rem);
+            border-radius: 31px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .industry-positioning::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .industry-positioning-content {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+        }
+
+        .industry-positioning h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .industry-positioning p {
+            max-width: 740px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .industry-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .industry-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.6rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .industry-cta h2 {
+                max-width: 830px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .industry-cta p {
+                max-width: 640px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .industry-overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industry-areas-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .industry-area-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .industry-overview,
+            .industry-areas {
+                padding: 5.5rem 0;
+            }
+
+            .industry-areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industry-area-card,
+            .industry-area-card:last-child {
+                grid-column: auto;
+                min-height: 260px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .industry-systems-card,
+            .industry-area-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .industry-positioning,
+            .industry-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="industry-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "industry",
+
+            Size = "large",
+
+            Eyebrow = isEn
+                ? "INDUSTRIAL VERTICAL"
+                : "SETTORE INDUSTRIALE",
+
+            Title = isEn
+                ? "IT consulting and system integration for Industry."
+                : "Consulenza IT e system integration per l'Industria.",
+
+            Subtitle = isEn
+                ? "We connect production systems, industrial equipment, ERP platforms and operational data to create more integrated and observable manufacturing processes."
+                : "Colleghiamo sistemi di produzione, macchinari industriali, piattaforme ERP e dati operativi per costruire processi manifatturieri più integrati e osservabili.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>In complex manufacturing environments, a large gap often exists between raw physical workshop activities and corporate administrative software. Graldev acts as the integration engineer that connects custom hardware sensors, data acquisition lines, and PLC machinery directly with your central database, enabling live stock tracking, process automation, and zero manual spreadsheet updates.</text>
-                }
-                else
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>Nei contesti manifatturieri e di fabbrica, esiste spesso una grande distanza tra i macchinari fisici di produzione e i gestionali amministrativi centrali. Graldev opera come progettista d'integrazione per connettere sensori hardware, PLC ed acquisitori dati con i database centrali, consentendo la tracciabilità delle materie prime, il controllo avanzato dei magazzini e l'automazione dei reparti produttivi.</text>
+                    Label = isEn ? "Sectors" : "Settori",
+                    Url = isEn ? "/en/sectors" : "/settori"
+                },
+                new()
+                {
+                    Label = isEn ? "Industry" : "Industria",
+                    IsCurrent = true
                 }
-            </p>
-            <div class="case-quote-box" style="margin-top: 1.5rem;">
-                <h4>@(isEn ? "Real experience, objective advising" : "Esperienza reale, consulenza pragmatica")</h4>
-                <p style="font-size: 1rem; margin-top: 0.25rem;">
-                    @(isEn ? "We align machines, SCADA protocols, and ERP databases safely without interrupting your continuous production workflows." : "Allineiamo macchinari industriali, protocolli di comunicazione e database ERP in sicurezza, preservando l'operatività continua della fabbrica.")
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         INDUSTRIAL INTEGRATION
+         ========================================================== -->
+    <section class="industry-overview premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container industry-overview-grid">
+
+            <div class="industry-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "SHOP FLOOR TO ENTERPRISE SYSTEMS"
+                        : "DAL REPARTO PRODUTTIVO AI SISTEMI ENTERPRISE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Connecting physical operations with enterprise software."
+                        : "Far dialogare operatività fisica e software aziendale.")
+                </h2>
+
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            In manufacturing environments, production activity and administrative
+                            software often evolve as separate systems. Machines, sensors, PLCs,
+                            inventory software and ERP platforms may therefore exchange data through
+                            manual procedures or isolated interfaces.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            Nei contesti manifatturieri, attività produttiva e software amministrativi
+                            evolvono spesso come sistemi separati. Macchinari, sensori, PLC,
+                            software di magazzino ed ERP possono quindi scambiarsi informazioni
+                            attraverso procedure manuali o interfacce isolate.
+                        </text>
+                    }
                 </p>
-            </div>
-        </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Systems Involved" : "Sistemi Coinvolti")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>⚙️ Production ERPs and Stock management software</li>
-                    <li>📡 Data collection and sensor hardware</li>
-                    <li>🤖 PLC controllers and SCADA protocols</li>
-                    <li>📊 Intranet Department Dashboards</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section style="text-align: center;">
-    <div class="container">
-        <h2>@(isEn ? "Evolve your manufacturing data pipelines" : "Automatizza i tuoi flussi produttivi")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Schedule a dedicated technical review meeting with Graldev senior industrial integration architects." : "Fissa un incontro con i nostri architetti senior per pianificare una sincronizzazione sicura.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
-            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
-        </a>
-    </div>
-</section>
+                <div class="industry-highlight">
+                    @(isEn
+                        ? "Our role is to design the integration layer between these environments, preserving the systems that already work while removing manual data hand-offs."
+                        : "Il nostro ruolo è progettare il livello di integrazione tra questi ambienti, preservando i sistemi che già funzionano ed eliminando i passaggi manuali del dato.")
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card industry-systems-card"
+                   data-motif="network">
+
+                <span class="industry-card-kicker">
+                    @(isEn
+                        ? "Industrial ecosystem"
+                        : "Ecosistema industriale")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Systems we can connect"
+                        : "Sistemi che possiamo integrare")
+                </h3>
+
+                <ul class="industry-system-list">
+
+                    <li class="industry-system-item">
+
+                        <span class="industry-system-code">
+                            ERP
+                        </span>
+
+                        <span class="industry-system-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Production ERP"
+                                    : "ERP di produzione")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Inventory, orders, production and administrative data"
+                                    : "Magazzino, ordini, produzione e dati amministrativi")
+                            </span>
+                        </span>
+
+                    </li>
+
+
+                    <li class="industry-system-item">
+
+                        <span class="industry-system-code">
+                            PLC
+                        </span>
+
+                        <span class="industry-system-copy">
+                            <strong>
+                                PLC &amp; machinery
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Industrial controllers and machine-generated information"
+                                    : "Controllori industriali e informazioni prodotte dai macchinari")
+                            </span>
+                        </span>
+
+                    </li>
+
+
+                    <li class="industry-system-item">
+
+                        <span class="industry-system-code">
+                            I/O
+                        </span>
+
+                        <span class="industry-system-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Sensors & data acquisition"
+                                    : "Sensori e acquisizione dati")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Physical signals transformed into usable operational data"
+                                    : "Segnali fisici trasformati in dati operativi utilizzabili")
+                            </span>
+                        </span>
+
+                    </li>
+
+
+                    <li class="industry-system-item">
+
+                        <span class="industry-system-code">
+                            UI
+                        </span>
+
+                        <span class="industry-system-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Operational dashboards"
+                                    : "Dashboard operative")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Department visibility, alerts and process monitoring"
+                                    : "Visibilità di reparto, alert e monitoraggio dei processi")
+                            </span>
+                        </span>
+
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         OPERATING AREAS
+         ========================================================== -->
+    <section class="industry-areas bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="industry-areas-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "INDUSTRIAL INTEGRATION AREAS"
+                        : "AMBITI DI INTEGRAZIONE INDUSTRIALE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Integration where production data becomes operational value."
+                        : "Integrare dove il dato di produzione diventa valore operativo.")
+                </h2>
+
+            </div>
+
+
+            <div class="industry-areas-grid">
+
+                <article class="premium-card industry-area-card"
+                         data-motif="data">
+
+                    <span class="industry-area-number">
+                        01 / DATA
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Production data acquisition"
+                                : "Acquisizione dati di produzione")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Collect machine, sensor and process information and make it available to the systems that need to consume it."
+                                : "Raccogliamo informazioni da macchine, sensori e processi rendendole disponibili ai sistemi che devono utilizzarle.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card industry-area-card"
+                         data-motif="automation">
+
+                    <span class="industry-area-number">
+                        02 / AUTOMATION
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Process automation"
+                                : "Automazione dei processi")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Reduce repetitive manual exchanges between shop-floor operations, warehouses and administrative systems."
+                                : "Riduciamo gli scambi manuali ripetitivi tra produzione, magazzino e sistemi amministrativi.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card industry-area-card"
+                         data-motif="architecture">
+
+                    <span class="industry-area-number">
+                        03 / ARCHITECTURE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "ERP and industrial integration"
+                                : "Integrazione ERP e sistemi industriali")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Design APIs, middleware and synchronization layers that connect existing industrial and enterprise platforms without unnecessary replacement."
+                                : "Progettiamo API, middleware e livelli di sincronizzazione che collegano piattaforme industriali ed enterprise esistenti senza sostituzioni non necessarie.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         POSITIONING
+         ========================================================== -->
+    <section class="industry-positioning-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="industry-positioning">
+
+                <div class="industry-positioning-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "PRAGMATIC INDUSTRIAL CONSULTING"
+                            : "CONSULENZA INDUSTRIALE PRAGMATICA")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Modernize the data flow without disrupting production."
+                            : "Modernizzare il flusso dati senza interrompere la produzione.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "Industrial modernization does not necessarily mean replacing every existing platform. We analyze production constraints, communication protocols and current software first, then design the minimum integration layer required to create a safer and more observable flow."
+                            : "Modernizzare un ambiente industriale non significa necessariamente sostituire ogni piattaforma esistente. Analizziamo prima vincoli produttivi, protocolli di comunicazione e software attuali, quindi progettiamo il livello minimo di integrazione necessario per ottenere un flusso più sicuro e osservabile.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="industry-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="industry-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "INDUSTRY · DATA · INTEGRATION"
+                        : "INDUSTRIA · DATI · INTEGRAZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Where does your production data stop flowing today?"
+                        : "Dove si interrompe oggi il flusso dei tuoi dati di produzione?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's map machinery, ERP systems, databases and manual operations to identify where integration can remove friction."
+                        : "Mappiamo macchinari, ERP, database e operazioni manuali per individuare dove l'integrazione può eliminare attriti.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your industrial systems"
+                        : "Parliamo dei tuoi sistemi")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

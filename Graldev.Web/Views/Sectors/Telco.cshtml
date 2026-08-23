@@ -1,68 +1,726 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">@(isEn ? "TELECOM VERTICAL" : "SETTORE TELECOMUNICAZIONI")</span>
-        <h1 class="section-title">
-            @(isEn ? "IT Consulting & Architectural Scalability for Telco" : "Consulenza Informatica e Scalabilità per le Telco")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "Designing high-availability transactional pipelines, secure API marketplaces, and scalable system integration layers." : "Ingegnerizzazione di architetture dati ad alta disponibilità, marketplace di API sicuri e solidi layer d'integrazione per sistemi telco.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .telco-page {
+            --telco-copy: 760px;
+        }
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Robust architecture for high-concurrency systems" : "Architetture resilienti per grandi flussi di traffico")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Telecommunications companies manage massive, continuous streams of data and transactions every second. System breakdowns or latency overheads result in critical business losses. Graldev acts as the technical advisor to help you assess, design, and modernize technical infrastructure under high-concurrency constraints, using microservices, modern APIs, and asynchronous queuing pipelines.</text>
+        .telco-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .telco-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .telco-copy {
+            max-width: var(--telco-copy);
+        }
+
+            .telco-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .telco-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .telco-copy p + p {
+                    margin-top: 1.15rem;
                 }
-                else
+
+        .telco-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        .telco-focus-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .telco-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .telco-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .telco-focus-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .telco-focus-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .telco-focus-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 72px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .telco-focus-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .62rem;
+            font-weight: 850;
+            letter-spacing: -.02em;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .telco-focus-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .88rem;
+            line-height: 1.3;
+        }
+
+        .telco-focus-copy span {
+            display: block;
+            margin-top: .15rem;
+            color: var(--text-muted);
+            font-size: .72rem;
+            line-height: 1.4;
+        }
+
+        .telco-architecture {
+            padding: 7rem 0;
+        }
+
+        .telco-architecture-heading {
+            max-width: 830px;
+            margin-bottom: 3.3rem;
+        }
+
+            .telco-architecture-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .telco-architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .telco-architecture-card {
+            min-height: 320px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .telco-architecture-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .telco-architecture-card h3 {
+            margin: 2.7rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .telco-architecture-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        .telco-resilience-section {
+            padding: 0 0 7rem;
+        }
+
+        .telco-resilience {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.6rem);
+            border-radius: 31px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .telco-resilience::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .telco-resilience-content {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+        }
+
+        .telco-resilience h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .telco-resilience p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        .telco-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .telco-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.6rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .telco-cta h2 {
+                max-width: 860px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .telco-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        @@media (max-width: 980px) {
+            .telco-overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .telco-architecture-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .telco-architecture-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .telco-overview,
+            .telco-architecture {
+                padding: 5.5rem 0;
+            }
+
+            .telco-architecture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .telco-architecture-card,
+            .telco-architecture-card:last-child {
+                grid-column: auto;
+                min-height: 260px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .telco-focus-card,
+            .telco-architecture-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .telco-resilience,
+            .telco-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="telco-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "telecommunications",
+
+            Size = "large",
+
+            Eyebrow = isEn
+                ? "TELCO VERTICAL"
+                : "SETTORE TELECOMUNICAZIONI",
+
+            Title = isEn
+                ? "Scalable architecture and system integration for Telco."
+                : "Architetture scalabili e system integration per le Telecomunicazioni.",
+
+            Subtitle = isEn
+                ? "We design and modernize high-availability transactional systems, API ecosystems and integration layers for environments where reliability and scale are critical."
+                : "Progettiamo e modernizziamo sistemi transazionali ad alta disponibilità, ecosistemi API e layer di integrazione per contesti di telecomunicazione in cui affidabilità e scalabilità sono requisiti critici.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>Le società di telecomunicazioni elaborano flussi ingenti di transazioni e richieste dati ad ogni secondo. Rallentamenti o interruzioni generano disagi immediati. Graldev supporta il settore Telco offrendo consulenza di alto livello sull'assessment del codice, scomposizione di monolitici in microservizi, ottimizzazione di code transazionali asincrone e disegno di API stabili capaci di sopportare carichi elevatissimi.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>We pay profound attention to security headers, data structures validation, and high-availability cloud configurations (zero-downtime deployments) to ensure technical due diligence is fully met.</text>
-                }
-                else
+                    Label = isEn ? "Sectors" : "Settori",
+                    Url = isEn ? "/en/sectors" : "/settori"
+                },
+                new()
                 {
-                    <text>Garantiamo la massima robustezza: gestione accurata degli header di sicurezza, validazione transazionale dei database e configurazioni Cloud ad alta affidabilità (zero-downtime deployment) per rispettare i requisiti di audit tecnologici complessi.</text>
+                    Label = isEn ? "Telco" : "Telecomunicazioni",
+                    IsCurrent = true
                 }
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Core Technical Focus" : "Focus Tecnologico")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>📡 High-concurrency Web API Design & Security</li>
-                    <li>💾 Asynchronous Message Queuing (RabbitMQ, Kafka, Azure Service Bus)</li>
-                    <li>⚡ Database scaling and performance tuning</li>
-                    <li>🛡️ Systems Technical Due Diligence & Code Audits</li>
-                    <li>☁️ Redundant Cloud-Native Microservices</li>
-                </ul>
+            }
+        }
+    )
+
+
+    <section class="telco-overview premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container telco-overview-grid">
+
+            <div class="telco-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "HIGH-CONCURRENCY SYSTEMS"
+                        : "SISTEMI AD ALTA CONCORRENZA")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Architecture designed for continuous transactional pressure."
+                        : "Architetture progettate per sostenere flussi transazionali continui.")
+                </h2>
+
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            Telecommunications environments process large volumes of requests,
+                            events and transactions continuously. Latency, fragile dependencies
+                            or a single overloaded component can propagate quickly across the
+                            entire service chain.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            Gli ambienti delle Telecomunicazioni elaborano continuamente elevati
+                            volumi di richieste, eventi e transazioni. Latenza, dipendenze fragili
+                            o un singolo componente sovraccarico possono propagare rapidamente
+                            problemi lungo l'intera catena del servizio.
+                        </text>
+                    }
+                </p>
+
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            Graldev supports technical teams in assessing existing applications,
+                            identifying architectural bottlenecks and designing integration,
+                            asynchronous processing and modernization strategies around actual
+                            traffic and availability requirements.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            Graldev affianca i team tecnici nell'assessment delle applicazioni
+                            esistenti, nell'individuazione dei colli di bottiglia architetturali
+                            e nella progettazione di strategie di integrazione, elaborazione
+                            asincrona e modernizzazione costruite sui reali requisiti di traffico
+                            e disponibilità.
+                        </text>
+                    }
+                </p>
+
+                <div class="telco-highlight">
+                    @(isEn
+                        ? "Scalability is not a technology choice by itself. It comes from removing bottlenecks, isolating failure domains and designing each dependency around the load it must actually sustain."
+                        : "La scalabilità non è una singola scelta tecnologica. Nasce dalla rimozione dei colli di bottiglia, dall'isolamento dei failure domain e dalla progettazione di ogni dipendenza rispetto al carico che deve realmente sostenere.")
+                </div>
+
             </div>
-        </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section style="text-align: center;">
-    <div class="container">
-        <h2>@(isEn ? "Consult with our senior technical architects" : "Parla con i nostri architetti senior")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Discuss technical bottlenecks, code optimization, or microservices migration with Graldev senior advisors." : "Affronta debito tecnico, colli di bottiglia o migrazione a microservizi con i consulenti Graldev.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
-            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
-        </a>
-    </div>
-</section>
+
+            <aside class="premium-card telco-focus-card"
+                   data-motif="cloud">
+
+                <span class="telco-card-kicker">
+                    @(isEn
+                        ? "Core technical focus"
+                        : "Focus tecnologico")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Critical architecture layers"
+                        : "Layer architetturali critici")
+                </h3>
+
+                <ul class="telco-focus-list">
+
+                    <li class="telco-focus-item">
+                        <span class="telco-focus-code">API</span>
+
+                        <span class="telco-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "High-concurrency APIs"
+                                    : "API ad alta concorrenza")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Stable contracts, security and load-aware design"
+                                    : "Contratti stabili, sicurezza e progettazione orientata al carico")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="telco-focus-item">
+                        <span class="telco-focus-code">MQ</span>
+
+                        <span class="telco-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Asynchronous messaging"
+                                    : "Messaggistica asincrona")
+                            </strong>
+
+                            <span>
+                                RabbitMQ · Kafka · Azure Service Bus
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="telco-focus-item">
+                        <span class="telco-focus-code">DB</span>
+
+                        <span class="telco-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Database performance"
+                                    : "Performance database")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Scaling, indexing and transactional optimization"
+                                    : "Scalabilità, indicizzazione e ottimizzazione transazionale")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="telco-focus-item">
+                        <span class="telco-focus-code">HA</span>
+
+                        <span class="telco-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "High availability"
+                                    : "Alta disponibilità")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Redundancy, resilient deployment and failure isolation"
+                                    : "Ridondanza, deployment resiliente e isolamento dei guasti")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="telco-focus-item">
+                        <span class="telco-focus-code">AUD</span>
+
+                        <span class="telco-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Technical assessment"
+                                    : "Assessment tecnico")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Architecture review, code analysis and due diligence"
+                                    : "Revisione architetturale, analisi del codice e due diligence")
+                            </span>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <section class="telco-architecture bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="telco-architecture-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "RESILIENT SYSTEM DESIGN"
+                        : "PROGETTAZIONE DI SISTEMI RESILIENTI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Scale by separating responsibilities and controlling failure."
+                        : "Scalare separando le responsabilità e controllando i punti di failure.")
+                </h2>
+
+            </div>
+
+
+            <div class="telco-architecture-grid">
+
+                <article class="premium-card telco-architecture-card"
+                         data-motif="architecture">
+
+                    <span class="telco-architecture-number">
+                        01 / ARCHITECTURE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Monolith modernization"
+                                : "Modernizzazione dei monoliti")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "We analyze large applications and identify where modularization, service extraction or microservice boundaries can reduce coupling without creating unnecessary complexity."
+                                : "Analizziamo applicazioni monolitiche e individuiamo dove modularizzazione, estrazione di servizi o boundary a microservizi possono ridurre l'accoppiamento senza introdurre complessità inutile.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card telco-architecture-card"
+                         data-motif="network">
+
+                    <span class="telco-architecture-number">
+                        02 / TRANSACTIONS
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Asynchronous transaction flows"
+                                : "Flussi transazionali asincroni")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Queues and event-driven components can isolate workloads, absorb traffic peaks and prevent synchronous dependencies from becoming system-wide bottlenecks."
+                                : "Code e componenti event-driven permettono di isolare i workload, assorbire picchi di traffico ed evitare che dipendenze sincrone diventino colli di bottiglia dell'intero sistema.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card telco-architecture-card"
+                         data-motif="cloud">
+
+                    <span class="telco-architecture-number">
+                        03 / AVAILABILITY
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "High-availability deployment"
+                                : "Deployment ad alta disponibilità")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "We design deployment and infrastructure strategies that reduce service interruption risk through redundancy, controlled rollouts and failure-aware architecture."
+                                : "Progettiamo strategie infrastrutturali e di deployment che riducono il rischio di interruzione attraverso ridondanza, rollout controllati e architetture consapevoli dei possibili guasti.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="telco-resilience-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="telco-resilience">
+
+                <div class="telco-resilience-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "TECHNICAL DUE DILIGENCE"
+                            : "DUE DILIGENCE TECNICA")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Understand where the architecture will fail before traffic finds it."
+                            : "Capire dove l'architettura può cedere prima che sia il traffico a scoprirlo.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "Code reviews, dependency analysis, database profiling and architecture assessments help identify scalability and reliability risks before they become production incidents. The objective is not simply to modernize the stack, but to understand which changes materially improve service resilience."
+                            : "Code review, analisi delle dipendenze, profiling dei database e assessment architetturali aiutano a individuare rischi di scalabilità e affidabilità prima che diventino incidenti in produzione. L'obiettivo non è semplicemente modernizzare lo stack, ma capire quali interventi migliorano realmente la resilienza del servizio.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="telco-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="telco-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "TELCO · ARCHITECTURE · SCALABILITY"
+                        : "TELECOMUNICAZIONI · ARCHITETTURA · SCALABILITÀ")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Which component becomes your bottleneck when traffic grows?"
+                        : "Quale componente diventa il collo di bottiglia quando il traffico cresce?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's review your architecture, transactional flows and technical debt to identify where modernization can materially improve scalability and resilience."
+                        : "Analizziamo architettura, flussi transazionali e debito tecnico per individuare dove la modernizzazione può migliorare concretamente scalabilità e resilienza.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your architecture"
+                        : "Parliamo della tua architettura")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

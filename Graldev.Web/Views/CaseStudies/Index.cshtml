@@ -1,64 +1,743 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">CASE STUDIES</span>
-        <h1 class="section-title">
-            @(isEn ? "Concrete projects, solved problems, and tangible outcomes." : "Progetti reali, problemi risolti e risultati concreti.")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "Explore how we partner with enterprises to turn technical complexity into operational efficiency." : "Esplora in che modo affianchiamo le aziende per trasformare la complessità tecnologica in efficienza operativa reale.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .cases-page {
+            --cases-border: rgba(16, 73, 40, .075);
+        }
 
-<section>
-    <div class="container grid-3">
-        <!-- Case Study 1: Geordie -->
-        <div class="premium-card">
-            <div>
-                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🛒</span>
-                <h3 class="premium-card-title">Geordie</h3>
-                <p style="font-size: 0.85rem; color: var(--brand-green); text-transform: uppercase; font-weight:700; margin-bottom: 0.5rem;">
-                    @(isEn ? "ERP & Multichannel Commerce Integration" : "Integrazione ERP e Multicanalità eCommerce")
+        /* =========================================================
+                   CASE STUDIES SECTION
+                   ========================================================= */
+
+        .cases-section {
+            padding: 7rem 0 7.5rem;
+        }
+
+        .cases-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
+            gap: 3rem;
+            align-items: end;
+            margin-bottom: 3.5rem;
+        }
+
+            .cases-heading h2 {
+                max-width: 760px;
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.5rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .cases-heading p {
+                max-width: 480px;
+                margin: 0;
+                color: var(--text-soft);
+                font-size: .98rem;
+                line-height: 1.7;
+            }
+
+        /* =========================================================
+                   FEATURED CASE
+                   ========================================================= */
+
+        .case-featured {
+            position: relative;
+            overflow: hidden;
+            min-height: 510px;
+            padding: clamp(2rem, 4vw, 3.4rem);
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+            gap: clamp(2.5rem, 6vw, 6rem);
+            align-items: center;
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.72), rgba(249,253,251,.55) 42%, rgba(230,244,236,.43) );
+            border: 1px solid rgba(255,255,255,.82);
+            -webkit-backdrop-filter: blur(22px) saturate(122%);
+            backdrop-filter: blur(22px) saturate(122%);
+            box-shadow: 19px 23px 48px rgba(49,73,59,.09), -10px -10px 30px rgba(255,255,255,.8), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .case-featured::after {
+                content: "";
+                position: absolute;
+                width: 470px;
+                height: 470px;
+                right: -180px;
+                top: -210px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .case-featured-content,
+        .case-featured-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .case-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: 1.1rem;
+            color: var(--brand-green);
+            font-size: .68rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .case-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .case-featured h3 {
+            margin: 0 0 .9rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .case-category {
+            display: block;
+            margin-bottom: 1.2rem;
+            color: var(--champagne-gold);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .075em;
+            text-transform: uppercase;
+        }
+
+        .case-featured-copy {
+            max-width: 680px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.78;
+        }
+
+        .case-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin: 1.6rem 0 2rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .case-tag {
+            padding: .46rem .7rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 720;
+            background: rgba(255,255,255,.4);
+            border: 1px solid rgba(16,73,40,.07);
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            color: var(--brand-green-dark);
+            font-size: .84rem;
+            font-weight: 780;
+            text-decoration: none;
+        }
+
+            .case-link::after {
+                content: "↗";
+                color: var(--champagne-gold);
+                transition: transform 180ms ease;
+            }
+
+            .case-link:hover::after {
+                transform: translate(2px, -2px);
+            }
+
+        /* =========================================================
+                   FEATURED VISUAL
+                   ========================================================= */
+
+        .case-featured-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .commerce-diagram {
+            position: relative;
+            width: min(100%, 420px);
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+        }
+
+        .commerce-core {
+            position: relative;
+            z-index: 3;
+            width: 135px;
+            height: 135px;
+            display: grid;
+            place-items: center;
+            border-radius: 32px;
+            color: var(--brand-green-dark);
+            font-size: 1.18rem;
+            font-weight: 850;
+            letter-spacing: -.045em;
+            background: linear-gradient( 145deg, rgba(255,255,255,.78), rgba(230,244,236,.56) );
+            border: 1px solid rgba(255,255,255,.85);
+            box-shadow: 13px 15px 34px rgba(42,79,57,.09), inset 1px 1px 0 rgba(255,255,255,.98);
+        }
+
+        .commerce-node {
+            position: absolute;
+            width: 92px;
+            min-height: 62px;
+            padding: .7rem .6rem;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            border-radius: 17px;
+            color: var(--brand-green-dark);
+            font-size: .72rem;
+            font-weight: 750;
+            line-height: 1.25;
+            background: rgba(255,255,255,.46);
+            border: 1px solid rgba(255,255,255,.72);
+            box-shadow: 7px 9px 18px rgba(42,79,57,.06);
+        }
+
+        .commerce-node--erp {
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .commerce-node--shop {
+            top: 110px;
+            right: 2px;
+        }
+
+        .commerce-node--market {
+            bottom: 20px;
+            right: 38px;
+        }
+
+        .commerce-node--carrier {
+            bottom: 20px;
+            left: 38px;
+        }
+
+        .commerce-node--data {
+            top: 110px;
+            left: 2px;
+        }
+
+        .commerce-ring {
+            position: absolute;
+            width: 285px;
+            height: 285px;
+            border-radius: 50%;
+            border: 1px solid rgba(197,160,89,.22);
+        }
+
+            .commerce-ring::after {
+                content: "";
+                position: absolute;
+                inset: 25px;
+                border-radius: 50%;
+                border: 1px dashed rgba(17,171,100,.18);
+            }
+
+        /* =========================================================
+                   SECONDARY CASES
+                   ========================================================= */
+
+        .cases-secondary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .case-card {
+            min-height: 390px;
+            padding: 2rem;
+            border-radius: 27px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .case-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .case-card-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .case-card-badge {
+            padding: .43rem .7rem;
+            border-radius: 999px;
+            color: var(--brand-green);
+            background: rgba(17,171,100,.055);
+            border: 1px solid rgba(17,171,100,.08);
+            font-size: .63rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .case-card h3 {
+            margin: 3.2rem 0 .65rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.7rem, 3vw, 2.35rem);
+            letter-spacing: -.045em;
+        }
+
+        .case-card-category {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--champagne-gold);
+            font-size: .69rem;
+            font-weight: 800;
+            letter-spacing: .065em;
+            text-transform: uppercase;
+        }
+
+        .case-card p {
+            max-width: 520px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .91rem;
+            line-height: 1.68;
+        }
+
+        .case-card .case-tags {
+            margin-bottom: 1.55rem;
+        }
+
+        /* =========================================================
+                   CLOSING
+                   ========================================================= */
+
+        .cases-closing {
+            padding: 0 0 7rem;
+        }
+
+        .cases-closing-card {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 6vw, 5rem);
+            border-radius: 32px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.88), rgba(243,250,246,.72) 42%, rgba(230,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 19px 24px 52px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .cases-closing-card h2 {
+                max-width: 800px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2rem, 4.3vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.048em;
+            }
+
+            .cases-closing-card p {
+                max-width: 620px;
+                margin: 0 auto;
+                color: var(--text-soft);
+                line-height: 1.7;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .cases-heading {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .case-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .commerce-diagram {
+                margin: 0 auto;
+            }
+        }
+
+        @@media (max-width: 760px) {
+            .cases-section {
+                padding: 5.5rem 0;
+            }
+
+            .cases-secondary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-featured {
+                min-height: auto;
+                padding: 1.6rem;
+                border-radius: 25px;
+            }
+
+            .case-card {
+                min-height: 330px;
+            }
+        }
+
+        @@media (max-width: 560px) {
+            .commerce-diagram {
+                min-height: 310px;
+                transform: scale(.88);
+            }
+
+            .case-card {
+                padding: 1.5rem;
+                border-radius: 23px;
+            }
+
+            .cases-closing-card {
+                padding: 3rem 1.35rem;
+                border-radius: 26px;
+            }
+        }
+    </style>
+}
+
+<div class="cases-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "case-studies",
+            Size = "large",
+            Eyebrow = "CASE STUDIES",
+            Title = isEn
+                ? "Concrete projects, solved problems and tangible outcomes."
+                : "Progetti reali, problemi risolti e risultati concreti.",
+
+            Subtitle = isEn
+                ? "Explore how we work alongside enterprises to connect systems, automate operations and turn technical complexity into measurable operational efficiency."
+                : "Scopri come affianchiamo le aziende per collegare sistemi, automatizzare processi e trasformare la complessità tecnologica in efficienza operativa reale.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn ? "Case Studies" : "Case Study",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <section class="cases-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="cases-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        @(isEn ? "SELECTED WORK" : "PROGETTI SELEZIONATI")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Different industries. The same starting point: a real operational problem."
+                            : "Settori diversi. Lo stesso punto di partenza: un problema operativo reale.")
+                    </h2>
+
+                </div>
+
+                <p>
+                    @(isEn
+                        ? "Our projects range from enterprise integration and digital commerce to AI and immersive experiences. The technology changes; the method remains the same."
+                        : "I nostri progetti spaziano dall'integrazione enterprise e digital commerce all'AI e alle esperienze immersive. Cambia la tecnologia, non il metodo.")
                 </p>
-                <p class="premium-card-text">
-                    @(isEn ? "Automating catalog mapping, multi-store stock levels, and couriers shipment labels across Shopify, Amazon, and eBay." : "Sincronizzazione in tempo reale di cataloghi, disponibilità stock ed etichette spedizione tra gestionali aziendali, Shopify, Amazon ed eBay.")
-                </p>
+
             </div>
-            <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Read Case Study" : "Scopri il Progetto")</a>
+
+
+            <!-- ==================================================
+                 GEORDIE
+                 ================================================== -->
+            <article class="case-featured">
+
+                <div class="case-featured-content">
+
+                    <span class="case-kicker">
+                        @(isEn ? "Featured case study" : "Case study in evidenza")
+                    </span>
+
+                    <h3>
+                        Geordie
+                    </h3>
+
+                    <span class="case-category">
+                        @(isEn
+                            ? "ERP & Omnichannel Commerce Integration"
+                            : "ERP & Integrazione Commerce Multicanale")
+                    </span>
+
+                    <p class="case-featured-copy">
+                        @(isEn
+                            ? "A centralized middleware engineered to coordinate ERP data, stock availability, eCommerce stores, marketplaces and carrier operations across Shopify, Amazon, eBay, GLS and BRT."
+                            : "Un middleware centralizzato progettato per coordinare dati ERP, disponibilità di magazzino, store eCommerce, marketplace e flussi dei corrieri tra Shopify, Amazon, eBay, GLS e BRT.")
+                    </p>
+
+                    <ul class="case-tags">
+                        <li class="case-tag">ERP</li>
+                        <li class="case-tag">Shopify</li>
+                        <li class="case-tag">Amazon</li>
+                        <li class="case-tag">eBay</li>
+                        <li class="case-tag">API Integration</li>
+                        <li class="case-tag">Logistics</li>
+                    </ul>
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/geordie"
+                                                       : "/case-study/geordie")"
+                       class="case-link">
+
+                        @(isEn
+                            ? "Explore the case study"
+                            : "Scopri il progetto")
+
+                    </a>
+
+                </div>
+
+
+                <div class="case-featured-visual"
+                     aria-hidden="true">
+
+                    <div class="commerce-diagram">
+
+                        <div class="commerce-ring"></div>
+
+                        <div class="commerce-core">
+                            GEORDIE
+                        </div>
+
+                        <div class="commerce-node commerce-node--erp">
+                            ERP
+                        </div>
+
+                        <div class="commerce-node commerce-node--shop">
+                            Shopify
+                        </div>
+
+                        <div class="commerce-node commerce-node--market">
+                            Amazon<br />
+                            eBay
+                        </div>
+
+                        <div class="commerce-node commerce-node--carrier">
+                            GLS<br />
+                            BRT
+                        </div>
+
+                        <div class="commerce-node commerce-node--data">
+                            Stock<br />
+                            Orders
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ==================================================
+                 SECONDARY CASES
+                 ================================================== -->
+            <div class="cases-secondary-grid">
+
+
+                <!-- VITINERARIO -->
+                <article class="premium-card case-card"
+                         data-motif="ai">
+
+                    <div>
+
+                        <div class="case-card-top">
+
+                            <span class="case-card-number">
+                                02
+                            </span>
+
+                            <span class="case-card-badge">
+                                AI / RAG
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Vitinerario
+                        </h3>
+
+                        <span class="case-card-category">
+                            @(isEn
+                                ? "AI Sommelier & RAG Knowledge Architecture"
+                                : "AI Sommelier & Knowledge Architecture RAG")
+                        </span>
+
+                        <p>
+                            @(isEn
+                                ? "An interactive virtual sommelier that combines Large Language Models with semantic retrieval and verified enological data to produce contextual wine recommendations."
+                                : "Un sommelier virtuale interattivo che combina Large Language Models, retrieval semantico e dati enologici verificati per produrre suggerimenti contestualizzati.")
+                        </p>
+
+                        <ul class="case-tags">
+                            <li class="case-tag">LLM</li>
+                            <li class="case-tag">RAG</li>
+                            <li class="case-tag">Vector DB</li>
+                            <li class="case-tag">OpenAI</li>
+                        </ul>
+
+                    </div>
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/vitinerario"
+                                                       : "/case-study/vitinerario")"
+                       class="case-link">
+
+                        @(isEn
+                            ? "Explore the case study"
+                            : "Scopri il progetto")
+
+                    </a>
+
+                </article>
+
+
+                <!-- GRALCALL -->
+                <article class="premium-card case-card"
+                         data-motif="network">
+
+                    <div>
+
+                        <div class="case-card-top">
+
+                            <span class="case-card-number">
+                                03
+                            </span>
+
+                            <span class="case-card-badge">
+                                WebAR
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Gralcall AR
+                        </h3>
+
+                        <span class="case-card-category">
+                            @(isEn
+                                ? "WebAR & Interactive Territorial Guides"
+                                : "WebAR & Guide Territoriali Interattive")
+                        </span>
+
+                        <p>
+                            @(isEn
+                                ? "A browser-based augmented reality experience that connects physical landmarks with multimedia storytelling, without requiring users to install a dedicated application."
+                                : "Un'esperienza di realtà aumentata direttamente nel browser che collega luoghi fisici e narrazione multimediale, senza richiedere l'installazione di un'app dedicata.")
+                        </p>
+
+                        <ul class="case-tags">
+                            <li class="case-tag">WebAR</li>
+                            <li class="case-tag">3D</li>
+                            <li class="case-tag">Mobile Web</li>
+                            <li class="case-tag">Storytelling</li>
+                        </ul>
+
+                    </div>
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/gralcall"
+                                                       : "/case-study/gralcall")"
+                       class="case-link">
+
+                        @(isEn
+                            ? "Explore the case study"
+                            : "Scopri il progetto")
+
+                    </a>
+
+                </article>
+
+            </div>
+
         </div>
 
-        <!-- Case Study 2: Vitinerario -->
-        <div class="premium-card">
-            <div>
-                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🍷</span>
-                <h3 class="premium-card-title">Vitinerario</h3>
-                <p style="font-size: 0.85rem; color: var(--brand-green); text-transform: uppercase; font-weight:700; margin-bottom: 0.5rem;">
-                    @(isEn ? "AI Sommelier Assistant & RAG Knowledge Base" : "Assistente Sommelier AI e Knowledge Base RAG")
+    </section>
+
+
+    <section class="cases-closing bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="cases-closing-card">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "FROM COMPLEXITY TO OPERATIONS"
+                        : "DALLA COMPLESSITÀ ALL'OPERATIVITÀ")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "The technology is never the starting point."
+                        : "La tecnologia non è mai il punto di partenza.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Each case starts with processes, existing systems and a concrete business constraint. Architecture, integration and custom development come after."
+                        : "Ogni progetto parte dai processi, dai sistemi esistenti e da un vincolo concreto di business. Architettura, integrazione e sviluppo custom vengono dopo.")
                 </p>
-                <p class="premium-card-text">
-                    @(isEn ? "Integrating Large Language Models (LLM) and cognitive databases to build a smart, conversational enological recommendation system." : "Integrazione di modelli di linguaggio avanzati e basi dati semantiche per consigliare abbinamenti e valorizzare la cultura enologica.")
-                </p>
+
             </div>
-            <a href="@(isEn ? "/en/case-studies/vitinerario" : "/case-study/vitinerario")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Read Case Study" : "Scopri il Progetto")</a>
+
         </div>
 
-        <!-- Case Study 3: Gralcall -->
-        <div class="premium-card">
-            <div>
-                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🕶️</span>
-                <h3 class="premium-card-title">Gralcall AR</h3>
-                <p style="font-size: 0.85rem; color: var(--brand-green); text-transform: uppercase; font-weight:700; margin-bottom: 0.5rem;">
-                    @(isEn ? "WebAR & Territorial Interactive Guides" : "Sviluppo WebAR e Guide Territoriali")
-                </p>
-                <p class="premium-card-text">
-                    @(isEn ? "Combining marker-based Augmented Reality and video narration to promote historic Italian villages directly inside mobile web browsers." : "Inquadratura di immagini sul territorio per lanciare video-narrazioni multimediali interattive in Realtà Aumentata senza scaricare app.")
-                </p>
-            </div>
-            <a href="@(isEn ? "/en/case-studies/gralcall" : "/case-study/gralcall")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Read Case Study" : "Scopri il Progetto")</a>
-        </div>
-    </div>
-</section>
+    </section>
+
+</div>

@@ -1,86 +1,924 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">AR / VR / 3D APPLICATIONS</span>
-        <h1 class="section-title">
-            @(isEn ? "Spatially rich interactive technologies: AR, VR and 3D." : "Sviluppo AR, VR e 3D per Aziende.")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "Interactive spatial technology and Augmented Reality applications designed for tourism, culture, product showcases and education." : "Integrazione di tecnologie tridimensionali interattive e Realtà Aumentata (AR) per la cultura, l'istruzione, cataloghi industriali ed il turismo.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .spatial-page {
+            --spatial-copy: 760px;
+        }
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Immersion that brings tangible value" : "L'interazione che genera impatto concreto")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Augmented and Virtual Reality are no longer gaming gimmicks. When applied to commerce, training, and historical tourism, they generate immediate, deep user engagement. We build responsive WebAR systems that run directly inside standard mobile web browsers without demanding complex external store installations.</text>
+        /* =========================================================
+                   OVERVIEW
+                   ========================================================= */
+
+        .spatial-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .spatial-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .spatial-copy {
+            max-width: var(--spatial-copy);
+        }
+
+            .spatial-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .spatial-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .spatial-copy p + p {
+                    margin-top: 1.1rem;
                 }
-                else
+
+        .spatial-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   CAPABILITIES
+                   ========================================================= */
+
+        .spatial-capability-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .spatial-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .spatial-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .spatial-capability-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .spatial-capability-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .spatial-capability-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 70px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .spatial-capability-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .spatial-capability-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .spatial-capability-copy span {
+            display: block;
+            margin-top: .14rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   APPLICATION AREAS
+                   ========================================================= */
+
+        .spatial-areas {
+            padding: 7rem 0;
+        }
+
+        .spatial-areas-heading {
+            max-width: 830px;
+            margin-bottom: 3.3rem;
+        }
+
+            .spatial-areas-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .spatial-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .spatial-area-card {
+            min-height: 330px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .spatial-area-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .spatial-area-card h3 {
+            margin: 2.7rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .spatial-area-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+                   GRALCALL
+                   ========================================================= */
+
+        .spatial-case-section {
+            padding: 0 0 7rem;
+        }
+
+        .spatial-case {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+            gap: clamp(2.5rem, 6vw, 5.5rem);
+            align-items: center;
+            padding: clamp(2.6rem, 5vw, 4.7rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .spatial-case::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -220px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .spatial-case-copy,
+        .spatial-case-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .spatial-case h2 {
+            margin: 0 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .spatial-case p {
+            max-width: 700px;
+            margin: 0 0 1.7rem;
+            color: var(--text-soft);
+            font-size: .98rem;
+            line-height: 1.75;
+        }
+
+        .spatial-case-meta {
+            display: grid;
+            gap: .65rem;
+            margin: 1.5rem 0 1.8rem;
+        }
+
+        .spatial-case-meta-row {
+            display: grid;
+            grid-template-columns: 110px minmax(0, 1fr);
+            gap: 1rem;
+            padding: .7rem 0;
+            border-bottom: 1px solid rgba(16,73,40,.07);
+        }
+
+        .spatial-case-meta-label {
+            color: var(--champagne-gold);
+            font-size: .66rem;
+            font-weight: 820;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .spatial-case-meta-value {
+            color: var(--brand-green-dark);
+            font-size: .84rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   CASE VISUAL
+                   ========================================================= */
+
+        .spatial-case-visual {
+            display: grid;
+            place-items: center;
+        }
+
+        .spatial-ar-diagram {
+            position: relative;
+            width: min(100%, 350px);
+            min-height: 320px;
+            display: grid;
+            place-items: center;
+        }
+
+        .spatial-ar-ring {
+            position: absolute;
+            width: 255px;
+            height: 255px;
+            border-radius: 50%;
+            border: 1px solid rgba(197,160,89,.22);
+        }
+
+            .spatial-ar-ring::after {
+                content: "";
+                position: absolute;
+                inset: 26px;
+                border-radius: 50%;
+                border: 1px dashed rgba(17,171,100,.17);
+            }
+
+        .spatial-ar-core {
+            position: relative;
+            z-index: 3;
+            width: 135px;
+            height: 135px;
+            display: grid;
+            place-items: center;
+            border-radius: 30px;
+            text-align: center;
+            color: var(--brand-green-dark);
+            font-size: .9rem;
+            font-weight: 850;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+            background: linear-gradient( 145deg, rgba(255,255,255,.80), rgba(229,244,235,.54) );
+            border: 1px solid rgba(255,255,255,.86);
+            box-shadow: 13px 15px 32px rgba(42,79,57,.08), inset 1px 1px 0 rgba(255,255,255,.97);
+        }
+
+        .spatial-ar-node {
+            position: absolute;
+            min-width: 82px;
+            min-height: 48px;
+            padding: .55rem .65rem;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            text-align: center;
+            color: var(--brand-green-dark);
+            font-size: .65rem;
+            font-weight: 760;
+            background: rgba(255,255,255,.47);
+            border: 1px solid rgba(255,255,255,.72);
+            box-shadow: 6px 8px 16px rgba(42,79,57,.055);
+        }
+
+        .spatial-ar-node--top {
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .spatial-ar-node--right {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .spatial-ar-node--bottom {
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .spatial-ar-node--left {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .spatial-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .spatial-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.6rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .spatial-cta h2 {
+                max-width: 850px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .spatial-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .spatial-overview-grid,
+            .spatial-case {
+                grid-template-columns: 1fr;
+            }
+
+            .spatial-areas-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .spatial-area-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .spatial-overview,
+            .spatial-areas {
+                padding: 5.5rem 0;
+            }
+
+            .spatial-areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spatial-area-card,
+            .spatial-area-card:last-child {
+                grid-column: auto;
+                min-height: 260px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .spatial-capability-card,
+            .spatial-area-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .spatial-case,
+            .spatial-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+
+            .spatial-case-meta-row {
+                grid-template-columns: 1fr;
+                gap: .3rem;
+            }
+
+            .spatial-ar-diagram {
+                transform: scale(.86);
+            }
+        }
+    </style>
+}
+
+<div class="spatial-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "ar-vr-3d",
+
+            Size = "large",
+
+            Eyebrow = "AR · VR · 3D APPLICATIONS",
+
+            Title = isEn
+                ? "Interactive spatial technologies for real-world experiences."
+                : "Tecnologie AR, VR e 3D per esperienze interattive reali.",
+
+            Subtitle = isEn
+                ? "We design augmented reality, interactive 3D and immersive web experiences for tourism, culture, education and digital product communication."
+                : "Progettiamo esperienze in Realtà Aumentata, 3D interattivo e ambienti immersivi web per turismo, cultura, formazione e comunicazione digitale dei prodotti.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>La Realtà Aumentata e le tecnologie 3D interattive rappresentano oggi strumenti commerciali e culturali di impatto incredibile. Applicate ad itinerari turistici, cataloghi interattivi di prodotti, o percorsi educativi, offrono livelli di coinvolgimento senza pari. Graldev sviluppa soluzioni WebAR agili che funzionano direttamente nei browser degli smartphone comuni, senza richiedere il download di pesanti app esterne.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>Whether you want to create interactive educational villages, immersive museum guides, or customized 3D product configurations, our spatial technical advisors will map, design, and code the proper interactive assets.</text>
+                    Label = "AR / VR / 3D",
+                    IsCurrent = true
                 }
-                else
-                {
-                    <text>Sia che desideriate arricchire un borgo storico con video-guide in AR attivabili inquadrando cartelli locali, sia che vogliate mostrare un macchinario tridimensionale interattivo sul vostro portale web, i nostri specialisti progetteranno gli asset e l'integrazione ideale.</text>
-                }
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="premium-card">
-                <h3>@(isEn ? "Interactive Capabilities" : "Cosa Sviluppiamo")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem;">
-                    <li>🕶️ WebAR (Augmented Reality directly inside mobile browsers)</li>
-                    <li>🏛️ Interactive guides for tourism, museums and historical sites</li>
-                    <li>📊 Immersive 3D product configurators for websites</li>
-                    <li>📚 Educational gaming & Interactive learning assets</li>
-                    <li>🎮 Web-based 3D simulations (Three.js, Canvas, SVG)</li>
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         OVERVIEW
+         ========================================================== -->
+    <section class="spatial-overview premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container spatial-overview-grid">
+
+            <div class="spatial-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "INTERACTIVE SPATIAL EXPERIENCES"
+                        : "ESPERIENZE SPAZIALI INTERATTIVE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Immersion is useful when it improves understanding, interaction or access."
+                        : "L'immersione è utile quando migliora comprensione, interazione o accesso.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Augmented Reality and interactive 3D are valuable when they connect digital information to a physical place, object or learning experience. They can make a historical site easier to explore, allow a product to be inspected before purchase or transform static educational content into an interactive experience."
+                        : "La Realtà Aumentata e il 3D interattivo generano valore quando collegano l'informazione digitale a un luogo fisico, a un oggetto o a un'esperienza formativa. Possono rendere più semplice esplorare un sito storico, mostrare un prodotto prima dell'acquisto o trasformare contenuti didattici statici in esperienze interattive.")
+                </p>
+
+                <p>
+                    @(isEn
+                        ? "Where appropriate, we favor browser-based experiences that reduce friction and allow users to access the content directly from smartphones and modern web browsers."
+                        : "Quando il progetto lo consente, privilegiamo esperienze browser-based che riducono la frizione e permettono agli utenti di accedere ai contenuti direttamente da smartphone e browser moderni.")
+                </p>
+
+                <div class="spatial-highlight">
+                    @(isEn
+                        ? "The objective is not to add 3D for visual effect. It is to choose the right interaction model for the physical context, audience and information being communicated."
+                        : "L'obiettivo non è aggiungere il 3D come semplice effetto visivo, ma scegliere il modello di interazione più adatto al contesto fisico, al pubblico e all'informazione da comunicare.")
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card spatial-capability-card"
+                   data-motif="architecture">
+
+                <span class="spatial-card-kicker">
+                    @(isEn
+                        ? "Interactive capabilities"
+                        : "Capacità interattive")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "What we can design"
+                        : "Cosa possiamo progettare")
+                </h3>
+
+                <ul class="spatial-capability-list">
+
+                    <li class="spatial-capability-item">
+                        <span class="spatial-capability-code">
+                            AR
+                        </span>
+
+                        <span class="spatial-capability-copy">
+                            <strong>WebAR</strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Augmented experiences accessible through mobile browsers"
+                                    : "Esperienze aumentate accessibili direttamente da browser mobile")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="spatial-capability-item">
+                        <span class="spatial-capability-code">
+                            3D
+                        </span>
+
+                        <span class="spatial-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Interactive 3D"
+                                    : "3D interattivo")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Products, environments and technical visualization"
+                                    : "Prodotti, ambienti e visualizzazione tecnica")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="spatial-capability-item">
+                        <span class="spatial-capability-code">
+                            EDU
+                        </span>
+
+                        <span class="spatial-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Interactive learning"
+                                    : "Learning interattivo")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Educational experiences and guided content"
+                                    : "Esperienze educative e contenuti guidati")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="spatial-capability-item">
+                        <span class="spatial-capability-code">
+                            WEB
+                        </span>
+
+                        <span class="spatial-capability-copy">
+                            <strong>
+                                Web 3D
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Three.js, Canvas and browser-based simulations"
+                                    : "Three.js, Canvas e simulazioni direttamente nel browser")
+                            </span>
+                        </span>
+                    </li>
+
                 </ul>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Related Case Study Gralcall -->
-<section style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-        <span class="section-eyebrow">OUR MAIN SPATIAL AR PROJECT</span>
-        <h2>Case Study: Gralcall AR</h2>
-        <p class="section-subtitle">
-            @(isEn ? "Discover how our WebAR project Gralcall, in collaboration with Associazione Manthano ETS, brings historic Italian villages to life using marker-based augmented reality and informative videos." : "Scopri come la nostra applicazione Gralcall, realizzata con il partner Associazione Manthano ETS, ha integrato la Realtà Aumentata e contenuti video per valorizzare percorsi turistici e culturali lucani.")
-        </p>
+            </aside>
 
-        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--spacing-md); margin-top: 2rem;">
-            <div class="grid-3" style="margin-bottom: 2rem;">
-                <div>
-                    <h4>👥 @(isEn ? "PARTNER" : "PARTNER STRATEGICO")</h4>
-                    <p style="font-size: 1rem; margin-top: 0.25rem;">Associazione Manthano ETS</p>
-                </div>
-                <div>
-                    <h4>⚙️ @(isEn ? "TECHNOLOGY" : "TECNOLOGIA")</h4>
-                    <p style="font-size: 1rem; margin-top: 0.25rem;">WebAR, MindAR, HTML5 video, Mobile Web</p>
-                </div>
-                <div>
-                    <h4>🚀 @(isEn ? "USE" : "APPLICAZIONE")</h4>
-                    <p style="font-size: 1rem; margin-top: 0.25rem;">@(isEn ? "Historical tourism and village itineraries" : "Itinerari storici, guide interattive e valorizzazione territoriale")</p>
-                </div>
-            </div>
-            <a href="@(isEn ? "/en/case-studies/gralcall" : "/case-study/gralcall")" class="btn btn-primary">
-                @(isEn ? "Read Gralcall Case Study" : "Scopri Gralcall AR")
-            </a>
         </div>
-    </div>
-</section>
+
+    </section>
+
+
+    <!-- ==========================================================
+         APPLICATION AREAS
+         ========================================================== -->
+    <section class="spatial-areas bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="spatial-areas-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "APPLICATION AREAS"
+                        : "AMBITI DI APPLICAZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Different contexts require different forms of interaction."
+                        : "Contesti diversi richiedono forme di interazione differenti.")
+                </h2>
+
+            </div>
+
+
+            <div class="spatial-areas-grid">
+
+                <article class="premium-card spatial-area-card"
+                         data-motif="roadmap">
+
+                    <span class="spatial-area-number">
+                        01 / CULTURE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Tourism & cultural heritage"
+                                : "Turismo e patrimonio culturale")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "AR guides, marker-based experiences and multimedia storytelling can connect physical landmarks with digital interpretation."
+                                : "Guide AR, esperienze marker-based e storytelling multimediale possono collegare luoghi fisici e interpretazione digitale.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card spatial-area-card"
+                         data-motif="architecture">
+
+                    <span class="spatial-area-number">
+                        02 / PRODUCT
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Products & technical visualization"
+                                : "Prodotti e visualizzazione tecnica")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Interactive 3D can help customers, sales teams and technicians inspect complex products directly through digital channels."
+                                : "Il 3D interattivo può aiutare clienti, commerciali e tecnici a esplorare prodotti complessi direttamente attraverso canali digitali.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card spatial-area-card"
+                         data-motif="ai">
+
+                    <span class="spatial-area-number">
+                        03 / LEARNING
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Education & interactive learning"
+                                : "Formazione e learning interattivo")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Interactive environments can turn passive educational material into guided experiences, simulations and visual exploration."
+                                : "Gli ambienti interattivi possono trasformare materiali educativi passivi in esperienze guidate, simulazioni ed esplorazioni visuali.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         GRALCALL CASE STUDY
+         ========================================================== -->
+    <section class="spatial-case-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="spatial-case">
+
+                <div class="spatial-case-copy">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "REAL PROJECT · GRALCALL AR"
+                            : "PROGETTO REALE · GRALCALL AR")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Augmented reality applied to territorial storytelling."
+                            : "Realtà Aumentata applicata alla narrazione del territorio.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "Gralcall AR was developed in collaboration with Associazione Manthano ETS to connect physical points of interest with multimedia content through marker-based WebAR experiences accessible from mobile devices."
+                            : "Gralcall AR è stato sviluppato in collaborazione con Associazione Manthano ETS per collegare punti di interesse fisici e contenuti multimediali attraverso esperienze WebAR marker-based accessibili da dispositivi mobili.")
+                    </p>
+
+
+                    <div class="spatial-case-meta">
+
+                        <div class="spatial-case-meta-row">
+                            <span class="spatial-case-meta-label">
+                                @(isEn ? "Partner" : "Partner")
+                            </span>
+
+                            <span class="spatial-case-meta-value">
+                                Associazione Manthano ETS
+                            </span>
+                        </div>
+
+                        <div class="spatial-case-meta-row">
+                            <span class="spatial-case-meta-label">
+                                @(isEn ? "Technology" : "Tecnologia")
+                            </span>
+
+                            <span class="spatial-case-meta-value">
+                                WebAR · MindAR · HTML5 Video · Mobile Web
+                            </span>
+                        </div>
+
+                        <div class="spatial-case-meta-row">
+                            <span class="spatial-case-meta-label">
+                                @(isEn ? "Application" : "Applicazione")
+                            </span>
+
+                            <span class="spatial-case-meta-value">
+                                @(isEn
+                                    ? "Cultural itineraries, territorial storytelling and interactive guides"
+                                    : "Itinerari culturali, valorizzazione territoriale e guide interattive")
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/gralcall"
+                                                       : "/case-study/gralcall")"
+                       class="btn btn-outline">
+
+                        @(isEn
+                            ? "Explore the Gralcall case study"
+                            : "Scopri il case study Gralcall")
+
+                    </a>
+
+                </div>
+
+
+                <div class="spatial-case-visual"
+                     aria-hidden="true">
+
+                    <div class="spatial-ar-diagram">
+
+                        <div class="spatial-ar-ring"></div>
+
+                        <div class="spatial-ar-core">
+                            GRALCALL<br />AR
+                        </div>
+
+                        <div class="spatial-ar-node spatial-ar-node--top">
+                            Marker
+                        </div>
+
+                        <div class="spatial-ar-node spatial-ar-node--right">
+                            Video
+                        </div>
+
+                        <div class="spatial-ar-node spatial-ar-node--bottom">
+                            Mobile
+                        </div>
+
+                        <div class="spatial-ar-node spatial-ar-node--left">
+                            Place
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="spatial-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="spatial-cta">
+
+                <span class="section-eyebrow">
+                    AR · VR · 3D · WEB
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "What could become easier to understand if users could interact with it?"
+                        : "Cosa diventerebbe più semplice da comprendere se gli utenti potessero interagirci?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's evaluate the physical context, audience and content to understand whether AR, interactive 3D or another immersive format is the right solution."
+                        : "Valutiamo contesto fisico, pubblico e contenuti per capire se AR, 3D interattivo o un altro formato immersivo rappresentano davvero la soluzione più adatta.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your interactive project"
+                        : "Parliamo del tuo progetto")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

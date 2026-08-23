@@ -1,0 +1,81 @@
+﻿@model Graldev.Web.Models.MetalHeroViewModel
+
+<section class="
+    consulting-hero
+    metal-v3-section
+    metal-hero-@Model.Size
+    @(Model.Centered ? "metal-hero-centered" : "")
+"
+data-metal-v3="@Model.Id">
+
+    @await Html.PartialAsync(
+        "_MetalPattern",
+        Model.Id
+    )
+
+    <div class="container">
+
+        @if (Model.Breadcrumbs?.Count > 0)
+        {
+            <nav class="premium-breadcrumb metal-hero-breadcrumb"
+                 aria-label="Breadcrumb">
+
+                <ol>
+
+                    @for (int i = 0; i < Model.Breadcrumbs.Count; i++)
+                    {
+                        var item = Model.Breadcrumbs[i];
+
+                        <li>
+
+                            @if (!string.IsNullOrWhiteSpace(item.Url) &&
+                                 !item.IsCurrent)
+                            {
+                                <a href="@item.Url">
+                                    @item.Label
+                                </a>
+                            }
+                            else
+                            {
+                                <span aria-current="@(item.IsCurrent ? "page" : null)">
+                                    @item.Label
+                                </span>
+                            }
+
+                        </li>
+
+                        @if (i < Model.Breadcrumbs.Count - 1)
+                        {
+                            <li class="metal-hero-breadcrumb-separator"
+                                aria-hidden="true">
+                                /
+                            </li>
+                        }
+                    }
+
+                </ol>
+
+            </nav>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Eyebrow))
+        {
+            <span class="section-eyebrow">
+                @Model.Eyebrow
+            </span>
+        }
+
+        <h1 class="section-title">
+            @Model.Title
+        </h1>
+
+        @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+        {
+            <p class="section-subtitle">
+                @Model.Subtitle
+            </p>
+        }
+
+    </div>
+
+</section>

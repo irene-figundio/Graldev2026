@@ -1,75 +1,726 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">@(isEn ? "LOCAL IT CONSULTING POTENZA" : "CONSULENZA IT POTENZA")</span>
-        <h1 class="section-title">
-            @(isEn ? "IT consulting in Potenza for companies and organizations." : "Consulenza informatica a Potenza per aziende e organizzazioni.")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "Graldev operates from Potenza, offering premium technology advice, system integration and AI solutions nationwide." : "Graldev opera da Potenza offrendo consulenza tecnologica, system integration e soluzioni AI avanzate in tutta Italia.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .potenza-page {
+            --potenza-copy: 720px;
+        }
 
-<section>
-    <div class="container grid-2">
-        <div>
-            <h2>@(isEn ? "Technology Partner with Roots in Potenza" : "Partner tecnologico radicato a Potenza")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Our core consultancy operations are based in Potenza, Basilicata. We strongly believe in supporting local business ecosystems, industries, and public entities in their digital transformation roadmap. But our reach is fully national and distributed: we manage complex IT projects for national and international clients using modern remote frameworks and highly efficient pipelines.</text>
+        /* =========================================================
+                   INTRO
+                   ========================================================= */
+
+        .potenza-intro {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .potenza-intro-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: start;
+        }
+
+        .potenza-copy {
+            max-width: var(--potenza-copy);
+        }
+
+            .potenza-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .potenza-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.02rem;
+                line-height: 1.82;
+            }
+
+                .potenza-copy p + p {
+                    margin-top: 1.15rem;
                 }
-                else
+
+        .potenza-local-note {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   WHY GRALDEV CARD
+                   ========================================================= */
+
+        .potenza-value-card {
+            position: sticky;
+            top: 112px;
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .potenza-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .potenza-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .potenza-value-card h3 {
+            margin: 0 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.6rem, 2.6vw, 2rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .potenza-value-card > p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        .potenza-points {
+            display: grid;
+            gap: .7rem;
+            margin: 1.5rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .potenza-point {
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr);
+            gap: .8rem;
+            align-items: center;
+            min-height: 62px;
+            padding: .7rem .75rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.50);
+            background: rgba(255,255,255,.25);
+        }
+
+        .potenza-point-index {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .69rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.80);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .potenza-point-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .82rem;
+            line-height: 1.3;
+        }
+
+        .potenza-point-copy span {
+            display: block;
+            margin-top: .12rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   LOCAL POSITIONING
+                   ========================================================= */
+
+        .potenza-positioning {
+            padding: 7rem 0;
+        }
+
+        .potenza-positioning-heading {
+            max-width: 820px;
+            margin-bottom: 3.2rem;
+        }
+
+            .potenza-positioning-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .potenza-positioning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+        }
+
+        .potenza-positioning-card {
+            min-height: 310px;
+            padding: 2rem;
+            border-radius: 27px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .potenza-positioning-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .potenza-positioning-card h3 {
+            margin: 2.7rem 0 .95rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.55rem, 2.5vw, 2rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .potenza-positioning-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .94rem;
+            line-height: 1.72;
+        }
+
+        /* =========================================================
+                   DIRECT CONSULTING
+                   ========================================================= */
+
+        .potenza-direct-section {
+            padding: 0 0 7rem;
+        }
+
+        .potenza-direct {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.6rem);
+            border-radius: 31px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .potenza-direct::after {
+                content: "";
+                position: absolute;
+                width: 420px;
+                height: 420px;
+                right: -170px;
+                top: -220px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .potenza-direct-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .potenza-direct h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .potenza-direct p {
+            max-width: 720px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .potenza-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .potenza-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .potenza-cta h2 {
+                max-width: 830px;
+                margin: 0 auto 1.1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .potenza-cta p {
+                max-width: 620px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                font-size: 1rem;
+                line-height: 1.72;
+            }
+
+            .potenza-cta .btn {
+                min-height: 51px;
+                padding: .9rem 1.8rem;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .potenza-intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .potenza-value-card {
+                position: relative;
+                top: auto;
+            }
+        }
+
+        @@media (max-width: 760px) {
+            .potenza-intro,
+            .potenza-positioning {
+                padding: 5.5rem 0;
+            }
+
+            .potenza-positioning-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .potenza-positioning-card {
+                min-height: 260px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .potenza-value-card,
+            .potenza-positioning-card {
+                padding: 1.5rem;
+                border-radius: 22px;
+            }
+
+            .potenza-direct {
+                padding: 2.5rem 1.4rem;
+                border-radius: 26px;
+            }
+
+            .potenza-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="potenza-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "it-consulting-potenza",
+
+            Size = "large",
+
+            Eyebrow = isEn
+                ? "LOCAL IT CONSULTING · POTENZA"
+                : "CONSULENZA IT · POTENZA",
+
+            Title = isEn
+                ? "IT consulting in Potenza for companies and organizations."
+                : "Consulenza informatica a Potenza per aziende e organizzazioni.",
+
+            Subtitle = isEn
+                ? "Graldev operates from Potenza, supporting companies with technology consulting, system integration, automation and applied AI projects."
+                : "Graldev opera da Potenza affiancando aziende e organizzazioni con consulenza tecnologica, system integration, automazione e progetti di Intelligenza Artificiale applicata.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>La nostra sede operativa principale è a Potenza, in Basilicata. Crediamo fortemente nella valorizzazione del tessuto imprenditoriale locale e nel supportare le medie imprese e le organizzazioni del territorio nel proprio cammino di digitalizzazione. Al contempo, il nostro raggio d'azione è pienamente nazionale: gestiamo progetti IT complessi per clienti in tutta Italia ed estero tramite team distribuiti e coordinati con massimi standard qualitativi.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>Whether you are a local industrial manufacturer in Basilicata, an agricultural company looking to streamline systems, or a service provider, we enter your workflows to create tailored architectures.</text>
-                }
-                else
+                    Label = isEn
+                        ? "IT Consulting"
+                        : "Consulenza Informatica",
+                    Url = isEn
+                        ? "/en/it-consulting"
+                        : "/consulenza-informatica"
+                },
+                new()
                 {
-                    <text>Sia che siate un'industria manifatturiera nella zona industriale di Potenza, un'azienda commerciale che desidera ottimizzare la gestione di ordini e magazzino, o un'organizzazione che vuole introdurre l'AI nei propri processi, Graldev è il consulente vicino a te capace di tradurre le tue esigenze in soluzioni solide.</text>
+                    Label = "Potenza",
+                    IsCurrent = true
                 }
-            </p>
-        </div>
-        <div>
-            <h2>@(isEn ? "Why choose Graldev in Potenza" : "Perché scegliere Graldev a Potenza")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Unlike generic software agencies, we don't just sell standard websites or pre-made software licenses. We provide consulting on system integration, legacy app modernization, custom API building, and AI orchestration. We are here to listen to your actual operational problems and map a path to resolve them.</text>
-                }
-                else
-                {
-                    <text>A differenza delle agenzie software tradizionali, non offriamo semplici pacchetti di siti web vetrina o licenze standard preconfezionate. Ti aiutiamo a far parlare tra loro i software che già utilizzi, modernizziamo i tuoi vecchi database in modo sicuro, e portiamo l'Intelligenza Artificiale Generativa (RAG) all'interno dei tuoi dati operativi aziendali.</text>
-                }
-            </p>
-            <div class="case-quote-box" style="margin-top: 1.5rem;">
-                <h4>@(isEn ? "Direct B2B Consulting" : "Contatto Diretto B2B")</h4>
-                <p style="font-size: 1rem; margin-top: 0.25rem;">
-                    @(isEn ? "Contact us to schedule a direct assessment meeting in our office or directly at your enterprise site." : "Contattaci per pianificare un incontro conoscitivo di assessment direttamente presso la tua sede o nei nostri uffici.")
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         LOCAL CONSULTING
+         ========================================================== -->
+    <section class="potenza-intro premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container potenza-intro-grid">
+
+            <div class="potenza-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "LOCAL PRESENCE · NATIONAL REACH"
+                        : "PRESENZA LOCALE · OPERATIVITÀ NAZIONALE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "A technology partner rooted in Potenza."
+                        : "Un technology partner radicato a Potenza.")
+                </h2>
+
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            Our main operational base is in Potenza, Basilicata.
+                            We work with local companies, organizations and business networks
+                            that need to modernize systems, connect applications and improve
+                            operational processes through technology.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            La nostra sede operativa principale è a Potenza, in Basilicata.
+                            Affianchiamo imprese, organizzazioni e realtà del territorio che
+                            devono modernizzare i propri sistemi, collegare applicazioni e
+                            migliorare i processi operativi attraverso la tecnologia.
+                        </text>
+                    }
                 </p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section style="background-color: rgba(255, 255, 255, 0.01); text-align: center;">
-    <div class="container">
-        <h2>@(isEn ? "Let's talk about your technological bottleneck" : "Parliamo della tua esigenza tecnologica")</h2>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto;">
-            @(isEn ? "Schedule a dedicated technical review meeting with our senior consultants." : "Fissa un incontro tecnico di revisione con i nostri consulenti senior.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary">
-            @(isEn ? "Contact our Potenza consultants" : "Contatta i nostri consulenti")
-        </a>
-    </div>
-</section>
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            Our reach, however, is not limited geographically. We manage
+                            complex IT initiatives for clients across Italy and abroad through
+                            distributed workflows, remote collaboration and structured
+                            project-management processes.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            Il nostro raggio d'azione non è però limitato geograficamente.
+                            Gestiamo iniziative IT complesse per clienti in tutta Italia e
+                            all'estero attraverso workflow distribuiti, collaborazione remota
+                            e processi strutturati di gestione dei progetti.
+                        </text>
+                    }
+                </p>
+
+                <div class="potenza-local-note">
+                    @(isEn
+                        ? "Being based in Potenza allows us to combine direct local availability with the same architectural and delivery approach used for distributed enterprise projects."
+                        : "Essere presenti a Potenza ci permette di combinare disponibilità diretta sul territorio con lo stesso approccio architetturale e operativo utilizzato nei progetti enterprise distribuiti.")
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card potenza-value-card"
+                   data-motif="network">
+
+                <span class="potenza-card-kicker">
+                    @(isEn
+                        ? "Why Graldev"
+                        : "Perché Graldev")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Consulting before software."
+                        : "Prima consulenza, poi tecnologia.")
+                </h3>
+
+                <p>
+                    @(isEn
+                        ? "We do not begin by proposing a predefined product. We first map the operational problem and the systems already in place."
+                        : "Non partiamo proponendo un prodotto predefinito. Prima analizziamo il problema operativo e i sistemi già presenti in azienda.")
+                </p>
+
+                <ol class="potenza-points">
+
+                    <li class="potenza-point">
+                        <span class="potenza-point-index">01</span>
+
+                        <span class="potenza-point-copy">
+                            <strong>
+                                @(isEn
+                                    ? "System Integration"
+                                    : "System Integration")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Connect ERP, CRM, databases, SaaS and custom applications."
+                                    : "Colleghiamo ERP, CRM, database, SaaS e applicazioni custom.")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="potenza-point">
+                        <span class="potenza-point-index">02</span>
+
+                        <span class="potenza-point-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Legacy Modernization"
+                                    : "Modernizzazione Legacy")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Evolve existing systems without replacing what still works."
+                                    : "Evolviamo i sistemi esistenti senza sostituire ciò che funziona.")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="potenza-point">
+                        <span class="potenza-point-index">03</span>
+
+                        <span class="potenza-point-copy">
+                            <strong>
+                                @(isEn
+                                    ? "AI & Automation"
+                                    : "AI & Automazione")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Introduce AI and automation where they generate measurable value."
+                                    : "Introduciamo AI e automazione dove possono generare valore misurabile.")
+                            </span>
+                        </span>
+                    </li>
+
+                </ol>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         POTENZA BUSINESS CONTEXT
+         ========================================================== -->
+    <section class="potenza-positioning bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="potenza-positioning-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "TECHNOLOGY FOR LOCAL ENTERPRISES"
+                        : "TECNOLOGIA PER LE IMPRESE DEL TERRITORIO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Different organizations. Similar integration problems."
+                        : "Aziende diverse. Problemi di integrazione spesso molto simili.")
+                </h2>
+
+            </div>
+
+
+            <div class="potenza-positioning-grid">
+
+                <article class="premium-card potenza-positioning-card"
+                         data-motif="process">
+
+                    <span class="potenza-positioning-number">
+                        01 / OPERATIONS
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Industry, commerce and services"
+                                : "Industria, commercio e servizi")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Manufacturing companies, commercial businesses and service organizations often operate with data fragmented across management software, spreadsheets, databases and external platforms. Our role is to identify where integration and automation can reduce friction."
+                                : "Aziende manifatturiere, realtà commerciali e organizzazioni di servizi lavorano spesso con dati distribuiti tra gestionali, fogli di calcolo, database e piattaforme esterne. Il nostro ruolo è individuare dove integrazione e automazione possono ridurre attriti e attività manuali.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card potenza-positioning-card"
+                         data-motif="ai">
+
+                    <span class="potenza-positioning-number">
+                        02 / INNOVATION
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "AI grounded in company data"
+                                : "AI collegata ai dati aziendali")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Generative AI becomes useful when connected to the right information and governed within a defined operational context. We design RAG, automation and AI workflows around verified business data rather than isolated public chatbots."
+                                : "L'AI generativa diventa utile quando viene collegata alle informazioni corrette e governata all'interno di un contesto operativo definito. Progettiamo RAG, automazioni e workflow AI basati su dati aziendali verificati, non su chatbot isolati.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         DIRECT B2B CONSULTING
+         ========================================================== -->
+    <section class="potenza-direct-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="potenza-direct">
+
+                <div class="potenza-direct-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "DIRECT B2B CONSULTING"
+                            : "CONSULENZA B2B DIRETTA")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "We can start from your office, your systems and your actual workflow."
+                            : "Possiamo partire dalla tua sede, dai tuoi sistemi e dal tuo workflow reale.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "For organizations in Potenza and Basilicata, the initial assessment can also be carried out directly on site. This allows us to observe processes, understand dependencies between systems and speak directly with the people who use them every day."
+                            : "Per aziende e organizzazioni di Potenza e della Basilicata, l'assessment iniziale può essere svolto anche direttamente in sede. Questo ci permette di osservare i processi, comprendere le dipendenze tra i sistemi e confrontarci con chi li utilizza ogni giorno.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="potenza-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="potenza-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "POTENZA · BASILICATA · IT CONSULTING"
+                        : "POTENZA · BASILICATA · CONSULENZA IT")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "What is slowing down your technology stack today?"
+                        : "Cosa sta rallentando oggi i tuoi sistemi?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Tell us which processes, applications or data flows are creating friction. We'll start from there."
+                        : "Raccontaci quali processi, applicazioni o flussi di dati stanno creando attrito. Partiamo da lì.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Talk to our consultants"
+                        : "Parla con i nostri consulenti")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

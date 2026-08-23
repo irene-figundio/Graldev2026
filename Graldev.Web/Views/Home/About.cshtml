@@ -1,122 +1,866 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">@(isEn ? "ABOUT GRALDEV" : "CHI SIAMO")</span>
-        <h1 class="section-title">
-            @(isEn ? "IT consulting built around the actual problems of enterprises." : "Consulenza tecnologica costruita attorno ai problemi reali delle aziende.")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "We align technologies, data, integrations, and business processes to build reliable digital foundations." : "Allineiamo tecnologie, dati, integrazioni e flussi organizzativi per costruire solide fondamenta digitali.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .about-graldev {
+            --about-copy: 760px;
+        }
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>@(isEn ? "Our Identity & Value" : "La nostra identità e il nostro valore")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text><strong>Graldev is not a software house.</strong> We are an IT consulting company and premium B2B technology partner. Our value does not lie merely in coding software from scratch; it lies in identifying, designing, and orchestrating the most appropriate, sustainable technology strategy for your business.</text>
-                }
-                else
-                {
-                    <text><strong>Graldev non è una software house.</strong> Siamo un'azienda di consulenza informatica e un technology partner B2B di livello premium. Il nostro valore non risiede semplicemente nello sviluppo di rigide righe di codice da zero, ma nell'individuare, progettare e orchestrare la strategia tecnologica più adatta, solida e sostenibile per la vostra impresa.</text>
-                }
-            </p>
-            <p>
-                @if (isEn)
-                {
-                    <text>We partner with CTOs, CIOs, IT Managers, and business leaders to enter their workflows, map existing applications (ERPs, CRMs, databases), discover operational bottlenecks, and implement targeted integration and AI workflows.</text>
-                }
-                else
-                {
-                    <text>Affianchiamo CTO, CIO, IT Manager e responsabili aziendali entrando nei loro workflow operativi. Mappiamo l'infrastruttura esistente, scoviamo i colli di bottiglia nei passaggi di dati e implementiamo flussi automatici mirati di integrazione e Intelligenza Artificiale.</text>
-                }
-            </p>
-        </div>
-        <div class="split-right">
-            <div class="case-quote-box" style="margin: 0;">
-                <p style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
-                    @(isEn ? "The Graldev Value Chain:" : "La catena del valore Graldev:")
-                </p>
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-weight: 500;">
-                    <li>🔍 1. @(isEn ? "COMPREHEND THE PROBLEM" : "COMPRENDERE IL PROBLEMA")</li>
-                    <li>📋 2. @(isEn ? "ANALYZE PROCESSES & SYSTEMS" : "ANALIZZARE PROCESSI E SISTEMI")</li>
-                    <li>📐 3. @(isEn ? "DESIGN ARCHITECTURE" : "PROGETTARE L'ARCHITETTURA")</li>
-                    <li>🔗 4. @(isEn ? "INTEGRATE SYSTEMS & SAAS" : "INTEGRARE SISTEMI E SAAS")</li>
-                    <li>💻 5. @(isEn ? "BUILD CUSTOM COMPONENTS" : "SVILUPPARE COMPONENTI CUSTOM")</li>
-                    <li>🚀 6. @(isEn ? "IMPLEMENT & DEPLOY" : "IMPLEMENTAZIONE")</li>
-                    <li>📈 7. @(isEn ? "MEASURE ROI & BUSINESS VALUE" : "MISURARE IL RISULTATO")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+        /* =========================================================
+                   IDENTITY
+                   ========================================================= */
 
-<!-- Our History & Team -->
-<section style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container grid-2">
-        <div>
-            <h2>@(isEn ? "Our Background" : "La nostra storia")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>We bring together over twenty years of senior expertise in software engineering and IT architectures with a dynamic drive for innovation. Having witnessed and participated in massive technological shifts over the decades, we have acquired a deep pragmatic understanding of what makes digital projects fail or succeed.</text>
-                }
-                else
-                {
-                    <text>Mettiamo insieme l'esperienza ventennale sul campo di chi ha progettato software e infrastrutture IT complesse attraverso innumerevoli rivoluzioni tecnologiche, con la spinta all'innovazione delle nuove metodologie agili. Avendo vissuto in prima persona l'evoluzione dei sistemi informativi aziendali, possediamo un approccio estremamente concreto e pragmatico.</text>
-                }
-            </p>
-        </div>
-        <div>
-            <h2>@(isEn ? "Our Philosophy" : "La nostra filosofia")</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Technology must be an operational advantage, not a rigid constraint. We don't push a single tech stack; we advise with complete objectivity on the most robust frameworks (e.g. .NET, cloud architectures, microservices, APIs) to ensure your business remains agile, automated, and secure.</text>
-                }
-                else
-                {
-                    <text>La tecnologia deve essere un vantaggio operativo concreto, non un vincolo rigido o un costo fine a se stesso. Non spingiamo mai una singola tecnologia proprietaria; consigliamo con totale obiettività le migliori soluzioni (es. .NET, cloud scaling, microservizi, API) per rendere l'operatività snella, automatizzata e sicura.</text>
-                }
-            </p>
-        </div>
-    </div>
-</section>
+        .about-identity-section {
+            padding: 7.5rem 0;
+        }
 
-<!-- Partners and Collaborations -->
-<section id="partners">
-    <div class="container" style="text-align: center;">
-        <span class="section-eyebrow">@(isEn ? "TRUSTED ECOSYSTEM" : "ECOSISTEMA E COLLABORAZIONI")</span>
-        <h2>@(isEn ? "Our Partners & Collaborations" : "I nostri partner e collaborazioni")</h2>
-        <p style="max-width: 600px; margin: 0 auto 3rem auto;">
-            @(isEn ? "We collaborate with historical cultural, educational, and business organizations to bring innovation where it generates concrete impact." : "Collaboriamo con storiche realtà associative, culturali, tecnologiche e di business per portare innovazione dove genera impatto reale.")
-        </p>
-        <div class="grid-3" style="margin-top: 2rem; align-items: center;">
-            <div class="premium-card" style="text-align: center; padding: var(--spacing-md);">
-                <h3>Associazione Manthano ETS</h3>
-                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
-                    @(isEn ? "Cultural and educational partner for territory-wide AR integrations." : "Partner culturale e didattico per l'integrazione di sistemi di AR sul territorio.")
+        .about-identity-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: start;
+        }
+
+        .about-copy {
+            max-width: var(--about-copy);
+        }
+
+            .about-copy h2 {
+                margin: 0 0 1.5rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.2rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .about-copy p {
+                color: var(--text-soft);
+                font-size: 1.04rem;
+                line-height: 1.82;
+            }
+
+                .about-copy p + p {
+                    margin-top: 1.1rem;
+                }
+
+            .about-copy strong {
+                color: var(--brand-green-dark);
+            }
+
+        .about-manifesto {
+            margin-top: 2rem;
+            padding: 1.3rem 1.45rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .98rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197, 160, 89, .075), transparent );
+        }
+
+        /* =========================================================
+                   VALUE CHAIN
+                   ========================================================= */
+
+        .about-value-card {
+            position: sticky;
+            top: 112px;
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .about-value-kicker {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .7rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .about-value-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197, 160, 89, .10);
+            }
+
+        .about-value-card h3 {
+            margin: 0 0 1.7rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            letter-spacing: -.035em;
+        }
+
+        .about-value-chain {
+            position: relative;
+            display: grid;
+            gap: .55rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .about-value-step {
+            position: relative;
+            display: grid;
+            grid-template-columns: 39px minmax(0, 1fr);
+            gap: .85rem;
+            align-items: center;
+            min-height: 61px;
+            padding: .68rem .75rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, .50);
+            background: rgba(255, 255, 255, .24);
+        }
+
+        .about-value-index {
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .69rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.80);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .about-value-copy {
+            color: var(--brand-green-dark);
+            font-size: .82rem;
+            font-weight: 760;
+            line-height: 1.35;
+            letter-spacing: .015em;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+                   BACKGROUND / PHILOSOPHY
+                   ========================================================= */
+
+        .about-principles-section {
+            padding: 7rem 0;
+        }
+
+        .about-principles-heading {
+            max-width: 760px;
+            margin-bottom: 3.2rem;
+        }
+
+            .about-principles-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.5rem);
+                letter-spacing: -.045em;
+            }
+
+        .about-principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+        }
+
+        .about-principle {
+            min-height: 330px;
+            padding: 2rem;
+            border-radius: 27px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .about-principle-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .about-principle h3 {
+            margin: 3rem 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.5rem, 2.3vw, 2rem);
+            letter-spacing: -.035em;
+        }
+
+        .about-principle p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .97rem;
+            line-height: 1.75;
+        }
+
+        /* =========================================================
+                   POSITIONING
+                   ========================================================= */
+
+        .about-positioning-section {
+            padding: 0 0 7rem;
+        }
+
+        .about-positioning {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.7rem, 5vw, 4.5rem);
+            border-radius: 31px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.65), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .about-positioning::after {
+                content: "";
+                position: absolute;
+                width: 420px;
+                height: 420px;
+                right: -160px;
+                top: -220px;
+                border-radius: 50%;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .about-positioning-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .about-positioning h2 {
+            margin: 0 0 1.2rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .about-positioning p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.02rem;
+            line-height: 1.78;
+        }
+
+        /* =========================================================
+                   PARTNERS
+                   ========================================================= */
+
+        .about-partners-section {
+            padding: 7rem 0;
+        }
+
+        .about-partners-heading {
+            max-width: 760px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+        }
+
+            .about-partners-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.35rem);
+                letter-spacing: -.045em;
+            }
+
+            .about-partners-heading p {
+                max-width: 660px;
+                margin: 0 auto;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .about-partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .about-partner-card {
+            min-height: 285px;
+            padding: 1.8rem;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .about-partner-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .about-partner-index {
+            color: var(--champagne-gold);
+            font-size: .69rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .about-partner-badge {
+            padding: .42rem .68rem;
+            border-radius: 999px;
+            color: var(--brand-green);
+            background: rgba(17, 171, 100, .06);
+            border: 1px solid rgba(17, 171, 100, .09);
+            font-size: .64rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .about-partner-card h3 {
+            margin: 2.3rem 0 .8rem;
+            color: var(--brand-green-dark);
+            font-size: 1.35rem;
+            letter-spacing: -.03em;
+        }
+
+        .about-partner-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .9rem;
+            line-height: 1.65;
+        }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .about-identity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-value-card {
+                position: relative;
+                top: auto;
+            }
+
+            .about-partners-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @@media (max-width: 760px) {
+            .about-identity-section,
+            .about-principles-section,
+            .about-partners-section {
+                padding: 5.5rem 0;
+            }
+
+            .about-principles-grid,
+            .about-partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-principle {
+                min-height: 270px;
+            }
+
+            .about-partner-card {
+                min-height: 230px;
+            }
+        }
+
+        @@media (max-width: 560px) {
+            .about-value-card {
+                padding: 1.25rem;
+                border-radius: 22px;
+            }
+
+            .about-value-step {
+                grid-template-columns: 36px minmax(0, 1fr);
+            }
+
+            .about-value-index {
+                width: 36px;
+                height: 36px;
+            }
+
+            .about-principle {
+                padding: 1.55rem;
+                border-radius: 22px;
+            }
+
+            .about-positioning {
+                padding: 2.5rem 1.4rem;
+                border-radius: 26px;
+            }
+        }
+    </style>
+}
+
+<div class="about-graldev">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "about-graldev",
+            Size = "large",
+            Eyebrow = isEn
+                ? "ABOUT GRALDEV"
+                : "CHI SIAMO",
+
+            Title = isEn
+                ? "IT consulting built around real enterprise problems."
+                : "Consulenza IT costruita attorno ai problemi reali delle aziende.",
+
+            Subtitle = isEn
+                ? "We align technologies, data, integrations and business processes to build reliable digital foundations that evolve with the enterprise."
+                : "Allineiamo tecnologie, dati, integrazioni e processi aziendali per costruire fondamenta digitali solide, affidabili e capaci di evolvere insieme all'impresa.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn ? "About Graldev" : "Chi siamo",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         IDENTITY
+         ========================================================== -->
+    <section class="about-identity-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container about-identity-grid">
+
+            <div class="about-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn ? "OUR POSITIONING" : "IL NOSTRO POSIZIONAMENTO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Technology partner first. Software supplier only when needed."
+                        : "Prima technology partner. Software supplier solo quando serve.")
+                </h2>
+
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            <strong>Graldev is not a traditional software house.</strong>
+                            We are an IT consulting company and a premium B2B technology partner.
+                            Our value does not lie merely in writing new software from scratch,
+                            but in identifying, designing and orchestrating the most appropriate,
+                            sustainable technology strategy for each organization.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <strong>Graldev non è una software house tradizionale.</strong>
+                            Siamo un'azienda di consulenza informatica e un technology partner B2B
+                            di livello premium. Il nostro valore non risiede semplicemente nello
+                            sviluppo di nuovo software da zero, ma nell'individuare, progettare e
+                            orchestrare la strategia tecnologica più adatta e sostenibile per
+                            ciascuna organizzazione.
+                        </text>
+                    }
                 </p>
-            </div>
-            <div class="premium-card" style="text-align: center; padding: var(--spacing-md);">
-                <h3>Graldev Studios</h3>
-                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
-                    @(isEn ? "Our creative and media generative AI sister company." : "La nostra consociata per la produzione di contenuti video, audio e media con AI.")
+
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            We work alongside CTOs, CIOs, IT Managers and business leaders,
+                            entering operational workflows, mapping existing applications,
+                            ERPs, CRMs and databases, identifying bottlenecks and then implementing
+                            targeted integration, automation and AI initiatives.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            Affianchiamo CTO, CIO, IT Manager e responsabili aziendali entrando
+                            nei workflow operativi, mappando applicazioni, ERP, CRM e database
+                            esistenti, individuando i colli di bottiglia e implementando interventi
+                            mirati di integrazione, automazione e Intelligenza Artificiale.
+                        </text>
+                    }
                 </p>
+
+                <div class="about-manifesto">
+                    @(isEn
+                        ? "We do not begin with a technology. We begin with the operational problem, the existing systems and the value the business needs to create."
+                        : "Non partiamo da una tecnologia. Partiamo dal problema operativo, dai sistemi esistenti e dal valore che l'azienda deve generare.")
+                </div>
+
             </div>
-            <div class="premium-card" style="text-align: center; padding: var(--spacing-md);">
-                <h3>Enterprise Net</h3>
-                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
-                    @(isEn ? "SaaS and system suppliers network for commerce and manufacturing." : "Network di fornitori tecnologici e SaaS per l'industria e il commercio.")
-                </p>
-            </div>
+
+
+            <aside class="premium-card about-value-card"
+                   data-motif="roadmap">
+
+                <div class="about-value-kicker">
+                    @(isEn ? "Our method" : "Il nostro metodo")
+                </div>
+
+                <h3>
+                    @(isEn
+                        ? "The Graldev Value Chain"
+                        : "La catena del valore Graldev")
+                </h3>
+
+                <ol class="about-value-chain">
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">01</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Understand the problem" : "Comprendere il problema")
+                        </span>
+                    </li>
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">02</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Analyze processes & systems" : "Analizzare processi e sistemi")
+                        </span>
+                    </li>
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">03</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Design the architecture" : "Progettare l'architettura")
+                        </span>
+                    </li>
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">04</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Integrate systems & SaaS" : "Integrare sistemi e SaaS")
+                        </span>
+                    </li>
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">05</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Build custom components" : "Sviluppare componenti custom")
+                        </span>
+                    </li>
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">06</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Implement & deploy" : "Implementare e distribuire")
+                        </span>
+                    </li>
+
+                    <li class="about-value-step">
+                        <span class="about-value-index">07</span>
+                        <span class="about-value-copy">
+                            @(isEn ? "Measure business value" : "Misurare il valore prodotto")
+                        </span>
+                    </li>
+
+                </ol>
+
+            </aside>
+
         </div>
-    </div>
-</section>
+
+    </section>
+
+
+    <!-- ==========================================================
+         EXPERIENCE & PRINCIPLES
+         ========================================================== -->
+    <section class="about-principles-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="about-principles-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn ? "EXPERIENCE & PRINCIPLES" : "ESPERIENZA E PRINCIPI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Experience gives us context. Pragmatism determines what we build."
+                        : "L'esperienza ci dà il contesto. Il pragmatismo decide cosa costruire.")
+                </h2>
+
+            </div>
+
+
+            <div class="about-principles-grid">
+
+                <article class="premium-card about-principle"
+                         data-motif="network">
+
+                    <span class="about-principle-number">
+                        @(isEn ? "01 / BACKGROUND" : "01 / ESPERIENZA")
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            @(isEn ? "Our Background" : "La nostra storia")
+                        </h3>
+
+                        <p>
+                            @if (isEn)
+                            {
+                                <text>
+                                    We combine more than twenty years of senior experience
+                                    in software engineering and IT architecture with a strong
+                                    drive toward modern integration, automation and agile delivery.
+                                    Having worked through multiple technological shifts has given
+                                    us a pragmatic understanding of why digital projects succeed,
+                                    stall or become unnecessarily complex.
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    Uniamo oltre vent'anni di esperienza sul campo nella progettazione
+                                    di software e architetture IT con una forte propensione verso
+                                    integrazione moderna, automazione e metodologie agili.
+                                    Aver attraversato numerose evoluzioni tecnologiche ci ha dato
+                                    una comprensione pragmatica dei motivi per cui i progetti digitali
+                                    funzionano, rallentano o diventano inutilmente complessi.
+                                </text>
+                            }
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card about-principle"
+                         data-motif="ai">
+
+                    <span class="about-principle-number">
+                        @(isEn ? "02 / PHILOSOPHY" : "02 / FILOSOFIA")
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            @(isEn ? "Our Philosophy" : "La nostra filosofia")
+                        </h3>
+
+                        <p>
+                            @if (isEn)
+                            {
+                                <text>
+                                    Technology must remain an operational advantage, not become
+                                    a rigid constraint. We do not push a predetermined technology
+                                    stack. We evaluate existing assets, constraints and objectives
+                                    and recommend the most robust combination of .NET, cloud,
+                                    APIs, integration patterns, microservices or custom development
+                                    only where they create real value.
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    La tecnologia deve rimanere un vantaggio operativo e non
+                                    trasformarsi in un vincolo. Non imponiamo uno stack tecnologico
+                                    prestabilito: analizziamo asset, vincoli e obiettivi esistenti
+                                    e scegliamo la combinazione più solida tra .NET, cloud, API,
+                                    pattern di integrazione, microservizi o sviluppo custom
+                                    soltanto dove genera valore reale.
+                                </text>
+                            }
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         POSITIONING
+         ========================================================== -->
+    <section class="about-positioning-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="about-positioning">
+
+                <div class="about-positioning-inner">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "TECHNOLOGY WITH CONTEXT"
+                            : "TECNOLOGIA CON CONTESTO")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "The best architecture is the one that fits the company using it."
+                            : "La migliore architettura è quella che si adatta all'azienda che deve usarla.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "This means preserving systems that already work, replacing what creates friction, integrating what should communicate and building custom software only when existing platforms cannot solve the problem effectively."
+                            : "Questo significa preservare ciò che già funziona, sostituire ciò che genera attrito, integrare ciò che deve comunicare e sviluppare software custom soltanto quando le piattaforme esistenti non possono risolvere efficacemente il problema.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PARTNERS
+         ========================================================== -->
+    <section id="partners"
+             class="about-partners-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="about-partners-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "TRUSTED ECOSYSTEM"
+                        : "ECOSISTEMA E COLLABORAZIONI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Partners and collaborations"
+                        : "Partner e collaborazioni")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "We collaborate with cultural, educational, creative and technology organizations to combine specialist expertise whenever a project requires it."
+                        : "Collaboriamo con realtà culturali, formative, creative e tecnologiche per unire competenze specialistiche ogni volta che un progetto lo richiede.")
+                </p>
+
+            </div>
+
+
+            <div class="about-partners-grid">
+
+                <article class="premium-card about-partner-card"
+                         data-motif="network">
+
+                    <div class="about-partner-top">
+                        <span class="about-partner-index">01</span>
+
+                        <span class="about-partner-badge">
+                            @(isEn ? "Culture" : "Cultura")
+                        </span>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Associazione Manthano ETS
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Cultural and educational collaboration focused on territory-based projects and augmented-reality experiences."
+                                : "Collaborazione culturale e didattica orientata a progetti sul territorio ed esperienze in realtà aumentata.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card about-partner-card"
+                         data-motif="ai">
+
+                    <div class="about-partner-top">
+                        <span class="about-partner-index">02</span>
+
+                        <span class="about-partner-badge">
+                            Creative AI
+                        </span>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Graldev Studios
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Creative and generative-AI division focused on video, audio, digital media and interactive content."
+                                : "Divisione creativa dedicata alla produzione di video, audio, media digitali e contenuti interattivi attraverso tecnologie generative.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card about-partner-card"
+                         data-motif="cloud">
+
+                    <div class="about-partner-top">
+                        <span class="about-partner-index">03</span>
+
+                        <span class="about-partner-badge">
+                            Technology
+                        </span>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Enterprise Net
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Technology and SaaS supplier network supporting commerce, manufacturing and enterprise integration projects."
+                                : "Network di fornitori tecnologici e SaaS a supporto di progetti enterprise per industria, commercio e integrazione di sistemi.")
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

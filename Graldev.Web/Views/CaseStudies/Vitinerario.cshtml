@@ -1,92 +1,1121 @@
+
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">CASE STUDY: AI INTEGRATION</span>
-        <h1 class="section-title">Vitinerario: Virtual Sommelier AI Assistant</h1>
-        <p class="section-subtitle">
-            @(isEn ? "Integrating Large Language Models and Retrieval-Augmented Generation to build an interactive enological conversational advisor." : "Integrazione di Modelli Generativi di Linguaggio (LLM) e sistemi RAG per dare vita a un consulente enologico conversazionale interattivo.")
-        </p>
+@section Style {
+    <style>
+        .vit-case {
+            --vit-max-copy: 720px;
+        }
 
-        <div class="case-study-meta-grid">
-            <div>
-                <div class="case-meta-label">Client / Clienti</div>
-                <div class="case-meta-value">Vitinerario App</div>
-            </div>
-            <div>
-                <div class="case-meta-label">Sectors / Settori</div>
-                <div class="case-meta-value">Agri-Tech, Food & Beverage, Tourism</div>
-            </div>
-            <div>
-                <div class="case-meta-label">Key Integrations / Sistemi</div>
-                <div class="case-meta-value">Semantic Databases, Vector Databases, OpenAI</div>
-            </div>
-            <div>
-                <div class="case-meta-label">Target / Canali</div>
-                <div class="case-meta-value">Mobile Web App, Conversational Assistant</div>
-            </div>
-        </div>
-    </div>
-</section>
+        /* =========================================================
+                   PROJECT OVERVIEW
+                   ========================================================= */
 
-<!-- Visual Storytelling split sections -->
-<section class="white-section" style="padding: 3rem 0;">
-    <div class="container split-layout">
-        <div class="split-left">
-            <h3 class="case-block-title">THE CHALLENGE</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
-                @(isEn ? "Standard search engines or rigid filter forms on gastronomy platforms fail to answer complex, human conversational queries like 'Which white wine from Basilicata matches truffle-based dishes?'. Traditional chatbots felt robotic, while generic public AI models lacked verified enological databases and often hallucinated." : "I tradizionali sistemi a filtri rigidi faticano ad accogliere richieste complesse e sfumate come 'Quale vino bianco lucano posso abbinare a un risotto al tartufo?'. D'altro canto, i chatbot commerciali tradizionali erano troppo rigidi e i modelli AI generici pubblici mancavano di fonti verificate ed allucinavano.")
-            </p>
+        .vit-overview-section {
+            position: relative;
+            padding: 0 0 6.5rem;
+        }
+
+        .vit-overview-shell {
+            position: relative;
+            z-index: 5;
+            margin-top: -2.1rem;
+        }
+
+        .vit-overview-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr 1.3fr 1.15fr;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .78);
+            border-radius: 27px;
+            background: linear-gradient( 145deg, rgba(255, 255, 255, .69), rgba(247, 252, 249, .52) 45%, rgba(231, 245, 237, .43) );
+            -webkit-backdrop-filter: blur(22px) saturate(122%);
+            backdrop-filter: blur(22px) saturate(122%);
+            box-shadow: 18px 22px 48px rgba(49, 73, 59, .09), -10px -10px 30px rgba(255, 255, 255, .74), inset 1px 1px 0 rgba(255, 255, 255, .95);
+        }
+
+        .vit-meta {
+            position: relative;
+            min-height: 148px;
+            padding: 1.8rem 1.65rem;
+        }
+
+            .vit-meta + .vit-meta {
+                border-left: 1px solid rgba(16, 73, 40, .065);
+            }
+
+            .vit-meta::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 1.65rem;
+                width: 34px;
+                height: 2px;
+                border-radius: 999px;
+                background: linear-gradient( 90deg, var(--champagne-gold), rgba(197, 160, 89, .15) );
+            }
+
+        .vit-meta-label {
+            display: block;
+            margin-bottom: .75rem;
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .095em;
+            text-transform: uppercase;
+        }
+
+        .vit-meta-value {
+            max-width: 260px;
+            color: var(--brand-green-dark);
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            font-weight: 780;
+            line-height: 1.4;
+            letter-spacing: -.025em;
+        }
+
+        /* =========================================================
+                   CONTENT
+                   ========================================================= */
+
+        .vit-content-section {
+            position: relative;
+            padding: 7.5rem 0;
+        }
+
+        .vit-section-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.04fr) minmax(390px, .96fr);
+            gap: clamp(3.5rem, 7vw, 7.5rem);
+            align-items: center;
+        }
+
+        .vit-section-grid--reverse {
+            grid-template-columns: minmax(390px, .96fr) minmax(0, 1.04fr);
+        }
+
+        .vit-copy {
+            max-width: var(--vit-max-copy);
+        }
+
+            .vit-copy h2 {
+                max-width: 700px;
+                margin: 0 0 1.4rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.02;
+                letter-spacing: -.045em;
+            }
+
+            .vit-copy > p {
+                margin: 0;
+                max-width: 700px;
+                color: var(--text-soft);
+                font-size: clamp(1rem, 1.4vw, 1.08rem);
+                line-height: 1.82;
+            }
+
+        .vit-copy-highlight {
+            margin-top: 2rem;
+            padding: 1.25rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .98rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197, 160, 89, .075), transparent );
+        }
+
+        /* =========================================================
+                   SOURCE CARD
+                   ========================================================= */
+
+        .vit-source-card,
+        .vit-pipeline-card {
+            position: relative;
+            padding: 2rem;
+            border-radius: 28px;
+        }
+
+        .vit-card-kicker {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            margin-bottom: 1.5rem;
+            color: var(--brand-green);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .vit-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197, 160, 89, .10);
+            }
+
+        .vit-source-card h3,
+        .vit-pipeline-card h3 {
+            color: var(--brand-green-dark);
+            letter-spacing: -.035em;
+        }
+
+        .vit-source-card h3 {
+            margin: 0 0 1.6rem;
+            font-size: 1.55rem;
+        }
+
+        .vit-pipeline-card h3 {
+            margin: 0 0 .4rem;
+            font-size: 1.45rem;
+        }
+
+        .vit-source-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .vit-source-item {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 68px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255, 255, 255, .48);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .26);
+        }
+
+        .vit-source-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            border: 1px solid rgba(255, 255, 255, .78);
+            background: linear-gradient( 145deg, rgba(255, 255, 255, .75), rgba(229, 244, 235, .46) );
+            box-shadow: 7px 8px 18px rgba(42, 79, 57, .065), inset 1px 1px 0 rgba(255, 255, 255, .96);
+            color: var(--brand-green-dark);
+            font-size: .66rem;
+            font-weight: 850;
+        }
+
+        .vit-source-name {
+            color: var(--brand-green-dark);
+            font-size: .91rem;
+            font-weight: 720;
+            line-height: 1.42;
+        }
+
+        .vit-source-type {
+            display: block;
+            margin-top: .12rem;
+            color: var(--text-muted);
+            font-size: .75rem;
+            font-weight: 550;
+        }
+
+        /* =========================================================
+                   RAG PIPELINE
+                   ========================================================= */
+
+        .vit-pipeline-intro {
+            margin: 0 0 1.7rem;
+            color: var(--text-muted);
+            font-size: .88rem;
+            line-height: 1.55;
+        }
+
+        .vit-pipeline {
+            display: grid;
+            gap: .65rem;
+        }
+
+        .vit-pipeline-step {
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr) auto;
+            gap: .85rem;
+            align-items: center;
+            min-height: 67px;
+            padding: .72rem .85rem;
+            border: 1px solid rgba(255, 255, 255, .50);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .27);
+        }
+
+        .vit-pipeline-index {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .72rem;
+            font-weight: 850;
+            border: 1px solid rgba(255, 255, 255, .78);
+            background: linear-gradient( 145deg, rgba(255, 255, 255, .76), rgba(229, 244, 235, .42) );
+            box-shadow: 6px 7px 16px rgba(42, 79, 57, .06), inset 1px 1px 0 rgba(255, 255, 255, .96);
+        }
+
+        .vit-pipeline-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .88rem;
+            line-height: 1.3;
+        }
+
+        .vit-pipeline-copy span {
+            display: block;
+            margin-top: .17rem;
+            color: var(--text-muted);
+            font-size: .73rem;
+            line-height: 1.35;
+        }
+
+        .vit-pipeline-arrow {
+            color: var(--champagne-gold);
+        }
+
+        .vit-pipeline-output {
+            margin-top: .85rem;
+            padding: 1.1rem 1.2rem;
+            border-radius: 17px;
+            border: 1px solid rgba(17, 171, 100, .10);
+            background: linear-gradient( 135deg, rgba(17, 171, 100, .08), rgba(255, 255, 255, .27) );
+        }
+
+        .vit-pipeline-output-label {
+            display: block;
+            margin-bottom: .35rem;
+            color: var(--brand-green);
+            font-size: .65rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .vit-pipeline-output strong {
+            color: var(--brand-green-dark);
+            font-size: .91rem;
+            line-height: 1.45;
+        }
+
+        /* =========================================================
+                   OUTCOMES
+                   ========================================================= */
+
+        .vit-results-section {
+            padding: 6.8rem 0 7.3rem;
+        }
+
+        .vit-results-heading {
+            max-width: 800px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+        }
+
+            .vit-results-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4vw, 3.4rem);
+                letter-spacing: -.045em;
+            }
+
+            .vit-results-heading p {
+                max-width: 640px;
+                margin: 0 auto;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .vit-results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .vit-result {
+            min-height: 225px;
+            padding: 1.6rem;
+            border-radius: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .vit-result-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .vit-result h3 {
+            margin: 2.4rem 0 .7rem;
+            color: var(--brand-green-dark);
+            font-size: 1.2rem;
+            line-height: 1.2;
+            letter-spacing: -.03em;
+        }
+
+        .vit-result p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .83rem;
+            line-height: 1.55;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .vit-cta-section {
+            padding: 2rem 0 7rem;
+        }
+
+        .vit-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.8rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255, 255, 255, .88), rgba(245, 251, 247, .72) 38%, rgba(231, 244, 236, .72) 100% );
+            border: 1px solid rgba(255, 255, 255, .80);
+            box-shadow: 20px 25px 58px rgba(49, 73, 59, .095), inset 1px 1px 0 rgba(255, 255, 255, .96);
+        }
+
+            .vit-cta::before,
+            .vit-cta::after {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+            .vit-cta::before {
+                width: 360px;
+                height: 360px;
+                left: -130px;
+                top: -180px;
+                background: radial-gradient( circle, rgba(197, 160, 89, .13), transparent 68% );
+            }
+
+            .vit-cta::after {
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                bottom: -250px;
+                background: radial-gradient( circle, rgba(17, 171, 100, .09), transparent 68% );
+            }
+
+        .vit-cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 830px;
+            margin: 0 auto;
+        }
+
+        .vit-cta h2 {
+            margin: 0 auto 1.15rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.15rem, 4.7vw, 4rem);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+        }
+
+        .vit-cta p {
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            color: var(--text-soft);
+            line-height: 1.72;
+        }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 1100px) {
+            .vit-overview-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .vit-meta:nth-child(3) {
+                border-left: 0;
+            }
+
+            .vit-meta:nth-child(3),
+            .vit-meta:nth-child(4) {
+                border-top: 1px solid rgba(16, 73, 40, .065);
+            }
+
+            .vit-section-grid,
+            .vit-section-grid--reverse {
+                grid-template-columns: minmax(0, 1fr) minmax(330px, .9fr);
+                gap: 3rem;
+            }
+
+            .vit-results-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @@media (max-width: 860px) {
+            .vit-overview-section {
+                padding-bottom: 5rem;
+            }
+
+            .vit-section-grid,
+            .vit-section-grid--reverse {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+                .vit-section-grid--reverse .vit-visual {
+                    order: 2;
+                }
+
+                .vit-section-grid--reverse .vit-copy {
+                    order: 1;
+                }
+
+            .vit-content-section {
+                padding: 5.5rem 0;
+            }
+        }
+
+        @@media (max-width: 620px) {
+            .vit-overview-shell {
+                margin-top: -1.3rem;
+            }
+
+            .vit-overview-grid {
+                grid-template-columns: 1fr;
+                border-radius: 23px;
+            }
+
+            .vit-meta {
+                min-height: 118px;
+                padding: 1.45rem;
+            }
+
+                .vit-meta + .vit-meta,
+                .vit-meta:nth-child(3),
+                .vit-meta:nth-child(4) {
+                    border-left: 0;
+                    border-top: 1px solid rgba(16, 73, 40, .065);
+                }
+
+            .vit-source-card,
+            .vit-pipeline-card {
+                padding: 1.25rem;
+                border-radius: 22px;
+            }
+
+            .vit-pipeline-step {
+                grid-template-columns: 36px minmax(0, 1fr);
+            }
+
+            .vit-pipeline-arrow {
+                display: none;
+            }
+
+            .vit-results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vit-result {
+                min-height: 190px;
+            }
+
+            .vit-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="vit-case">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "case-vitinerario",
+            Size = "large",
+            Eyebrow = isEn
+                ? "CASE STUDY · AI INTEGRATION"
+                : "CASE STUDY · INTEGRAZIONE AI",
+            Title = "Vitinerario: Virtual Sommelier AI Assistant",
+            Subtitle = isEn
+                ? "Integrating Large Language Models and Retrieval-Augmented Generation to build an interactive enological conversational advisor grounded in verified data."
+                : "Integrazione di Large Language Models e sistemi Retrieval-Augmented Generation per dare vita a un consulente enologico conversazionale fondato su dati verificati.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn ? "Case Studies" : "Case Study",
+                    Url = isEn
+                        ? "/en/case-studies"
+                        : "/case-study"
+                },
+                new()
+                {
+                    Label = "Vitinerario",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         PROJECT OVERVIEW
+         ========================================================== -->
+    <section class="premium-pale-green vit-overview-section">
+
+        <div class="container vit-overview-shell">
+
+            <div class="vit-overview-grid">
+
+                <article class="vit-meta">
+                    <span class="vit-meta-label">
+                        @(isEn ? "Client" : "Cliente")
+                    </span>
+                    <div class="vit-meta-value">
+                        Vitinerario App
+                    </div>
+                </article>
+
+                <article class="vit-meta">
+                    <span class="vit-meta-label">
+                        @(isEn ? "Sectors" : "Settori")
+                    </span>
+                    <div class="vit-meta-value">
+                        Agri-Tech, Food &amp; Tourism
+                    </div>
+                </article>
+
+                <article class="vit-meta">
+                    <span class="vit-meta-label">
+                        @(isEn ? "Core Technology" : "Tecnologie")
+                    </span>
+                    <div class="vit-meta-value">
+                        Semantic Search, Vector DB &amp; OpenAI
+                    </div>
+                </article>
+
+                <article class="vit-meta">
+                    <span class="vit-meta-label">
+                        @(isEn ? "Experience" : "Esperienza")
+                    </span>
+                    <div class="vit-meta-value">
+                        Mobile Web &amp; Conversational AI
+                    </div>
+                </article>
+
+            </div>
+
         </div>
-        <div class="split-right">
-            <!-- Systems Involved Glass panel -->
-            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.25rem;">
-                <h4 style="color: var(--brand-green-dark); margin-bottom: 0.75rem; font-size: 1rem;">DATA SOURCES USED</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;">
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🍷 Specialized Wine Databases</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">💾 Vector Embeddings Databases</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">🧠 OpenAI GPT-4 Large Language Model</div>
-                    <div class="card-neomorphic" style="padding: 0.5rem;">📡 API Connectors mapping local cellars</div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CHALLENGE
+         ========================================================== -->
+    <section class="vit-content-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container vit-section-grid">
+
+            <div class="vit-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn ? "THE CHALLENGE" : "LA SFIDA")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Going beyond rigid filter-based search."
+                        : "Superare la rigidità delle ricerche a filtri.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Standard search engines and traditional filtering systems struggle with nuanced human questions such as “Which white wine from Basilicata pairs well with a truffle risotto?”. Conventional chatbots were too rigid, while generic public AI models lacked verified enological sources and could generate inaccurate recommendations."
+                        : "I tradizionali sistemi di ricerca a filtri faticano ad accogliere richieste complesse e sfumate come “Quale vino bianco lucano posso abbinare a un risotto al tartufo?”. I chatbot tradizionali risultavano troppo rigidi, mentre i modelli AI generici non disponevano di fonti enologiche verificate e potevano generare suggerimenti non attendibili.")
+                </p>
+
+                <div class="vit-copy-highlight">
+                    @(isEn
+                        ? "The goal was not simply to add a chatbot, but to give users a natural-language interface to trusted and structured wine knowledge."
+                        : "L'obiettivo non era semplicemente aggiungere un chatbot, ma offrire agli utenti un'interfaccia in linguaggio naturale verso un patrimonio enologico strutturato e affidabile.")
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="flex-direction: row-reverse;">
-        <div class="split-left">
-            <h3 class="case-block-title">THE SOLUTION</h3>
-            <p style="font-size: 1rem; line-height: 1.5;">
-                @(isEn ? "Graldev designed an enterprise RAG (Retrieval-Augmented Generation) pipeline. We segmented catalogs and winery cards, converting them into vector embeddings inside an isolated database. When a user asks a question, the system retrieves the verified parameters first, feeding them to the LLM as strict context, ensuring absolute accuracy." : "Graldev ha strutturato un'architettura RAG (Retrieval-Augmented Generation) sicura. Abbiamo suddiviso cataloghi enologici e schede cantine, memorizzandoli come vettori in un database cognitivo isolato. L'AI formula risposte precise ancorate esclusivamente a dati reali, suggerendo cantine ed etichette certificate.")
-            </p>
-        </div>
-        <div class="split-right">
-            <!-- Outcomes -->
-            <div class="premium-card">
-                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">@(isEn ? "Outcome Metrics" : "Dati e Risultati Reali")</h3>
-                <ul style="list-style-position: inside; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
-                    <li>✔️ 100% Conversational Sommelier advice</li>
-                    <li>✔️ Zero AI hallucinations on Wine types</li>
-                    <li>✔️ Fully compliant with Graldev AI Governance</li>
-                    <li>✔️ Responsive conversational interface</li>
-                </ul>
             </div>
-        </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section style="text-align: center; background-color: var(--brand-green-soft);">
-    <div class="container">
-        <h2>@(isEn ? "Do you want to integrate AI securely into your company workflows?" : "Vuoi integrare l'Intelligenza Artificiale nei tuoi flussi in modo sicuro?")</h2>
-        <p style="max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
-            @(isEn ? "Schedule a dedicated AI feasibility review with Graldev cognitive technology partners." : "Fissa un incontro per mappare i tuoi dati ed individuare dove e come l'AI può portare reale efficienza operativa.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
-            @(isEn ? "Parliamo della tua esigenza" : "Parliamo della tua esigenza")
-        </a>
-    </div>
-</section>
+
+            <div class="vit-visual">
+
+                <article class="premium-card vit-source-card"
+                         data-motif="ai">
+
+                    <div class="vit-card-kicker">
+                        @(isEn ? "Knowledge foundation" : "Base informativa")
+                    </div>
+
+                    <h3>
+                        @(isEn ? "Verified data sources" : "Fonti dati verificate")
+                    </h3>
+
+                    <ul class="vit-source-list">
+
+                        <li class="vit-source-item">
+                            <span class="vit-source-icon">DB</span>
+
+                            <span class="vit-source-name">
+                                @(isEn
+                                    ? "Specialized wine databases"
+                                    : "Database enologici specializzati")
+
+                                <span class="vit-source-type">
+                                    @(isEn
+                                        ? "Structured domain knowledge"
+                                        : "Conoscenza di dominio strutturata")
+                                </span>
+                            </span>
+                        </li>
+
+
+                        <li class="vit-source-item">
+                            <span class="vit-source-icon">VEC</span>
+
+                            <span class="vit-source-name">
+                                Vector Embeddings
+
+                                <span class="vit-source-type">
+                                    @(isEn
+                                        ? "Semantic information retrieval"
+                                        : "Recupero semantico delle informazioni")
+                                </span>
+                            </span>
+                        </li>
+
+
+                        <li class="vit-source-item">
+                            <span class="vit-source-icon">LLM</span>
+
+                            <span class="vit-source-name">
+                                OpenAI Large Language Model
+
+                                <span class="vit-source-type">
+                                    @(isEn
+                                        ? "Conversational reasoning layer"
+                                        : "Livello conversazionale e di reasoning")
+                                </span>
+                            </span>
+                        </li>
+
+
+                        <li class="vit-source-item">
+                            <span class="vit-source-icon">API</span>
+
+                            <span class="vit-source-name">
+                                @(isEn
+                                    ? "Winery and catalogue connectors"
+                                    : "Connettori verso cantine e cataloghi")
+
+                                <span class="vit-source-type">
+                                    @(isEn
+                                        ? "Application and data integration"
+                                        : "Integrazione applicativa e dati")
+                                </span>
+                            </span>
+                        </li>
+
+                    </ul>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         SOLUTION
+         ========================================================== -->
+    <section class="vit-content-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container vit-section-grid vit-section-grid--reverse">
+
+            <div class="vit-visual">
+
+                <article class="premium-card vit-pipeline-card"
+                         data-motif="roadmap">
+
+                    <div class="vit-card-kicker">
+                        RAG Pipeline
+                    </div>
+
+                    <h3>
+                        @(isEn
+                            ? "From verified data to grounded answers"
+                            : "Dal dato verificato alla risposta contestualizzata")
+                    </h3>
+
+                    <p class="vit-pipeline-intro">
+                        @(isEn
+                            ? "Each answer follows a controlled retrieval and generation flow."
+                            : "Ogni risposta segue un flusso controllato di retrieval e generazione.")
+                    </p>
+
+                    <div class="vit-pipeline">
+
+                        <div class="vit-pipeline-step">
+
+                            <span class="vit-pipeline-index">
+                                01
+                            </span>
+
+                            <span class="vit-pipeline-copy">
+                                <strong>
+                                    @(isEn ? "User intent" : "Intento utente")
+                                </strong>
+                                <span>
+                                    @(isEn
+                                        ? "Natural-language wine question"
+                                        : "Domanda enologica in linguaggio naturale")
+                                </span>
+                            </span>
+
+                            <span class="vit-pipeline-arrow"
+                                  aria-hidden="true">
+                                ↓
+                            </span>
+
+                        </div>
+
+
+                        <div class="vit-pipeline-step">
+
+                            <span class="vit-pipeline-index">
+                                02
+                            </span>
+
+                            <span class="vit-pipeline-copy">
+                                <strong>
+                                    Semantic Retrieval
+                                </strong>
+                                <span>
+                                    @(isEn
+                                        ? "Relevant verified information is retrieved"
+                                        : "Vengono recuperate le informazioni verificate pertinenti")
+                                </span>
+                            </span>
+
+                            <span class="vit-pipeline-arrow"
+                                  aria-hidden="true">
+                                ↓
+                            </span>
+
+                        </div>
+
+
+                        <div class="vit-pipeline-step">
+
+                            <span class="vit-pipeline-index">
+                                03
+                            </span>
+
+                            <span class="vit-pipeline-copy">
+                                <strong>
+                                    Grounded Context
+                                </strong>
+                                <span>
+                                    @(isEn
+                                        ? "Domain data is injected into the AI context"
+                                        : "I dati di dominio vengono inseriti nel contesto AI")
+                                </span>
+                            </span>
+
+                            <span class="vit-pipeline-arrow"
+                                  aria-hidden="true">
+                                ↓
+                            </span>
+
+                        </div>
+
+
+                        <div class="vit-pipeline-step">
+
+                            <span class="vit-pipeline-index">
+                                04
+                            </span>
+
+                            <span class="vit-pipeline-copy">
+                                <strong>
+                                    LLM Generation
+                                </strong>
+                                <span>
+                                    @(isEn
+                                        ? "The response is generated from retrieved evidence"
+                                        : "La risposta viene generata sulle evidenze recuperate")
+                                </span>
+                            </span>
+
+                            <span class="vit-pipeline-arrow"
+                                  aria-hidden="true">
+                                ↓
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="vit-pipeline-output">
+
+                        <span class="vit-pipeline-output-label">
+                            @(isEn ? "Output" : "Risultato")
+                        </span>
+
+                        <strong>
+                            @(isEn
+                                ? "A conversational wine recommendation anchored to real catalogue and winery data."
+                                : "Un consiglio enologico conversazionale ancorato a dati reali di catalogo e delle cantine.")
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="vit-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn ? "THE SOLUTION" : "LA SOLUZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "A secure enterprise RAG architecture."
+                        : "Un'architettura RAG enterprise sicura.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Graldev designed a Retrieval-Augmented Generation architecture in which catalogues and winery profiles are segmented and converted into semantic embeddings stored inside an isolated vector database. When users ask a question, the application first retrieves the most relevant verified information and only then provides that context to the language model."
+                        : "Graldev ha progettato un'architettura Retrieval-Augmented Generation nella quale cataloghi e schede delle cantine vengono segmentati e convertiti in embedding semantici memorizzati in un database vettoriale isolato. Quando l'utente formula una domanda, l'applicazione recupera prima le informazioni verificate più pertinenti e solo successivamente le fornisce al modello linguistico come contesto.")
+                </p>
+
+                <div class="vit-copy-highlight">
+                    @(isEn
+                        ? "The language model acts as the conversational and reasoning layer, while Vitinerario's verified knowledge remains the source of truth."
+                        : "Il modello linguistico opera come livello conversazionale e di reasoning, mentre il patrimonio informativo verificato di Vitinerario rimane la fonte autorevole.")
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         OUTCOMES
+         ========================================================== -->
+    <section class="vit-results-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="vit-results-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn ? "THE OUTCOME" : "IL RISULTATO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Natural interaction without losing control of the data."
+                        : "Interazione naturale senza perdere il controllo dei dati.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Vitinerario combines conversational AI with a controlled knowledge layer built around verified domain information."
+                        : "Vitinerario combina l'AI conversazionale con un livello informativo controllato e costruito su dati di dominio verificati.")
+                </p>
+
+            </div>
+
+
+            <div class="vit-results-grid">
+
+                <article class="premium-card vit-result">
+
+                    <span class="vit-result-number">
+                        01
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Conversational discovery"
+                                : "Ricerca conversazionale")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Users can express their needs naturally instead of navigating rigid combinations of filters."
+                                : "Gli utenti possono esprimere le proprie esigenze in modo naturale senza dipendere da combinazioni rigide di filtri.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card vit-result">
+
+                    <span class="vit-result-number">
+                        02
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Grounded recommendations"
+                                : "Suggerimenti contestualizzati")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Recommendations are generated from retrieved domain information rather than unsupported model knowledge."
+                                : "I suggerimenti vengono costruiti sulle informazioni di dominio recuperate e non sulla sola conoscenza generica del modello.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card vit-result">
+
+                    <span class="vit-result-number">
+                        03
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Controlled architecture"
+                                : "Architettura controllata")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The retrieval layer separates proprietary knowledge from the generative component."
+                                : "Il livello di retrieval separa il patrimonio informativo proprietario dal componente generativo.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card vit-result">
+
+                    <span class="vit-result-number">
+                        04
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Responsive experience"
+                                : "Esperienza responsive")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "The conversational interface remains clear and accessible across desktop and mobile."
+                                : "L'interfaccia conversazionale mantiene chiarezza e fruibilità sia su desktop sia su dispositivi mobili.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="vit-cta-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="vit-cta">
+
+                <div class="vit-cta-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "AI · DATA · INTEGRATION"
+                            : "AI · DATI · INTEGRAZIONE")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Where could AI create real value in your workflows?"
+                            : "Dove può creare valore reale l'AI nei tuoi flussi?")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "Let's map your data, processes and integration constraints to identify where artificial intelligence can produce measurable operational value."
+                            : "Mappiamo dati, processi e vincoli di integrazione per individuare dove l'Intelligenza Artificiale può produrre valore operativo concreto.")
+                    </p>
+
+                    <a href="@(isEn ? "/en/contact" : "/contatti")"
+                       class="btn btn-primary">
+
+                        @(isEn
+                            ? "Discuss your AI project"
+                            : "Parliamo del tuo progetto AI")
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

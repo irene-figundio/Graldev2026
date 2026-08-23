@@ -1,431 +1,1249 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
 @section Style {
-    <link rel="stylesheet" href="~/css/graldev-premium-shared.css" asp-append-version="true" />
+    <style>
+        .consulting-page {
+            --consulting-copy: 760px;
+        }
+
+        /* =========================================================
+                   OVERVIEW
+                   ========================================================= */
+
+        .consulting-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .consulting-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: start;
+        }
+
+        .consulting-copy {
+            max-width: var(--consulting-copy);
+        }
+
+            .consulting-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .consulting-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .consulting-copy p + p {
+                    margin-top: 1.1rem;
+                }
+
+        .consulting-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   CONSULTING CARD
+                   ========================================================= */
+
+        .consulting-focus-card {
+            position: sticky;
+            top: 112px;
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .consulting-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .consulting-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .consulting-focus-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .consulting-focus-list {
+            display: grid;
+            gap: .7rem;
+            margin: 0 0 1.7rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .consulting-focus-item {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr);
+            gap: .8rem;
+            align-items: center;
+            min-height: 64px;
+            padding: .65rem .72rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.50);
+            background: rgba(255,255,255,.25);
+        }
+
+        .consulting-focus-code {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .6rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 5px 6px 14px rgba(42,79,57,.055), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .consulting-focus-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .8rem;
+            line-height: 1.3;
+        }
+
+        .consulting-focus-copy span {
+            display: block;
+            margin-top: .1rem;
+            color: var(--text-muted);
+            font-size: .67rem;
+            line-height: 1.35;
+        }
+
+        .consulting-focus-card .btn {
+            width: 100%;
+            min-height: 51px;
+        }
+
+        /* =========================================================
+                   POSSIBLE PATHS
+                   ========================================================= */
+
+        .consulting-paths-section {
+            padding: 7rem 0;
+        }
+
+        .consulting-paths-heading {
+            max-width: 830px;
+            margin-bottom: 3.4rem;
+        }
+
+            .consulting-paths-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .consulting-paths-heading p {
+                max-width: 680px;
+                margin: 0;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .consulting-paths-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: .85rem;
+        }
+
+        .consulting-path {
+            min-height: 280px;
+            padding: 1.45rem;
+            border-radius: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .consulting-path-number {
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .consulting-path h3 {
+            margin: 2.3rem 0 .7rem;
+            color: var(--brand-green-dark);
+            font-size: 1.1rem;
+            line-height: 1.2;
+            letter-spacing: -.03em;
+        }
+
+        .consulting-path p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .8rem;
+            line-height: 1.58;
+        }
+
+        /* =========================================================
+                   METHOD
+                   ========================================================= */
+
+        .consulting-method-section {
+            padding: 7rem 0;
+        }
+
+        .consulting-method-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .consulting-method-copy h2 {
+            margin: 0 0 1.15rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.1rem, 4vw, 3.5rem);
+            line-height: 1.03;
+            letter-spacing: -.045em;
+        }
+
+        .consulting-method-copy p {
+            max-width: 700px;
+            margin: 0;
+            color: var(--text-soft);
+            line-height: 1.78;
+        }
+
+        .consulting-method-card {
+            padding: 2rem;
+            border-radius: 28px;
+        }
+
+        .consulting-method-list {
+            display: grid;
+            gap: .62rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .consulting-method-step {
+            display: grid;
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: .8rem;
+            align-items: center;
+            min-height: 61px;
+            padding: .65rem .72rem;
+            border-radius: 15px;
+            background: rgba(255,255,255,.25);
+            border: 1px solid rgba(255,255,255,.46);
+        }
+
+        .consulting-method-index {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.75), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+        }
+
+        .consulting-method-step strong {
+            color: var(--brand-green-dark);
+            font-size: .79rem;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: .015em;
+        }
+
+        /* =========================================================
+                   RELATED CAPABILITIES
+                   ========================================================= */
+
+        .consulting-related-section {
+            padding: 7rem 0;
+        }
+
+        .consulting-related-heading {
+            max-width: 780px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+        }
+
+            .consulting-related-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4vw, 3.4rem);
+                line-height: 1.04;
+                letter-spacing: -.045em;
+            }
+
+            .consulting-related-heading p {
+                max-width: 650px;
+                margin: 0 auto;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .consulting-related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .consulting-related-card {
+            min-height: 310px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .consulting-related-number {
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .consulting-related-card h3 {
+            margin: 2.6rem 0 .8rem;
+            color: var(--brand-green-dark);
+            font-size: 1.45rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .consulting-related-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .9rem;
+            line-height: 1.67;
+        }
+
+        .consulting-related-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            margin-top: 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: .82rem;
+            font-weight: 780;
+            text-decoration: none;
+        }
+
+            .consulting-related-link::after {
+                content: "↗";
+                color: var(--champagne-gold);
+                transition: transform 180ms ease;
+            }
+
+            .consulting-related-link:hover::after {
+                transform: translate(2px, -2px);
+            }
+
+        /* =========================================================
+                   POSITIONING
+                   ========================================================= */
+
+        .consulting-positioning-section {
+            padding: 0 0 7rem;
+        }
+
+        .consulting-positioning {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.8rem, 5vw, 4.7rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .consulting-positioning::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .consulting-positioning-content {
+            position: relative;
+            z-index: 2;
+            max-width: 880px;
+        }
+
+        .consulting-positioning h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .consulting-positioning p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.76;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .consulting-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .consulting-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .consulting-cta h2 {
+                max-width: 860px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .consulting-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 1080px) {
+            .consulting-paths-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @@media (max-width: 960px) {
+            .consulting-overview-grid,
+            .consulting-method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .consulting-focus-card {
+                position: relative;
+                top: auto;
+            }
+
+            .consulting-related-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .consulting-related-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .consulting-overview,
+            .consulting-paths-section,
+            .consulting-method-section,
+            .consulting-related-section {
+                padding: 5.5rem 0;
+            }
+
+            .consulting-paths-grid,
+            .consulting-related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .consulting-related-card:last-child {
+                grid-column: auto;
+            }
+
+            .consulting-path {
+                min-height: 220px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .consulting-focus-card,
+            .consulting-method-card,
+            .consulting-path,
+            .consulting-related-card {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .consulting-positioning,
+            .consulting-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
 }
 
-<section class="consulting-hero metal-v3-section" data-metal-v3="consulting-hero">
-    <div class="hero-metal-pattern-wrap" aria-hidden="true">
-        <svg class="hero-metal-pattern-svg"
-             viewBox="0 0 1600 1000"
-             preserveAspectRatio="xMidYMid slice"
-             focusable="false"
-             xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="consultingGoldBase"
-                                x1="0"
-                                y1="0"
-                                x2="1600"
-                                y2="1000"
-                                gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#8f651c" />
-                    <stop offset="18%" stop-color="#d4a93d" />
-                    <stop offset="34%" stop-color="#fff0a8" />
-                    <stop offset="46%" stop-color="#b77d16" />
-                    <stop offset="62%" stop-color="#f5d56d" />
-                    <stop offset="79%" stop-color="#9e6b16" />
-                    <stop offset="100%" stop-color="#e1b84d" />
-                </linearGradient>
+<div class="consulting-page">
 
-                <linearGradient id="consultingMetalHighlight"
-                                x1="0"
-                                y1="0"
-                                x2="1"
-                                y2="1">
-                    <stop offset="0%" stop-color="#c68c19" />
-                    <stop offset="28%" stop-color="#ffe793" />
-                    <stop offset="46%" stop-color="#ffffff" />
-                    <stop offset="58%" stop-color="#fff0ad" />
-                    <stop offset="78%" stop-color="#d8a42d" />
-                    <stop offset="100%" stop-color="#a26a12" />
-                </linearGradient>
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "it-consulting",
 
-                <radialGradient id="consultingShineMaskGradient">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
-                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
-                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
-                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
-                </radialGradient>
+            Size = "large",
 
-                <mask id="consultingShineMask"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="1600"
-                      height="1000">
-                    <rect width="1600" height="1000" fill="#000000" />
-                    <circle class="hero-metal-shine-circle"
-                            cx="800"
-                            cy="350"
-                            r="280"
-                            fill="url(#consultingShineMaskGradient)" />
-                </mask>
+            Eyebrow = isEn
+                ? "IT STRATEGY & ADVISORY"
+                : "CONSULENZA INFORMATICA DIREZIONALE",
 
-                <filter id="consultingEmboss"
-                        x="-20%"
-                        y="-20%"
-                        width="140%"
-                        height="140%">
-                    <feDropShadow dx="0"
-                                  dy="1"
-                                  stdDeviation=".7"
-                                  flood-color="#ffffff"
-                                  flood-opacity=".72" />
-                    <feDropShadow dx="0"
-                                  dy="2"
-                                  stdDeviation="1.6"
-                                  flood-color="#7c5517"
-                                  flood-opacity=".14" />
-                </filter>
+            Title = isEn
+                ? "Technology decisions built around real business problems."
+                : "Decisioni tecnologiche costruite attorno ai problemi reali dell'azienda.",
 
-                <symbol id="consultingMetalMotif" viewBox="0 0 520 520">
-                    <path d="
-                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
-                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
-                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
-                    M260 0 L260 92
-                    M0 155 L128 232
-                    M520 155 L392 232
-                    M0 390 L128 313
-                    M520 390 L392 313
-                    M260 412 L260 520
-                    " />
-                </symbol>
-            </defs>
+            Subtitle = isEn
+                ? "We support organizations in technology assessment, architecture, platform selection, system integration and digital evolution, starting from processes and existing systems before proposing new technology."
+                : "Affianchiamo le organizzazioni in assessment tecnologico, architettura, software selection, integrazione ed evoluzione digitale, partendo da processi e sistemi esistenti prima di proporre nuova tecnologia.",
 
-            <g class="hero-metal-pattern-soft">
-                <use href="#consultingMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-
-            <g class="hero-metal-pattern-base"
-               style="stroke:url(#consultingGoldBase);filter:url(#consultingEmboss);">
-                <use href="#consultingMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-
-            <g class="hero-metal-pattern-shine"
-               style="stroke:url(#consultingMetalHighlight);mask:url(#consultingShineMask);">
-                <use href="#consultingMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#consultingMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-        </svg>
-    </div>
-
-    <div class="container">
-        <span class="section-eyebrow">
-            @(isEn ? "IT STRATEGY & ADVICE" : "CONSULENZA INFORMATICA DIREZIONALE")
-        </span>
-
-        <h1 class="section-title">
-            @(isEn
-                ? "IT consulting to turn complex technical needs into concrete operational solutions."
-                : "Consulenza informatica per trasformare esigenze tecnologiche in soluzioni concrete.")
-        </h1>
-
-        <p class="section-subtitle">
-            @(isEn
-                ? "We support enterprises in assessment, design, systems architecture, selection of platforms and digital evolution."
-                : "Supportiamo le imprese nelle fasi di assessment, progettazione, disegno architetturale, scelta tecnologica ed evoluzione digitale.")
-        </p>
-    </div>
-</section>
-
-<section class="consulting-main-section premium-pale-green soft-transition transition-from-warm">
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>
-                @(isEn
-                    ? "Not every problem requires custom coding"
-                    : "Non sempre serve sviluppare nuovo software")
-            </h2>
-
-            <p>
-                @if (isEn)
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>Unlike software vendors or traditional software houses whose main business is selling more development hours, <strong>Graldev is a consultant and technical partner</strong>. We believe that writing custom code is just one of many ways to solve a business problem.</text>
-                }
-                else
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>A differenza dei vendor di software o delle tradizionali software house il cui interesse primario è vendere ore di sviluppo aggiuntive, <strong>Graldev opera come consulente e partner tecnico strategico</strong>. Crediamo che scrivere nuovo codice da zero sia solo una delle possibili risposte a un problema aziendale.</text>
+                    Label = isEn
+                        ? "IT Consulting"
+                        : "Consulenza Informatica",
+                    IsCurrent = true
                 }
-            </p>
+            }
+        }
+    )
 
-            <p>
-                @if (isEn)
-                {
-                    <text>A strategic consulting session can open much more efficient, rapid and cost-effective paths:</text>
-                }
-                else
-                {
-                    <text>Una consulenza informatica approfondita e oggettiva può rivelare strade molto più efficienti, rapide ed economicamente sostenibili per l'azienda:</text>
-                }
-            </p>
 
-            <ul class="consulting-path-list">
-                <li class="consulting-path-item">
-                    <span class="consulting-path-icon">↗</span>
-                    <div class="consulting-path-copy">
-                        <strong>@(isEn ? "System Integration" : "Integrazione di sistemi esistenti")</strong>
-                        @(isEn ? "connecting software already present in the company." : "connettere gestionali e piattaforme già presenti in azienda.")
-                    </div>
-                </li>
+    <!-- ==========================================================
+         OVERVIEW
+         ========================================================== -->
+    <section class="consulting-overview premium-pale-green soft-transition transition-from-warm">
 
-                <li class="consulting-path-item">
-                    <span class="consulting-path-icon">◎</span>
-                    <div class="consulting-path-copy">
-                        <strong>@(isEn ? "Platform Optimization" : "Miglior configurazione")</strong>
-                        @(isEn ? "getting more from existing software without replacing it." : "configurare o personalizzare meglio applicativi esistenti senza acquistarne di nuovi.")
-                    </div>
-                </li>
+        <div class="container consulting-overview-grid">
 
-                <li class="consulting-path-item">
-                    <span class="consulting-path-icon">◇</span>
-                    <div class="consulting-path-copy">
-                        <strong>@(isEn ? "Light Middleware" : "Creazione di middleware")</strong>
-                        @(isEn ? "building small, smart connectors to flow data automatically." : "costruire piccoli connettori mirati per automatizzare i passaggi di dati.")
-                    </div>
-                </li>
+            <div class="consulting-copy">
 
-                <li class="consulting-path-item">
-                    <span class="consulting-path-icon">↻</span>
-                    <div class="consulting-path-copy">
-                        <strong>@(isEn ? "Modernization" : "Modernizzazione applicativa")</strong>
-                        @(isEn ? "evolving legacy apps without disrupting company workflows." : "ringiovanire vecchi software senza bloccare l'operatività.")
-                    </div>
-                </li>
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "TECHNOLOGY BEFORE DEVELOPMENT"
+                        : "STRATEGIA PRIMA DELLO SVILUPPO")
+                </span>
 
-                <li class="consulting-path-item">
-                    <span class="consulting-path-icon">✦</span>
-                    <div class="consulting-path-copy">
-                        <strong>@(isEn ? "AI Orchestration" : "Introduzione dell'AI")</strong>
-                        @(isEn ? "integrating smart cognitive layers into actual database pipelines." : "integrare modelli intelligenti (LLM) direttamente sulle basi dati esistenti.")
-                    </div>
-                </li>
-            </ul>
-        </div>
+                <h2>
+                    @(isEn
+                        ? "Not every problem requires new software."
+                        : "Non ogni problema richiede nuovo software.")
+                </h2>
 
-        <div class="split-right">
-            <div class="premium-card consulting-focus-card" data-motif="roadmap">
-                <span class="premium-card-icon">◎</span>
+                <p>
+                    @if (isEn)
+                    {
+                        <text>
+                            <strong>Graldev operates first as a technology consultant and partner.</strong>
+                            Custom development is one possible answer, not the default answer.
+                            Before proposing new software, we analyze workflows, existing
+                            applications, data, dependencies and the operational constraint
+                            the organization is actually trying to remove.
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <strong>Graldev opera prima di tutto come consulente e technology partner.</strong>
+                            Lo sviluppo custom è una possibile risposta, non la risposta predefinita.
+                            Prima di proporre nuovo software analizziamo workflow, applicazioni
+                            esistenti, dati, dipendenze e il vincolo operativo che l'organizzazione
+                            deve realmente eliminare.
+                        </text>
+                    }
+                </p>
+
+                <p>
+                    @(isEn
+                        ? "Sometimes the correct answer is integration. Sometimes configuration, modernization, automation or replacing one component. Only when the existing ecosystem cannot solve the problem sustainably does custom development become the most appropriate path."
+                        : "A volte la risposta corretta è un'integrazione. Altre volte una configurazione migliore, una modernizzazione, un'automazione o la sostituzione di un singolo componente. Solo quando l'ecosistema esistente non può risolvere il problema in modo sostenibile, lo sviluppo custom diventa il percorso più adatto.")
+                </p>
+
+                <div class="consulting-highlight">
+                    @(isEn
+                        ? "The objective is not to sell more technology. It is to reduce operational friction with the minimum architecture necessary to solve the problem well."
+                        : "L'obiettivo non è vendere più tecnologia. È ridurre l'attrito operativo con l'architettura minima necessaria per risolvere bene il problema.")
+                </div>
+
+            </div>
+
+
+            <aside class="premium-card consulting-focus-card"
+                   data-motif="roadmap">
+
+                <span class="consulting-card-kicker">
+                    @(isEn
+                        ? "Core consulting activities"
+                        : "Attività di consulenza")
+                </span>
 
                 <h3>
-                    @(isEn ? "Core Consulting Activities" : "Attività di Consulenza")
+                    @(isEn
+                        ? "Where we support technical decisions"
+                        : "Dove supportiamo le decisioni tecnologiche")
                 </h3>
 
-                <ul>
-                    <li>@(isEn ? "Infrastructure & Code Audit" : "Assessment Tecnologico e del Codice")</li>
-                    <li>@(isEn ? "Systems Architecture & Design" : "Disegno dell'Architettura Software")</li>
-                    <li>@(isEn ? "Software Platform Selection" : "Software Selection & Fornitori")</li>
-                    <li>@(isEn ? "AI Feasibility & Integration Review" : "Studio di fattibilità e Governance dell'AI")</li>
-                    <li>@(isEn ? "IT Security & Migration Planning" : "Strategie di migrazione e Sicurezza")</li>
+                <ul class="consulting-focus-list">
+
+                    <li class="consulting-focus-item">
+                        <span class="consulting-focus-code">AUD</span>
+
+                        <span class="consulting-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Technology assessment"
+                                    : "Assessment tecnologico")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Architecture, code, infrastructure and dependencies"
+                                    : "Architettura, codice, infrastruttura e dipendenze")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="consulting-focus-item">
+                        <span class="consulting-focus-code">ARC</span>
+
+                        <span class="consulting-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Architecture & design"
+                                    : "Architettura e progettazione")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Target architecture and evolution roadmap"
+                                    : "Architettura target e roadmap evolutiva")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="consulting-focus-item">
+                        <span class="consulting-focus-code">SEL</span>
+
+                        <span class="consulting-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Software selection"
+                                    : "Software selection")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Build, buy, configure, integrate or retain"
+                                    : "Sviluppare, acquistare, configurare, integrare o mantenere")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="consulting-focus-item">
+                        <span class="consulting-focus-code">AI</span>
+
+                        <span class="consulting-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "AI feasibility"
+                                    : "Fattibilità AI")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Data, workflows, governance and realistic use cases"
+                                    : "Dati, workflow, governance e casi d'uso realistici")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="consulting-focus-item">
+                        <span class="consulting-focus-code">MIG</span>
+
+                        <span class="consulting-focus-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Migration planning"
+                                    : "Pianificazione delle migrazioni")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Controlled evolution with business continuity"
+                                    : "Evoluzione controllata e continuità operativa")
+                            </span>
+                        </span>
+                    </li>
+
                 </ul>
 
                 <a href="@(isEn ? "/en/contact" : "/contatti")"
-                   class="btn btn-primary"
-                   style="width:100%;">
-                    @(isEn ? "Speak with our Consultant" : "Parliamo della tua esigenza")
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your technology challenge"
+                        : "Parliamo della tua esigenza")
+
                 </a>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="consulting-related-section metal-v3-section soft-transition transition-from-green"
-         data-metal-v3="consulting-related">
+            </aside>
 
-    <div class="hero-metal-pattern-wrap" aria-hidden="true">
-        <svg class="hero-metal-pattern-svg"
-             viewBox="0 0 1600 1000"
-             preserveAspectRatio="xMidYMid slice"
-             focusable="false"
-             xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="relatedGoldBase"
-                                x1="0"
-                                y1="0"
-                                x2="1600"
-                                y2="1000"
-                                gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#8f651c" />
-                    <stop offset="18%" stop-color="#d4a93d" />
-                    <stop offset="34%" stop-color="#fff0a8" />
-                    <stop offset="46%" stop-color="#b77d16" />
-                    <stop offset="62%" stop-color="#f5d56d" />
-                    <stop offset="79%" stop-color="#9e6b16" />
-                    <stop offset="100%" stop-color="#e1b84d" />
-                </linearGradient>
-
-                <linearGradient id="relatedMetalHighlight"
-                                x1="0"
-                                y1="0"
-                                x2="1"
-                                y2="1">
-                    <stop offset="0%" stop-color="#c68c19" />
-                    <stop offset="28%" stop-color="#ffe793" />
-                    <stop offset="46%" stop-color="#ffffff" />
-                    <stop offset="58%" stop-color="#fff0ad" />
-                    <stop offset="78%" stop-color="#d8a42d" />
-                    <stop offset="100%" stop-color="#a26a12" />
-                </linearGradient>
-
-                <radialGradient id="relatedShineMaskGradient">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
-                    <stop offset="38%" stop-color="#ffffff" stop-opacity=".98" />
-                    <stop offset="68%" stop-color="#ffffff" stop-opacity=".42" />
-                    <stop offset="100%" stop-color="#000000" stop-opacity="0" />
-                </radialGradient>
-
-                <mask id="relatedShineMask"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="1600"
-                      height="1000">
-                    <rect width="1600" height="1000" fill="#000000" />
-                    <circle class="hero-metal-shine-circle"
-                            cx="800"
-                            cy="350"
-                            r="280"
-                            fill="url(#relatedShineMaskGradient)" />
-                </mask>
-
-                <filter id="relatedEmboss"
-                        x="-20%"
-                        y="-20%"
-                        width="140%"
-                        height="140%">
-                    <feDropShadow dx="0"
-                                  dy="1"
-                                  stdDeviation=".7"
-                                  flood-color="#ffffff"
-                                  flood-opacity=".72" />
-                    <feDropShadow dx="0"
-                                  dy="2"
-                                  stdDeviation="1.6"
-                                  flood-color="#7c5517"
-                                  flood-opacity=".14" />
-                </filter>
-
-                <symbol id="relatedMetalMotif" viewBox="0 0 520 520">
-                    <path d="
-                    M260 0 L520 155 L520 390 L260 520 L0 390 L0 155 Z
-                    M260 92 L392 170 L392 334 L260 412 L128 334 L128 170 Z
-                    M260 166 L326 205 L326 286 L260 326 L194 286 L194 205 Z
-                    M260 0 L260 92
-                    M0 155 L128 232
-                    M520 155 L392 232
-                    M0 390 L128 313
-                    M520 390 L392 313
-                    M260 412 L260 520
-                    " />
-                </symbol>
-            </defs>
-
-            <g class="hero-metal-pattern-soft">
-                <use href="#relatedMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-
-            <g class="hero-metal-pattern-base"
-               style="stroke:url(#relatedGoldBase);filter:url(#relatedEmboss);">
-                <use href="#relatedMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-
-            <g class="hero-metal-pattern-shine"
-               style="stroke:url(#relatedMetalHighlight);mask:url(#relatedShineMask);">
-                <use href="#relatedMetalMotif" x="-20" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="520" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="1060" y="-110" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="250" y="380" width="540" height="540" />
-                <use href="#relatedMetalMotif" x="790" y="380" width="540" height="540" />
-            </g>
-        </svg>
-    </div>
-
-    <div class="container">
-        <div class="section-heading">
-            <span class="section-eyebrow">
-                @(isEn ? "RELATED CAPABILITIES" : "AREE CORRELATE")
-            </span>
-
-            <h2>
-                @(isEn
-                    ? "Explore our focus areas"
-                    : "Approfondisci le nostre specializzazioni")
-            </h2>
         </div>
 
-        <div class="consulting-related-grid">
-            <div class="premium-card" data-motif="network">
-                <div>
-                    <h3>System Integration</h3>
-                    <p>
-                        @(isEn
-                            ? "Automating communication between your CRM, ERP, and commerce databases."
-                            : "Collega ERP, CRM, database e software esterni eliminando passaggi manuali.")
-                    </p>
-                </div>
+    </section>
 
-                <a href="@(isEn ? "/en/services/system-integration" : "/servizi/system-integration")"
-                   class="premium-card-link">
-                    System Integration
-                </a>
+
+    <!-- ==========================================================
+         POSSIBLE PATHS
+         ========================================================== -->
+    <section class="consulting-paths-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="consulting-paths-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "POSSIBLE STRATEGIES"
+                        : "POSSIBILI STRATEGIE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "The solution can take very different forms."
+                        : "La soluzione può assumere forme molto diverse.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "The technology is selected after understanding the problem. These are some of the paths that can emerge from an assessment."
+                        : "La tecnologia viene scelta dopo aver compreso il problema. Questi sono alcuni dei percorsi che possono emergere da un assessment.")
+                </p>
+
             </div>
 
-            <div class="premium-card" data-motif="ai">
-                <div>
-                    <h3>AI & Automation</h3>
-                    <p>
-                        @(isEn
-                            ? "Integrating advanced generative AI and LLMs inside your processes securely."
-                            : "Porta modelli AI intelligenti (RAG) all'interno dei database aziendali.")
-                    </p>
-                </div>
 
-                <a href="@(isEn ? "/en/services/ai-integration" : "/servizi/ai-integration")"
-                   class="premium-card-link">
-                    AI Integration
-                </a>
+            <div class="consulting-paths-grid">
+
+                <article class="premium-card consulting-path"
+                         data-motif="network">
+
+                    <span class="consulting-path-number">
+                        01 / INTEGRATE
+                    </span>
+
+                    <div>
+                        <h3>
+                            System Integration
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Connect applications that already work instead of replacing them."
+                                : "Collegare applicazioni che già funzionano invece di sostituirle.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card consulting-path"
+                         data-motif="roadmap">
+
+                    <span class="consulting-path-number">
+                        02 / OPTIMIZE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Platform Optimization"
+                                : "Ottimizzazione")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Improve configuration or processes around existing platforms."
+                                : "Migliorare configurazioni o processi attorno alle piattaforme esistenti.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card consulting-path"
+                         data-motif="architecture">
+
+                    <span class="consulting-path-number">
+                        03 / CONNECT
+                    </span>
+
+                    <div>
+                        <h3>
+                            Middleware
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Introduce a focused orchestration layer between disconnected systems."
+                                : "Introdurre un livello di orchestrazione mirato tra sistemi scollegati.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card consulting-path"
+                         data-motif="cloud">
+
+                    <span class="consulting-path-number">
+                        04 / EVOLVE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Modernization"
+                                : "Modernizzazione")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Evolve legacy software incrementally while preserving operations."
+                                : "Evolvere software legacy in modo incrementale preservando l'operatività.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card consulting-path"
+                         data-motif="ai">
+
+                    <span class="consulting-path-number">
+                        05 / AUTOMATE
+                    </span>
+
+                    <div>
+                        <h3>
+                            AI &amp; Automation
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Introduce AI only where data and workflow make the use case sustainable."
+                                : "Introdurre AI soltanto dove dati e workflow rendono il caso d'uso sostenibile.")
+                        </p>
+                    </div>
+
+                </article>
+
             </div>
 
-            <div class="premium-card" data-motif="cloud">
-                <div>
-                    <h3>Cloud & Architecture</h3>
-                    <p>
-                        @(isEn
-                            ? "Designing highly scaling and cost-effective modern cloud structures."
-                            : "Evolvi le infrastrutture applicative per garantire alta disponibilità.")
-                    </p>
-                </div>
-
-                <a href="@(isEn ? "/en/services/cloud-architecture" : "/servizi/cloud-architecture")"
-                   class="premium-card-link">
-                    Cloud Architecture
-                </a>
-            </div>
         </div>
-    </div>
-</section>
 
-@section Scripts {
-    <script src="~/js/graldev-metal-v3.js" asp-append-version="true"></script>
-}
+    </section>
+
+
+    <!-- ==========================================================
+         METHOD
+         ========================================================== -->
+    <section class="consulting-method-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container consulting-method-grid">
+
+            <div class="consulting-method-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "OUR CONSULTING METHOD"
+                        : "IL NOSTRO METODO")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Understand first. Design second. Build only what is needed."
+                        : "Comprendere prima. Progettare dopo. Sviluppare soltanto ciò che serve.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Our work starts with the operating model, systems and constraints. Architecture and technology follow from that analysis rather than being predetermined at the beginning."
+                        : "Il nostro lavoro parte dal modello operativo, dai sistemi e dai vincoli. Architettura e tecnologia derivano da questa analisi invece di essere prestabilite all'inizio.")
+                </p>
+
+            </div>
+
+
+            <div class="premium-card consulting-method-card"
+                 data-motif="roadmap">
+
+                <ol class="consulting-method-list">
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">01</span>
+                        <strong>
+                            @(isEn
+                                ? "Understand the business problem"
+                                : "Comprendere il problema")
+                        </strong>
+                    </li>
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">02</span>
+                        <strong>
+                            @(isEn
+                                ? "Map workflows and systems"
+                                : "Mappare workflow e sistemi")
+                        </strong>
+                    </li>
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">03</span>
+                        <strong>
+                            @(isEn
+                                ? "Identify constraints and bottlenecks"
+                                : "Individuare vincoli e colli di bottiglia")
+                        </strong>
+                    </li>
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">04</span>
+                        <strong>
+                            @(isEn
+                                ? "Evaluate build, buy or integrate"
+                                : "Valutare sviluppo, acquisto o integrazione")
+                        </strong>
+                    </li>
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">05</span>
+                        <strong>
+                            @(isEn
+                                ? "Design the sustainable architecture"
+                                : "Progettare l'architettura sostenibile")
+                        </strong>
+                    </li>
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">06</span>
+                        <strong>
+                            @(isEn
+                                ? "Implement incrementally"
+                                : "Implementare in modo incrementale")
+                        </strong>
+                    </li>
+
+                    <li class="consulting-method-step">
+                        <span class="consulting-method-index">07</span>
+                        <strong>
+                            @(isEn
+                                ? "Measure operational value"
+                                : "Misurare il valore operativo")
+                        </strong>
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         RELATED CAPABILITIES
+         ========================================================== -->
+    <section class="consulting-related-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="consulting-related-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "RELATED CAPABILITIES"
+                        : "AREE CORRELATE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "From advisory to implementation."
+                        : "Dalla consulenza all'implementazione.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "When the assessment identifies the appropriate path, our technical capabilities can support the implementation without separating strategy from execution."
+                        : "Quando l'assessment individua il percorso corretto, le nostre competenze tecniche possono supportarne l'implementazione senza separare strategia ed esecuzione.")
+                </p>
+
+            </div>
+
+
+            <div class="consulting-related-grid">
+
+                <article class="premium-card consulting-related-card"
+                         data-motif="network">
+
+                    <span class="consulting-related-number">
+                        01 / INTEGRATION
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            System Integration
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Connect ERP, CRM, databases, SaaS platforms and external services into coordinated operational workflows."
+                                : "Collega ERP, CRM, database, piattaforme SaaS e servizi esterni in workflow operativi coordinati.")
+                        </p>
+
+                        <a href="@(isEn
+                                                               ? "/en/services/system-integration"
+                                                               : "/servizi/system-integration")"
+                           class="consulting-related-link">
+
+                            @(isEn
+                                ? "Explore System Integration"
+                                : "Scopri System Integration")
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card consulting-related-card"
+                         data-motif="ai">
+
+                    <span class="consulting-related-number">
+                        02 / AI
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            AI &amp; Automation
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Integrate language models, retrieval architectures and automation into existing business processes."
+                                : "Integra modelli linguistici, architetture RAG e automazioni nei processi aziendali esistenti.")
+                        </p>
+
+                        <a href="@(isEn
+                                                               ? "/en/services/ai-integration"
+                                                               : "/servizi/ai-integration")"
+                           class="consulting-related-link">
+
+                            @(isEn
+                                ? "Explore AI & Automation"
+                                : "Scopri AI & Automazione")
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card consulting-related-card"
+                         data-motif="cloud">
+
+                    <span class="consulting-related-number">
+                        03 / ARCHITECTURE
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Cloud &amp; Architecture
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Assess technical debt and evolve applications, infrastructure and cloud environments incrementally."
+                                : "Analizza il debito tecnico ed evolvi applicazioni, infrastrutture e ambienti cloud in modo incrementale.")
+                        </p>
+
+                        <a href="@(isEn
+                                                               ? "/en/services/cloud-architecture"
+                                                               : "/servizi/cloud-architecture")"
+                           class="consulting-related-link">
+
+                            @(isEn
+                                ? "Explore Cloud & Architecture"
+                                : "Scopri Cloud & Architettura")
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         POSITIONING
+         ========================================================== -->
+    <section class="consulting-positioning-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="consulting-positioning">
+
+                <div class="consulting-positioning-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "INDEPENDENT TECHNOLOGY ADVICE"
+                            : "CONSULENZA TECNOLOGICA INDIPENDENTE")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "The right answer can also be: do not build anything new."
+                            : "La risposta corretta può anche essere: non sviluppare nulla di nuovo.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "A good consulting engagement should be able to recommend retaining a system, improving configuration, integrating an existing platform or selecting an external product when that produces a better outcome than custom development."
+                            : "Una buona consulenza deve poter consigliare di mantenere un sistema, migliorarne la configurazione, integrare una piattaforma esistente o scegliere un prodotto esterno quando questo genera un risultato migliore rispetto allo sviluppo custom.")
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="consulting-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="consulting-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "PROBLEM · SYSTEMS · STRATEGY"
+                        : "PROBLEMA · SISTEMI · STRATEGIA")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "You do not need to know which technology you need."
+                        : "Non devi già sapere quale tecnologia ti serve.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Tell us what is slowing the business down. We can start from the process, map the systems involved and identify the most sustainable technical path."
+                        : "Raccontaci cosa sta rallentando l'azienda. Possiamo partire dal processo, mappare i sistemi coinvolti e individuare il percorso tecnologico più sostenibile.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your technology challenge"
+                        : "Parliamo della tua esigenza")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

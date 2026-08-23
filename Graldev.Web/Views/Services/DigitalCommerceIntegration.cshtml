@@ -1,84 +1,1144 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero" style="padding-bottom: 2rem;">
-    <div class="container">
-        <span class="section-eyebrow">DIGITAL COMMERCE INTEGRATION</span>
-        <h1 class="section-title" style="font-weight: 900; line-height: 1.15; margin-bottom: 0.75rem;">
-            @(isEn ? "A single unified flow between production, ERP, eCommerce and marketplace." : "Un unico flusso tra produzione, ERP, eCommerce e marketplace.")
-        </h1>
-        <p class="section-subtitle" style="max-width: 700px; font-size: 1.1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-            @(isEn ? "We synchronize catalogs, availability, orders, and logistics shipping between Shopify, Amazon, eBay, and your enterprise ERP." : "Colleghiamo l'ERP aziendale con Shopify, Amazon, eBay e spedizionieri per sincronizzare prezzi, disponibilità, ordini e tracking.")
-        </p>
-        <a href="@(isEn ? "/en/contact" : "/contatti")" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
-            @(isEn ? "Request an Integration Review" : "Mappiamo il tuo ecosistema commerce")
-        </a>
-    </div>
-</section>
+@section Style {
+    <style>
+        .commerce-page {
+            --commerce-copy: 760px;
+        }
 
-<!-- eCommerce Flow Infographic Diagram -->
-<section class="white-section" style="padding: 3rem 0;">
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <span class="section-eyebrow">ECOMMERCE PIPELINE</span>
-            <h2 style="font-weight: 900; font-size: 2rem; margin-bottom: 0.5rem;">@(isEn ? "Omnichannel Automation Architecture" : "La pipeline e-commerce automatizzata")</h2>
-        </div>
+        /* =========================================================
+                   OVERVIEW
+                   ========================================================= */
 
-        <div class="method-steps" style="margin-top: 1.5rem;">
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">01</div>
-                <div class="method-name" style="font-size: 1rem;">PRODUCTION / ERP</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Stock counts and catalog details updated in ERP." : "La produzione aggiorna prezzi e stock nel gestionale.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">02</div>
-                <div class="method-name" style="font-size: 1rem;">GRALDEV HUB</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Middleware converts XML/JSON and matches listings." : "Il middleware traduce i file e smista le informazioni.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">03</div>
-                <div class="method-name" style="font-size: 1rem;">CHANNELS</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Shopify, Amazon, & eBay synchronized instantly." : "Sincronizzazione simultanea Shopify, Amazon ed eBay.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">04</div>
-                <div class="method-name" style="font-size: 1rem;">ORDERS INGEST</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Orders retrieved and sent back to ERP automatically." : "Gli ordini dei canali vengono caricati in fatturazione ERP.")</div>
-            </div>
-            <div class="method-step" style="border-color: var(--green-300); padding-top: 0.75rem;">
-                <div class="method-num">05</div>
-                <div class="method-name" style="font-size: 1rem;">FULFILLMENT</div>
-                <div class="method-desc" style="font-size: 0.85rem;">@(isEn ? "Tracking code generated and sent back to customer." : "Spedizione ed etichette create con tracking automatico.")</div>
-            </div>
-        </div>
-    </div>
-</section>
+        .commerce-overview {
+            position: relative;
+            padding: 7rem 0;
+        }
 
-<!-- Case Study Spotlight: Geordie -->
-<section class="alt-section" style="padding: 3rem 0;">
-    <div class="container split-layout" style="align-items: center;">
-        <div class="split-left" style="max-width: 550px;">
-            <span class="section-eyebrow">CASE STUDY SPOTLIGHT</span>
-            <h2 style="font-weight: 900; font-size: 2rem;">Geordie eCommerce</h2>
-            <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
-                @(isEn ? "We designed and programmed a custom connection between Geordie's internal enterprise ERP and Shopify, automating mass inventory counts, orders ingestion, and shipping logistics." : "Abbiamo ideato e sviluppato una sincronizzazione completa tra il sistema ERP interno di Geordie, il negozio Shopify, Amazon ed eBay, automatizzando l'allineamento dei cataloghi e la gestione delle etichette di spedizione.")
-            </p>
-            <a href="@(isEn ? "/en/case-studies/geordie" : "/case-study/geordie")" class="premium-card-link">
-                @(isEn ? "Read Geordie Case Study" : "Leggi il Case Study Geordie")
-            </a>
-        </div>
-        <div class="split-right">
-            <!-- Glass showcase panel for systems involved -->
-            <div class="card-glass" style="border-color: rgba(0, 138, 38, 0.25); background-color: var(--brand-green-soft); padding: 1.5rem;">
-                <h4 style="color: var(--brand-green-dark); margin-bottom: 1rem; font-size: 1.1rem;">SISTEMI COINVOLTI</h4>
-                <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; font-weight: 700;">
-                    <div class="card-neomorphic">🏢 ERP Interno (Produzione)</div>
-                    <div class="card-neomorphic">🛍️ Shopify Frontends</div>
-                    <div class="card-neomorphic">📦 Amazon & eBay Catalogs</div>
-                    <div class="card-neomorphic">🚚 BRT, GLS Shipping APIs</div>
+        .commerce-overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .commerce-copy {
+            max-width: var(--commerce-copy);
+        }
+
+            .commerce-copy h2 {
+                margin: 0 0 1.35rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.6rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .commerce-copy p {
+                margin: 0;
+                color: var(--text-soft);
+                font-size: 1.03rem;
+                line-height: 1.82;
+            }
+
+                .commerce-copy p + p {
+                    margin-top: 1.1rem;
+                }
+
+        .commerce-highlight {
+            margin-top: 1.9rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   CAPABILITY CARD
+                   ========================================================= */
+
+        .commerce-capability-card {
+            padding: 2rem;
+            border-radius: 29px;
+        }
+
+        .commerce-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .commerce-card-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .commerce-capability-card h3 {
+            margin: 0 0 1.5rem;
+            color: var(--brand-green-dark);
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+        }
+
+        .commerce-capability-list {
+            display: grid;
+            gap: .72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .commerce-capability-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .9rem;
+            align-items: center;
+            min-height: 70px;
+            padding: .75rem .85rem;
+            border: 1px solid rgba(255,255,255,.48);
+            border-radius: 16px;
+            background: rgba(255,255,255,.26);
+        }
+
+        .commerce-capability-code {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .61rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.76), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.78);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .commerce-capability-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .87rem;
+            line-height: 1.3;
+        }
+
+        .commerce-capability-copy span {
+            display: block;
+            margin-top: .14rem;
+            color: var(--text-muted);
+            font-size: .71rem;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+                   PIPELINE
+                   ========================================================= */
+
+        .commerce-pipeline-section {
+            padding: 7rem 0;
+        }
+
+        .commerce-pipeline-heading {
+            max-width: 830px;
+            margin-bottom: 3.5rem;
+        }
+
+            .commerce-pipeline-heading h2 {
+                margin: 0 0 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .commerce-pipeline-heading p {
+                max-width: 690px;
+                margin: 0;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        .commerce-pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: .85rem;
+        }
+
+        .commerce-step {
+            position: relative;
+            min-height: 285px;
+            padding: 1.45rem;
+            border-radius: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .commerce-step:not(:last-child)::after {
+                content: "→";
+                position: absolute;
+                top: 50%;
+                right: -.72rem;
+                z-index: 4;
+                transform: translateY(-50%);
+                color: var(--champagne-gold);
+                font-size: 1rem;
+                font-weight: 800;
+            }
+
+        .commerce-step-number {
+            color: var(--champagne-gold);
+            font-size: .68rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .commerce-step h3 {
+            margin: 2.2rem 0 .75rem;
+            color: var(--brand-green-dark);
+            font-size: 1.05rem;
+            line-height: 1.2;
+            letter-spacing: -.025em;
+        }
+
+        .commerce-step p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .8rem;
+            line-height: 1.58;
+        }
+
+        /* =========================================================
+                   CORE AREAS
+                   ========================================================= */
+
+        .commerce-areas-section {
+            padding: 7rem 0;
+        }
+
+        .commerce-areas-heading {
+            max-width: 830px;
+            margin-bottom: 3.3rem;
+        }
+
+            .commerce-areas-heading h2 {
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+        .commerce-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.15rem;
+        }
+
+        .commerce-area-card {
+            min-height: 325px;
+            padding: 1.8rem;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .commerce-area-number {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .commerce-area-card h3 {
+            margin: 2.7rem 0 .85rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .commerce-area-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+                   GEORDIE CASE STUDY
+                   ========================================================= */
+
+        .commerce-case-section {
+            padding: 0 0 7rem;
+        }
+
+        .commerce-case {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(330px, .95fr);
+            gap: clamp(2.5rem, 6vw, 5.5rem);
+            align-items: center;
+            padding: clamp(2.8rem, 5vw, 4.7rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .commerce-case::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .commerce-case-copy,
+        .commerce-case-map {
+            position: relative;
+            z-index: 2;
+        }
+
+        .commerce-case h2 {
+            margin: 0 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .commerce-case-copy > p {
+            max-width: 700px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .98rem;
+            line-height: 1.75;
+        }
+
+        .commerce-case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .45rem;
+            margin: 1.5rem 0 1.8rem;
+        }
+
+        .commerce-case-tag {
+            padding: .42rem .68rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            font-size: .66rem;
+            font-weight: 720;
+            background: rgba(255,255,255,.42);
+            border: 1px solid rgba(16,73,40,.07);
+        }
+
+        /* =========================================================
+                   SYSTEM MAP
+                   ========================================================= */
+
+        .commerce-case-map {
+            padding: 1.7rem;
+            border-radius: 25px;
+        }
+
+        .commerce-map-kicker {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--champagne-gold);
+            font-size: .66rem;
+            font-weight: 820;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .commerce-map-list {
+            display: grid;
+            gap: .65rem;
+        }
+
+        .commerce-map-item {
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: .8rem;
+            align-items: center;
+            min-height: 62px;
+            padding: .65rem .72rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.48);
+            background: rgba(255,255,255,.25);
+        }
+
+        .commerce-map-code {
+            width: 48px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: var(--brand-green-dark);
+            font-size: .6rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.75), rgba(229,244,235,.44) );
+            border: 1px solid rgba(255,255,255,.78);
+        }
+
+        .commerce-map-copy strong {
+            display: block;
+            color: var(--brand-green-dark);
+            font-size: .8rem;
+            line-height: 1.3;
+        }
+
+        .commerce-map-copy span {
+            display: block;
+            margin-top: .1rem;
+            color: var(--text-muted);
+            font-size: .68rem;
+            line-height: 1.35;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .commerce-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .commerce-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .commerce-cta h2 {
+                max-width: 860px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .commerce-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 1080px) {
+            .commerce-pipeline {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .commerce-step::after {
+                display: none;
+            }
+        }
+
+        @@media (max-width: 980px) {
+            .commerce-overview-grid,
+            .commerce-case {
+                grid-template-columns: 1fr;
+            }
+
+            .commerce-areas-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .commerce-area-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .commerce-overview,
+            .commerce-pipeline-section,
+            .commerce-areas-section {
+                padding: 5.5rem 0;
+            }
+
+            .commerce-pipeline,
+            .commerce-areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .commerce-area-card,
+            .commerce-area-card:last-child {
+                grid-column: auto;
+                min-height: 250px;
+            }
+
+            .commerce-step {
+                min-height: 210px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .commerce-capability-card,
+            .commerce-step,
+            .commerce-area-card,
+            .commerce-case-map {
+                padding: 1.4rem;
+                border-radius: 22px;
+            }
+
+            .commerce-case,
+            .commerce-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="commerce-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "digital-commerce",
+
+            Size = "large",
+
+            Eyebrow = "DIGITAL COMMERCE INTEGRATION",
+
+            Title = isEn
+                ? "One operational flow across ERP, commerce channels and logistics."
+                : "Un unico flusso operativo tra ERP, canali commerce e logistica.",
+
+            Subtitle = isEn
+                ? "We connect enterprise systems, eCommerce platforms, marketplaces and carrier APIs to synchronize inventory, catalogs, orders, shipments and tracking."
+                : "Colleghiamo sistemi aziendali, piattaforme eCommerce, marketplace e API dei corrieri per sincronizzare stock, cataloghi, ordini, spedizioni e tracking.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn
+                        ? "Digital Commerce"
+                        : "Digital Commerce",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         OVERVIEW
+         ========================================================== -->
+    <section class="commerce-overview premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container commerce-overview-grid">
+
+            <div class="commerce-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "ONE COMMERCE LIFECYCLE"
+                        : "UN UNICO CICLO COMMERCE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "The problem is not having many channels. It is managing them as separate systems."
+                        : "Il problema non è avere molti canali. È gestirli come sistemi separati.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "When ERP data, physical stock, eCommerce catalogs, marketplaces and logistics platforms are disconnected, the same information is repeatedly copied and reconciled between different interfaces. That creates delays, inconsistent availability and avoidable operational work."
+                        : "Quando dati ERP, magazzino fisico, cataloghi eCommerce, marketplace e piattaforme logistiche sono scollegati, le stesse informazioni devono essere copiate e riconciliate continuamente tra interfacce differenti. Questo genera ritardi, disponibilità incoerenti e attività operative evitabili.")
+                </p>
+
+                <p>
+                    @(isEn
+                        ? "We design integration layers that coordinate those systems without forcing the company to replace the platforms already supporting production, administration or sales."
+                        : "Progettiamo layer di integrazione che coordinano questi sistemi senza costringere l'azienda a sostituire le piattaforme che già supportano produzione, amministrazione o vendita.")
+                </p>
+
+                <div class="commerce-highlight">
+                    @(isEn
+                        ? "The objective is a coordinated commerce lifecycle: product data enters once, orders return automatically and logistics information follows the transaction to completion."
+                        : "L'obiettivo è un ciclo commerce coordinato: i dati prodotto entrano una volta, gli ordini rientrano automaticamente e le informazioni logistiche accompagnano la transazione fino alla chiusura.")
                 </div>
+
             </div>
+
+
+            <aside class="premium-card commerce-capability-card"
+                   data-motif="network">
+
+                <span class="commerce-card-kicker">
+                    @(isEn
+                        ? "Commerce integrations"
+                        : "Integrazioni commerce")
+                </span>
+
+                <h3>
+                    @(isEn
+                        ? "Systems across the operational flow"
+                        : "Sistemi lungo il flusso operativo")
+                </h3>
+
+                <ul class="commerce-capability-list">
+
+                    <li class="commerce-capability-item">
+                        <span class="commerce-capability-code">ERP</span>
+
+                        <span class="commerce-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "ERP & inventory"
+                                    : "ERP e magazzino")
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Products, stock, pricing and administration"
+                                    : "Prodotti, disponibilità, prezzi e amministrazione")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="commerce-capability-item">
+                        <span class="commerce-capability-code">DTC</span>
+
+                        <span class="commerce-capability-copy">
+                            <strong>
+                                Shopify &amp; eCommerce
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Direct-to-consumer digital storefronts"
+                                    : "Store digitali direct-to-consumer")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="commerce-capability-item">
+                        <span class="commerce-capability-code">MKT</span>
+
+                        <span class="commerce-capability-copy">
+                            <strong>
+                                Amazon &amp; eBay
+                            </strong>
+
+                            <span>
+                                @(isEn
+                                    ? "Marketplace listings, stock and orders"
+                                    : "Listing, disponibilità e ordini marketplace")
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="commerce-capability-item">
+                        <span class="commerce-capability-code">LOG</span>
+
+                        <span class="commerce-capability-copy">
+                            <strong>
+                                @(isEn
+                                    ? "Carrier integration"
+                                    : "Integrazione corrieri")
+                            </strong>
+
+                            <span>
+                                GLS · BRT · Tracking · Labels
+                            </span>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
         </div>
-    </div>
-</section>
+
+    </section>
+
+
+    <!-- ==========================================================
+         PIPELINE
+         ========================================================== -->
+    <section class="commerce-pipeline-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="commerce-pipeline-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "COMMERCE PIPELINE"
+                        : "PIPELINE COMMERCE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "From product availability to customer tracking."
+                        : "Dalla disponibilità prodotto al tracking cliente.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "The integration layer coordinates data in both directions: information moves from ERP to channels, while orders and fulfillment events return toward internal systems."
+                        : "Il layer di integrazione coordina i dati in entrambe le direzioni: le informazioni passano dall'ERP ai canali, mentre ordini ed eventi di fulfillment ritornano verso i sistemi interni.")
+                </p>
+
+            </div>
+
+
+            <div class="commerce-pipeline">
+
+                <article class="premium-card commerce-step"
+                         data-motif="data">
+
+                    <span class="commerce-step-number">
+                        01 / SOURCE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Production & ERP"
+                                : "Produzione & ERP")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Catalog information, prices and availability originate from internal operational systems."
+                                : "Catalogo, prezzi e disponibilità hanno origine nei sistemi operativi interni.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card commerce-step"
+                         data-motif="architecture">
+
+                    <span class="commerce-step-number">
+                        02 / ORCHESTRATE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Integration Hub"
+                                : "Hub di integrazione")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Data is validated, transformed and mapped to the structures required by each connected platform."
+                                : "I dati vengono validati, trasformati e mappati nelle strutture richieste dalle diverse piattaforme.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card commerce-step"
+                         data-motif="network">
+
+                    <span class="commerce-step-number">
+                        03 / DISTRIBUTE
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Commerce channels"
+                                : "Canali di vendita")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Stock, pricing and product information are propagated to eCommerce stores and marketplaces."
+                                : "Stock, prezzi e informazioni prodotto vengono distribuiti a store eCommerce e marketplace.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card commerce-step"
+                         data-motif="roadmap">
+
+                    <span class="commerce-step-number">
+                        04 / RETURN
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Order acquisition"
+                                : "Acquisizione ordini")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Orders are collected automatically and reconciled with internal records."
+                                : "Gli ordini vengono acquisiti automaticamente e riconciliati con i dati interni.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card commerce-step"
+                         data-motif="cloud">
+
+                    <span class="commerce-step-number">
+                        05 / FULFILL
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Shipping & tracking"
+                                : "Spedizione & tracking")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Carrier requests, labels and tracking information complete the operational flow."
+                                : "Prese in carico, etichette e tracking dei corrieri completano il flusso operativo.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CORE AREAS
+         ========================================================== -->
+    <section class="commerce-areas-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="commerce-areas-heading">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "CORE CAPABILITIES"
+                        : "CAPACITÀ PRINCIPALI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Automation across the full commerce operation."
+                        : "Automazione lungo l'intera operatività commerce.")
+                </h2>
+
+            </div>
+
+
+            <div class="commerce-areas-grid">
+
+                <article class="premium-card commerce-area-card"
+                         data-motif="data">
+
+                    <span class="commerce-area-number">
+                        01 / CATALOG
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Catalog & stock synchronization"
+                                : "Sincronizzazione catalogo e stock")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Product information and availability can be aligned between ERP, owned stores and marketplace channels from one controlled source."
+                                : "Informazioni prodotto e disponibilità possono essere allineate tra ERP, store proprietari e marketplace a partire da una fonte controllata.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card commerce-area-card"
+                         data-motif="network">
+
+                    <span class="commerce-area-number">
+                        02 / ORDERS
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Multichannel order orchestration"
+                                : "Orchestrazione ordini multicanale")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Orders from different channels can converge into the internal administrative and operational flow without repetitive manual acquisition."
+                                : "Gli ordini provenienti da canali differenti possono convergere nel flusso amministrativo e operativo interno senza acquisizione manuale ripetitiva.")
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="premium-card commerce-area-card"
+                         data-motif="roadmap">
+
+                    <span class="commerce-area-number">
+                        03 / LOGISTICS
+                    </span>
+
+                    <div>
+                        <h3>
+                            @(isEn
+                                ? "Shipping automation"
+                                : "Automazione delle spedizioni")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "Carrier integrations can generate shipment requests, labels and tracking data directly from the order workflow."
+                                : "Le integrazioni con i corrieri possono generare prese in carico, etichette e tracking direttamente dal workflow dell'ordine.")
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         GEORDIE CASE STUDY
+         ========================================================== -->
+    <section class="commerce-case-section bg-warm-white">
+
+        <div class="container">
+
+            <div class="commerce-case">
+
+                <div class="commerce-case-copy">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "REAL PROJECT · GEORDIE"
+                            : "PROGETTO REALE · GEORDIE")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "A centralized middleware for omnichannel commerce."
+                            : "Un middleware centralizzato per il commerce multicanale.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "With Geordie, Graldev engineered an integration layer connecting internal ERP data, Shopify stores, Amazon, eBay and carrier APIs. The platform coordinates stock, orders and logistics within one operational flow."
+                            : "Con Geordie, Graldev ha progettato un layer di integrazione che collega dati ERP interni, store Shopify, Amazon, eBay e API dei corrieri. La piattaforma coordina stock, ordini e logistica all'interno di un unico flusso operativo.")
+                    </p>
+
+
+                    <div class="commerce-case-meta">
+                        <span class="commerce-case-tag">ERP</span>
+                        <span class="commerce-case-tag">Shopify</span>
+                        <span class="commerce-case-tag">Amazon</span>
+                        <span class="commerce-case-tag">eBay</span>
+                        <span class="commerce-case-tag">GLS</span>
+                        <span class="commerce-case-tag">BRT</span>
+                    </div>
+
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/geordie"
+                                                       : "/case-study/geordie")"
+                       class="btn btn-outline">
+
+                        @(isEn
+                            ? "Explore the Geordie case study"
+                            : "Scopri il case study Geordie")
+
+                    </a>
+
+                </div>
+
+
+                <aside class="premium-card commerce-case-map"
+                       data-motif="network">
+
+                    <span class="commerce-map-kicker">
+                        @(isEn
+                            ? "Connected ecosystem"
+                            : "Ecosistema collegato")
+                    </span>
+
+                    <div class="commerce-map-list">
+
+                        <div class="commerce-map-item">
+                            <span class="commerce-map-code">ERP</span>
+
+                            <span class="commerce-map-copy">
+                                <strong>
+                                    @(isEn
+                                        ? "Internal ERP"
+                                        : "ERP interno")
+                                </strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Products, stock and operational records"
+                                        : "Prodotti, stock e dati operativi")
+                                </span>
+                            </span>
+                        </div>
+
+
+                        <div class="commerce-map-item">
+                            <span class="commerce-map-code">SHOP</span>
+
+                            <span class="commerce-map-copy">
+                                <strong>Shopify</strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Owned eCommerce storefronts"
+                                        : "Store eCommerce proprietari")
+                                </span>
+                            </span>
+                        </div>
+
+
+                        <div class="commerce-map-item">
+                            <span class="commerce-map-code">MKT</span>
+
+                            <span class="commerce-map-copy">
+                                <strong>Amazon &amp; eBay</strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Marketplace sales channels"
+                                        : "Canali di vendita marketplace")
+                                </span>
+                            </span>
+                        </div>
+
+
+                        <div class="commerce-map-item">
+                            <span class="commerce-map-code">API</span>
+
+                            <span class="commerce-map-copy">
+                                <strong>GLS &amp; BRT</strong>
+
+                                <span>
+                                    @(isEn
+                                        ? "Shipping and tracking APIs"
+                                        : "API spedizioni e tracking")
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="commerce-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="commerce-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "ERP · COMMERCE · LOGISTICS"
+                        : "ERP · COMMERCE · LOGISTICA")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "How many manual steps still sit between an order and its shipment?"
+                        : "Quanti passaggi manuali esistono ancora tra un ordine e la sua spedizione?")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Let's map ERP, sales channels, marketplaces and logistics to identify where integration can remove repetitive work and reduce inconsistencies."
+                        : "Mappiamo ERP, canali di vendita, marketplace e logistica per individuare dove l'integrazione può eliminare attività ripetitive e ridurre le incoerenze.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Request an integration review"
+                        : "Mappiamo il tuo ecosistema commerce")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

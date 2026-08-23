@@ -1,55 +1,828 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">INDUSTRIES & VERTICALS</span>
-        <h1 class="section-title">
-            @(isEn ? "Applied technical consulting across complex sectors." : "Consulenza tecnologica applicata a settori complessi.")
-        </h1>
-        <p class="section-subtitle">
-            @(isEn ? "We support organizations and medium-to-large enterprises in Industry, Retail, eCommerce and Telecommunications." : "Affianchiamo organizzazioni e medie-grandi imprese nei settori dell'Industria, del Retail, dell'eCommerce e delle Telecomunicazioni.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .sectors-page {
+            --sectors-copy: 760px;
+        }
 
-<section>
-    <div class="container grid-3">
-        <!-- Sector 1: Industria -->
-        <div class="premium-card">
-            <div>
-                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🏗️</span>
-                <h3 class="premium-card-title">@(isEn ? "Industry" : "Industria")</h3>
-                <p class="premium-card-text">
-                    @(isEn ? "Optimizing production data flows, hardware/software sensor integration, process automation, and stock control." : "Ottimizzazione dei flussi produttivi, integrazione di sensori hardware/software, automazione di processo e controllo reparti.")
+        /* =========================================================
+                   INTRO
+                   ========================================================= */
+
+        .sectors-intro-section {
+            position: relative;
+            padding: 7rem 0 4.5rem;
+        }
+
+        .sectors-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
+            gap: 3rem;
+            align-items: end;
+        }
+
+            .sectors-intro h2 {
+                max-width: 780px;
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.15rem, 4vw, 3.55rem);
+                line-height: 1.03;
+                letter-spacing: -.045em;
+            }
+
+            .sectors-intro p {
+                max-width: 490px;
+                margin: 0;
+                color: var(--text-soft);
+                font-size: .98rem;
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   SECTOR LIST
+                   ========================================================= */
+
+        .sectors-list-section {
+            position: relative;
+            padding: 0 0 7.5rem;
+        }
+
+        .sectors-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* =========================================================
+                   SINGLE SECTOR CARD
+                   ========================================================= */
+
+        .sector-panel {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+            gap: clamp(2.5rem, 6vw, 6rem);
+            align-items: center;
+            min-height: 430px;
+            padding: clamp(2rem, 4vw, 3.4rem);
+            border-radius: 32px;
+        }
+
+        .sector-panel--reverse {
+            grid-template-columns: minmax(300px, .95fr) minmax(0, 1.05fr);
+        }
+
+        .sector-panel::after {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            right: -180px;
+            top: -220px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient( circle, rgba(197,160,89,.13), transparent 68% );
+        }
+
+        .sector-panel--reverse::after {
+            right: auto;
+            left: -180px;
+        }
+
+        .sector-panel-copy,
+        .sector-panel-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .sector-panel-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: 1rem;
+            color: var(--brand-green);
+            font-size: .68rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .sector-panel-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .sector-panel h3 {
+            margin: 0 0 1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.1rem, 4vw, 3.4rem);
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .sector-panel p {
+            max-width: 680px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.78;
+        }
+
+        .sector-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin: 1.6rem 0 2rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sector-tag {
+            padding: .45rem .7rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 720;
+            background: rgba(255,255,255,.40);
+            border: 1px solid rgba(16,73,40,.07);
+        }
+
+        .sector-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            color: var(--brand-green-dark);
+            font-size: .84rem;
+            font-weight: 780;
+            text-decoration: none;
+        }
+
+            .sector-link::after {
+                content: "↗";
+                color: var(--champagne-gold);
+                transition: transform 180ms ease;
+            }
+
+            .sector-link:hover::after {
+                transform: translate(2px, -2px);
+            }
+
+        /* =========================================================
+                   VISUAL
+                   ========================================================= */
+
+        .sector-panel-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sector-visual-system {
+            position: relative;
+            width: min(100%, 350px);
+            min-height: 320px;
+            display: grid;
+            place-items: center;
+        }
+
+        .sector-visual-ring {
+            position: absolute;
+            width: 245px;
+            height: 245px;
+            border-radius: 50%;
+            border: 1px solid rgba(197,160,89,.22);
+        }
+
+            .sector-visual-ring::after {
+                content: "";
+                position: absolute;
+                inset: 26px;
+                border-radius: 50%;
+                border: 1px dashed rgba(17,171,100,.16);
+            }
+
+        .sector-visual-core {
+            position: relative;
+            z-index: 3;
+            width: 125px;
+            height: 125px;
+            display: grid;
+            place-items: center;
+            border-radius: 29px;
+            text-align: center;
+            color: var(--brand-green-dark);
+            font-size: .9rem;
+            font-weight: 850;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+            background: linear-gradient( 145deg, rgba(255,255,255,.80), rgba(229,244,235,.54) );
+            border: 1px solid rgba(255,255,255,.86);
+            box-shadow: 13px 15px 32px rgba(42,79,57,.08), inset 1px 1px 0 rgba(255,255,255,.97);
+        }
+
+        .sector-node {
+            position: absolute;
+            min-width: 82px;
+            min-height: 48px;
+            padding: .55rem .65rem;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            text-align: center;
+            color: var(--brand-green-dark);
+            font-size: .66rem;
+            font-weight: 760;
+            background: rgba(255,255,255,.47);
+            border: 1px solid rgba(255,255,255,.72);
+            box-shadow: 6px 8px 16px rgba(42,79,57,.055);
+        }
+
+        .sector-node--top {
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sector-node--right {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sector-node--bottom {
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sector-node--left {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* =========================================================
+                   POSITIONING
+                   ========================================================= */
+
+        .sectors-positioning-section {
+            padding: 0 0 7rem;
+        }
+
+        .sectors-positioning {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 6vw, 5rem);
+            border-radius: 32px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.66), rgba(237,248,241,.56) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 18px 22px 48px rgba(49,73,59,.085), inset 1px 1px 0 rgba(255,255,255,.95);
+        }
+
+            .sectors-positioning::after {
+                content: "";
+                position: absolute;
+                width: 430px;
+                height: 430px;
+                right: -180px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.14), transparent 68% );
+            }
+
+        .sectors-positioning-content {
+            position: relative;
+            z-index: 2;
+            max-width: 880px;
+        }
+
+        .sectors-positioning h2 {
+            margin: 0 0 1.1rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+        .sectors-positioning p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        /* =========================================================
+                   CTA
+                   ========================================================= */
+
+        .sectors-cta-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .sectors-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.6rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.90), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .sectors-cta h2 {
+                max-width: 840px;
+                margin: 0 auto 1rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .sectors-cta p {
+                max-width: 650px;
+                margin: 0 auto 2rem;
+                color: var(--text-soft);
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 950px) {
+            .sectors-intro {
+                grid-template-columns: 1fr;
+                gap: 1.3rem;
+            }
+
+            .sector-panel,
+            .sector-panel--reverse {
+                grid-template-columns: 1fr;
+            }
+
+                .sector-panel--reverse .sector-panel-copy {
+                    order: 1;
+                }
+
+                .sector-panel--reverse .sector-panel-visual {
+                    order: 2;
+                }
+        }
+
+        @@media (max-width: 700px) {
+            .sectors-intro-section {
+                padding: 5.5rem 0 3rem;
+            }
+
+            .sectors-list {
+                gap: 2rem;
+            }
+
+            .sector-panel {
+                min-height: auto;
+                padding: 1.6rem;
+                border-radius: 25px;
+            }
+
+            .sector-visual-system {
+                transform: scale(.9);
+                min-height: 290px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .sector-visual-system {
+                transform: scale(.78);
+                margin-inline: -1rem;
+            }
+
+            .sectors-positioning,
+            .sectors-cta {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="sectors-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "sectors",
+
+            Size = "large",
+
+            Eyebrow = isEn
+                ? "INDUSTRIES & VERTICALS"
+                : "SETTORI DI INTERVENTO",
+
+            Title = isEn
+                ? "Applied technology consulting across complex industries."
+                : "Consulenza tecnologica applicata a settori complessi.",
+
+            Subtitle = isEn
+                ? "We support medium and large organizations across Industry, Retail, eCommerce and Telecommunications, connecting technology choices to real operational constraints."
+                : "Affianchiamo medie e grandi organizzazioni nei settori Industria, Retail, eCommerce e Telecomunicazioni, collegando le scelte tecnologiche ai vincoli operativi reali.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn ? "Sectors" : "Settori",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         INTRO
+         ========================================================== -->
+    <section class="sectors-intro-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="sectors-intro">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "SECTOR EXPERTISE"
+                            : "COMPETENZE DI SETTORE")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Different industries. Different systems. The same need for integration."
+                            : "Settori diversi. Sistemi diversi. La stessa esigenza di integrazione.")
+                    </h2>
+
+                </div>
+
+                <p>
+                    @(isEn
+                        ? "Each sector brings its own operational constraints, but fragmented systems, manual hand-offs and isolated data remain recurring problems."
+                        : "Ogni settore presenta vincoli operativi specifici, ma sistemi frammentati, passaggi manuali e dati isolati rimangono problemi ricorrenti.")
                 </p>
+
             </div>
-            <a href="@(isEn ? "/en/sectors/industry" : "/settori/industria")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Explore Sector" : "Scopri il Settore")</a>
+
         </div>
 
-        <!-- Sector 2: Retail & eCommerce -->
-        <div class="premium-card">
-            <div>
-                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">🛒</span>
-                <h3 class="premium-card-title">Retail & eCommerce</h3>
-                <p class="premium-card-text">
-                    @(isEn ? "Connecting enterprise ERP databases with Shopify, Amazon, and eBay, streamlining omnichannel logistics." : "Integrazione dei database gestionali con Shopify, Amazon ed eBay, velocizzando i flussi di logistica multicanale.")
-                </p>
+    </section>
+
+
+    <!-- ==========================================================
+         THREE SEPARATED SECTORS
+         ========================================================== -->
+    <section class="sectors-list-section premium-pale-green">
+
+        <div class="container">
+
+            <div class="sectors-list">
+
+
+                <!-- ==================================================
+                     INDUSTRY
+                     ================================================== -->
+                <article class="premium-card sector-panel"
+                         data-motif="roadmap">
+
+                    <div class="sector-panel-copy">
+
+                        <span class="sector-panel-kicker">
+                            01 · @(isEn ? "Industrial systems" : "Sistemi industriali")
+                        </span>
+
+                        <h3>
+                            @(isEn ? "Industry" : "Industria")
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "We connect production systems, ERP platforms, industrial equipment, sensors and operational data to reduce manual processes and create greater visibility across manufacturing workflows."
+                                : "Colleghiamo sistemi di produzione, piattaforme ERP, macchinari industriali, sensori e dati operativi per ridurre i processi manuali e aumentare la visibilità sui workflow manifatturieri.")
+                        </p>
+
+                        <ul class="sector-tags">
+                            <li class="sector-tag">ERP</li>
+                            <li class="sector-tag">Production Data</li>
+                            <li class="sector-tag">PLC</li>
+                            <li class="sector-tag">IoT</li>
+                            <li class="sector-tag">Automation</li>
+                        </ul>
+
+                        <a href="@(isEn
+                                                               ? "/en/sectors/industry"
+                                                               : "/settori/industria")"
+                           class="sector-link">
+
+                            @(isEn
+                                ? "Explore Industry"
+                                : "Scopri Industria")
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="sector-panel-visual"
+                         aria-hidden="true">
+
+                        <div class="sector-visual-system">
+
+                            <div class="sector-visual-ring"></div>
+
+                            <div class="sector-visual-core">
+                                INDUSTRY
+                            </div>
+
+                            <div class="sector-node sector-node--top">
+                                ERP
+                            </div>
+
+                            <div class="sector-node sector-node--right">
+                                PLC
+                            </div>
+
+                            <div class="sector-node sector-node--bottom">
+                                DATA
+                            </div>
+
+                            <div class="sector-node sector-node--left">
+                                IoT
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================
+                     RETAIL & ECOMMERCE
+                     ================================================== -->
+                <article class="premium-card sector-panel sector-panel--reverse"
+                         data-motif="network">
+
+                    <div class="sector-panel-visual"
+                         aria-hidden="true">
+
+                        <div class="sector-visual-system">
+
+                            <div class="sector-visual-ring"></div>
+
+                            <div class="sector-visual-core">
+                                COMMERCE
+                            </div>
+
+                            <div class="sector-node sector-node--top">
+                                ERP
+                            </div>
+
+                            <div class="sector-node sector-node--right">
+                                Amazon
+                            </div>
+
+                            <div class="sector-node sector-node--bottom">
+                                Logistics
+                            </div>
+
+                            <div class="sector-node sector-node--left">
+                                Shopify
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="sector-panel-copy">
+
+                        <span class="sector-panel-kicker">
+                            02 · Omnichannel Commerce
+                        </span>
+
+                        <h3>
+                            Retail &amp; eCommerce
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "We integrate ERP systems, catalogs, inventory, online stores, marketplaces and logistics providers to create one coordinated flow across the entire commerce operation."
+                                : "Integriamo ERP, cataloghi, disponibilità di magazzino, store online, marketplace e operatori logistici per creare un unico flusso coordinato lungo l'intera operatività commerce.")
+                        </p>
+
+                        <ul class="sector-tags">
+                            <li class="sector-tag">Shopify</li>
+                            <li class="sector-tag">Amazon</li>
+                            <li class="sector-tag">eBay</li>
+                            <li class="sector-tag">ERP</li>
+                            <li class="sector-tag">Logistics</li>
+                        </ul>
+
+                        <a href="@(isEn
+                                                               ? "/en/sectors/retail-ecommerce"
+                                                               : "/settori/retail-ecommerce")"
+                           class="sector-link">
+
+                            @(isEn
+                                ? "Explore Retail & eCommerce"
+                                : "Scopri Retail & eCommerce")
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ==================================================
+                     TELCO
+                     ================================================== -->
+                <article class="premium-card sector-panel"
+                         data-motif="cloud">
+
+                    <div class="sector-panel-copy">
+
+                        <span class="sector-panel-kicker">
+                            03 · @(isEn ? "Critical integration" : "Integrazione critica")
+                        </span>
+
+                        <h3>
+                            Telco
+                        </h3>
+
+                        <p>
+                            @(isEn
+                                ? "We design scalable integration architectures, APIs and transactional services for environments where reliability, high volumes and coordination between multiple systems are essential."
+                                : "Progettiamo architetture di integrazione scalabili, API e servizi transazionali per contesti in cui affidabilità, alti volumi e coordinamento tra più sistemi sono requisiti essenziali.")
+                        </p>
+
+                        <ul class="sector-tags">
+                            <li class="sector-tag">API</li>
+                            <li class="sector-tag">Integration</li>
+                            <li class="sector-tag">Transactions</li>
+                            <li class="sector-tag">Scalability</li>
+                            <li class="sector-tag">Reliability</li>
+                        </ul>
+
+                        <a href="@(isEn
+                                                               ? "/en/sectors/telco"
+                                                               : "/settori/telco")"
+                           class="sector-link">
+
+                            @(isEn
+                                ? "Explore Telco"
+                                : "Scopri Telco")
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="sector-panel-visual"
+                         aria-hidden="true">
+
+                        <div class="sector-visual-system">
+
+                            <div class="sector-visual-ring"></div>
+
+                            <div class="sector-visual-core">
+                                TELCO
+                            </div>
+
+                            <div class="sector-node sector-node--top">
+                                API
+                            </div>
+
+                            <div class="sector-node sector-node--right">
+                                Services
+                            </div>
+
+                            <div class="sector-node sector-node--bottom">
+                                Transactions
+                            </div>
+
+                            <div class="sector-node sector-node--left">
+                                Data
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
             </div>
-            <a href="@(isEn ? "/en/sectors/retail-ecommerce" : "/settori/retail-ecommerce")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Explore Sector" : "Scopri il Settore")</a>
+
         </div>
 
-        <!-- Sector 3: Telco -->
-        <div class="premium-card">
-            <div>
-                <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">📡</span>
-                <h3 class="premium-card-title">Telco</h3>
-                <p class="premium-card-text">
-                    @(isEn ? "Structuring scalable system architectures, API marketplaces, and transactional pipelines for telecom systems." : "Architetture d'integrazione scalabili, marketplace di API e canali transazionali per operatori di telecomunicazioni.")
-                </p>
+    </section>
+
+
+    <!-- ==========================================================
+         POSITIONING
+         ========================================================== -->
+    <section class="sectors-positioning-section bg-warm-white soft-transition transition-from-green">
+
+        <div class="container">
+
+            <div class="sectors-positioning">
+
+                <div class="sectors-positioning-content">
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "TECHNOLOGY WITH INDUSTRY CONTEXT"
+                            : "TECNOLOGIA CON CONTESTO DI SETTORE")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "Technology changes. Operational context determines the architecture."
+                            : "La tecnologia cambia. Il contesto operativo determina l'architettura.")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "A technically valid solution is not enough if it ignores production constraints, logistics, transaction volumes or existing platforms. We start from the operating environment before choosing the technical architecture."
+                            : "Una soluzione tecnicamente valida non è sufficiente se ignora vincoli produttivi, logistica, volumi transazionali o piattaforme già esistenti. Partiamo dall'ambiente operativo prima di scegliere l'architettura tecnica.")
+                    </p>
+
+                </div>
+
             </div>
-            <a href="@(isEn ? "/en/sectors/telco" : "/settori/telco")" class="premium-card-link" style="margin-top: 1rem;">@(isEn ? "Explore Sector" : "Scopri il Settore")</a>
+
         </div>
-    </div>
-</section>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CTA
+         ========================================================== -->
+    <section class="sectors-cta-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="sectors-cta">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "YOUR INDUSTRY · YOUR SYSTEMS"
+                        : "IL TUO SETTORE · I TUOI SISTEMI")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "Your sector is specific. Your integration problem probably is too."
+                        : "Il tuo settore è specifico. Probabilmente lo è anche il tuo problema di integrazione.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Tell us which systems, processes or data flows are creating friction. We can start by mapping what already exists."
+                        : "Raccontaci quali sistemi, processi o flussi di dati stanno creando attrito. Possiamo partire dalla mappatura di ciò che esiste già.")
+                </p>
+
+                <a href="@(isEn ? "/en/contact" : "/contatti")"
+                   class="btn btn-primary">
+
+                    @(isEn
+                        ? "Discuss your sector requirements"
+                        : "Parliamo della tua esigenza")
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

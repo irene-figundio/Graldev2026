@@ -1,6 +1,483 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+@using Graldev.Web.Models
 
-<p>Use this page to detail your site's privacy policy.</p>
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+@section Style {
+    <style>
+        .privacy-page {
+            --privacy-width: 920px;
+        }
+
+        /* =========================================================
+                   DOCUMENT
+                   ========================================================= */
+
+        .privacy-section {
+            position: relative;
+            padding: 6rem 0 7rem;
+        }
+
+        .privacy-container {
+            width: min(var(--privacy-width), 100%);
+        }
+
+        .privacy-document {
+            position: relative;
+            padding: clamp(1.7rem, 4vw, 3.2rem);
+            border-radius: 30px;
+        }
+
+        .privacy-document-header {
+            margin-bottom: 2.8rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(16, 73, 40, .075);
+        }
+
+        .privacy-document-label {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: .85rem;
+            color: var(--brand-green);
+            font-size: .69rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .privacy-document-label::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .privacy-document-header h2 {
+            margin: 0 0 .9rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.08;
+            letter-spacing: -.04em;
+        }
+
+        .privacy-document-header p {
+            max-width: 720px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .96rem;
+            line-height: 1.72;
+        }
+
+        /* =========================================================
+                   LEGAL SECTIONS
+                   ========================================================= */
+
+        .privacy-block {
+            position: relative;
+            padding: 0 0 2.5rem;
+        }
+
+            .privacy-block + .privacy-block {
+                padding-top: 2.5rem;
+                border-top: 1px solid rgba(16, 73, 40, .065);
+            }
+
+            .privacy-block:last-child {
+                padding-bottom: 0;
+            }
+
+        .privacy-block-heading {
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr);
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.15rem;
+        }
+
+        .privacy-index {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: var(--brand-green-dark);
+            font-size: .72rem;
+            font-weight: 850;
+            background: linear-gradient( 145deg, rgba(255,255,255,.78), rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 6px 7px 16px rgba(42,79,57,.06), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+        .privacy-block h3 {
+            margin: 0;
+            color: var(--brand-green-dark);
+            font-size: clamp(1.15rem, 2vw, 1.4rem);
+            line-height: 1.25;
+            letter-spacing: -.025em;
+        }
+
+        .privacy-block p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: .96rem;
+            line-height: 1.82;
+        }
+
+        .privacy-block strong {
+            color: var(--brand-green-dark);
+            font-weight: 760;
+        }
+
+        /* =========================================================
+                   INFO NOTE
+                   ========================================================= */
+
+        .privacy-note {
+            margin-top: 2.8rem;
+            padding: 1.25rem 1.4rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .88rem;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 700px) {
+            .privacy-section {
+                padding: 4.5rem 0 5.5rem;
+            }
+
+            .privacy-document {
+                padding: 1.4rem;
+                border-radius: 23px;
+            }
+
+            .privacy-document-header {
+                margin-bottom: 2rem;
+            }
+
+            .privacy-block {
+                padding-bottom: 2rem;
+            }
+
+                .privacy-block + .privacy-block {
+                    padding-top: 2rem;
+                }
+
+            .privacy-block-heading {
+                grid-template-columns: 38px minmax(0, 1fr);
+                gap: .8rem;
+            }
+
+            .privacy-index {
+                width: 38px;
+                height: 38px;
+            }
+        }
+    </style>
+}
+
+<div class="privacy-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "privacy",
+
+            Size = "compact",
+
+            Eyebrow = isEn
+                ? "LEGAL INFORMATION"
+                : "INFORMAZIONI LEGALI",
+
+            Title = isEn
+                ? "Privacy & Cookie Policy"
+                : "Informativa sulla Privacy e sui Cookie",
+
+            Subtitle = isEn
+                ? "Information on how Graldev collects, processes and protects personal data and how cookies are used across our digital platforms."
+                : "Informazioni su come Graldev raccoglie, tratta e protegge i dati personali e sull'utilizzo dei cookie nelle proprie piattaforme digitali.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = isEn
+                        ? "Privacy & Cookies"
+                        : "Privacy & Cookie Policy",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         PRIVACY DOCUMENT
+         ========================================================== -->
+    <section class="privacy-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container privacy-container">
+
+            <article class="premium-card privacy-document"
+                     data-motif="data">
+
+                <header class="privacy-document-header">
+
+                    <span class="privacy-document-label">
+                        @(isEn
+                            ? "Privacy documentation"
+                            : "Documentazione privacy")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "How we handle your information"
+                            : "Come trattiamo le tue informazioni")
+                    </h2>
+
+                    <p>
+                        @(isEn
+                            ? "This page describes the main categories of data processed through the Graldev website and the technical measures used to support privacy and security."
+                            : "Questa pagina descrive le principali categorie di dati trattati attraverso il sito Graldev e le misure tecniche adottate a supporto della privacy e della sicurezza.")
+                    </p>
+
+                </header>
+
+
+                @if (isEn)
+                {
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                01
+                            </span>
+
+                            <h3>
+                                Data Controller
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            The data controller is
+                            <strong>Graldev S.a.s. di Chiera Luigi</strong>,
+                            VAT number
+                            <strong>01986670766</strong>,
+                            with registered office in Potenza, Italy.
+                            For inquiries regarding the processing of personal data,
+                            users may contact the company through its official communication channels.
+                        </p>
+
+                    </section>
+
+
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                02
+                            </span>
+
+                            <h3>
+                                Information Collected
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            We process information voluntarily submitted through our contact forms,
+                            including business email address, company name, representative details
+                            and information related to the operational or technological requirement
+                            described by the user. We may also process aggregated technical metrics
+                            relating to website usage and performance.
+                        </p>
+
+                    </section>
+
+
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                03
+                            </span>
+
+                            <h3>
+                                Spam Prevention
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            Contact forms include an invisible honeypot field designed to identify
+                            automated submissions. Requests containing data within this hidden field
+                            may be automatically discarded in order to protect our communication
+                            systems from automated spam.
+                        </p>
+
+                    </section>
+
+
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                04
+                            </span>
+
+                            <h3>
+                                Cookie Usage
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            The website uses lightweight technical and analytical tools to support
+                            essential functionality and measure technical performance.
+                            No behavioral user profiles are created and no third-party advertising
+                            trackers are loaded.
+                        </p>
+
+                    </section>
+                }
+                else
+                {
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                01
+                            </span>
+
+                            <h3>
+                                Titolare del trattamento
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            Il Titolare del trattamento dei dati è
+                            <strong>Graldev S.a.s. di Chiera Luigi</strong>,
+                            Partita IVA
+                            <strong>01986670766</strong>,
+                            con sede a Potenza, Italia.
+                            Per qualsiasi richiesta relativa al trattamento dei dati personali
+                            è possibile contattare l'azienda attraverso i propri canali istituzionali.
+                        </p>
+
+                    </section>
+
+
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                02
+                            </span>
+
+                            <h3>
+                                Dati raccolti
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            Trattiamo i dati forniti volontariamente dagli utenti attraverso
+                            i moduli di contatto, tra cui email aziendale, nome dell'azienda,
+                            dati del referente e informazioni relative all'esigenza operativa
+                            o tecnologica descritta dall'utente.
+                            Possiamo inoltre trattare metriche tecniche aggregate relative
+                            all'utilizzo e alle prestazioni del sito.
+                        </p>
+
+                    </section>
+
+
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                03
+                            </span>
+
+                            <h3>
+                                Protezione antispam
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            I moduli di contatto utilizzano un campo honeypot invisibile
+                            progettato per individuare compilazioni automatizzate.
+                            Le richieste contenenti dati all'interno di tale campo nascosto
+                            possono essere scartate automaticamente al fine di proteggere
+                            i sistemi di comunicazione da attività di spam.
+                        </p>
+
+                    </section>
+
+
+                    <section class="privacy-block">
+
+                        <div class="privacy-block-heading">
+
+                            <span class="privacy-index">
+                                04
+                            </span>
+
+                            <h3>
+                                Gestione dei cookie
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            Il sito utilizza strumenti tecnici e analitici leggeri
+                            per supportare le funzionalità essenziali e misurare
+                            le prestazioni tecniche della piattaforma.
+                            Non vengono creati profili comportamentali degli utenti
+                            e non vengono caricati tracker pubblicitari di terze parti.
+                        </p>
+
+                    </section>
+                }
+
+
+                <div class="privacy-note">
+
+                    @(isEn
+                        ? "This information may be updated when website functionality, data-processing activities or the technologies used by Graldev change."
+                        : "La presente informativa può essere aggiornata in caso di modifiche alle funzionalità del sito, alle attività di trattamento o alle tecnologie utilizzate da Graldev.")
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</div>

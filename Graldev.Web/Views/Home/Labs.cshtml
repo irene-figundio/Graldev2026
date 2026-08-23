@@ -1,60 +1,867 @@
+@using Graldev.Web.Models
+
 @{
     bool isEn = ViewData["IsEn"] as bool? ?? false;
 }
 
-<section class="case-study-hero">
-    <div class="container">
-        <span class="section-eyebrow">@(isEn ? "GRALDEV LABS" : "LABORATORI DI RICERCA")</span>
-        <h1 class="section-title">Graldev Labs</h1>
-        <p class="section-subtitle">
-            @(isEn ? "Experimental tech, interactive gaming, educational tools, and applied interactive research." : "Tecnologie sperimentali, gaming interattivo, strumenti educational e ricerca applicata.")
-        </p>
-    </div>
-</section>
+@section Style {
+    <style>
+        .labs-page {
+            --labs-copy: 740px;
+        }
 
-<section>
-    <div class="container split-layout">
-        <div class="split-left">
-            <h2>Ludirex (Beta)</h2>
-            <p>
-                @if (isEn)
+        /* =========================================================
+                   INTRO / PROJECTS
+                   ========================================================= */
+
+        .labs-projects {
+            position: relative;
+            padding: 7.5rem 0 7rem;
+        }
+
+        .labs-projects-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, .55fr);
+            gap: 3rem;
+            align-items: end;
+            margin-bottom: 4rem;
+        }
+
+            .labs-projects-heading h2 {
+                max-width: 760px;
+                margin: 0;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.2rem, 4vw, 3.7rem);
+                line-height: 1.02;
+                letter-spacing: -.048em;
+            }
+
+            .labs-projects-heading p {
+                max-width: 470px;
+                margin: 0;
+                color: var(--text-soft);
+                font-size: .98rem;
+                line-height: 1.72;
+            }
+
+        /* =========================================================
+                   FEATURED PROJECT
+                   ========================================================= */
+
+        .labs-featured {
+            position: relative;
+            overflow: hidden;
+            min-height: 560px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+            gap: clamp(3rem, 6vw, 6rem);
+            align-items: center;
+            padding: clamp(2rem, 4vw, 3.5rem);
+            border-radius: 34px;
+            background: linear-gradient( 145deg, rgba(255,255,255,.72), rgba(249,253,251,.55) 45%, rgba(229,244,235,.46) );
+            border: 1px solid rgba(255,255,255,.84);
+            -webkit-backdrop-filter: blur(22px) saturate(122%);
+            backdrop-filter: blur(22px) saturate(122%);
+            box-shadow: 20px 24px 52px rgba(49,73,59,.095), -10px -10px 30px rgba(255,255,255,.82), inset 1px 1px 0 rgba(255,255,255,.97);
+        }
+
+            .labs-featured::after {
+                content: "";
+                position: absolute;
+                width: 480px;
+                height: 480px;
+                right: -190px;
+                top: -230px;
+                border-radius: 50%;
+                pointer-events: none;
+                background: radial-gradient( circle, rgba(197,160,89,.15), transparent 68% );
+            }
+
+        .labs-featured-copy,
+        .labs-featured-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .labs-project-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            margin-bottom: 1.1rem;
+            color: var(--brand-green);
+            font-size: .68rem;
+            font-weight: 820;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+            .labs-project-kicker::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--champagne-gold);
+                box-shadow: 0 0 0 5px rgba(197,160,89,.10);
+            }
+
+        .labs-featured h3 {
+            margin: 0 0 .75rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.5rem, 4.6vw, 4.4rem);
+            line-height: .98;
+            letter-spacing: -.055em;
+        }
+
+        .labs-project-category {
+            display: block;
+            margin-bottom: 1.35rem;
+            color: var(--champagne-gold);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .075em;
+            text-transform: uppercase;
+        }
+
+        .labs-project-description {
+            max-width: var(--labs-copy);
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.02rem;
+            line-height: 1.82;
+        }
+
+        .labs-project-highlight {
+            margin-top: 1.8rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   TAGS / CTA
+                   ========================================================= */
+
+        .labs-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin: 1.6rem 0 2rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .labs-tag {
+            padding: .46rem .72rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            font-size: .68rem;
+            font-weight: 720;
+            background: rgba(255,255,255,.42);
+            border: 1px solid rgba(16,73,40,.07);
+        }
+
+        /* =========================================================
+                   VITINERARIO VISUAL
+                   ========================================================= */
+
+        .labs-featured-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .labs-rag-map {
+            position: relative;
+            width: min(100%, 420px);
+            min-height: 390px;
+            display: grid;
+            place-items: center;
+        }
+
+        .labs-rag-ring {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 1px solid rgba(197,160,89,.23);
+        }
+
+            .labs-rag-ring::after {
+                content: "";
+                position: absolute;
+                inset: 27px;
+                border-radius: 50%;
+                border: 1px dashed rgba(17,171,100,.17);
+            }
+
+        .labs-rag-core {
+            position: relative;
+            z-index: 3;
+            width: 145px;
+            height: 145px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            border-radius: 35px;
+            color: var(--brand-green-dark);
+            font-size: 1.05rem;
+            font-weight: 850;
+            line-height: 1.15;
+            letter-spacing: -.035em;
+            background: linear-gradient( 145deg, rgba(255,255,255,.8), rgba(228,244,235,.56) );
+            border: 1px solid rgba(255,255,255,.86);
+            box-shadow: 14px 17px 36px rgba(42,79,57,.09), inset 1px 1px 0 rgba(255,255,255,.98);
+        }
+
+        .labs-rag-node {
+            position: absolute;
+            width: 100px;
+            min-height: 62px;
+            padding: .7rem .6rem;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            border-radius: 17px;
+            color: var(--brand-green-dark);
+            font-size: .69rem;
+            font-weight: 760;
+            line-height: 1.28;
+            background: rgba(255,255,255,.46);
+            border: 1px solid rgba(255,255,255,.74);
+            box-shadow: 7px 9px 18px rgba(42,79,57,.06);
+        }
+
+        .labs-rag-node--data {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .labs-rag-node--vector {
+            top: 130px;
+            right: 0;
+        }
+
+        .labs-rag-node--llm {
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .labs-rag-node--context {
+            top: 130px;
+            left: 0;
+        }
+
+        /* =========================================================
+                   LOST IN CODE
+                   ========================================================= */
+
+        .labs-current {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        .labs-current-grid {
+            display: grid;
+            grid-template-columns: minmax(340px, .88fr) minmax(0, 1.12fr);
+            gap: clamp(3rem, 7vw, 7rem);
+            align-items: center;
+        }
+
+        .labs-current-visual {
+            position: relative;
+            min-height: 470px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 30px;
+        }
+
+        .labs-current-top {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .labs-current-index {
+            color: var(--champagne-gold);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+        }
+
+        .labs-development-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            padding: .5rem .75rem;
+            border-radius: 999px;
+            color: var(--brand-green-dark);
+            background: rgba(255,255,255,.40);
+            border: 1px solid rgba(16,73,40,.07);
+            font-size: .65rem;
+            font-weight: 780;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+            .labs-development-badge::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                flex: 0 0 auto;
+                border-radius: 50%;
+                background: var(--brand-green);
+                box-shadow: 0 0 0 5px rgba(17,171,100,.09);
+            }
+
+        /* =========================================================
+                   LOST IN CODE SYSTEM VISUAL
+                   ========================================================= */
+
+        .labs-game-system {
+            position: relative;
+            z-index: 2;
+            min-height: 330px;
+            display: grid;
+            place-items: center;
+        }
+
+        .labs-game-frame {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            display: grid;
+            place-items: center;
+            transform: rotate(45deg);
+            border: 1px solid rgba(197,160,89,.25);
+            border-radius: 34px;
+        }
+
+            .labs-game-frame::before,
+            .labs-game-frame::after {
+                content: "";
+                position: absolute;
+                inset: 25px;
+                border-radius: 26px;
+                border: 1px dashed rgba(17,171,100,.16);
+            }
+
+            .labs-game-frame::after {
+                inset: 52px;
+                border-style: solid;
+                border-color: rgba(197,160,89,.16);
+            }
+
+        .labs-game-core {
+            position: relative;
+            z-index: 2;
+            width: 125px;
+            height: 125px;
+            display: grid;
+            place-items: center;
+            transform: rotate(-45deg);
+            text-align: center;
+            border-radius: 28px;
+            color: var(--brand-green-dark);
+            background: linear-gradient( 145deg, rgba(255,255,255,.80), rgba(237,234,245,.50) );
+            border: 1px solid rgba(255,255,255,.85);
+            box-shadow: 13px 15px 32px rgba(42,79,57,.08), inset 1px 1px 0 rgba(255,255,255,.97);
+        }
+
+            .labs-game-core strong {
+                display: block;
+                font-size: 1.25rem;
+                line-height: 1;
+                letter-spacing: -.05em;
+            }
+
+            .labs-game-core span {
+                display: block;
+                margin-top: .28rem;
+                color: var(--champagne-gold);
+                font-size: .58rem;
+                font-weight: 800;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+            }
+
+        .labs-game-caption {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .76rem;
+            line-height: 1.55;
+        }
+
+        /* =========================================================
+                   LOST IN CODE COPY
+                   ========================================================= */
+
+        .labs-current-copy h2 {
+            margin: 0 0 .35rem;
+            color: var(--brand-green-dark);
+            font-size: clamp(2.45rem, 4.6vw, 4.25rem);
+            line-height: .98;
+            letter-spacing: -.055em;
+        }
+
+        .labs-current-subtitle {
+            display: block;
+            margin-bottom: 1.5rem;
+            color: var(--champagne-gold);
+            font-size: clamp(1.25rem, 2.1vw, 1.75rem);
+            font-weight: 720;
+            letter-spacing: -.035em;
+        }
+
+        .labs-current-copy > p {
+            max-width: 720px;
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 1.02rem;
+            line-height: 1.82;
+        }
+
+        .labs-current-note {
+            margin-top: 1.8rem;
+            padding: 1.2rem 1.35rem;
+            border-left: 2px solid var(--champagne-gold);
+            color: var(--brand-green-dark);
+            font-size: .94rem;
+            font-weight: 650;
+            line-height: 1.65;
+            background: linear-gradient( 90deg, rgba(197,160,89,.075), transparent );
+        }
+
+        /* =========================================================
+                   LABS PRINCIPLE
+                   ========================================================= */
+
+        .labs-principle-section {
+            padding: 1rem 0 7rem;
+        }
+
+        .labs-principle {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 7vw, 5.7rem);
+            border-radius: 34px;
+            text-align: center;
+            background: radial-gradient( circle at 50% 0%, rgba(255,255,255,.9), rgba(245,251,247,.74) 40%, rgba(231,244,236,.72) );
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: 20px 25px 58px rgba(49,73,59,.09), inset 1px 1px 0 rgba(255,255,255,.96);
+        }
+
+            .labs-principle h2 {
+                max-width: 880px;
+                margin: 0 auto 1.15rem;
+                color: var(--brand-green-dark);
+                font-size: clamp(2.1rem, 4.3vw, 3.8rem);
+                line-height: 1.03;
+                letter-spacing: -.05em;
+            }
+
+            .labs-principle p {
+                max-width: 690px;
+                margin: 0 auto;
+                color: var(--text-soft);
+                font-size: 1rem;
+                line-height: 1.74;
+            }
+
+        /* =========================================================
+                   RESPONSIVE
+                   ========================================================= */
+
+        @@media (max-width: 980px) {
+            .labs-projects-heading {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .labs-featured,
+            .labs-current-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .labs-featured-visual {
+                margin-top: 1rem;
+            }
+
+            .labs-current-copy {
+                order: 1;
+            }
+
+            .labs-current-visual {
+                order: 2;
+            }
+        }
+
+        @@media (max-width: 700px) {
+            .labs-projects,
+            .labs-current {
+                padding: 5.5rem 0;
+            }
+
+            .labs-featured {
+                min-height: auto;
+                padding: 1.6rem;
+                border-radius: 26px;
+            }
+
+            .labs-rag-map {
+                transform: scale(.9);
+                min-height: 350px;
+            }
+
+            .labs-current-visual {
+                min-height: 390px;
+                padding: 1.5rem;
+                border-radius: 24px;
+            }
+        }
+
+        @@media (max-width: 520px) {
+            .labs-rag-map {
+                transform: scale(.78);
+                margin-inline: -2rem;
+            }
+
+            .labs-game-frame {
+                width: 210px;
+                height: 210px;
+            }
+
+            .labs-game-core {
+                width: 108px;
+                height: 108px;
+            }
+
+            .labs-principle {
+                padding: 3rem 1.35rem;
+                border-radius: 27px;
+            }
+        }
+    </style>
+}
+
+<div class="labs-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "labs",
+
+            Size = "large",
+
+            Eyebrow = isEn
+                ? "GRALDEV LABS"
+                : "GRALDEV LABS",
+
+            Title = isEn
+                ? "Where ideas become working systems."
+                : "Dove le idee diventano sistemi reali.",
+
+            Subtitle = isEn
+                ? "An applied experimentation space for artificial intelligence, interactive systems, digital experiences and emerging technologies."
+                : "Uno spazio di sperimentazione applicata dedicato a Intelligenza Artificiale, sistemi interattivi, esperienze digitali e tecnologie emergenti.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
                 {
-                    <text>Ludirex is an experimental gaming community social network. Built to connect online players from around the world, it provides a 'digital courtyard' where gamers can find teammates, organize guilds, share highlights, and form gaming alliances based on shared game passions.</text>
-                }
-                else
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
                 {
-                    <text>Ludirex (Beta) è una piattaforma social sperimentale pensata per la comunità dei videogiocatori di tutto il mondo. Un “cortile digitale” in cui i player possono interagire, conoscersi, trovare compagni di squadra, coordinare alleanze e scambiare opinioni sulla base delle proprie passioni videoludiche.</text>
+                    Label = "Labs",
+                    IsCurrent = true
                 }
-            </p>
-            <div style="margin-top: 1.5rem;">
-                <a href="https://www.ludirex.com" target="_blank" rel="noopener" class="btn btn-outline">
-                    @(isEn ? "Visit Ludirex Beta" : "Visita Ludirex Beta")
-                </a>
+            }
+        }
+    )
+
+
+    <!-- ==========================================================
+         PROJECTS INTRO + VITINERARIO
+         ========================================================== -->
+    <section class="labs-projects premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="labs-projects-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        @(isEn
+                            ? "APPLIED EXPERIMENTATION"
+                            : "SPERIMENTAZIONE APPLICATA")
+                    </span>
+
+                    <h2>
+                        @(isEn
+                            ? "We test emerging technologies through real products."
+                            : "Testiamo tecnologie emergenti attraverso prodotti reali.")
+                    </h2>
+
+                </div>
+
+                <p>
+                    @(isEn
+                        ? "Labs projects are not isolated technical demos. Each one gives us a concrete environment in which to validate architectures, interaction models and new digital capabilities."
+                        : "I progetti Labs non sono semplici demo tecniche. Ognuno crea un contesto concreto in cui validare architetture, modelli di interazione e nuove capacità digitali.")
+                </p>
+
             </div>
-        </div>
-        <div class="split-right" style="text-align: center;">
-            <span style="font-size: 6rem; filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));">🎮</span>
-        </div>
-    </div>
-</section>
 
-<section style="background-color: rgba(255, 255, 255, 0.01);">
-    <div class="container split-layout" style="flex-direction: row-reverse;">
-        <div class="split-left">
-            <h2>Parcor</h2>
-            <p>
-                @if (isEn)
-                {
-                    <text>Parcor is an interactive mobile-based application designed as part of the 'Segni Project'. In partnership with corporate kindergartens and local institutions, it enables families, educators, and organizations to interact, share educational news, and streamline communications securely.</text>
-                }
-                else
-                {
-                    <text>Parcor è un'applicazione interattiva e web-based nata per il Progetto Segni, relativo al mondo dei nidi interaziendali lucani. Uno strumento digitale agile che permette a famiglie, educatori e istituzioni di connettersi, condividere notizie, e facilitare comunicazioni organizzate e protette.</text>
-                }
-            </p>
+
+            <article class="labs-featured">
+
+                <div class="labs-featured-copy">
+
+                    <span class="labs-project-kicker">
+                        @(isEn
+                            ? "Applied AI project"
+                            : "Progetto AI applicata")
+                    </span>
+
+                    <h3>
+                        Vitinerario
+                    </h3>
+
+                    <span class="labs-project-category">
+                        @(isEn
+                            ? "Conversational AI · RAG · Semantic Knowledge"
+                            : "AI conversazionale · RAG · Conoscenza semantica")
+                    </span>
+
+                    <p class="labs-project-description">
+                        @(isEn
+                            ? "Vitinerario explores how conversational artificial intelligence can become a useful interface to specialized knowledge. Its virtual sommelier combines Large Language Models, semantic retrieval and verified enological information to interpret natural-language requests and provide contextual recommendations."
+                            : "Vitinerario esplora come l'Intelligenza Artificiale conversazionale possa diventare un'interfaccia utile verso conoscenza specialistica. Il suo sommelier virtuale combina Large Language Models, retrieval semantico e informazioni enologiche verificate per interpretare richieste in linguaggio naturale e fornire suggerimenti contestualizzati.")
+                    </p>
+
+                    <div class="labs-project-highlight">
+                        @(isEn
+                            ? "The experiment is not the chatbot itself. The real research lies in connecting a generative model to controlled domain knowledge while preserving usefulness, context and data governance."
+                            : "La sperimentazione non riguarda il chatbot in sé. Il vero lavoro consiste nel collegare un modello generativo a conoscenza di dominio controllata, preservando utilità, contesto e governance del dato.")
+                    </div>
+
+                    <ul class="labs-tags">
+                        <li class="labs-tag">LLM</li>
+                        <li class="labs-tag">RAG</li>
+                        <li class="labs-tag">Vector DB</li>
+                        <li class="labs-tag">Semantic Retrieval</li>
+                        <li class="labs-tag">OpenAI</li>
+                        <li class="labs-tag">Conversational UX</li>
+                    </ul>
+
+                    <a href="@(isEn
+                                                       ? "/en/case-studies/vitinerario"
+                                                       : "/case-study/vitinerario")"
+                       class="btn btn-outline">
+
+                        @(isEn
+                            ? "Explore the case study"
+                            : "Scopri il case study")
+
+                    </a>
+
+                </div>
+
+
+                <div class="labs-featured-visual"
+                     aria-hidden="true">
+
+                    <div class="labs-rag-map">
+
+                        <div class="labs-rag-ring"></div>
+
+                        <div class="labs-rag-core">
+                            VITINERARIO<br />
+                            AI
+                        </div>
+
+                        <div class="labs-rag-node labs-rag-node--data">
+                            Verified<br />
+                            Wine Data
+                        </div>
+
+                        <div class="labs-rag-node labs-rag-node--vector">
+                            Vector<br />
+                            Retrieval
+                        </div>
+
+                        <div class="labs-rag-node labs-rag-node--llm">
+                            Language<br />
+                            Model
+                        </div>
+
+                        <div class="labs-rag-node labs-rag-node--context">
+                            Grounded<br />
+                            Context
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
         </div>
-        <div class="split-right" style="text-align: center;">
-            <span style="font-size: 6rem; filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3));">📱</span>
+
+    </section>
+
+
+    <!-- ==========================================================
+         LOST IN CODE
+         ========================================================== -->
+    <section class="labs-current bg-warm-white soft-transition transition-from-green">
+
+        <div class="container labs-current-grid">
+
+            <article class="premium-card labs-current-visual"
+                     data-motif="code">
+
+                <div class="labs-current-top">
+
+                    <span class="labs-current-index">
+                        02 / INTERACTIVE SYSTEMS
+                    </span>
+
+                    <span class="labs-development-badge">
+                        @(isEn
+                            ? "In active development"
+                            : "In sviluppo")
+                    </span>
+
+                </div>
+
+
+                <div class="labs-game-system"
+                     aria-hidden="true">
+
+                    <div class="labs-game-frame">
+
+                        <div class="labs-game-core">
+
+                            <div>
+                                <strong>
+                                    LOST<br />
+                                    IN CODE
+                                </strong>
+
+                                <span>
+                                    Elysium Protocol
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <p class="labs-game-caption">
+                    @(isEn
+                        ? "Game systems · interactive narrative · pixel-art RPG · digital worldbuilding"
+                        : "Game systems · narrativa interattiva · RPG pixel art · digital worldbuilding")
+                </p>
+
+            </article>
+
+
+            <div class="labs-current-copy">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "CURRENT RESEARCH PROJECT"
+                        : "PROGETTO DI RICERCA IN CORSO")
+                </span>
+
+                <h2>
+                    LOST IN CODE
+                </h2>
+
+                <span class="labs-current-subtitle">
+                    Elysium Protocol
+                </span>
+
+                <p>
+                    @(isEn
+                        ? "LOST IN CODE: Elysium Protocol is an original role-playing game currently being developed as an experimental environment for interactive systems, narrative design and game architecture. Its stylized digital world combines systemic gameplay, exploration, combat and narrative progression around themes of software, identity and virtual environments."
+                        : "LOST IN CODE: Elysium Protocol è un role-playing game originale attualmente in sviluppo come ambiente sperimentale per sistemi interattivi, narrative design e architettura del gameplay. Il suo universo digitale stilizzato combina gameplay sistemico, esplorazione, combattimento e progressione narrativa attorno ai temi del software, dell'identità e degli ambienti virtuali.")
+                </p>
+
+                <div class="labs-current-note">
+                    @(isEn
+                        ? "Unlike a conventional technology prototype, the project allows multiple disciplines to be tested simultaneously: interaction design, gameplay architecture, audiovisual direction, narrative systems, performance optimization and player-facing UX."
+                        : "A differenza di un prototipo tecnologico tradizionale, il progetto permette di sperimentare contemporaneamente più discipline: interaction design, architettura del gameplay, direzione audiovisiva, sistemi narrativi, ottimizzazione delle performance e UX rivolta al giocatore.")
+                </div>
+
+                <ul class="labs-tags">
+                    <li class="labs-tag">GameMaker</li>
+                    <li class="labs-tag">Game Systems</li>
+                    <li class="labs-tag">Interactive Narrative</li>
+                    <li class="labs-tag">Pixel Art</li>
+                    <li class="labs-tag">RPG</li>
+                    <li class="labs-tag">Worldbuilding</li>
+                    <li class="labs-tag">Experimental UX</li>
+                </ul>
+
+            </div>
+
         </div>
-    </div>
-</section>
+
+    </section>
+
+
+    <!-- ==========================================================
+         LABS PRINCIPLE
+         ========================================================== -->
+    <section class="labs-principle-section premium-pale-green soft-transition transition-from-warm">
+
+        <div class="container">
+
+            <div class="labs-principle">
+
+                <span class="section-eyebrow">
+                    @(isEn
+                        ? "RESEARCH THROUGH BUILDING"
+                        : "RICERCA ATTRAVERSO LA COSTRUZIONE")
+                </span>
+
+                <h2>
+                    @(isEn
+                        ? "We don't experiment with technology in isolation."
+                        : "Non sperimentiamo la tecnologia in isolamento.")
+                </h2>
+
+                <p>
+                    @(isEn
+                        ? "Vitinerario and LOST IN CODE operate in very different domains, but follow the same principle: emerging technologies are tested inside complete experiences, where architecture, usability and real constraints can be evaluated together."
+                        : "Vitinerario e LOST IN CODE appartengono a domini molto diversi, ma seguono lo stesso principio: le tecnologie emergenti vengono sperimentate all'interno di esperienze complete, dove architettura, usabilità e vincoli reali possono essere valutati insieme.")
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
