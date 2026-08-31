@@ -119,6 +119,7 @@ namespace Graldev.Web.Controllers
         }
 
         [Route("labs")]
+        [Route("en/labs")]
         public IActionResult Labs()
         {
             SetupSeo(
@@ -127,7 +128,22 @@ namespace Graldev.Web.Controllers
                 descIt: "Progetti sperimentali, interactive technology, gaming, educational e ricerca applicata di Graldev.",
                 descEn: "Graldev's experimental projects, interactive technology, gaming, educational and applied research.",
                 canonicalPathIt: "/labs",
-                canonicalPathEn: "/labs"
+                canonicalPathEn: "/en/labs"
+            );
+            return View();
+        }
+
+        [Route("privacy")]
+        [Route("en/privacy")]
+        public IActionResult Privacy()
+        {
+            SetupSeo(
+                titleIt: "Informativa sulla Privacy e sui Cookie | Graldev",
+                titleEn: "Privacy & Cookie Policy | Graldev",
+                descIt: "Informazioni su come Graldev raccoglie, tratta e protegge i dati personali e sull'utilizzo dei cookie nelle proprie piattaforme digitali.",
+                descEn: "Information on how Graldev collects, processes and protects personal data and how cookies are used across our digital platforms.",
+                canonicalPathIt: "/privacy",
+                canonicalPathEn: "/en/privacy"
             );
             return View();
         }
@@ -212,6 +228,7 @@ namespace Graldev.Web.Controllers
                 "/contatti",
                 "/consulenza-informatica-potenza",
                 "/labs",
+                "/privacy",
 
                 // English
                 "/en",
@@ -238,7 +255,9 @@ namespace Graldev.Web.Controllers
                 "/en/insights/software-standard-sviluppo-custom",
                 "/en/insights/introduzione-ai-processi-aziendali",
                 "/en/contact",
-                "/en/it-consulting-potenza"
+                "/en/it-consulting-potenza",
+                "/en/labs",
+                "/en/privacy"
             };
 
             var sb = new StringBuilder();

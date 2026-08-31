@@ -64,6 +64,9 @@ namespace Graldev.Web.Tests
         [InlineData("/consulenza-informatica-potenza")]
         [InlineData("/en/it-consulting-potenza")]
         [InlineData("/labs")]
+        [InlineData("/en/labs")]
+        [InlineData("/privacy")]
+        [InlineData("/en/privacy")]
         public async Task MainRoutes_ReturnSuccessAndCorrectSeo(string url)
         {
             // Arrange
@@ -137,6 +140,29 @@ namespace Graldev.Web.Tests
             var html = await response.Content.ReadAsStringAsync();
             Assert.Contains("404", html);
             Assert.Contains("Pagina non trovata", html);
+        }
+
+        [Theory]
+        [InlineData("/case-study/gralcall", "/en/case-studies/gralcall")]
+        [InlineData("/en/case-studies/gralcall", "/case-study/gralcall")]
+        [InlineData("/servizi/system-integration", "/en/services/system-integration")]
+        [InlineData("/en/services/system-integration", "/servizi/system-integration")]
+        public async Task LanguageSwitchLinks_PointToCorrespondingLocalizedRoute(string pageUrl, string expectedTargetUrl)
+        {
+            // Arrange
+            var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+            {
+                AllowAutoRedirect = false
+            });
+
+            // Act
+            var response = await client.GetAsync(pageUrl);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains($"href=\"{expectedTargetUrl}\"", html);
         }
 
         [Fact]

@@ -7,6 +7,8 @@ namespace Graldev.Web.Seo
         public string Title { get; set; } = "";
         public string MetaDescription { get; set; } = "";
         public string CanonicalUrl { get; set; } = "";
+        public string PathIt { get; set; } = "/";
+        public string PathEn { get; set; } = "/en";
         public string Robots { get; set; } = "index, follow";
         public string OgTitle { get; set; } = "";
         public string OgDescription { get; set; } = "";
