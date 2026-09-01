@@ -176,6 +176,25 @@ body.tetris-open {
     background: var(--brand-green, #11ab64);
 }
 
+.tetris-home-icon {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .tetris-back-btn .close-x-icon,
+    .tetris-back-btn .desktop-back-text {
+        display: none !important;
+    }
+
+    .tetris-home-icon {
+        display: inline-block !important;
+    }
+
+    .tetris-back-btn {
+        padding: 0 0.65rem;
+    }
+}
+
 /* Main App Workspace (Fills remaining height, zero scroll) */
 .tetris-app-workspace {
     flex: 1;
