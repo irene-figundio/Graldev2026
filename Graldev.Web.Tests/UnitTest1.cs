@@ -198,5 +198,26 @@ namespace Graldev.Web.Tests
             Assert.Contains("User-agent: *", text);
             Assert.Contains("Sitemap:", text);
         }
+
+        [Theory]
+        [InlineData("/")]
+        [InlineData("/en")]
+        public async Task Layout_RendersGraldevTetrisFloatingButtonAndModal(string url)
+        {
+            // Arrange
+            var client = _factory.CreateClient();
+
+            // Act
+            var response = await client.GetAsync(url);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains("id=\"graldevTetrisBtn\"", html);
+            Assert.Contains("id=\"graldevTetrisModal\"", html);
+            Assert.Contains("graldev-tetris.css", html);
+            Assert.Contains("graldev-tetris.js", html);
+        }
     }
 }

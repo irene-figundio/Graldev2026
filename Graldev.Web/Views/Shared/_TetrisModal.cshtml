@@ -1,0 +1,173 @@
+@using Graldev.Web.Seo
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+<!-- Floating Tetris Game Launcher Button (Fixed Left Side) -->
+<button id="graldevTetrisBtn" class="graldev-tetris-btn" type="button"
+        aria-label="@(isEn ? "Play Graldev Tetris Game" : "Gioca a Graldev Tetris")"
+        title="@(isEn ? "Play Graldev Tetris Game" : "Gioca a Graldev Tetris")">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <!-- Tetramino blocks icon in brand green and champagne gold -->
+        <rect x="3" y="3" width="8" height="8" rx="1.5" fill="currentColor" />
+        <rect x="13" y="3" width="8" height="8" rx="1.5" fill="var(--champagne-gold, #c5a059)" />
+        <rect x="3" y="13" width="8" height="8" rx="1.5" fill="var(--champagne-gold, #c5a059)" />
+        <rect x="13" y="13" width="8" height="8" rx="1.5" fill="currentColor" />
+    </svg>
+</button>
+
+<!-- Tetris Game Fullscreen Modal Overlay -->
+<div id="graldevTetrisModal" class="tetris-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="tetrisModalTitle">
+    <div class="tetris-modal-container">
+        <!-- Modal Header -->
+        <div class="tetris-modal-header">
+            <div id="tetrisModalTitle" class="tetris-modal-title">
+                <span>Gral<span class="logo-accent" style="color: var(--brand-green, #11ab64);">dev</span> // BLOCKS</span>
+                <span class="badge-tag">Easter Egg</span>
+            </div>
+
+            <div class="tetris-header-actions">
+                <button id="tetrisMuteBtn" class="tetris-action-btn" type="button"
+                        aria-label="@(isEn ? "Toggle Sound" : "Attiva/Disattiva Audio")"
+                        title="@(isEn ? "Toggle Sound" : "Attiva/Disattiva Audio")">
+                    <span id="tetrisMuteIcon">🔊</span>
+                </button>
+                <button id="tetrisCloseBtn" class="tetris-action-btn tetris-close-btn" type="button"
+                        aria-label="@(isEn ? "Close Game" : "Chiudi Gioco")"
+                        title="@(isEn ? "Close Game (ESC)" : "Chiudi Gioco (ESC)")">
+                    ✕
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Main Body -->
+        <div class="tetris-modal-body">
+            <!-- Central Board Canvas Wrapper -->
+            <div id="tetrisBoardWrapper" class="tetris-board-wrapper">
+                <canvas id="tetrisCanvas" width="300" height="600" aria-label="Graldev Tetris Game Board"></canvas>
+
+                <!-- Level Up Toast Notification -->
+                <div id="tetrisLevelToast" class="tetris-level-toast">
+                    LEVEL <span id="tetrisToastLevelNum">02</span>
+                </div>
+
+                <!-- Initial Start Screen Overlay -->
+                <div id="tetrisStartScreen" class="tetris-overlay-screen">
+                    <div class="tetris-overlay-title">GRALDEV TETRIS</div>
+                    <div class="tetris-overlay-subtitle">Compile. Stack. Repeat.</div>
+
+                    <div class="tetris-overlay-stats">
+                        <div class="tetris-stat-row">
+                            <span>@(isEn ? "BEST SCORE" : "MIGLIOR PUNTEGGIO")</span>
+                            <span id="tetrisStartHighScore" class="tetris-stat-val">0</span>
+                        </div>
+                    </div>
+
+                    <button id="tetrisStartBtn" class="tetris-btn-primary" type="button">
+                        @(isEn ? "START GAME" : "INIZIA GIOCO")
+                    </button>
+                </div>
+
+                <!-- Pause Screen Overlay -->
+                <div id="tetrisPauseScreen" class="tetris-overlay-screen hidden">
+                    <div class="tetris-overlay-title">@(isEn ? "PAUSED" : "IN PAUSA")</div>
+                    <div class="tetris-overlay-subtitle">@(isEn ? "Game on hold" : "Gioco in sospeso")</div>
+
+                    <button id="tetrisResumeBtn" class="tetris-btn-primary" type="button">
+                        @(isEn ? "RESUME GAME" : "RIPRENDI")
+                    </button>
+                </div>
+
+                <!-- Game Over Screen Overlay -->
+                <div id="tetrisGameOverScreen" class="tetris-overlay-screen hidden">
+                    <div class="tetris-overlay-title">GAME OVER</div>
+                    <div class="tetris-overlay-subtitle">@(isEn ? "Session Complete" : "Sessione Conclusa")</div>
+
+                    <div class="tetris-overlay-stats">
+                        <div class="tetris-stat-row">
+                            <span>SCORE</span>
+                            <span id="tetrisFinalScore" class="tetris-stat-val">0</span>
+                        </div>
+                        <div class="tetris-stat-row">
+                            <span>LEVEL</span>
+                            <span id="tetrisFinalLevel" class="tetris-stat-val">1</span>
+                        </div>
+                        <div class="tetris-stat-row">
+                            <span>LINES</span>
+                            <span id="tetrisFinalLines" class="tetris-stat-val">0</span>
+                        </div>
+                    </div>
+
+                    <div id="tetrisNewHighScoreBadge" style="display: none; color: var(--champagne-gold, #c5a059); font-weight: 800; font-size: 0.8rem; margin-bottom: 0.85rem; text-transform: uppercase;">
+                        🏆 NEW HIGH SCORE!
+                    </div>
+
+                    <button id="tetrisRestartBtn" class="tetris-btn-primary" type="button">
+                        @(isEn ? "PLAY AGAIN" : "GIOCA ANCORA")
+                    </button>
+                </div>
+            </div>
+
+            <!-- Side Panel (Desktop & Tablet) -->
+            <div class="tetris-side-panel">
+                <!-- Next Piece Preview Card -->
+                <div class="tetris-card preview-card">
+                    <div class="tetris-card-title">NEXT PIECE</div>
+                    <canvas id="tetrisNextCanvas" width="100" height="100"></canvas>
+                </div>
+
+                <!-- Statistics Grid -->
+                <div class="tetris-stats-grid">
+                    <div class="tetris-stat-box full-width">
+                        <div class="tetris-stat-label">SCORE</div>
+                        <div id="tetrisScore" class="tetris-stat-number green">0</div>
+                    </div>
+                    <div class="tetris-stat-box">
+                        <div class="tetris-stat-label">LEVEL</div>
+                        <div id="tetrisLevel" class="tetris-stat-number">1</div>
+                    </div>
+                    <div class="tetris-stat-box">
+                        <div class="tetris-stat-label">LINES</div>
+                        <div id="tetrisLines" class="tetris-stat-number">0</div>
+                    </div>
+                    <div class="tetris-stat-box full-width">
+                        <div class="tetris-stat-label">HIGH SCORE</div>
+                        <div id="tetrisHighScore" class="tetris-stat-number gold">0</div>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="tetris-controls-actions">
+                    <button id="tetrisPauseBtn" class="tetris-btn-secondary" type="button">PAUSE</button>
+                    <button id="tetrisResetBtn" class="tetris-btn-secondary" type="button">RESTART</button>
+                </div>
+
+                <!-- Desktop Keyboard Legend -->
+                <div class="tetris-guide">
+                    <div class="tetris-guide-title">@(isEn ? "CONTROLS" : "CONTROLLI")</div>
+                    <ul class="tetris-guide-list">
+                        <li><span>@(isEn ? "Move" : "Sposta")</span><span class="tetris-guide-key">← → / A D</span></li>
+                        <li><span>@(isEn ? "Rotate" : "Ruota")</span><span class="tetris-guide-key">↑ / X / W</span></li>
+                        <li><span>@(isEn ? "Soft Drop" : "Discesa")</span><span class="tetris-guide-key">↓ / S</span></li>
+                        <li><span>@(isEn ? "Hard Drop" : "Caduta")</span><span class="tetris-guide-key">SPACE</span></li>
+                        <li><span>@(isEn ? "Pause" : "Pausa")</span><span class="tetris-guide-key">P</span></li>
+                        <li><span>@(isEn ? "Close" : "Chiudi")</span><span class="tetris-guide-key">ESC</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Touch Controls for Mobile / Touch Devices -->
+            <div class="tetris-touch-controls">
+                <div class="touch-row">
+                    <button id="touchLeft" class="touch-btn" type="button" aria-label="Move Left">←</button>
+                    <button id="touchRotate" class="touch-btn" type="button" aria-label="Rotate">↻</button>
+                    <button id="touchRight" class="touch-btn" type="button" aria-label="Move Right">→</button>
+                </div>
+                <div class="touch-row">
+                    <button id="touchSoftDrop" class="touch-btn" type="button" aria-label="Soft Drop">↓</button>
+                    <button id="touchHardDrop" class="touch-btn drop-btn" type="button" aria-label="Hard Drop">⤓ DROP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

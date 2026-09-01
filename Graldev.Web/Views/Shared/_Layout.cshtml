@@ -74,6 +74,10 @@
       href="~/css/graldev-header.css"
       asp-append-version="true" />
 
+<link rel="stylesheet"
+      href="~/css/graldev-tetris.css"
+      asp-append-version="true" />
+
 @await RenderSectionAsync("Style", required: false)
 
     <!-- JSON-LD Structured Data -->
@@ -277,9 +281,14 @@
         </svg>
     </button>
 
+    <!-- Graldev Tetris Minigame Floating Launcher & Modal -->
+    @await Html.PartialAsync("_TetrisModal")
+
     <!-- Scripts -->
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/graldev-metal-v3.js"
+        asp-append-version="true"></script>
+    <script src="~/js/graldev-tetris.js"
         asp-append-version="true"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
