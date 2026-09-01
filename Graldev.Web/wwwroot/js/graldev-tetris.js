@@ -1,6 +1,6 @@
 /**
  * Graldev Tetris - Interactive Easter Egg Minigame
- * Architecture: Clean Vanilla JS Module with Web Audio API, Canvas HTML5, & Touch Controls
+ * Architecture: Fullscreen Applicative Screen with Dynamic Responsive Cell Calculation & Zero Scrollbars
  */
 
 (function () {
@@ -20,8 +20,7 @@
                 [0, 0, 0, 0]
             ],
             color: '#d4af66',      // Champagne Gold
-            borderColor: '#f5e4bc',
-            codeLabel: 'code'
+            borderColor: '#f5e4bc'
         },
         J: {
             matrix: [
@@ -30,8 +29,7 @@
                 [0, 0, 0]
             ],
             color: '#104928',      // Deep Emerald Green
-            borderColor: '#1ed17c',
-            codeLabel: 'data'
+            borderColor: '#1ed17c'
         },
         L: {
             matrix: [
@@ -40,8 +38,7 @@
                 [0, 0, 0]
             ],
             color: '#c5a059',      // Satin Gold
-            borderColor: '#ebd8b0',
-            codeLabel: 'cloud'
+            borderColor: '#ebd8b0'
         },
         O: {
             matrix: [
@@ -49,8 +46,7 @@
                 [1, 1]
             ],
             color: '#11ab64',      // Graldev Accent Green
-            borderColor: '#24f293',
-            codeLabel: 'ai'
+            borderColor: '#24f293'
         },
         S: {
             matrix: [
@@ -59,8 +55,7 @@
                 [0, 0, 0]
             ],
             color: '#008a26',      // Brand Green
-            borderColor: '#1ed17c',
-            codeLabel: 'sys'
+            borderColor: '#1ed17c'
         },
         T: {
             matrix: [
@@ -69,8 +64,7 @@
                 [0, 0, 0]
             ],
             color: '#1e3828',      // Dark Greige/Glass Green
-            borderColor: '#d4af66',
-            codeLabel: 'api'
+            borderColor: '#d4af66'
         },
         Z: {
             matrix: [
@@ -79,14 +73,13 @@
                 [0, 0, 0]
             ],
             color: '#e2d2b1',      // Soft Champagne Light
-            borderColor: '#ffffff',
-            codeLabel: 'web'
+            borderColor: '#ffffff'
         }
     };
 
     const SHAPE_NAMES = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
 
-    // Game Engine State
+    // Engine State Variables
     let canvas, ctx;
     let nextCanvas, nextCtx;
     let grid = [];
@@ -109,6 +102,7 @@
 
     let isMuted = false;
     let audioCtx = null;
+    let cellSize = 25; // Dynamically calculated
 
     // Web Audio Synthesizer
     function getAudioContext() {
@@ -144,9 +138,7 @@
 
             osc.start();
             osc.stop(ctxAudio.currentTime + duration);
-        } catch (e) {
-            // Audio context restriction silently ignored
-        }
+        } catch (e) { }
     }
 
     function playSound(effect) {
@@ -166,9 +158,9 @@
                 playTone(120, 'sawtooth', 0.12, 0.2);
                 break;
             case 'clear':
-                playTone(523.25, 'sine', 0.1, 0.2); // C5
-                setTimeout(() => playTone(659.25, 'sine', 0.12, 0.2), 60); // E5
-                setTimeout(() => playTone(783.99, 'sine', 0.15, 0.2), 120); // G5
+                playTone(523.25, 'sine', 0.1, 0.2);
+                setTimeout(() => playTone(659.25, 'sine', 0.12, 0.2), 60);
+                setTimeout(() => playTone(783.99, 'sine', 0.15, 0.2), 120);
                 break;
             case 'levelUp':
                 playTone(440, 'triangle', 0.08, 0.2);
@@ -211,7 +203,6 @@
     function getNextFromBag() {
         if (bag.length === 0) {
             bag = [...SHAPE_NAMES];
-            // Fisher-Yates shuffle
             for (let i = bag.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [bag[i], bag[j]] = [bag[j], bag[i]];
@@ -225,18 +216,15 @@
             matrix: shapeDef.matrix.map(row => [...row]),
             color: shapeDef.color,
             borderColor: shapeDef.borderColor,
-            codeLabel: shapeDef.codeLabel,
             x: Math.floor((COLS - shapeDef.matrix[0].length) / 2),
             y: 0
         };
     }
 
-    // Create Empty Board
     function createGrid() {
         return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
     }
 
-    // Collision Detection
     function collide(gridBoard, piece) {
         const m = piece.matrix;
         for (let r = 0; r < m.length; r++) {
@@ -258,7 +246,6 @@
         return false;
     }
 
-    // Lock Piece to Grid
     function mergePiece() {
         const m = currentPiece.matrix;
         for (let r = 0; r < m.length; r++) {
@@ -277,7 +264,6 @@
         }
     }
 
-    // Rotate Matrix Clockwise
     function rotateMatrix(matrix) {
         const N = matrix.length;
         const result = Array.from({ length: N }, () => Array(N).fill(0));
@@ -289,7 +275,7 @@
         return result;
     }
 
-    // Player Actions
+    // Player Movement Handlers
     function moveLeft() {
         if (!gameRunning || isPaused || gameOver) return;
         currentPiece.x--;
@@ -318,7 +304,6 @@
         const rotated = rotateMatrix(currentPiece.matrix);
         currentPiece.matrix = rotated;
 
-        // Wall kick attempt
         let offset = 1;
         while (collide(grid, currentPiece)) {
             currentPiece.x += offset;
@@ -379,7 +364,6 @@
         }
     }
 
-    // Line Clearing & Scoring
     function clearLines() {
         let linesClearedCount = 0;
 
@@ -396,18 +380,16 @@
                 linesClearedCount++;
                 grid.splice(r, 1);
                 grid.unshift(Array(COLS).fill(null));
-                r++; // Re-check row index after shift
+                r++;
             }
         }
 
         if (linesClearedCount > 0) {
             lines += linesClearedCount;
 
-            // Score Multiplier per lines cleared
             const linePoints = [0, 100, 300, 500, 800];
             score += (linePoints[linesClearedCount] || 800) * level;
 
-            // Level Progression (Every 10 lines)
             const newLevel = Math.floor(lines / 10) + 1;
             if (newLevel > level) {
                 level = newLevel;
@@ -422,7 +404,6 @@
     }
 
     function getFallInterval() {
-        // Smooth speed curve down to a minimum cap of 80ms
         return Math.max(80, 800 - (level - 1) * 60);
     }
 
@@ -465,10 +446,61 @@
         }
     }
 
-    // Drawing Logic (Canvas HTML5)
+    // Dynamic Adaptive Cell Size & Canvas Resizing (ZERO SCROLLBAR GUARANTEE)
+    function resizeGameView() {
+        if (!canvas) return;
+
+        const workspace = document.getElementById('tetrisWorkspace');
+        const header = document.querySelector('.tetris-app-header');
+        if (!workspace) return;
+
+        const workspaceHeight = workspace.clientHeight || (window.innerHeight - (header ? header.clientHeight : 50));
+        const workspaceWidth = workspace.clientWidth || window.innerWidth;
+
+        const isMobilePortrait = window.innerWidth <= 850 && window.innerHeight > window.innerWidth;
+        const isLandscapeMobile = window.innerHeight <= 500;
+
+        let availableHeight, availableWidth;
+
+        if (isMobilePortrait) {
+            // Subtract space for Top HUD and Bottom Touch Controls
+            const topHud = document.querySelector('.tetris-hud-left');
+            const touchControls = document.querySelector('.tetris-touch-controls');
+            const topHudH = topHud ? topHud.clientHeight : 50;
+            const touchH = touchControls ? touchControls.clientHeight : 100;
+
+            availableHeight = Math.max(180, workspaceHeight - topHudH - touchH - 25);
+            availableWidth = Math.max(120, workspaceWidth - 20);
+        } else if (isLandscapeMobile) {
+            availableHeight = Math.max(160, workspaceHeight - 15);
+            availableWidth = Math.max(120, workspaceWidth - 280);
+        } else {
+            // Desktop & Laptop
+            availableHeight = Math.max(250, workspaceHeight - 30);
+            availableWidth = Math.max(150, workspaceWidth - 420);
+        }
+
+        // Calculate Cell Size strictly fitting available height and width
+        const cellFromHeight = Math.floor(availableHeight / ROWS);
+        const cellFromWidth = Math.floor(availableWidth / COLS);
+        cellSize = Math.max(10, Math.min(cellFromHeight, cellFromWidth, 38));
+
+        const canvasWidth = COLS * cellSize;
+        const canvasHeight = ROWS * cellSize;
+
+        // Set Logical Canvas Pixel Buffer
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+
+        // Render Canvas
+        draw();
+        drawNextPiece();
+    }
+
+    // Drawing Logic
     function drawBlock(context, x, y, size, color, borderColor, isGhost = false) {
-        const pad = 1.5;
-        const radius = 3;
+        const pad = Math.max(1, Math.floor(size * 0.05));
+        const radius = Math.max(1, Math.floor(size * 0.12));
 
         context.save();
 
@@ -478,20 +510,17 @@
             context.setLineDash([3, 3]);
             context.strokeRect(x * size + pad, y * size + pad, size - pad * 2, size - pad * 2);
         } else {
-            // Main fill block with subtle bevel
             context.fillStyle = color;
             context.beginPath();
             context.roundRect(x * size + pad, y * size + pad, size - pad * 2, size - pad * 2, radius);
             context.fill();
 
-            // Inner Highlight Border
             context.strokeStyle = borderColor || 'rgba(255,255,255,0.3)';
             context.lineWidth = 1;
             context.stroke();
 
-            // Subtle Graldev Tech Pixel Accents
             context.fillStyle = 'rgba(255, 255, 255, 0.15)';
-            context.fillRect(x * size + pad + 2, y * size + pad + 2, (size - pad * 2) * 0.35, 2);
+            context.fillRect(x * size + pad + 2, y * size + pad + 2, Math.max(2, (size - pad * 2) * 0.35), 2);
         }
 
         context.restore();
@@ -507,35 +536,33 @@
     }
 
     function draw() {
-        if (!ctx) return;
-
-        const blockSize = canvas.width / COLS;
+        if (!ctx || !canvas) return;
 
         // Clear Canvas
         ctx.fillStyle = '#030805';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Draw Subtle Grid Background
-        ctx.strokeStyle = 'rgba(17, 171, 100, 0.05)';
+        // Draw Grid Gridlines
+        ctx.strokeStyle = 'rgba(17, 171, 100, 0.06)';
         ctx.lineWidth = 1;
         for (let r = 0; r <= ROWS; r++) {
             ctx.beginPath();
-            ctx.moveTo(0, r * blockSize);
-            ctx.lineTo(canvas.width, r * blockSize);
+            ctx.moveTo(0, r * cellSize);
+            ctx.lineTo(canvas.width, r * cellSize);
             ctx.stroke();
         }
         for (let c = 0; c <= COLS; c++) {
             ctx.beginPath();
-            ctx.moveTo(c * blockSize, 0);
-            ctx.lineTo(c * blockSize, canvas.height);
+            ctx.moveTo(c * cellSize, 0);
+            ctx.lineTo(c * cellSize, canvas.height);
             ctx.stroke();
         }
 
-        // Draw Grid Filled Blocks
+        // Draw Filled Grid
         for (let r = 0; r < ROWS; r++) {
             for (let c = 0; c < COLS; c++) {
                 if (grid[r][c] !== null) {
-                    drawBlock(ctx, c, r, blockSize, grid[r][c].color, grid[r][c].borderColor);
+                    drawBlock(ctx, c, r, cellSize, grid[r][c].color, grid[r][c].borderColor);
                 }
             }
         }
@@ -547,19 +574,19 @@
             for (let r = 0; r < m.length; r++) {
                 for (let c = 0; c < m[r].length; c++) {
                     if (m[r][c] !== 0) {
-                        drawBlock(ctx, currentPiece.x + c, ghostY + r, blockSize, 'rgba(197, 160, 89, 0.4)', null, true);
+                        drawBlock(ctx, currentPiece.x + c, ghostY + r, cellSize, 'rgba(197, 160, 89, 0.4)', null, true);
                     }
                 }
             }
         }
 
-        // Draw Active Current Piece
+        // Draw Active Piece
         if (currentPiece && gameRunning && !gameOver) {
             const m = currentPiece.matrix;
             for (let r = 0; r < m.length; r++) {
                 for (let c = 0; c < m[r].length; c++) {
                     if (m[r][c] !== 0) {
-                        drawBlock(ctx, currentPiece.x + c, currentPiece.y + r, blockSize, currentPiece.color, currentPiece.borderColor);
+                        drawBlock(ctx, currentPiece.x + c, currentPiece.y + r, cellSize, currentPiece.color, currentPiece.borderColor);
                     }
                 }
             }
@@ -567,13 +594,13 @@
     }
 
     function drawNextPiece() {
-        if (!nextCtx || !nextPiece) return;
+        if (!nextCtx || !nextPiece || !nextCanvas) return;
 
         nextCtx.fillStyle = '#030805';
         nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
 
         const m = nextPiece.matrix;
-        const size = 18;
+        const size = Math.floor(nextCanvas.width / 5);
         const offsetX = (nextCanvas.width - m[0].length * size) / 2;
         const offsetY = (nextCanvas.height - m.length * size) / 2;
 
@@ -629,7 +656,7 @@
         animationFrameId = requestAnimationFrame(update);
     }
 
-    // Game Lifecycle Management
+    // Lifecycle
     function startGame() {
         grid = createGrid();
         bag = [];
@@ -644,11 +671,12 @@
         nextPiece = getNextFromBag();
 
         updateScoreUI();
-        drawNextPiece();
 
         document.getElementById('tetrisStartScreen')?.classList.add('hidden');
         document.getElementById('tetrisPauseScreen')?.classList.add('hidden');
         document.getElementById('tetrisGameOverScreen')?.classList.add('hidden');
+
+        resizeGameView();
 
         lastTime = performance.now();
         dropCounter = 0;
@@ -684,6 +712,7 @@
 
         getAudioContext();
         loadHighScore();
+        resizeGameView();
 
         if (!gameRunning && !gameOver) {
             document.getElementById('tetrisStartScreen')?.classList.remove('hidden');
@@ -700,12 +729,26 @@
         modal.classList.remove('active');
         document.body.classList.remove('tetris-open');
 
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => { });
+        }
+
         if (gameRunning && !isPaused && !gameOver) {
             togglePause();
         }
     }
 
-    // Event Listeners Initialization
+    function toggleBrowserFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => { });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => { });
+            }
+        }
+    }
+
+    // Event Listeners
     function setupEventListeners() {
         // Floating Launcher Button
         const launcherBtn = document.getElementById('graldevTetrisBtn');
@@ -713,8 +756,10 @@
             launcherBtn.addEventListener('click', openModal);
         }
 
-        // Close & Mute Header Buttons
+        // Close, Exit, Fullscreen & Mute Header Buttons
         document.getElementById('tetrisCloseBtn')?.addEventListener('click', closeModal);
+        document.getElementById('tetrisExitBtn')?.addEventListener('click', closeModal);
+        document.getElementById('tetrisFullscreenToggle')?.addEventListener('click', toggleBrowserFullscreen);
 
         const muteBtn = document.getElementById('tetrisMuteBtn');
         const muteIcon = document.getElementById('tetrisMuteIcon');
@@ -740,17 +785,7 @@
         document.getElementById('tetrisPauseBtn')?.addEventListener('click', togglePause);
         document.getElementById('tetrisResetBtn')?.addEventListener('click', startGame);
 
-        // Click outside modal container to close
-        const modalOverlay = document.getElementById('graldevTetrisModal');
-        if (modalOverlay) {
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) {
-                    closeModal();
-                }
-            });
-        }
-
-        // Desktop Keyboard Navigation
+        // Keyboard Controls
         window.addEventListener('keydown', (e) => {
             const modal = document.getElementById('graldevTetrisModal');
             if (!modal || !modal.classList.contains('active')) return;
@@ -802,7 +837,7 @@
             }
         });
 
-        // Mobile Touch Control Handlers
+        // Touch Controls
         const attachTouch = (id, action) => {
             const btn = document.getElementById(id);
             if (btn) {
@@ -823,7 +858,21 @@
         attachTouch('touchSoftDrop', softDrop);
         attachTouch('touchHardDrop', hardDrop);
 
-        // Auto-Pause when losing focus or changing tabs
+        // Window & Viewport Resize Observers
+        window.addEventListener('resize', resizeGameView);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(resizeGameView, 150);
+        });
+
+        const workspace = document.getElementById('tetrisWorkspace');
+        if (workspace && window.ResizeObserver) {
+            const ro = new ResizeObserver(() => {
+                resizeGameView();
+            });
+            ro.observe(workspace);
+        }
+
+        // Auto-pause when losing focus
         window.addEventListener('blur', () => {
             if (gameRunning && !isPaused && !gameOver) {
                 togglePause();
@@ -847,5 +896,6 @@
 
         setupEventListeners();
         loadHighScore();
+        resizeGameView();
     });
 })();
