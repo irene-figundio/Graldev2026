@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews()
     .AddViewLocalization();
 
@@ -58,7 +59,7 @@ app.Use(async (context, next) =>
     }
     if (path.Equals("/Project/AR", StringComparison.OrdinalIgnoreCase))
     {
-        context.Response.Redirect("/case-study/gralcall", permanent: true);
+        context.Response.Redirect("/labs", permanent: true);
         return;
     }
     if (path.Equals("/Project/Parcor", StringComparison.OrdinalIgnoreCase))

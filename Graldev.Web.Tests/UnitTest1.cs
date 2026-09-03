@@ -43,8 +43,8 @@ namespace Graldev.Web.Tests
         [InlineData("/en/case-studies/geordie")]
         [InlineData("/case-study/vitinerario")]
         [InlineData("/en/case-studies/vitinerario")]
-        [InlineData("/case-study/gralcall")]
-        [InlineData("/en/case-studies/gralcall")]
+        [InlineData("/studios")]
+        [InlineData("/en/studios")]
         [InlineData("/settori")]
         [InlineData("/en/sectors")]
         [InlineData("/settori/industria")]
@@ -55,10 +55,6 @@ namespace Graldev.Web.Tests
         [InlineData("/en/sectors/telco")]
         [InlineData("/chi-siamo")]
         [InlineData("/en/about")]
-        [InlineData("/insights")]
-        [InlineData("/en/insights")]
-        [InlineData("/insights/system-integration-quando-serve")]
-        [InlineData("/en/insights/system-integration-quando-serve")]
         [InlineData("/contatti")]
         [InlineData("/en/contact")]
         [InlineData("/consulenza-informatica-potenza")]
@@ -105,7 +101,7 @@ namespace Graldev.Web.Tests
         [InlineData("/Home/CicDetails", "/consulenza-informatica")]
         [InlineData("/Project/Geordie", "/case-study/geordie")]
         [InlineData("/Project/Ludirex", "/labs")]
-        [InlineData("/Project/AR", "/case-study/gralcall")]
+        [InlineData("/Project/AR", "/labs")]
         [InlineData("/Project/Parcor", "/labs")]
         [InlineData("/Home/ChangeLanguage?lang=EN", "/en")]
         [InlineData("/Home/ChangeLanguage?lang=IT", "/")]
@@ -143,8 +139,8 @@ namespace Graldev.Web.Tests
         }
 
         [Theory]
-        [InlineData("/case-study/gralcall", "/en/case-studies/gralcall")]
-        [InlineData("/en/case-studies/gralcall", "/case-study/gralcall")]
+        [InlineData("/case-study/geordie", "/en/case-studies/geordie")]
+        [InlineData("/en/case-studies/geordie", "/case-study/geordie")]
         [InlineData("/servizi/system-integration", "/en/services/system-integration")]
         [InlineData("/en/services/system-integration", "/servizi/system-integration")]
         public async Task LanguageSwitchLinks_PointToCorrespondingLocalizedRoute(string pageUrl, string expectedTargetUrl)
@@ -197,6 +193,27 @@ namespace Graldev.Web.Tests
             var text = await response.Content.ReadAsStringAsync();
             Assert.Contains("User-agent: *", text);
             Assert.Contains("Sitemap:", text);
+        }
+
+        [Theory]
+        [InlineData("/")]
+        [InlineData("/en")]
+        public async Task Layout_RendersGraldevTetrisFloatingButtonAndModal(string url)
+        {
+            // Arrange
+            var client = _factory.CreateClient();
+
+            // Act
+            var response = await client.GetAsync(url);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains("id=\"graldevTetrisBtn\"", html);
+            Assert.Contains("id=\"graldevTetrisModal\"", html);
+            Assert.Contains("graldev-tetris.css", html);
+            Assert.Contains("graldev-tetris.js", html);
         }
     }
 }

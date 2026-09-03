@@ -49,19 +49,5 @@ namespace Graldev.Web.Controllers
             return View();
         }
 
-        [Route("case-study/gralcall")]
-        [Route("en/case-studies/gralcall")]
-        public IActionResult Gralcall()
-        {
-            SetupSeo(
-                titleIt: "Case Study Gralcall: Realtà Aumentata e Valorizzazione Territoriale | Graldev",
-                titleEn: "Gralcall Case Study: Augmented Reality and Territory Valorization | Graldev",
-                descIt: "Scopri come Gralcall AR unisce turismo, tecnologia e video informativi interattivi in Realtà Aumentata per la promozione di borghi storici.",
-                descEn: "Discover how Gralcall AR merges tourism, technology and interactive Augmented Reality information videos for promoting historic villages.",
-                canonicalPathIt: "/case-study/gralcall",
-                canonicalPathEn: "/en/case-studies/gralcall"
-            );
-            return View();
-        }
     }
 }

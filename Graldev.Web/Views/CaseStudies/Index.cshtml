@@ -148,6 +148,33 @@
             border: 1px solid rgba(16,73,40,.07);
         }
 
+        [data-theme="dark"] .case-tag {
+            background: rgba(231, 241, 234, 0.08) !important;
+            border: 1px solid rgba(231, 241, 234, 0.09) !important;
+            color: #d1dbd3 !important;
+        }
+
+        [data-theme="dark"] .case-card-badge {
+            background: rgba(17, 171, 100, 0.08) !important;
+            border: 1px solid rgba(17, 171, 100, 0.18) !important;
+            color: #48cf8a !important;
+        }
+
+        [data-theme="dark"] .case-category,
+        [data-theme="dark"] .case-card-category {
+            color: #d2ad5e !important;
+        }
+
+        [data-theme="dark"] .case-featured h3,
+        [data-theme="dark"] .case-card h3 {
+            color: #edf2ec !important;
+        }
+
+        [data-theme="dark"] .case-featured-copy,
+        [data-theme="dark"] .case-card p {
+            color: #b8c6bc !important;
+        }
+
         .case-link {
             display: inline-flex;
             align-items: center;
@@ -169,98 +196,127 @@
             }
 
         /* =========================================================
-                   FEATURED VISUAL
+                   FEATURED VISUAL (GEORDIE ARCHITECTURE DIAGRAM)
                    ========================================================= */
 
         .case-featured-visual {
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
-        .commerce-diagram {
+        .geordie-arch-diagram {
             position: relative;
-            width: min(100%, 420px);
-            min-height: 360px;
-            display: grid;
-            place-items: center;
+            width: 100%;
+            max-width: 440px;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
         }
 
-        .commerce-core {
+        .arch-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.25rem;
+            width: 100%;
+            position: relative;
+        }
+
+        .arch-core-node {
+            width: 140px;
+            height: 96px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(230, 244, 236, 0.65));
+            border: 1px solid rgba(197, 160, 89, 0.35);
+            box-shadow: 0 12px 28px rgba(42, 79, 57, 0.12), inset 1px 1px 0 rgba(255, 255, 255, 0.95);
             position: relative;
             z-index: 3;
-            width: 135px;
-            height: 135px;
-            display: grid;
-            place-items: center;
-            border-radius: 32px;
-            color: var(--brand-green-dark);
-            font-size: 1.18rem;
-            font-weight: 850;
-            letter-spacing: -.045em;
-            background: linear-gradient( 145deg, rgba(255,255,255,.78), rgba(230,244,236,.56) );
-            border: 1px solid rgba(255,255,255,.85);
-            box-shadow: 13px 15px 34px rgba(42,79,57,.09), inset 1px 1px 0 rgba(255,255,255,.98);
-        }
-
-        .commerce-node {
-            position: absolute;
-            width: 92px;
-            min-height: 62px;
-            padding: .7rem .6rem;
-            display: grid;
-            place-items: center;
             text-align: center;
-            border-radius: 17px;
+        }
+
+        .arch-core-title {
+            font-size: 1.05rem;
+            font-weight: 850;
             color: var(--brand-green-dark);
-            font-size: .72rem;
+            letter-spacing: -0.02em;
+        }
+
+        .arch-core-sub {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--champagne-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 2px;
+        }
+
+        .arch-sub-node {
+            flex: 1;
+            max-width: 110px;
+            min-height: 52px;
+            padding: 0.5rem 0.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            box-shadow: 0 6px 16px rgba(42, 79, 57, 0.06);
+            font-size: 0.73rem;
             font-weight: 750;
+            color: var(--brand-green-dark);
             line-height: 1.25;
-            background: rgba(255,255,255,.46);
-            border: 1px solid rgba(255,255,255,.72);
-            box-shadow: 7px 9px 18px rgba(42,79,57,.06);
+            position: relative;
+            z-index: 2;
         }
 
-        .commerce-node--erp {
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* Connecting lines between nodes */
+        .arch-line-v {
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(197, 160, 89, 0.4), rgba(17, 171, 100, 0.3));
         }
 
-        .commerce-node--shop {
-            top: 110px;
-            right: 2px;
+        .arch-line-h {
+            height: 2px;
+            width: 24px;
+            background: rgba(197, 160, 89, 0.35);
         }
 
-        .commerce-node--market {
-            bottom: 20px;
-            right: 38px;
+        [data-theme="dark"] .arch-core-node {
+            background: linear-gradient(145deg, rgba(20, 48, 33, 0.95), rgba(11, 29, 20, 0.96)) !important;
+            border: 1px solid rgba(201, 168, 91, 0.28) !important;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32), inset 1px 1px 0 rgba(255, 255, 255, 0.04) !important;
         }
 
-        .commerce-node--carrier {
-            bottom: 20px;
-            left: 38px;
+        [data-theme="dark"] .arch-core-title {
+            color: #edf2ec !important;
         }
 
-        .commerce-node--data {
-            top: 110px;
-            left: 2px;
+        [data-theme="dark"] .arch-core-sub {
+            color: #d2ad5e !important;
         }
 
-        .commerce-ring {
-            position: absolute;
-            width: 285px;
-            height: 285px;
-            border-radius: 50%;
-            border: 1px solid rgba(197,160,89,.22);
+        [data-theme="dark"] .arch-sub-node {
+            background: rgba(16, 39, 27, 0.75) !important;
+            border: 1px solid rgba(184, 205, 190, 0.12) !important;
+            color: #d5dfd7 !important;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25) !important;
         }
 
-            .commerce-ring::after {
-                content: "";
-                position: absolute;
-                inset: 25px;
-                border-radius: 50%;
-                border: 1px dashed rgba(17,171,100,.18);
-            }
+        [data-theme="dark"] .arch-line-v,
+        [data-theme="dark"] .arch-line-h {
+            background: rgba(201, 168, 91, 0.28) !important;
+        }
 
         /* =========================================================
                    SECONDARY CASES
@@ -268,7 +324,7 @@
 
         .cases-secondary-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.25rem;
             margin-top: 1.25rem;
         }
@@ -546,37 +602,47 @@
                 <div class="case-featured-visual"
                      aria-hidden="true">
 
-                    <div class="commerce-diagram">
-
-                        <div class="commerce-ring"></div>
-
-                        <div class="commerce-core">
-                            GEORDIE
+                    <div class="geordie-arch-diagram">
+                        <!-- Top Row: ERP -->
+                        <div class="arch-row">
+                            <div class="arch-sub-node">
+                                <strong>ERP</strong>
+                                <span style="font-size: 0.62rem; opacity: 0.8;">Internal System</span>
+                            </div>
                         </div>
 
-                        <div class="commerce-node commerce-node--erp">
-                            ERP
+                        <div class="arch-line-v"></div>
+
+                        <!-- Middle Row: Stock / Orders <---> GEORDIE CORE <---> Shopify -->
+                        <div class="arch-row">
+                            <div class="arch-sub-node">
+                                <strong>Stock &amp; Orders</strong>
+                            </div>
+                            <div class="arch-line-h"></div>
+                            <div class="arch-core-node">
+                                <span class="arch-core-title">GEORDIE</span>
+                                <span class="arch-core-sub">Core Layer</span>
+                            </div>
+                            <div class="arch-line-h"></div>
+                            <div class="arch-sub-node">
+                                <strong>Shopify</strong>
+                                <span style="font-size: 0.62rem; opacity: 0.8;">Direct Stores</span>
+                            </div>
                         </div>
 
-                        <div class="commerce-node commerce-node--shop">
-                            Shopify
-                        </div>
+                        <div class="arch-line-v"></div>
 
-                        <div class="commerce-node commerce-node--market">
-                            Amazon<br />
-                            eBay
+                        <!-- Bottom Row: Amazon/eBay & GLS/BRT -->
+                        <div class="arch-row">
+                            <div class="arch-sub-node">
+                                <strong>Amazon / eBay</strong>
+                                <span style="font-size: 0.62rem; opacity: 0.8;">Marketplaces</span>
+                            </div>
+                            <div class="arch-sub-node">
+                                <strong>GLS / BRT</strong>
+                                <span style="font-size: 0.62rem; opacity: 0.8;">Logistics APIs</span>
+                            </div>
                         </div>
-
-                        <div class="commerce-node commerce-node--carrier">
-                            GLS<br />
-                            BRT
-                        </div>
-
-                        <div class="commerce-node commerce-node--data">
-                            Stock<br />
-                            Orders
-                        </div>
-
                     </div>
 
                 </div>
@@ -647,61 +713,6 @@
                 </article>
 
 
-                <!-- GRALCALL -->
-                <article class="premium-card case-card"
-                         data-motif="network">
-
-                    <div>
-
-                        <div class="case-card-top">
-
-                            <span class="case-card-number">
-                                03
-                            </span>
-
-                            <span class="case-card-badge">
-                                WebAR
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Gralcall AR
-                        </h3>
-
-                        <span class="case-card-category">
-                            @(isEn
-                                ? "WebAR & Interactive Territorial Guides"
-                                : "WebAR & Guide Territoriali Interattive")
-                        </span>
-
-                        <p>
-                            @(isEn
-                                ? "A browser-based augmented reality experience that connects physical landmarks with multimedia storytelling, without requiring users to install a dedicated application."
-                                : "Un'esperienza di realtà aumentata direttamente nel browser che collega luoghi fisici e narrazione multimediale, senza richiedere l'installazione di un'app dedicata.")
-                        </p>
-
-                        <ul class="case-tags">
-                            <li class="case-tag">WebAR</li>
-                            <li class="case-tag">3D</li>
-                            <li class="case-tag">Mobile Web</li>
-                            <li class="case-tag">Storytelling</li>
-                        </ul>
-
-                    </div>
-
-                    <a href="@(isEn
-                                                       ? "/en/case-studies/gralcall"
-                                                       : "/case-study/gralcall")"
-                       class="case-link">
-
-                        @(isEn
-                            ? "Explore the case study"
-                            : "Scopri il progetto")
-
-                    </a>
-
-                </article>
 
             </div>
 

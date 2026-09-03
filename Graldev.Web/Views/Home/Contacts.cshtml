@@ -491,7 +491,8 @@
                     </div>
 
 
-                    <form asp-controller="Home"
+                    <form id="contactForm"
+                          asp-controller="Home"
                           asp-action="SubmitContact"
                           method="post"
                           class="needs-validation"
@@ -502,6 +503,8 @@
                         <div asp-validation-summary="ModelOnly"
                              class="validation-summary-errors">
                         </div>
+
+                        @Html.HiddenFor(m => m.RecaptchaToken, new { id = "RecaptchaToken" })
 
                         @Html.TextBoxFor(
                             m => m.Website,
@@ -754,6 +757,12 @@
 
                         </div>
 
+
+                        <!-- Bot Protection / reCAPTCHA indicator -->
+                        <div style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            <span>Protected by anti-spam bot protection &amp; reCAPTCHA.</span>
+                        </div>
 
                         <div class="contact-submit">
 

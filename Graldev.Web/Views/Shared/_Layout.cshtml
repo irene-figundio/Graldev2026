@@ -74,6 +74,10 @@
       href="~/css/graldev-header.css"
       asp-append-version="true" />
 
+<link rel="stylesheet"
+      href="~/css/graldev-tetris.css"
+      asp-append-version="true" />
+
 @await RenderSectionAsync("Style", required: false)
 
     <!-- JSON-LD Structured Data -->
@@ -162,7 +166,7 @@
                         <a href="@(isEn ? "/en/case-studies" : "/case-study")" class="nav-item">Case Study</a>
                     </li>
                     <li>
-                        <a href="@(isEn ? "/en/insights" : "/insights")" class="nav-item">Insights</a>
+                        <a href="@(isEn ? "/en/studios" : "/studios")" class="nav-item">Studios</a>
                     </li>
                     <li>
                         <a href="@(isEn ? "/en/about" : "/chi-siamo")" class="nav-item">
@@ -223,7 +227,7 @@
                 <ul>
                     <li><a href="@(isEn ? "/en/about" : "/chi-siamo")">@(isEn ? "About Us" : "Chi siamo")</a></li>
                     <li><a href="@(isEn ? "/en/case-studies" : "/case-study")">Case Study</a></li>
-                    <li><a href="@(isEn ? "/en/insights" : "/insights")">Insights</a></li>
+                    <li><a href="@(isEn ? "/en/studios" : "/studios")">Graldev Studios</a></li>
                     <li><a href="@(isEn ? "/en/contact" : "/contatti")">@(isEn ? "Contact Us" : "Contatti")</a></li>
                     <li><a href="/labs">Labs</a></li>
                 </ul>
@@ -277,9 +281,14 @@
         </svg>
     </button>
 
+    <!-- Graldev Tetris Minigame Floating Launcher & Modal -->
+    @await Html.PartialAsync("_TetrisModal")
+
     <!-- Scripts -->
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/graldev-metal-v3.js"
+        asp-append-version="true"></script>
+    <script src="~/js/graldev-tetris.js"
         asp-append-version="true"></script>
 
 @await RenderSectionAsync("Scripts", required: false)

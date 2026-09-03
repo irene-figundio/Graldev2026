@@ -72,7 +72,7 @@ namespace Graldev.Web.Controllers
         [Route("contatti")]
         [Route("en/contact")]
         [ValidateAntiForgeryToken]
-        public IActionResult SubmitContact(ContactViewModel model)
+        public async Task<IActionResult> SubmitContact(ContactViewModel model, [FromServices] IHttpClientFactory httpClientFactory, [FromServices] IConfiguration configuration)
         {
             bool isEn = IsEn;
 
@@ -99,7 +99,45 @@ namespace Graldev.Web.Controllers
                 return View("Contacts", model);
             }
 
-            // Perform Mail Sending or Mocking
+            // Server-side Google reCAPTCHA v3 verification
+            var secretKey = configuration["Recaptcha:SecretKey"];
+            if (!string.IsNullOrEmpty(secretKey) && !string.IsNullOrEmpty(model.RecaptchaToken))
+            {
+                try
+                {
+                    var client = httpClientFactory.CreateClient();
+                    var response = await client.PostAsync($"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={model.RecaptchaToken}", null);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        using var doc = JsonDocument.Parse(json);
+                        var root = doc.RootElement;
+                        bool success = root.TryGetProperty("success", out var sProp) && sProp.GetBoolean();
+                        double score = root.TryGetProperty("score", out var scProp) ? scProp.GetDouble() : 0.0;
+                        double minScore = double.TryParse(configuration["Recaptcha:MinimumScore"], out var ms) ? ms : 0.5;
+
+                        if (!success || score < minScore)
+                        {
+                            ModelState.AddModelError("", isEn ? "Security verification failed. Please try again." : "Verifica di sicurezza non riuscita. Riprova.");
+                            SetupSeo(
+                                titleIt: "Contatta Graldev | Consulenza Informatica e System Integration",
+                                titleEn: "Contact Graldev | IT Consulting and System Integration",
+                                descIt: "Raccontaci la tua esigenza IT. Graldev affianca aziende in System Integration, AI, software engineering, API, cloud e modernizzazione.",
+                                descEn: "Tell us about your IT needs. Graldev supports companies with System Integration, AI, software engineering, API, cloud and modernization.",
+                                canonicalPathIt: "/contatti",
+                                canonicalPathEn: "/en/contact"
+                            );
+                            return View("Contacts", model);
+                        }
+                    }
+                }
+                catch
+                {
+                    // Fail-safe logging
+                }
+            }
+
+            // Perform Mail Sending / File Submission Logging
             try
             {
                 var logPath = Path.Combine(Directory.GetCurrentDirectory(), "contact_submissions.json");
@@ -116,6 +154,23 @@ namespace Graldev.Web.Controllers
                 : "Grazie! Il tuo messaggio è stato inviato con successo. Ti ricontatteremo al più presto.";
 
             return RedirectToAction("Contacts");
+        }
+
+        [Route("studios")]
+        [Route("graldev-studios")]
+        [Route("en/studios")]
+        [Route("en/graldev-studios")]
+        public IActionResult Studios()
+        {
+            SetupSeo(
+                titleIt: "Graldev Studios | Creative AI & Produzione Multimediale",
+                titleEn: "Graldev Studios | Creative AI & Multimedia Production",
+                descIt: "Graldev Studios è la divisione creativa di Graldev dedicata a produzioni video, audio, media digitali, 3D interattivo ed intelligenza artificiale generativa.",
+                descEn: "Graldev Studios is Graldev's creative division dedicated to video, audio, digital media, interactive 3D, and generative AI production.",
+                canonicalPathIt: "/studios",
+                canonicalPathEn: "/en/studios"
+            );
+            return View();
         }
 
         [Route("labs")]

@@ -183,6 +183,22 @@
             align-items: stretch;
         }
 
+        @@media (max-width: 768px) {
+            .integration-flow-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .integration-flow-arrow {
+                min-height: 48px !important;
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+
+            .integration-stack {
+                gap: 0.5rem;
+            }
+        }
+
         .integration-state {
             padding: 2rem;
             border-radius: 28px;
