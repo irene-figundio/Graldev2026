@@ -5,7 +5,7 @@
 /* Floating Tetris Game Launcher Button (Fixed Left Side) */
 .graldev-tetris-btn {
     position: fixed;
-    bottom: 2rem;
+    bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
     left: 2rem;
     z-index: 990;
     width: 46px;
@@ -51,7 +51,7 @@
 
 @media (max-width: 768px) {
     .graldev-tetris-btn {
-        bottom: 1.25rem;
+        bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
         left: 1.25rem;
         width: 42px;
         height: 42px;

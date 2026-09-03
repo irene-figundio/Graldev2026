@@ -187,6 +187,72 @@
     </div>
 </section>
 
+<!-- 08.5 GRALDEV STUDIOS FEATURE SECTION -->
+<section id="graldev-studios-section" class="site-section bg-warm-ivory metal-v3-section soft-transition transition-from-green" data-metal-v3="studios" style="padding: 5rem 0;">
+    @await Html.PartialAsync("_MetalPattern", "studios")
+
+    <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+            <div class="eyebrow-pill" style="border-color: var(--champagne-gold); color: var(--champagne-gold);">CREATIVE DIVISION</div>
+            <h2 style="font-weight: 800; margin-bottom: 1rem;">
+                @(isEn ? "Graldev Studios: Creative AI & Digital Production" : "Graldev Studios: Creative AI & Produzione Multimediale")
+            </h2>
+            <p style="color: var(--text-soft); font-size: 1.1rem; line-height: 1.65;">
+                @(isEn
+                    ? "Our specialized creative division bridging enterprise technology with generative AI, virtual production, 3D interactive environments, and video/audio storytelling."
+                    : "La nostra divisione creativa specializzata che unisce ingegneria software, intelligenza artificiale generativa, produzioni 3D interattive e storytelling multimediale.")
+            </p>
+        </div>
+
+        <div class="editorial-grid">
+            <article class="bento-card" data-motif="ai" style="padding: 2rem; justify-content: space-between; min-height: 280px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">GENERATIVE AI</span>
+                    <h4 style="margin: 0.5rem 0 0.75rem 0; font-size: 1.25rem; color: var(--brand-green-dark);">
+                        @(isEn ? "Generative Video & Film" : "Video Generativi & Cinema Sintetico")
+                    </h4>
+                    <p style="font-size: 0.9rem; color: var(--text-soft); line-height: 1.55;">
+                        @(isEn ? "Synthetic media pipelines, brand trailers, and automated video workflows." : "Pipeline di media sintetici, trailer aziendali e automazione della produzione video.")
+                    </p>
+                </div>
+            </article>
+
+            <article class="bento-card" data-motif="signal" style="padding: 2rem; justify-content: space-between; min-height: 280px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">VOICE & AUDIO</span>
+                    <h4 style="margin: 0.5rem 0 0.75rem 0; font-size: 1.25rem; color: var(--brand-green-dark);">
+                        @(isEn ? "Audio AI & Voice Cloning" : "Audio AI & Clonazione Vocale")
+                    </h4>
+                    <p style="font-size: 0.9rem; color: var(--text-soft); line-height: 1.55;">
+                        @(isEn ? "Multilingual narration, synthetic sound design, and custom voice branding." : "Narrazione multilingue, sound design sintetico e brand audio personalizzati.")
+                    </p>
+                </div>
+            </article>
+
+            <article class="bento-card" data-motif="architecture" style="padding: 2rem; justify-content: space-between; min-height: 280px;">
+                <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--champagne-gold); font-weight: 700;">SPATIAL MEDIA</span>
+                    <h4 style="margin: 0.5rem 0 0.75rem 0; font-size: 1.25rem; color: var(--brand-green-dark);">
+                        @(isEn ? "Interactive 3D & WebAR" : "3D Interattivo & WebAR")
+                    </h4>
+                    <p style="font-size: 0.9rem; color: var(--text-soft); line-height: 1.55;">
+                        @(isEn ? "Web-based augmented reality and real-time interactive 3D experiences." : "Realtà aumentata sul web ed esperienze 3D interattive in tempo reale.")
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="@(isEn ? "/en/graldev-studios" : "/graldev-studios")" class="btn btn-primary">
+                @(isEn ? "Explore Graldev Studios" : "Scopri Graldev Studios")
+            </a>
+            <a href="https://www.graldevstudios.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                @(isEn ? "Visit graldevstudios.com ↗" : "Visita graldevstudios.com ↗")
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- 03 SERVICES: Vertical Ivory Masonry Card Layout -->
 <section id="servizi" class="site-section bg-warm-ivory metal-v3-section soft-transition transition-from-green" data-metal-v3="home-services" style="padding: 5rem 0;">
 

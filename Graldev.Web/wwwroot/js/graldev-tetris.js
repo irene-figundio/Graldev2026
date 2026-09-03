@@ -304,13 +304,14 @@
         const rotated = rotateMatrix(currentPiece.matrix);
         currentPiece.matrix = rotated;
 
+        const origX = currentPiece.x;
         let offset = 1;
         while (collide(grid, currentPiece)) {
             currentPiece.x += offset;
             offset = -(offset + (offset > 0 ? 1 : -1));
-            if (offset > currentPiece.matrix[0].length) {
+            if (Math.abs(offset) > currentPiece.matrix[0].length) {
                 currentPiece.matrix = originalMatrix;
-                currentPiece.x -= (offset - 1);
+                currentPiece.x = origX;
                 return;
             }
         }

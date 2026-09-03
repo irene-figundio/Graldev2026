@@ -33,6 +33,9 @@ namespace Graldev.Web.Models
         [Display(Name = "Messaggio")]
         public string Messaggio { get; set; } = "";
 
+        // Google reCAPTCHA v3 token
+        public string? RecaptchaToken { get; set; }
+
         // Honeypot field - must be empty
         public string? Website { get; set; }
     }

@@ -1373,7 +1373,7 @@ select.form-control {
 /* Back to Top Floating Button */
 .back-to-top {
     position: fixed;
-    bottom: 2rem;
+    bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
     right: 2rem;
     z-index: 990;
     width: 46px;
@@ -1410,7 +1410,7 @@ select.form-control {
 
 @media (max-width: 768px) {
     .back-to-top {
-        bottom: 1.25rem;
+        bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
         right: 1.25rem;
         width: 42px;
         height: 42px;
@@ -1454,9 +1454,9 @@ select.form-control {
    ENTERPRISE FOOTER PREMIUM STYLING
    -------------------------------------------------------- */
 footer.site-footer {
-    background-color: var(--brand-green-dark);
-    color: var(--text-inverse);
-    border-top: 1px solid rgba(197, 160, 89, 0.15);
+    background-color: #051009;
+    color: #edf3ee;
+    border-top: 1px solid rgba(201, 168, 91, 0.22);
     padding: var(--spacing-lg) 0 var(--spacing-md) 0;
     position: relative;
     overflow: hidden;
@@ -1466,7 +1466,7 @@ footer.site-footer::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 80% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 60%);
+    background-image: radial-gradient(circle at 80% 0%, rgba(201, 168, 91, 0.12) 0%, transparent 60%);
     z-index: 1;
     pointer-events: none;
 }
@@ -1501,7 +1501,7 @@ footer.site-footer .footer-grid {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 1.25rem;
-    color: var(--champagne-gold-light);
+    color: #d4b36c;
 }
 
 .footer-col ul {
@@ -1513,26 +1513,26 @@ footer.site-footer .footer-grid {
 }
 
 .footer-col ul li a {
-    color: var(--text-inverse-soft);
+    color: #b7c4bb;
     font-size: 0.95rem;
     font-weight: 500;
     transition: color var(--transition-fast), padding-left var(--transition-fast);
 }
 
 .footer-col ul li a:hover {
-    color: white;
+    color: #ffffff;
     padding-left: 3px;
 }
 
 .footer-text {
     font-size: 0.95rem;
-    color: var(--text-inverse-soft);
+    color: #b7c4bb;
     max-width: 320px;
     margin-top: 0.75rem;
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(220, 232, 222, 0.12);
     padding-top: var(--spacing-md);
     display: flex;
     justify-content: space-between;
@@ -1543,7 +1543,7 @@ footer.site-footer .footer-grid {
 
 .footer-legal-text {
     font-size: 0.85rem;
-    color: var(--text-inverse-soft);
+    color: #819287;
 }
 
 .footer-social-links {
@@ -1552,14 +1552,14 @@ footer.site-footer .footer-grid {
 }
 
 .footer-social-links a {
-    color: var(--text-inverse-soft);
+    color: #b7c4bb;
     font-size: 0.92rem;
     font-weight: 600;
     transition: color var(--transition-fast);
 }
 
 .footer-social-links a:hover {
-    color: var(--champagne-gold-light);
+    color: #d4b36c;
 }
 
 /* --------------------------------------------------------
