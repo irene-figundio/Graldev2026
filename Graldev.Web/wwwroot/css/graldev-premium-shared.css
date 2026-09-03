@@ -601,7 +601,9 @@ section.site-section.bg-cream,
     [class*="-step"],
     [class*="-system-item"],
     [class*="-source-item"],
-    [class*="-pipeline-step"]
+    [class*="-pipeline-step"],
+    [class*="-list-item"],
+    [class*="-grid-item"]
 ) {
     background: rgba(231, 241, 234, 0.05) !important;
     border-color: rgba(231, 241, 234, 0.08) !important;
@@ -612,7 +614,11 @@ section.site-section.bg-cream,
     [class*="-flow-index"],
     [class*="-system-icon"],
     [class*="-source-icon"],
-    [class*="-pipeline-index"]
+    [class*="-pipeline-index"],
+    [class*="-icon"],
+    [class*="-index"],
+    .icon-neo-wrap,
+    .step-circle
 ) {
     background: linear-gradient(145deg, rgba(20, 48, 33, 0.95), rgba(11, 29, 20, 0.96)) !important;
     border-color: rgba(201, 168, 91, 0.24) !important;
@@ -624,6 +630,42 @@ section.site-section.bg-cream,
     background: linear-gradient(90deg, rgba(201, 168, 91, 0.12), transparent) !important;
     color: #edf2ec !important;
     border-left-color: #c9a85b !important;
+}
+
+/* Comprehensive Dark Mode Typography & Tag Overrides */
+[data-theme="dark"] :is(h1, h2, h3, h4, h5, h6, [class*="-title"], [class*="-heading"]) {
+    color: #edf2ec !important;
+}
+
+[data-theme="dark"] :is(p, p.lead, [class*="-desc"], [class*="-subtitle"], [class*="-copy"]) {
+    color: #b8c6bc !important;
+}
+
+[data-theme="dark"] :is(.eyebrow-pill, [class*="-kicker"], [class*="-eyebrow"], [class*="-category"], [class*="-number"], [class*="-label"]) {
+    color: #d2ad5e !important;
+}
+
+[data-theme="dark"] :is(.case-tag, .badge-tag, [class*="-badge"], [class*="-tag"], .pill-neomorphic) {
+    background: rgba(231, 241, 234, 0.08) !important;
+    border: 1px solid rgba(231, 241, 234, 0.12) !important;
+    color: #d1dbd3 !important;
+}
+
+/* Ensure mobile layout responsiveness and zero horizontal scroll across all screens */
+@media (max-width: 768px) {
+    body, html {
+        overflow-x: hidden !important;
+    }
+
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    :is([class*="-grid"], [class*="-shell"], [class*="-group"]) {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
 }
 
 /* Soft transition blends for dark mode */
