@@ -118,6 +118,21 @@ namespace Graldev.Web.Controllers
             return RedirectToAction("Contacts");
         }
 
+        [Route("studios")]
+        [Route("en/studios")]
+        public IActionResult Studios()
+        {
+            SetupSeo(
+                titleIt: "Graldev Studios | Creative AI & Produzione Multimediale",
+                titleEn: "Graldev Studios | Creative AI & Multimedia Production",
+                descIt: "Graldev Studios è la divisione creativa di Graldev dedicata a produzioni video, audio, media digitali, 3D interattivo ed intelligenza artificiale generativa.",
+                descEn: "Graldev Studios is Graldev's creative division dedicated to video, audio, digital media, interactive 3D, and generative AI production.",
+                canonicalPathIt: "/studios",
+                canonicalPathEn: "/en/studios"
+            );
+            return View();
+        }
+
         [Route("labs")]
         [Route("en/labs")]
         public IActionResult Labs()

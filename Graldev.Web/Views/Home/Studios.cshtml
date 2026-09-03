@@ -1,0 +1,225 @@
+@using Graldev.Web.Models
+
+@{
+    bool isEn = ViewData["IsEn"] as bool? ?? false;
+}
+
+@section Style {
+    <style>
+        .studios-page {
+            --studios-copy: 760px;
+        }
+
+        .studios-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: var(--radius-full, 9999px);
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.28);
+            color: var(--champagne-gold, #c5a059);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .studios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .studios-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg, 24px);
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .studios-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--champagne-gold);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .studios-card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .studios-card h3 {
+            font-size: 1.35rem;
+            color: var(--brand-green-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .studios-card p {
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+        }
+
+        .studios-cta-card {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3rem, 6vw, 5rem);
+            border-radius: var(--radius-xl, 32px);
+            text-align: center;
+            background: linear-gradient(145deg, rgba(16, 73, 40, 0.95), rgba(8, 41, 20, 0.98));
+            color: #ffffff;
+            margin-top: 5rem;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+        }
+
+        .studios-cta-card h2 {
+            color: #ffffff !important;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .studios-cta-card p {
+            color: rgba(255, 255, 255, 0.85) !important;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+
+        [data-theme="dark"] .studios-card {
+            background: linear-gradient(145deg, rgba(15, 38, 26, .92), rgba(8, 24, 16, .96)) !important;
+            border: 1px solid rgba(201, 168, 91, .16) !important;
+        }
+
+        [data-theme="dark"] .studios-card h3 {
+            color: #edf2ec !important;
+        }
+
+        [data-theme="dark"] .studios-card p {
+            color: #b8c6bc !important;
+        }
+
+        @@media (max-width: 992px) {
+            .studios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+}
+
+<div class="studios-page">
+
+    @await Html.PartialAsync(
+        "_MetalHero",
+        new MetalHeroViewModel
+        {
+            Id = "graldev-studios",
+            Size = "large",
+            Eyebrow = "GRALDEV STUDIOS",
+            Title = isEn
+                ? "Creative AI & Multimedia Production"
+                : "Creative AI e Produzione Multimediale",
+
+            Subtitle = isEn
+                ? "Graldev Studios is our creative division dedicated to video, audio, digital media, interactive 3D, and generative AI production."
+                : "Graldev Studios è la nostra divisione creativa dedicata a produzioni video, audio, media digitali, 3D interattivo ed intelligenza artificiale generativa.",
+
+            Breadcrumbs = new List<MetalHeroBreadcrumbItem>
+            {
+                new()
+                {
+                    Label = "Home",
+                    Url = isEn ? "/en" : "/"
+                },
+                new()
+                {
+                    Label = "Graldev Studios",
+                    IsCurrent = true
+                }
+            }
+        }
+    )
+
+    <section class="site-section bg-warm-white soft-transition transition-from-green">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <span class="studios-hero-badge">CREATIVE DIVISION</span>
+                <h2>
+                    @(isEn
+                        ? "Where technology meets creative storytelling."
+                        : "Dove la tecnologia incontra la narrazione creativa.")
+                </h2>
+                <p class="lead">
+                    @(isEn
+                        ? "We combine advanced artificial intelligence pipelines with high-end creative direction to produce digital content, virtual worlds, brand videos, and immersive experiences."
+                        : "Combiniamo pipeline avanzate di intelligenza artificiale generativa con direzione artistica per produrre contenuti digitali, mondi virtuali, video brand ed esperienze immersive.")
+                </p>
+            </div>
+
+            <div class="studios-grid">
+                <article class="studios-card">
+                    <div>
+                        <span class="studios-card-icon">🎬</span>
+                        <h3>
+                            @(isEn ? "Generative Video & Film" : "Video Generativi e Film")
+                        </h3>
+                        <p>
+                            @(isEn
+                                ? "Synthetic cinema, AI-driven video synthesis, brand trailers, and automated video workflows for modern media channels."
+                                : "Cinema sintetico, sintesi video guidata da AI, trailer di brand e flussi di lavoro video automatizzati per i canali media moderni.")
+                        </p>
+                    </div>
+                </article>
+
+                <article class="studios-card">
+                    <div>
+                        <span class="studios-card-icon">🎙️</span>
+                        <h3>
+                            @(isEn ? "Audio & Voice AI" : "Audio e Voce AI")
+                        </h3>
+                        <p>
+                            @(isEn
+                                ? "Voice cloning, multilingual narration, synthetic sound design, and custom AI audio branding."
+                                : "Clonazione vocale, narrazione multilingue, sound design sintetico e audio branding personalizzato con intelligenza artificiale.")
+                        </p>
+                    </div>
+                </article>
+
+                <article class="studios-card">
+                    <div>
+                        <span class="studios-card-icon">🌐</span>
+                        <h3>
+                            @(isEn ? "3D & Interactive Media" : "3D e Media Interattivi")
+                        </h3>
+                        <p>
+                            @(isEn
+                                ? "WebAR, real-time 3D environments, virtual production, and interactive spatial experiences."
+                                : "WebAR, ambienti 3D in tempo reale, produzione virtuale ed esperienze spaziali interattive.")
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="studios-cta-card">
+                <h2>Graldev Studios</h2>
+                <p>
+                    @(isEn
+                        ? "Explore full portfolio showcases, creative reels, and media productions on our dedicated portal."
+                        : "Scopri il portfolio completo, i reel creativi e le produzioni multimediali sul nostro portale dedicato.")
+                </p>
+                <a href="https://www.graldevstudios.com" target="_blank" rel="noopener noreferrer" class="btn btn-champagne">
+                    @(isEn ? "Visit graldevstudios.com" : "Visita graldevstudios.com") ↗
+                </a>
+            </div>
+        </div>
+    </section>
+
+</div>

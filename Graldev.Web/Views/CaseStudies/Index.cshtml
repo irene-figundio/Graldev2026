@@ -324,7 +324,7 @@
 
         .cases-secondary-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.25rem;
             margin-top: 1.25rem;
         }
@@ -713,61 +713,6 @@
                 </article>
 
 
-                <!-- GRALCALL -->
-                <article class="premium-card case-card"
-                         data-motif="network">
-
-                    <div>
-
-                        <div class="case-card-top">
-
-                            <span class="case-card-number">
-                                03
-                            </span>
-
-                            <span class="case-card-badge">
-                                WebAR
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Gralcall AR
-                        </h3>
-
-                        <span class="case-card-category">
-                            @(isEn
-                                ? "WebAR & Interactive Territorial Guides"
-                                : "WebAR & Guide Territoriali Interattive")
-                        </span>
-
-                        <p>
-                            @(isEn
-                                ? "A browser-based augmented reality experience that connects physical landmarks with multimedia storytelling, without requiring users to install a dedicated application."
-                                : "Un'esperienza di realtà aumentata direttamente nel browser che collega luoghi fisici e narrazione multimediale, senza richiedere l'installazione di un'app dedicata.")
-                        </p>
-
-                        <ul class="case-tags">
-                            <li class="case-tag">WebAR</li>
-                            <li class="case-tag">3D</li>
-                            <li class="case-tag">Mobile Web</li>
-                            <li class="case-tag">Storytelling</li>
-                        </ul>
-
-                    </div>
-
-                    <a href="@(isEn
-                                                       ? "/en/case-studies/gralcall"
-                                                       : "/case-study/gralcall")"
-                       class="case-link">
-
-                        @(isEn
-                            ? "Explore the case study"
-                            : "Scopri il progetto")
-
-                    </a>
-
-                </article>
 
             </div>
 
